@@ -1,4 +1,4 @@
-import { Objeto, GameObjeto, PhysicObjeto, DynamicObjeto, Character, Tile, TilePrefab, TileMap } from "rpgobjetos.js";
+import { Objeto, GameObjeto, PhysicObjeto, DynamicObjeto, Character, Tile, TilePrefab, TileMap } from "./rpgobjetos.js";
 
 export class RPGManager 
 {

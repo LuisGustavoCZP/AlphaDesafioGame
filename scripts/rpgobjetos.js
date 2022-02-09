@@ -1,4 +1,4 @@
-import { SpriteFrame, SpriteSource, GOSprite, AnimatedSprite } from "gosprite.js";
+import { SpriteFrame, SpriteSource, GOSprite, AnimatedSprite } from "./gosprite.js";
 
 export class Objeto 
 {
