@@ -1,4 +1,4 @@
-import { RPGManager } from "./rpgmanager.js";
+import { RPGManager } from "rpgmanager.js";
 
 export class SpriteFrame 
 {
