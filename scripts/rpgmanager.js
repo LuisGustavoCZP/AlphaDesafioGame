@@ -33,7 +33,7 @@ export class RPGManager
        
         this.iaTargets = [];
     }
-    dataPath = "../data/";
+    dataPath = "data/";
     LoadCharacters (path) {
         LoadJSON (this.dataPath+path, data =>
         {
