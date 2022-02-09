@@ -1,4 +1,4 @@
-import { RPGManager } from "./scripts/rpgmanager.js";
+import { RPGManager } from "scripts/rpgmanager.js";
 
 const canvas = document.querySelector("canvas");
 
