@@ -1,0 +1,20 @@
+{
+    "name":"tilesheet1",
+    "src":"sprites/tilemap.png",
+    "size":64,
+    "tiles":
+    [
+        {
+            "id":1,
+            "block":false
+        },
+        {
+            "id":15,
+            "block":false
+        },
+        {
+            "id":70,
+            "block":false
+        }
+    ]
+}
