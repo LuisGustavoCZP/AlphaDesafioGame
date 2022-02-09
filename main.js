@@ -22,7 +22,7 @@ function mouseClick (e){
 }
 
 rpgmanager.LoadCharacters ("personagens.json");
-rpgmanager.LoadMap ("mapa1.json", "tilesheet1.json");
+//rpgmanager.LoadMap ("mapa1.json", "tilesheet1.json");
 
 gameloop();
 window.addEventListener("click", mouseClick, false);
