@@ -37,11 +37,12 @@ export class GOSprite
         {
             this.spriteSheet = spriteSheet;
             const fs = this.spriteFrame.space;
-            const nw = this.spriteFrame.width + fs;
-            this.maxColum = Math.ceil((this.spriteSheet.width + fs) / (nw));
-            console.log(this.spriteSheet.width + " " + this.maxColum + " " + this.x + " " + this.y);
-            this.x = this.index % this.maxColum;
-            this.y = (this.index - this.x) / this.maxColum;
+            const nw = this.spriteFrame.width + fs, nh = this.spriteFrame.height + fs;
+            this.maxColumX = Math.ceil((this.spriteSheet.width + fs) / (nw));
+            this.maxColumY = Math.ceil((this.spriteSheet.height + fs) / (nh));
+            console.log(`${this.spriteSheet.width} => [${this.maxColumX}, ${this.maxColumY}] => (${this.x}, ${this.y})`);
+            this.x = this.index % this.maxColumX;
+            this.y = (this.index - this.x) / this.maxColumY;
             this.readyDraw = true;
         });
     }
@@ -49,9 +50,9 @@ export class GOSprite
     draw(context, posX, posY, size) {
         if(this.readyDraw)
         {
-            const hsize = size / 2;
-            posX = posX - hsize;
-            posY = posY - hsize;
+            const w = this.spriteFrame.width*size, h = this.spriteFrame.height*size;
+            posX = posX - (w/2);
+            posY = posY - (h/2);
             const fw = this.spriteFrame.width;
             const fh = this.spriteFrame.height;
             const fs = this.spriteFrame.space;
@@ -67,8 +68,8 @@ export class GOSprite
                 fh,
                 posX, 
                 posY,
-                size,
-                size
+                w,
+                h
             );
         }
     }
@@ -87,9 +88,9 @@ export class AnimatedSprite extends GOSprite
     }
 
     draw(context, posX, posY, size) {
-        const hsize = size / 2;
-        posX = posX - hsize;
-        posY = posY - size;
+        const w = this.spriteFrame.width*size, h = this.spriteFrame.height*size;
+        posX = posX - (w/2);
+        posY = posY - (h);
 
         if(this.readyDraw)
         {
@@ -110,8 +111,8 @@ export class AnimatedSprite extends GOSprite
                 this.frame = 0;
             }
 
-            const frameIndex = this.index + this.animation + (this.frame*this.maxColum);
-            const x = frameIndex % this.maxColum, y = (frameIndex - x) / this.maxColum;
+            const frameIndex = this.index + this.animation + (this.frame*this.maxColumX);
+            const x = frameIndex % this.maxColumX, y = (frameIndex - x) / this.maxColumX;
             const fx = (fw * x);
             const fy = (fh * y);
 
@@ -125,8 +126,8 @@ export class AnimatedSprite extends GOSprite
                 fh,
                 posX, 
                 posY,
-                size,
-                size
+                w,
+                h
             );
         }
     }

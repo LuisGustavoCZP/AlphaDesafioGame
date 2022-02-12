@@ -18,7 +18,7 @@ export class GameObjeto extends Objeto
         this.rotation = rot;
     }
 
-    static defaultFrame = new SpriteFrame(16,16,1);
+    static defaultFrame = new SpriteFrame(16, 16, 1);//new SpriteFrame(16,16,1);
 
     draw(canvas, context) {
         const hsize = this.size / 2;
