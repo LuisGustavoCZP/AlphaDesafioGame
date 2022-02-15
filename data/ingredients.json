@@ -1,0 +1,7 @@
+[
+    {"name": "Maracujá", "icon": "resources/ingredients/passionfruit.png"},
+    {"name": "Abóbora", "icon": "resources/ingredients/pumpkin1.png"},
+    {"name": "Alface", "icon": "resources/ingredients/salad-leaves.png"},
+    {"name": "Tomate", "icon": "resources/ingredients/sliced-tomato.png"},
+    {"name": "Teia de Aranha", "icon": "resources/ingredients/spiderweb.png"}
+]

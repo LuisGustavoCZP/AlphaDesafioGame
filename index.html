@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>VacSina</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+        <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>jogo teste</title>
         <style>
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
             }
-            canvas {
-                border:solid black 1px;
-            }
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="600" height="600"></canvas>
-        <script src="scripts/loadobject.js"></script>
-        <script type="module" src="main.js"></script>
+        <div id="loja">
+            <div class="prateleiras">
+                <div id="itens-1" class="item-fila">
+                    <img src="assets/Kickpixel's - RPG Icons 1/armour_bronze.png" id="armor1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/arrow_bronze.png" id="arrow1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/axe_bronze.png" id="axe1" class="item">
+                </div>
+                <div class="shadow"></div>
+                <div id="prate-1" class="prates"></div>
+                <div id="itens-2" class="item-fila">
+                    <img src="assets/Kickpixel's - RPG Icons 1/book_blue.png" id="book1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/gem_blue.png" id="gem1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/heart.png" id="heart1" class="item">
+                </div>
+                <div class="shadow"></div>
+                <div id="prate-2" class="prates"></div>
+                <div id="itens-3" class="item-fila">
+                    <img src="assets/Kickpixel's - RPG Icons 1/key.png" id="key1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/leaf.png" id="leaf1" class="item">
+                    <img src="assets/Kickpixel's - RPG Icons 1/potion_red.png" id="potion1" class="item">
+                </div>
+                <div class="shadow"></div>
+                <div id="prate-3" class="prates"></div>
+            </div>
+        </div>
+        <div id="interface" class="ui-state-common">
+            <div id="cliente">
+                <img src="assets/Kickpixel's - RPG Icons 1/elf.png" id="cliente-1">
+            </div>
+        </div>
+        <script type="module" src="scripts/inventory.js"></script>
+        <script type="module" src="scripts/teste1.js"></script>
+        <script>
+            const itens = 
+            [
+                {"name":"Madeira"},
+                {"name":"Pedra"},
+                {"name":"Folha"},
+                {"name":"Metal"}
+            ];
+            const crafts = 
+            [
+                {"item":"Pocao R", "ingredients":["Madeira", "Pedra"]},
+                {"item":"Pocao R", "ingredients":["Madeira", "Pedra"]},
+                {"item":"Pocao R", "ingredients":["Madeira", "Pedra"]},
+                {"item":"Pocao R", "ingredients":["Madeira", "Pedra"]},
+            ];
+            const inv = new Inventory (document.getElementById("prateleira"), 4, 4, itens);
+        </script>
     </body>
 </html>
