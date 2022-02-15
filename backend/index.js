@@ -17,7 +17,7 @@ app.get("/", (req, res) =>
    
 });
 
-app.get("/:fase/craft", (req, res) => 
+app.get("/:fase", (req, res) => 
 {
     console.log(req.params);
     res.json({markets:markets});
