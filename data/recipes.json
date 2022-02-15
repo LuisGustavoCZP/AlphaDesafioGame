@@ -1,0 +1,5 @@
+[
+    {"potion": 0, "needs":[0, 4, 3]},
+    {"potion": 1, "needs":[1, 2, 3]},
+    {"potion": 2, "needs":[0, 3, 4]}
+]
