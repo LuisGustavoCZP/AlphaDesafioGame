@@ -1,11 +1,11 @@
 {
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "filesystem": "^1.0.1"
   },
   "name": "alphadesafiogame",
-  "description": "",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/LuisGustavoCZP/AlphaDesafioGame/issues"
   },
-  "homepage": "https://github.com/LuisGustavoCZP/AlphaDesafioGame#readme"
+  "homepage": "https://github.com/LuisGustavoCZP/AlphaDesafioGame#readme",
+  "description": ""
 }
