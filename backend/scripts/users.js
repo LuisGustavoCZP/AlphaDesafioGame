@@ -1,7 +1,8 @@
 const fs = require('fs');
 const crypto = require('crypto');
+const path = __dirname.replace("scripts", "data/");
 
-const users = JSON.parse(fs.readFileSync("./backend/data/users.json"));
+const users = JSON.parse(fs.readFileSync(path+"users.json"));
 class User 
 {
     constructor(_name, _stage, _slot, _points, _key)

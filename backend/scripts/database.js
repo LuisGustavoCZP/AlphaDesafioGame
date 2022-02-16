@@ -1,9 +1,10 @@
 const fs = require('fs');
+const path = __dirname.replace("scripts", "data/");
 
-const stages = JSON.parse(fs.readFileSync("./backend/data/stages.json"));
-const itens = JSON.parse(fs.readFileSync("./backend/data/ingredients.json"));
-const potions = JSON.parse(fs.readFileSync("./backend/data/potions.json"));5
-const recipes = JSON.parse(fs.readFileSync("./backend/data/recipes.json"));
+const stages = JSON.parse(fs.readFileSync(path+"stages.json"));
+const itens = JSON.parse(fs.readFileSync(path+"ingredients.json"));
+const potions = JSON.parse(fs.readFileSync(path+"potions.json"));5
+const recipes = JSON.parse(fs.readFileSync(path+"recipes.json"));
 
 function RandomSort (_items)
 {
