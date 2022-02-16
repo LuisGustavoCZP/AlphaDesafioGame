@@ -1,5 +1,5 @@
-const port = 8000;
-const path = __dirname;
+const port = 3001;
+//const path = __dirname;
 
 const express = require('express');
 const cors = require('cors');
@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+
 
 app.use('/test', express.static('./testback'));
 
