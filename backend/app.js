@@ -1,5 +1,5 @@
-const port = 3001;
-//const path = __dirname;
+const port = 8000;
+const path = __dirname;
 
 const express = require('express');
 const cors = require('cors');
