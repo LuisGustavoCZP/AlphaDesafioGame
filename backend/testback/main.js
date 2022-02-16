@@ -37,15 +37,4 @@ function Initiate ()
     }); */
 }
 
-function CreateCookie (userhash){
-    // Cria uma nova data no futuro 01/01/2020
-    var date = new Date();
-    date.setTime(date.getTime() + (30*24*60*60*1000));
-    // Converte a data para GMT
-    // Wed, 01 Jan 2020 02:00:00 GMT
-    date = date.toGMTString();
-    // Cria o cookie
-    document.cookie = `userhash=${userhash}; expires=${date};`;
-}
-
 Initiate ();
