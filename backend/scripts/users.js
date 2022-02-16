@@ -1,7 +1,7 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-const users = JSON.parse(fs.readFileSync("./data/users.json"));
+const users = JSON.parse(fs.readFileSync("./backend/data/users.json"));
 class User 
 {
     constructor(_name, _stage, _slot, _points, _key)
@@ -32,26 +32,26 @@ function NewUser (_name)
     return user;
 }
 
-function N ()
+function CreateCookie (_data, _key)
 {
     const header = JSON.stringify({
         'alg': 'HS256',
         'typ': 'JWT'
     });
 
-    const payload = JSON.stringify({
+    const payload = JSON.stringify(_data); /* {
         'email': 'aylan@boscarino.com',
         'password': 'ya0gsqhy4wzvuvb4'
-    });
+    } */
 
     const base64Header = Buffer.from(header).toString('base64').replace(/=/g, '');
     const base64Payload = Buffer.from(payload).toString('base64').replace(/=/g, '');
-    const secret = 'my-custom-secret';
+    /* const secret = 'my-custom-secret'; */
 
     const data = base64Header + '.' + base64Payload;
 
     const signature = crypto
-        .createHmac('sha256', secret)
+        .createHmac('sha256', _key)
         .update(data)
         .digest('base64');
 
@@ -69,5 +69,5 @@ module.exports =
     users,
     User,
     NewUser,
-    N
+    CreateCookie
 };

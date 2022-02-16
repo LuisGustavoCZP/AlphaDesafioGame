@@ -24,12 +24,12 @@ app.get("/", (req, res) =>
 
 app.get("/user", (req, res) => 
 {
-    res.cookie("userData", users.N());
+    res.cookie("userData", users.CreateCookie());
     res.json({p:"Login Sucess"});
 });
 
 
-app.get("/stage/:stage", (req, res) => 
+app.get("/stage", (req, res) => 
 {
     console.log(req.params);
     res.json({"potions":database.SortPotions(parseInt(req.params["stage"]))});
