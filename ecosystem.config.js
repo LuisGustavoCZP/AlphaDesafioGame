@@ -3,7 +3,7 @@ const { NOTIMP } = require("dns");
 module.exports = {
    apps: [
       {
-         script: "backend/index.js",
+         script: "backend/app.js",
          cwd: "./backend/",
          name: "Backend",
          watch: true

@@ -1,5 +1,5 @@
-const port = 8000;
-const path = __dirname;
+const port = 3001;
+//const path = __dirname;
 
 const express = require('express');
 const cors = require('cors');
@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-const database = require("scripts/database.js")
+const database = require("./scripts/database")
 
 app.get("/", (req, res) => 
 {
