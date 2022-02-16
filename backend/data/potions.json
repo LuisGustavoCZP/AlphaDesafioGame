@@ -1,5 +1,9 @@
 [
     {"name": "Poção do Sono", "icon": "resources/ingredients/Potion (1).png"},
     {"name": "Poção do Sumiço", "icon": "resources/ingredients/Potion (2).png"},
-    {"name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png"}
+    {"name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png"},
+
+    {"name": "Poção do Poder", "icon": "resources/ingredients/Potion (1).png"},
+    {"name": "Poção da Fraqueza", "icon": "resources/ingredients/Potion (2).png"},
+    {"name": "Poção do Lúxuria", "icon": "resources/ingredients/Potion (3).png"}
 ]
