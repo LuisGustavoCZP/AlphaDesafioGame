@@ -1,8 +1,11 @@
 const fs = require('fs');
 const crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 const path = __dirname.replace("scripts", "data/");
+const cryptokey = "m4C4c0-Qu3r-b4n4N4";
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
+
 class User 
 {
     constructor(_name, _stage, _slot, _points, _key)
@@ -33,42 +36,68 @@ function NewUser (_name)
     return user;
 }
 
-function CreateCookie (_data, _key)
+function CreateSession (userid, res)
 {
-    const header = JSON.stringify({
-        'alg': 'HS256',
-        'typ': 'JWT'
+    const token = jwt.sign({userid:userid}, cryptokey, {expiresIn:300});
+    res.cookie("userData", token);
+}
+
+function VerifySession (req, res, next)
+{
+    const token = req.cookies["userData"];
+    //console.log(token);
+    jwt.verify(token, cryptokey, (err, decoded) => 
+    {
+        if(err) return res.status(401).end();
+        console.log(`${decoded.userid} foi autenticado!`);
+        req.userid = decoded.userid;
+        next();
     });
+}
 
-    const payload = JSON.stringify(_data); /* {
-        'email': 'aylan@boscarino.com',
-        'password': 'ya0gsqhy4wzvuvb4'
-    } */
+function CheckUser (_user)
+{
+    //console.log(users);
+    for(let userid = 0; userid < users.length; userid++)
+    {
+        const user = users[userid];
+        if(user.name == _user.user && user.pass == _user.pass)
+        {
+            console.log(_user);
+            return userid;
+        }
+    }
+    return -1;
+}
 
-    const base64Header = Buffer.from(header).toString('base64').replace(/=/g, '');
-    const base64Payload = Buffer.from(payload).toString('base64').replace(/=/g, '');
-    /* const secret = 'my-custom-secret'; */
+function RequestUser (req, res) 
+{
+    const user = {user:req.query["user"], pass:req.query["pass"]};
+    const id = CheckUser(user);
+    console.log(id);
+    if(id == -1) {
+        res.status(404);
+        return;
+    }
+    CreateSession(id, res);
+    
+    res.json({p:"Login Sucess"});
+}
 
-    const data = base64Header + '.' + base64Payload;
-
-    const signature = crypto
-        .createHmac('sha256', _key)
-        .update(data)
-        .digest('base64');
-
-    const signatureUrl = signature
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '')
-
-    console.log(signatureUrl);
-    return signatureUrl;
+function CreateUser (req, res) 
+{
+    const user = {user:req.query["user"], pass:req.query["pass"]};
+    res.cookie("userData", {user:JSON.stringify(user), signed:users.CreateCookie(user)});
+    
+    res.json({p:"Login Sucess"});
 }
 
 module.exports = 
 {
     users,
     User,
-    NewUser,
-    CreateCookie
+    RequestUser,
+    CreateUser,
+    CreateSession,
+    VerifySession,
 };
