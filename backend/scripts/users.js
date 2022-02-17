@@ -1,38 +1,40 @@
 const fs = require('fs');
 const crypto = require('crypto');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const path = __dirname.replace("scripts", "data/");
 const cryptokey = "m4C4c0-Qu3r-b4n4N4";
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
-
-class User 
-{
-    constructor(_name, _stage, _slot, _points, _key)
-    {
-        this.name = _name;
-        this.stage = _stage;
-        this.slot = _slot;
-        this.points = _points;
-        this.key = _key;//crypto.randomUUID();
+const search = Search ();
+function Search () {
+    function Name (name){
+        for(let userid = 0; userid < users.length; userid++)
+        {
+            const user = users[userid];
+            //console.log(`${user.name} == ${name} ? ${userid}`);
+            if(user.name == name)
+            {
+                return userid;
+            }
+        }
+        return -1;
     }
-
-    static Load (data)
-    {
-        return new User(data.name, data.stage, data.slot, data.points, data.key);
-    }
+    return { Name };
 }
 
-function NewUser (_name)
+function NewUser (_name, _pass)
 {
-    const user = new User();
-    user.name = _name;
-    user.stage = 0;
-    user.slot = 0;
-    user.points = 0;
-    user.key = crypto.randomUUID();
+    const user = 
+    {
+        "name":_name,
+        "pass":_pass,
+        stage:0,
+        slot:0,
+        points:0
+    };
 
     users.push(user);
+    fs.writeFile(path+"users.json", JSON.stringify(users), (e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
 
@@ -48,54 +50,66 @@ function VerifySession (req, res, next)
     //console.log(token);
     jwt.verify(token, cryptokey, (err, decoded) => 
     {
-        if(err) return res.redirect("../test");//.status(401).end();
-        console.log(`${decoded.userid} foi autenticado!`);
+        if(err) return res.redirect("../test/login.html");//.status(401).end();
+        console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
         req.userid = decoded.userid;
+        CreateSession(req.userid, res);
         next();
     });
 }
 
-function CheckUser (_user)
+function CheckUser (user)
 {
-    //console.log(users);
-    for(let userid = 0; userid < users.length; userid++)
+    const userid = search.Name(user.user);
+    if(userid == -1) return -1;
+    const u = users[userid];
+    if(u.pass != user.pass)
     {
-        const user = users[userid];
-        if(user.name == _user.user && user.pass == _user.pass)
-        {
-            console.log(_user);
-            return userid;
-        }
+        return -2;
     }
-    return -1;
+    return userid;
 }
 
 function RequestUser (req, res) 
 {
-    const user = {user:req.query["user"], pass:req.query["pass"]};
+    const user = {user:req.body["user"], pass:req.body["pass"]};
     const id = CheckUser(user);
-    console.log(id);
+    //console.log(id);
     if(id == -1) {
-        res.status(404);
+        //res.status(404).end();
+        //res.json({p:"não existe"});
+        console.log(`${req.ip} : ${user.user} não existe!`);
+        res.redirect("../test/register.html");
+        return;
+    }
+    if(id == -2) {
+        //res.status(404).end();
+        res.json({p:"senha errada"});
+        console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
         return;
     }
     CreateSession(id, res);
-    
-    res.json({p:"Login Sucess"});
+    res.redirect("/stage");
+    //res.json({p:"Login Sucess"});
 }
 
 function CreateUser (req, res) 
 {
-    const user = {user:req.query["user"], pass:req.query["pass"]};
-    res.cookie("userData", {user:JSON.stringify(user), signed:users.CreateCookie(user)});
-    
-    res.json({p:"Login Sucess"});
+    const user = {name:req.body["user"], pass:req.body["pass"]};
+    if(search.Name(user.name) != -1)
+    {
+        res.json({p:"nome existe"});
+        return;
+    }
+
+    NewUser(user.name, user.pass);
+    res.json({p:"Creation Sucess"});
 }
 
 module.exports = 
 {
     users,
-    User,
+    search,
     RequestUser,
     CreateUser,
     CreateSession,
