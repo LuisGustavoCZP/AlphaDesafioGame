@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+    <main>
+            <div id="gameTitle"><h3>Title of the Game</h3></div>
+            
+            <div id="buttons">
+            <div>
+                <button id="btn-setting"></button>
+            </div>
+
+            <div id="options">
+                <button id="btn-ranking"></button>
+                <button id="btn-play"></button>
+                <button id="btn-howToPlay"></button>
+            </div>
+            </div>
+    </main>    
+    
+
+<!-- The Modals -->
+<div id="rankingModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="big-background">
+    <span class="close">&times;</span>
+    <h3>Ranking</h3>
+    <div class="content">
+        <p> 1st Nome - Pontos - Vidas </p>
+        <p> 2nd Nome - Pontos - Vidas </p>
+        <p> 3rd Nome - Pontos - Vidas </p>
+        <p> 4th Nome - Pontos - Vidas </p>
+        <p> 5th Nome - Pontos - Vidas </p>
+    </div>
+  </div>
+
+</div>
+
+<div id="playModal" class="modal">
+    <div class="small-background">
+      <span class="close">&times;</span>
+      <div class="content small">
+        <h3 id="title-login-register">Login</h3>
+        <input type="text" id="username" placeholder="Digite seu Nome">
+        <input type="password" id="password" placeholder="Digite sua  Senha">
+        <strong id="lbl-login-register">Criar uma conta</strong>
+        <button id="btn-login">P</button>
+      </div>
+    </div>
+  
+</div>
+
+
+<div id="howToPlayModal" class="modal">
+    <div class="big-background">
+      <span class="close">&times;</span>
+      <h3>Como Jogar</h3>
+      <div id="rules">
+        <p>O jogo consiste em...</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+
+            <p>Bla bla bla</p>
+        <p>Bla bla bla</p><p>Bla bla bla</p>
+        <p>Bla bla bla</p>
+     </div>
+    </div>
+  
+</div>
+
+<div id="settingModal" class="modal">
+    <div class="small-background">
+      <span class="close">&times;</span>
+     <div class="content small">
+        <h3>Configurações</h3>
+        <p> Música: </p>
+      </div>
+    </div>
+  
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src='script.js'> </script>
+</body>
+<html>
