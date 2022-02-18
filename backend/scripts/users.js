@@ -49,8 +49,8 @@ function VerifySession (req, res, next)
     const token = req.cookies["userData"];
     //console.log(token);
     jwt.verify(token, cryptokey, (err, decoded) => 
-    {
-        if(err) return res.redirect("../test/login.html");//.status(401).end();
+    { // //
+        if(err) return res.json({});//redirect("../test/login.html");//.status(401).end();
         console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
         req.userid = decoded.userid;
         CreateSession(req.userid, res);
@@ -77,19 +77,22 @@ function RequestUser (req, res)
     //console.log(id);
     if(id == -1) {
         //res.status(404).end();
-        //res.json({p:"não existe"});
+        
         console.log(`${req.ip} : ${user.user} não existe!`);
-        res.redirect("../test/register.html");
+        res.json({sucess:1});
+        /* res.redirect("../test/register.html"); */
         return;
     }
     if(id == -2) {
         //res.status(404).end();
-        res.json({p:"senha errada"});
+        
         console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
+        res.json({sucess:2});
         return;
     }
     CreateSession(id, res);
-    res.redirect("/stage");
+    //res.redirect("/stage");
+    res.json({sucess:0});
     //res.json({p:"Login Sucess"});
 }
 
