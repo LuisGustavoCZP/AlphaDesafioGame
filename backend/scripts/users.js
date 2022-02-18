@@ -79,7 +79,7 @@ function RequestUser (req, res)
         //res.status(404).end();
         
         console.log(`${req.ip} : ${user.user} não existe!`);
-        res.json(1);
+        res.send(1);
         /* res.redirect("../test/register.html"); */
         return;
     }
@@ -87,12 +87,12 @@ function RequestUser (req, res)
         //res.status(404).end();
         
         console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
-        res.json(2);
+        res.send(2);
         return;
     }
     CreateSession(id, res);
     //res.redirect("/stage");
-    res.json(0);
+    res.send(0);
     //res.json({p:"Login Sucess"});
 }
 
@@ -102,12 +102,18 @@ function CreateUser (req, res)
     if(search.Name(user.name) != -1)
     {
         console.log(`${req.ip} : ${user.name} já existe!`);
-        res.json(1);
+        res.send(1);
         return;
     }
 
     NewUser(user.name, user.pass);
-    res.json(0);
+    res.send(0);
+}
+
+function UserData (req, res)
+{
+    const p = users[req.userid];
+    res.json({stage:p.stage, slot:p.slot, points:p.points});
 }
 
 module.exports = 
@@ -116,6 +122,7 @@ module.exports =
     search,
     RequestUser,
     CreateUser,
+    UserData,
     CreateSession,
     VerifySession,
 };

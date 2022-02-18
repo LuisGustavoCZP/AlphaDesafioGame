@@ -25,7 +25,7 @@ app.get("/", (req, res) =>
 
 app.post("/newuser", users.CreateUser);
 app.post("/login", users.RequestUser);
-
+app.get("/user", users.VerifySession, users.UserData);
 app.get("/stage", users.VerifySession, (req, res) => 
 {
     res.json({userid:req.userid});
