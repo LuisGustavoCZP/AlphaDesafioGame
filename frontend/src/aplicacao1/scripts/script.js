@@ -1,6 +1,10 @@
 const url = "http://localhost:8000";
 
 $(document).ready(function(){
+    $("#play").on("click", gameStart);
+    $("#pause").on("click", pauseGame);
+    const soundTremor = new Audio('assets/sons/Retro Impact Water 03.wav');
+    const music = new Audio('assets/sons/music1.wav');
     let lives = 3;
     let score = 0;
     const ITENS = [
@@ -22,6 +26,20 @@ $(document).ready(function(){
 
     /* Quantidade de itens necessários para a poção */
     let numberIngredients = 3;
+
+    function musicPlay(){
+        music.loop = true;
+        music.play();
+    }
+
+    function droppingSound(){
+        const soundDrop = new Audio('assets/sons/Retro Blop StereoUP 04.wav');
+        soundDrop.play();
+    }
+    function shineSound(){
+        const soundShine = new Audio('assets/sons/Retro Event UI 01.wav');
+        soundShine.play();
+    }
 
     /* Preenche as shelfleiras dinamicamente */
     function fillShelves(){
@@ -60,16 +78,16 @@ $(document).ready(function(){
             console.log(anyOrder)
             const compareOrder= cauldron.find((v,i) => v !== itensAsked[i]);
             if(compareOrder === undefined){
-                score += 20;
+                score += 200;
                 $("#score").html(score);
-                alert("Parabéns! Combinação perfeita!");
+                //alert("Parabéns! Combinação perfeita!");
                 $("#mage").addClass("happyMage");
                 return true;
             }
             else if(anyOrder.length === 0){
-                score += 10;
+                score += 100;
                 $("#score").html(score);
-                alert("Parabéns!");
+                //alert("Parabéns!");
                 $("#mage").addClass("happyMage");
                 return true;
             }
@@ -86,21 +104,32 @@ $(document).ready(function(){
         if(lives > 1){
             $(`#life${lives}`).addClass("lostLife");
             lives = lives -1;
-            alert("Errou!");
+           // alert("Errou!");
             cauldron = [];
             lotery();
             setTimeout(showLotery(),5000);
         }
         else{
-            alert("Game Over!");
+           // alert("Game Over!");
         }
         console.log(lives);
     }
 
     /* Ativa as funções iniciais */
     fillShelves();
-    lotery();
-    setTimeout(showLotery(),5000);
+    function gameStart(){
+        $("main").removeClass("blur");
+        $("#play").fadeOut("slow");
+        musicPlay();
+        lotery();
+        setTimeout(showLotery(),5000);
+    }
+
+    function pauseGame(){
+        $("main").addClass("blur");
+        $("#play").fadeIn("slow");
+        music.pause();
+    }
 
     /* Define que objetos com a classe item podem ser arrastados */
     $( ".item" ).draggable({
@@ -120,21 +149,27 @@ $(document).ready(function(){
     
     /* Muda a cor da água */
     function changeColor(){
+        $("main").removeClass("backgroundShake");
         const classList = $("#water").attr("class");
         $("#mage").addClass("moveMage");
+        droppingSound();
         console.log(classList);
         $("#cauldron").queue(function (next) {
-            $(this).addClass("cauldronShake");
             if(classList === "s1" || classList === "waterBase"){
+                $(this).addClass("cauldronShake");
                 $("#water").removeClass("s1");
                 $("#water").removeClass("waterBase");
                 $("#water").addClass("water1");
             }
             else if(classList === "water1") {
+                $(this).addClass("cauldronShake");
                 $("#water").removeClass("water1");
                 $("#water").addClass("water2");
             }
             else{
+                soundTremor.play();
+                $(this).addClass("cauldronShake2");
+                $("main").addClass("backgroundShake");
                 $("#water").removeClass("water2");
                 $("#water").addClass("waterBase");
             }
@@ -142,7 +177,7 @@ $(document).ready(function(){
             next();
         });
         $("#cauldron").delay(1000).queue(function (next) {
-            $(this).removeClass("cauldronShake");
+            $(this).removeClass("cauldronShake cauldronShake2");
             $("#mage").removeClass("moveMage");
             next();
         });
@@ -168,16 +203,19 @@ $(document).ready(function(){
         $("#client").delay(1000).queue(function (next) {
            // $(this).append(`<img src="${itensAsked[0].src}" id="pedido-1" class="pedido">`);
             $(`#${itensAsked[0].id}`).addClass('itemShine');
+            shineSound();
             next();
         });
         $("#client").delay(1000).queue(function (next) {
            // $(this).append(`<img src="${itensAsked[1].src}" id="pedido-2" class="pedido">`);
             $(`#${itensAsked[1].id}`).addClass('itemShine');
+            shineSound();
             next();
         });
         $("#client").delay(1000).queue(function (next) {
           //  $(this).append(`<img src="${itensAsked[2].src}" id="pedido-3" class="pedido">`);
             $(`#${itensAsked[2].id}`).addClass('itemShine');
+            shineSound();
             hideLotery();
             next();
         });
