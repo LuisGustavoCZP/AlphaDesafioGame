@@ -12,7 +12,7 @@ app.use(cors());
 app.use(cookieParser());
 
 
-app.use('/test/', express.static('./testback/'));
+app.use('/test/', express.static(`${__dirname}/testback/`));
 
 const database = require("./scripts/database.js");
 const users = require("./scripts/users.js");
