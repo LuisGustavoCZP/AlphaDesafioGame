@@ -82,13 +82,13 @@ function RequestUser (req, res)
     }
     if(id == -2) {
         console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
-        res.sendStatus("2");
+        res.send("2");
         return;
     }
     CreateSession(id, res);
     
     console.log(`${req.ip} : ${user.user} realizou login.`);
-    res.sendStatus("0");
+    res.send("0");
 }
 
 function CreateUser (req, res) 
