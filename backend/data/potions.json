@@ -1,9 +1,9 @@
 [
-    {"name": "Poção do Sono", "icon": "resources/ingredients/Potion (1).png"},
-    {"name": "Poção do Sumiço", "icon": "resources/ingredients/Potion (2).png"},
-    {"name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png"},
+    [{"name": "Poção do Sono", "components":[0, 4, 3], "icon": "resources/ingredients/Potion (1).png"},
+    {"name": "Poção do Sumiço", "components":[1, 2, 3], "icon": "resources/ingredients/Potion (2).png"},
+    {"name": "Poção do Amor", "components":[0, 3, 4], "icon": "resources/ingredients/Potion (3).png"}],
 
-    {"name": "Poção do Poder", "icon": "resources/ingredients/Potion (1).png"},
-    {"name": "Poção da Fraqueza", "icon": "resources/ingredients/Potion (2).png"},
-    {"name": "Poção do Lúxuria", "icon": "resources/ingredients/Potion (3).png"}
+    [{"name": "Poção do Poder", "components":[1, 4, 3, 1, 2], "icon": "resources/ingredients/Potion (1).png"},
+    {"name": "Poção da Fraqueza", "components":[3, 2, 1, 1, 4], "icon": "resources/ingredients/Potion (2).png"},
+    {"name": "Poção do Lúxuria", "components":[2, 1, 3, 4, 1], "icon": "resources/ingredients/Potion (3).png"}]
 ]
