@@ -76,24 +76,19 @@ function RequestUser (req, res)
     const id = CheckUser(user);
     //console.log(id);
     if(id == -1) {
-        //res.status(404).end();
-        
         console.log(`${req.ip} : ${user.user} não existe!`);
         res.send("1");
-        /* res.redirect("../test/register.html"); */
         return;
     }
     if(id == -2) {
-        //res.status(404).end();
-        
         console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
         res.send("2");
         return;
     }
     CreateSession(id, res);
-    //res.redirect("/stage");
+    
+    console.log(`${req.ip} : ${user.user} realizou login.`);
     res.send("0");
-    //res.json({p:"Login Sucess"});
 }
 
 function CreateUser (req, res) 
