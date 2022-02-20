@@ -29,7 +29,7 @@ function sortPotions(_stage) {
    const total_pots = [...potions[_stage]];
    const sorted_pots = [];
    for (let j = 0; j < num_potions; j++) {
-      const potionID = RandomSort(total_pots);
+      const potionID = randomSort(total_pots);
       sorted_pots.push(total_pots[potionID]);
       total_pots.splice(potionID, 1);
    }
@@ -57,4 +57,4 @@ function searchComponents(potion) {
    return components;
 }
 
-module.exports = { searchComponents, randomSort, sortPotions};
+module.exports = { items, searchComponents, randomSort, sortPotions};

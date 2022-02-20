@@ -6,6 +6,7 @@ const cryptokey = "m4C4c0-Qu3r-b4n4N4";
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
 const search = Search ();
+
 function Search () {
     function Name (name){
         for(let userid = 0; userid < users.length; userid++)
@@ -105,15 +106,25 @@ function CreateUser (req, res)
     res.send("0");
 }
 
+function Get (id)
+{
+    return users[id];
+}
+
+function Get (id)
+{
+    return users[id];
+}
+
 function UserData (req, res)
 {
     const p = users[req.userid];
-    res.json({stage:p.stage, slot:p.slot, points:p.points});
+    res.json({name:p.name, stage:p.stage, slot:p.slot, points:p.points});
 }
 
 module.exports = 
 {
-    users,
+    Get,
     search,
     RequestUser,
     CreateUser,

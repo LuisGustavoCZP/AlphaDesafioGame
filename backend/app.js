@@ -12,23 +12,23 @@ app.use(cors());
 app.use(cookieParser());
 
 
-app.use('/test/', express.static(`${__dirname}/testback/`));
+app.use('/', express.static(`${__dirname}/testback/`));
 
-const database = require("./scripts/database.js");
-const users = require("./scripts/users.js");
+const user = require(`${__dirname}/scripts/user`);
+const game = require(`${__dirname}/scripts/gamecore`);
 
-app.get("/", (req, res) => 
+/* app.get("/", (req, res) => 
 {
     console.log(`Conexão ${req.ip} iniciada...`);
-    res.json(users.users);
-});
+    res.json(user.users);
+}); */
 
-app.post("/newuser", users.CreateUser);
-app.post("/login", users.RequestUser);
-app.get("/user", users.VerifySession, users.UserData);
-app.get("/stage", users.VerifySession, (req, res) => 
-{
-    res.json({userid:req.userid});
-});
+app.post("/newuser", user.CreateUser);
+app.post("/login", user.RequestUser);
+
+app.get("/user", user.VerifySession, user.UserData);
+
+app.get("/stage", user.VerifySession, game.Start);
+app.post("/stage", user.VerifySession, game.End);
 
 app.listen(port, () => {console.log(`Servidor iniciado em ${port}`)})

@@ -1,13 +1,7 @@
 [
-   [{"potion": 0, "components":[0, 4, 3]},
-   {"potion": 1, "components":[1, 2, 3]},
-   {"potion": 2, "components":[0, 3, 4]}],
-
-   [{"potion": 3, "components":[0, 4, 3]},
-   {"potion": 4, "components":[1, 2, 3]},
-   {"potion": 5, "components":[0, 3, 4]}],
-
-   [{"potion": 6, "components":[0, 4, 3]},
-   {"potion": 7, "components":[1, 2, 3]},
-   {"potion": 8, "components":[0, 3, 4]}]
+   {"item": 0, "components":[1, 4, 3]},
+   {"item": 1, "components":[0, 2, 3]},
+   {"item": 2, "components":[0, 3, 4]},
+   {"item": 3, "components":[0, 4, 2]},
+   {"item": 4, "components":[1, 2, 3]}
 ]
