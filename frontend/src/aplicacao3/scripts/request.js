@@ -9,7 +9,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         return query;
     }
 
-    function post (body, callback, error){
+    function post (body, onsucess, onerror){
         fetch(`${url}login`, 
         {
             method: 'post',
@@ -18,11 +18,11 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
             headers: { 'Content-Type': 'application/json' }
         })
         .then((resp) => resp.json())
-        .then(callback)
-        .catch(error);
+        .then(onsucess)
+        .catch(onerror);
     }
 
-    function get (path, callback, error = () => {}, infos = undefined){
+    function get (path, onsucess, onerror, infos = undefined){
         const query = infos ? createQuery(infos) : "";
         fetch(`${url}${path}${query}`, 
         {
@@ -33,9 +33,9 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         .then(resp => 
         {
             if(verifySession(resp)) throw resp;
-            callback(resp);
+            onsucess(resp);
         })
-        .catch(resp => { error (resp); });
+        .catch(resp => { onerror (resp); });
     }
 
     function verifySession (resp) 

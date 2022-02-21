@@ -31,12 +31,12 @@ class GameFunctions{
                 }
             }
         },
-        document.cookie,
         error => 
         {
             console.log("Redirecionando para o login");
             window.location.replace(`../menu`);
-        });
+        },
+        document.cookie);
     };
 
     /* Sorteia os ingredientes que deverão se jogados no caudeirão
