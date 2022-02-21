@@ -44,8 +44,9 @@ function NewUser (_name, _pass)
 
 function CreateSession (userid, res)
 {
-    const token = jwt.sign({userid:userid}, cryptokey, {expiresIn:300});
-    res.cookie("userData", token);
+    //const cookiedata = { domain: 'localhost:8080', path: '/admin', secure: true, expiresIn:300};
+    const token = jwt.sign({userid:userid}, cryptokey, { expiresIn:300 });
+    res.json({"userData":token});
 }
 
 function VerifySession (req, res, next)
@@ -81,18 +82,17 @@ function RequestUser (req, res)
     //console.log(id);
     if(id == -1) {
         console.log(`${req.ip} : ${user.user} não existe!`);
-        res.send("1");
+        res.json(1);
         return;
     }
     if(id == -2) {
         console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
-        res.send("2");
+        res.json(2);
         return;
     }
-    CreateSession(id, res);
     
     console.log(`${req.ip} : ${user.user} realizou login.`);
-    res.send("0");
+    res.json(CreateSession(id, res));
 }
 
 function CreateUser (req, res) 
@@ -101,12 +101,12 @@ function CreateUser (req, res)
     if(search.Name(user.name) != -1)
     {
         console.log(`${req.ip} : ${user.name} já existe!`);
-        res.send("1");
+        res.json(1);
         return;
     }
 
     NewUser(user.name, user.pass);
-    res.send("0");
+    res.json(0);
 }
 
 function Get (id)
