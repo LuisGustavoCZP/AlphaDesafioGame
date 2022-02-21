@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <!-- The Modals -->
+        <div id="rankingModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="level">
+                <h3> </h3>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <style>
+            body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+h3 {
+    color: #454c69;
+    position: absolute;
+    top: 37%;
+    left: 48.5%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    text-align: center;
+    font-size: 30px;
+}
+.level{
+    background-image: url("star.svg");
+    background-size:contain;
+    background-repeat: no-repeat;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid rgba(136, 136, 136, 0);
+    width: 35%;
+    height: 350px;
+}
+        </style>
+<script>
+$(document).ready( function (){
+
+        let level = 12;
+        $(`#rankingModal`).css("display","block");
+        $(`h3`).html(`Nível ${level}`);
+        setTimeout(()=>{$(`#rankingModal`).css("display","none")},2000);
+    
+});
+
+    
+</script>
+    </body>
+</html>
