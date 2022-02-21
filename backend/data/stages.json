@@ -1,8 +1,8 @@
 [
     {
-        "recipes":[0, 1, 2], "rounds":1, "shelf":5
+        "recipes":[0, 1, 2], "rounds":1, "max":5
     },
     {
-        "recipes":[0, 1, 2, 3, 4, 5], "rounds":3, "shelf":15
+        "recipes":[0, 1, 2, 3, 4, 5], "rounds":3, "max":15
     }
 ]

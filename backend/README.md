@@ -42,13 +42,13 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 -> Requisição do tipo GET para receber os dados de nome (*e título?) da base de dados users.json
 
 # app.get("/userData", user.VerifySession, user.UserData) 
--> Requisição do tipo GET para receber os dados de stagio, rodada e pontuação da base de dados users.json
+-> Requisição do tipo GET para receber os dados de stagio, rodada e pontuação e poção atual do usuario
 
 # app.get("/stage", user.VerifySession, stage.Start) 
 -> Requisição do tipo GET para requisitar aleatoriamente a poção e itens referentes a ela de acordo com cada fase, a rota deve retornar um objeto com a poção e os itens sorteados da rodada
 
 # app.post("/stage", user.VerifySession, stage.Check) 
--> Requisição do tipo POST para checar a sequencia recebida e alterar os dados de pontuação e fase da base de dados users.json
+-> Requisição do tipo POST para checar a sequencia recebida e alterar os dados de pontuação do usuario
 
 
 

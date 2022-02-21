@@ -31,29 +31,18 @@ function GetIngredients (user, recipe)
 {
     const total = {...items};//[...];
     const max = Math.min(stages[user.stage].shelf), min = recipe.components.length;
-    const set = [];
+    const array = [];
     
     delete total[recipe.item];
 
     recipe.components.forEach(itemID => {
-        set.push(items[itemID]);
+        array.push(items[itemID]);
         delete total[itemID];
     });
     
-    for(let i = 0; i < (max-min); i++)
-    {
-        let empty = Object.keys(total).length == 0;
-        if(empty) break;
+    set.push(RandomItems(max-min, set));
 
-        let item;
-        while (item == undefined){
-            let itemID = Utility.randomKey(total);
-            item = total[itemID];
-        }
-        set.push(item);
-        delete total[item.id];
-    }
-    return set.sort((a, b) => {return Math.random() >= .5? 1 : -1;});
+    return Utility.randomizeArray(array);
 }
 
 function Result (itens)

@@ -1,7 +1,9 @@
 const User = require(`${__dirname}/user`);
-const Database = require(`${__dirname}/database`);
+const Database = require(`${__dirname}/database2`);
 const Craft = require(`${__dirname}/craft`);
-const cryptokey = "R4kunN4-m4Tat4";
+const jwt = require('jsonwebtoken');
+
+const recipesecret = "R4kunN4-m4Tat4";
 
 function Start (req, res) 
 {
@@ -24,29 +26,62 @@ function End (req, res)
     res.json({userid:req.userid});
 }
 
-/* function RequestStage (req, res) 
+function CreateRecipe (req, res) 
 {
-    const user = {user:req.body["user"], pass:req.body["pass"]};
-    const id = CheckUser(user);
-    //console.log(id);
-    if(id == -1) {
-        console.log(`${req.ip} : ${user.user} não existe!`);
-        res.send("1");
-        return;
-    }
-    if(id == -2) {
-        console.log(`${req.ip} : ${user.user} digitou a senha errada!`);
-        res.send("2");
-        return;
-    }
-    CreateSession(id, res);
+    const user = User.Get(req.userid);
+    const stage = Database.GetStage(user.stage);
+    const recipe = Database.RandomItems(stage.max);
     
-    console.log(`${req.ip} : ${user.user} realizou login.`);
-    res.send("0");
-} */
+    const token = jwt.sign({recipe:recipe}, cryptokey, {expiresIn:"1d"});
+    res.cookie("recipeData", token);
+
+    res.json({recipe:GetItem(recipe)});
+}
+
+function SortItem (req, res) 
+{
+    const user = User.Get(req.userid);
+    const stage = Database.GetStage(user.stage);
+
+    const lastRecipe = req.recipe? req.recipe : [];
+    console.log(lastRecipe);
+    const exclude = lastRecipe ? [lastRecipe[lastRecipe.length-1]] : [];
+    const recipe = Database.RandomItems(1, exclude);
+    lastRecipe.push(...recipe);
+
+    const token = jwt.sign({recipe:lastRecipe}, recipesecret, {expiresIn:"1d"});
+    res.cookie("recipeData", token);
+
+    res.json({recipe:Database.GetItem(...lastRecipe)});
+}
+
+function VerifyRecipe (req, res, next)
+{
+    const token = req.cookies["recipeData"];
+    //console.log(token);
+    if(!token) {
+        next();
+        return;
+    }
+    jwt.verify(token, recipesecret, (err, decoded) => 
+    {   //console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
+        req.recipe = decoded.recipe;
+        next();
+    });
+}
+
+function ClearRecipe (req, res)
+{
+    const token = jwt.sign({recipe:[]}, cryptokey, {expiresIn:"0"});
+    res.cookie("recipeData", token);
+}
 
 module.exports =
 {
     Start,
-    End
+    End,
+    ClearRecipe,
+    CreateRecipe,
+    VerifyRecipe,
+    SortItem
 };
