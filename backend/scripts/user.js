@@ -45,21 +45,28 @@ function NewUser (_name, _pass)
 function CreateSession (userid, res)
 {
     //const cookiedata = { domain: 'localhost:8080', path: '/admin', secure: true, expiresIn:300};
-    const token = jwt.sign({userid:userid}, cryptokey, { expiresIn:300 });
+    const token = jwt.sign({userid:userid}, cryptokey); //, { expiresIn:300 }
     res.json({"userData":token});
 }
 
 function VerifySession (req, res, next)
 {
-    const token = req.cookies["userData"];
+    //const q = req.query["userData"], p = ];
+    const token = req.params["userData"];
     //console.log(token);
     jwt.verify(token, cryptokey, (err, decoded) => 
     { // //
-        if(err) return res.json(null);//redirect("../test/login.html");//.status(401).end();
-        console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
-        req.userid = decoded.userid;
-        CreateSession(req.userid, res);
-        next();
+        //console.log(`${req.ip} : ${decoded}`);
+        if(err) {
+            res.json(null);
+            return;
+        }//redirect("../test/login.html");//.status(401).end();
+        else {
+            console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
+            req.userid = decoded.userid;
+            //CreateSession(req.userid, res);
+            next();
+        }
     });
 }
 
@@ -92,7 +99,8 @@ function RequestUser (req, res)
     }
     
     console.log(`${req.ip} : ${user.user} realizou login.`);
-    res.json(CreateSession(id, res));
+    CreateSession(id, res);
+    //res.json();
 }
 
 function CreateUser (req, res) 

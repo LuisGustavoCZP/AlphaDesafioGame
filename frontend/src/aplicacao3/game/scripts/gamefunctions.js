@@ -15,19 +15,23 @@ class GameFunctions{
     
     /* Preenche as prateleiras de itens */
     fillShelves(){
-        
+        const cookie = document.cookie;
+        console.log(cookie);
         Request.get("stock", 
+        {params:cookie.replace("userData=", "")},
         data => 
         {
+            console.log();
+            const stock = data.stock;
             for(let i = 0; i < 9; i++){
                 if(i < 3){
-                    $("#itens-1").append(`<img src="${ITENS[i].src}" id="${ITENS[i].id}" class="item">`)
+                    $("#itens-1").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
                 }
                 else if(i < 6){
-                    $("#itens-2").append(`<img src="${ITENS[i].src}" id="${ITENS[i].id}" class="item">`)
+                    $("#itens-2").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
                 }
                 else{
-                    $("#itens-3").append(`<img src="${ITENS[i].src}" id="${ITENS[i].id}" class="item">`)
+                    $("#itens-3").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
                 }
             }
         },
@@ -35,8 +39,7 @@ class GameFunctions{
         {
             console.log("Redirecionando para o login");
             window.location.replace(`../menu`);
-        },
-        document.cookie);
+        });
     };
 
     /* Sorteia os ingredientes que deverão se jogados no caudeirão

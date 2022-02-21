@@ -1,4 +1,4 @@
-import { Animations } from "./animations.js";
+import { Animations } from "../scripts/animations.js";
 import { GameFunctions } from "./gamefunctions.js";
 
 const url = "http://vacsina.servegame.com:8000";

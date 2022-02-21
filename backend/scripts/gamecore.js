@@ -60,12 +60,12 @@ function SortStock (req, res)
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
 
-    const stock = Database.RandomItems(stage.max);
-
-    const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
-    res.cookie("stockData", token);
-
-    res.json({stock});
+    const stock = Database.RandomStock(stage.max);
+    //console.log(stock);
+    //const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
+    //res.cookie("stockData", token);
+    const resp = {"stock":Database.GetItem(...stock)};
+    res.json(resp);
 }
 
 function VerifyRecipe (req, res, next)

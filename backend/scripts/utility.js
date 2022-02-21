@@ -10,9 +10,15 @@ function randomKey(obj)
     return keys[parseInt(Math.random() * keys.length)];
 }
 
-function randomizeArray (array)
+function randomizeArray (array, max)
 {
-    return array.sort((a, b) => {return Math.random() >= .5? 1 : -1;})
+    const narray = [...array].sort((a, b) => {return Math.random() >= .5? 1 : -1;});
+    const newArray = [];
+    for(let i = 0; i < max; i++)
+    {
+        newArray.push(narray[i]);
+    }
+    return newArray;
 }
 
 function Contains (array, item)

@@ -32,7 +32,7 @@ app.get("/user", user.VerifySession, user.UserData);
 app.get("/stage", user.VerifySession, game.Start);
 app.post("/stage", user.VerifySession, game.VerifyRecipe, game.End); */
 
-app.get("/stock", user.VerifySession, game.SortStock);
+app.get("/:userData/stock", user.VerifySession, game.SortStock);
 app.get("/recipe", user.VerifySession, game.CreateRecipe);
 app.get("/item", user.VerifySession, game.VerifyRecipe, game.SortItem);
 

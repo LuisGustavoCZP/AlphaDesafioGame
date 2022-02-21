@@ -35,9 +35,15 @@ function RandomItems (count, excludes = [])
     return array;
 }
 
+function RandomStock (count, excludes = [])
+{
+    return randomizeArray(items, count);
+}
+
 //
 module.exports = {
     GetStage,
     GetItem,
-    RandomItems
+    RandomItems,
+    RandomStock
 }
