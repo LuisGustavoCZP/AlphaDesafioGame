@@ -37,7 +37,7 @@ function RandomItems (count, excludes = [])
 
 function RandomStock (count, excludes = [])
 {
-    return randomizeArray(items, count);
+    return Utility.randomizeArray(items, count);
 }
 
 //

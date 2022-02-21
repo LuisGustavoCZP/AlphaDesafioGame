@@ -17,7 +17,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
 
     function createParams (infos) {
         
-        console.log(infos);
+        //console.log(infos);
         if(!infos) return "";
         const infokeys = Object.keys(infos);
         if(infokeys.length == 0) return "";
@@ -26,7 +26,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         {
             params += `${infos[key]}`;
         });
-        console.log(params);
+        //console.log(params);
         return params;
     }
 
@@ -46,7 +46,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
     function get (path, info, onsucess, onfail)
     {
         const urlFinal = info ? `${url}${createParams(info.params)}/${path}/${createQuery(info.query)}` : `${url}${path}/`;
-        console.log(urlFinal);
+        //console.log(urlFinal);
         fetch(urlFinal, 
         {
             method: 'get',
@@ -57,11 +57,11 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         .then(resp => 
         {
             if(verifySession(resp)) { 
-                console.log(resp);
+                //console.log(resp);
                 onsucess(resp); 
             } else onfail (resp);
         })
-        .catch(resp => { console.log(resp);});
+        .catch(resp => { console.log(resp); });
     }
 
     function verifySession (resp) 

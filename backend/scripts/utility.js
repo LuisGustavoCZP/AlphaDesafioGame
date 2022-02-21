@@ -10,11 +10,12 @@ function randomKey(obj)
     return keys[parseInt(Math.random() * keys.length)];
 }
 
-function randomizeArray (array, max)
+function randomizeArray (array, max=array.length)
 {
     const narray = [...array].sort((a, b) => {return Math.random() >= .5? 1 : -1;});
     const newArray = [];
-    for(let i = 0; i < max; i++)
+    //console.log(narray);
+    for(let i = 0; i < Math.min(max, narray.length); i++)
     {
         newArray.push(narray[i]);
     }

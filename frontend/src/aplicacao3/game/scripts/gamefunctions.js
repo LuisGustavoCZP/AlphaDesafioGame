@@ -16,14 +16,14 @@ class GameFunctions{
     /* Preenche as prateleiras de itens */
     fillShelves(){
         const cookie = document.cookie;
-        console.log(cookie);
+        //console.log(cookie);
         Request.get("stock", 
         {params:cookie.replace("userData=", "")},
         data => 
         {
-            console.log();
+            //console.log();
             const stock = data.stock;
-            for(let i = 0; i < 9; i++){
+            for(let i = 0; i < stock.length; i++){
                 if(i < 3){
                     $("#itens-1").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
                 }
