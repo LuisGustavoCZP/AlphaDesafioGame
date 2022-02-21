@@ -32,10 +32,10 @@ function CreateRecipe (req, res)
     const stage = Database.GetStage(user.stage);
     const recipe = Database.RandomItems(stage.max);
     
-    const token = jwt.sign({recipe:recipe}, cryptokey, {expiresIn:"1d"});
+    const token = jwt.sign({recipe:recipe}, recipesecret, {expiresIn:"1d"});
     res.cookie("recipeData", token);
 
-    res.json({recipe:GetItem(recipe)});
+    res.json({recipe:Database.GetItem(...recipe)});
 }
 
 function SortItem (req, res) 
