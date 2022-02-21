@@ -55,6 +55,19 @@ function SortItem (req, res)
     res.json({recipe:Database.GetItem(...lastRecipe)});
 }
 
+function SortStock (req, res) 
+{
+    const user = User.Get(req.userid);
+    const stage = Database.GetStage(user.stage);
+
+    const stock = Database.RandomItems(stage.max);
+
+    const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
+    res.cookie("stockData", token);
+
+    res.json({stock});
+}
+
 function VerifyRecipe (req, res, next)
 {
     const token = req.cookies["recipeData"];
@@ -83,5 +96,6 @@ module.exports =
     ClearRecipe,
     CreateRecipe,
     VerifyRecipe,
-    SortItem
+    SortItem,
+    SortStock
 };

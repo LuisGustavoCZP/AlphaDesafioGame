@@ -10,6 +10,7 @@
   components: [0, 4, 3],
   icon: "resources/ingredients/Potion (1).png",
   potionName: "Poção do Sono"
+  *onfinish: (finish) => {}
 },
 {
   icon: "resources/ingredients/passionfruit.png",
@@ -44,10 +45,10 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 # app.get("/userData", user.VerifySession, user.UserData) 
 -> Requisição do tipo GET para receber os dados de stagio, rodada e pontuação e poção atual do usuario
 
-# app.get("/stage", user.VerifySession, stage.Start) 
--> Requisição do tipo GET para requisitar aleatoriamente a poção e itens referentes a ela de acordo com cada fase, a rota deve retornar um objeto com a poção e os itens sorteados da rodada
+# app.get("/recipe", user.VerifySession, game.Start) 
+-> Requisição do tipo GET para requisitar aleatoriamente a poção e itens referentes a ela de acordo com cada fase, a rota deve retornar um objeto com a poção e os itens sorteados
 
-# app.post("/stage", user.VerifySession, stage.Check) 
+# app.post("/result", user.VerifySession, game.Check) 
 -> Requisição do tipo POST para checar a sequencia recebida e alterar os dados de pontuação do usuario
 
 

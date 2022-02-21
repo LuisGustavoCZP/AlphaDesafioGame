@@ -54,7 +54,7 @@ function VerifySession (req, res, next)
     //console.log(token);
     jwt.verify(token, cryptokey, (err, decoded) => 
     { // //
-        if(err) return res.json({});//redirect("../test/login.html");//.status(401).end();
+        if(err) return res.json(null);//redirect("../test/login.html");//.status(401).end();
         console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
         req.userid = decoded.userid;
         CreateSession(req.userid, res);
