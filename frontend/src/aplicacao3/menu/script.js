@@ -1,6 +1,9 @@
+import { Request } from "../scripts/request.js";
+
 let idBtn ;
 let login = false;
 let username;
+let password;
 
 $("main").on("click", (e) => {
     const btn = e.target.id; //btn-XXXX
@@ -66,7 +69,6 @@ $("#btn-login").on("click", () => {
     } else {
         loginUser(username, password);
     }
-       
 });
 
 async function callFetch(user, pass, route){
@@ -84,15 +86,17 @@ async function callFetch(user, pass, route){
         .then(function (data) {
             const status = data;
             console.log(data)
-        
             if(status == 1 || status == 2 ){
                 alert("Login ou Senha invalidos!");
-            } else if(status == 0){
+            } 
+            else/*  if(status == 0) */
+            {
                 login = true;
+                document.cookie = `userData=${data.userData}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
                 window.location.replace("../game");
-            } else {
+            }/*  else {
                 console.log(status);
-            }
+            } */
     
         })
         .catch(function (error) {
@@ -102,7 +106,7 @@ async function callFetch(user, pass, route){
 }
 
 function loginUser(username, password){
-    callFetch(username,password, "login");
+    callFetch(username, password, "login");
     //console.log("Meu status: " + status)
    
 }

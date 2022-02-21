@@ -1,4 +1,4 @@
-import { R3quest } from "./r3quest.js";
+import { Request } from "../../scripts/request.js";
 
 /* Define as funções básicas do jogo */
 class GameFunctions{
@@ -16,7 +16,8 @@ class GameFunctions{
     /* Preenche as prateleiras de itens */
     fillShelves(){
         
-        R3quest.get("stock", (data) => 
+        Request.get("stock", 
+        data => 
         {
             for(let i = 0; i < 9; i++){
                 if(i < 3){
@@ -29,6 +30,12 @@ class GameFunctions{
                     $("#itens-3").append(`<img src="${ITENS[i].src}" id="${ITENS[i].id}" class="item">`)
                 }
             }
+        },
+        document.cookie,
+        error => 
+        {
+            console.log("Redirecionando para o login");
+            window.location.replace(`../menu`);
         });
     };
 

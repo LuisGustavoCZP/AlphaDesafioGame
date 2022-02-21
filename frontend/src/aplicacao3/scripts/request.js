@@ -1,7 +1,5 @@
-function R3questSys (redirect = "menu") 
+function RequestSys (url="http://vacsina.servegame.com:8000/") 
 {
-    const url = "http://vacsina.servegame.com:8000/";
-
     function createQuery (infos) {
         let query = "?";
         Object.keys(infos).forEach((key, i) => {
@@ -24,7 +22,7 @@ function R3questSys (redirect = "menu")
         .catch(error);
     }
 
-    function get (path, callback, infos = undefined, error = ()=>{}){
+    function get (path, callback, error = () => {}, infos = undefined){
         const query = infos ? createQuery(infos) : "";
         fetch(`${url}${path}${query}`, 
         {
@@ -33,31 +31,25 @@ function R3questSys (redirect = "menu")
         })
         .then((resp) => resp.json())
         .then(resp => 
-        { 
-            if(verifySession(resp))
-            {
-                callback(resp); 
-            }
-            else 
-            {
-                throw resp;
-            }
+        {
+            if(verifySession(resp)) throw resp;
+            callback(resp);
         })
-        .catch(error);
+        .catch(resp => { error (resp); });
     }
 
     function verifySession (resp) 
     {
         console.log(resp);
         if(resp == null) {
-            console.log("Redirecionando para o login");
-            window.location.replace(`../${redirect}`);
+            return false;
         }
+        return true;
     }
 
     return { post, get };
 }
 
-const R3quest = R3questSys ();
+const Request = RequestSys ();
 
-export { R3quest, R3questSys };
+export { Request, RequestSys };
