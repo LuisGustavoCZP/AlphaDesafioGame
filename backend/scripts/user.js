@@ -1,5 +1,4 @@
 const fs = require('fs');
-const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const path = __dirname.replace("scripts", "data/");
 const cryptokey = "m4C4c0-Qu3r-b4n4N4";
@@ -23,6 +22,10 @@ function Search () {
     return { Name };
 }
 
+function SaveUsers (callback = (x) => {}){
+    fs.writeFile(path+"users.json", JSON.stringify(users), callback);
+}
+
 function NewUser (_name, _pass)
 {
     const user = 
@@ -35,7 +38,7 @@ function NewUser (_name, _pass)
     };
 
     users.push(user);
-    fs.writeFile(path+"users.json", JSON.stringify(users), (e) => {console.log(`O usuario ${user.name} foi criado`)});
+    SaveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
 
@@ -104,11 +107,6 @@ function CreateUser (req, res)
 
     NewUser(user.name, user.pass);
     res.send("0");
-}
-
-function Get (id)
-{
-    return users[id];
 }
 
 function Get (id)

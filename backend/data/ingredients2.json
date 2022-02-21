@@ -4,7 +4,7 @@
     {"id":2, "name": "Alface", "icon": "resources/ingredients/salad-leaves.png"},
     {"id":3, "name": "Tomate", "icon": "resources/ingredients/sliced-tomato.png"},
     {"id":4, "name": "Teia de Aranha", "icon": "resources/ingredients/spiderweb.png"},
-    {"id":5, "name": "Poção do Sono", "components":[0, 4, 3], "icon": "resources/ingredients/Potion (1).png"},
-    {"id":6, "name": "Poção do Sumiço", "components":[1, 2, 3], "icon": "resources/ingredients/Potion (2).png"},
-    {"id":7, "name": "Poção do Amor", "components":[0, 3, 4], "icon": "resources/ingredients/Potion (3).png"}
+    {"id":5, "name": "Poção do Sono", "icon": "resources/ingredients/Potion (1).png"},
+    {"id":6, "name": "Poção do Sumiço", "icon": "resources/ingredients/Potion (2).png"},
+    {"id":7, "name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png"}
 ]
