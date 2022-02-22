@@ -4,6 +4,7 @@ const path = __dirname;
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const { ranking } = require('./scripts/gamecore');
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
@@ -28,6 +29,7 @@ app.post("/login", user.RequestUser);
 
 app.get("/user", user.VerifySession, user.UserData);
 
+app.get("/ranking", gamecore.ranking);
 /* 
 app.get("/stage", user.VerifySession, game.Start);
 app.post("/stage", user.VerifySession, game.VerifyRecipe, game.End); */

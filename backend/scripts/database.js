@@ -25,7 +25,7 @@ function randomSort(_items) {
   name: "Poção do Sumiço"
 } */
 function sortPotions() {
-   
+
    const total_pots = [...potions];
    const potionID = randomSort(total_pots);
    const sorted_pots = total_pots[potionID];
@@ -41,7 +41,7 @@ function sortPotions() {
    icon: "resources/ingredients/spiderweb.png",
    name: "Teia de Aranha"
  }] */
- function sortComponents(_stage) {
+ function sortComponentsAleatory(_stage) {
    const total_components = [...items];
    console.log(total_components)
    const componentsID = [];
@@ -56,19 +56,7 @@ function sortPotions() {
     return components;
  }
 
-// ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
-function ranking(req, res){
-   const theBest = 5;
-   const ordened = users.sort((a,b) => b.highcore - a.highcore);
-   const topRanking = ordened.map(function (element , index){
-      if(index < theBest){
-         return {classification: index+1 , name: element.name , highscore: element.highcore}
-      }
-      
-   })
- 	topRanking.splice(theBest, topRanking.length - theBest);
-   res.json(topRanking);
-}
+
 
 //função que recebe o nome do usuário e altera o banco de dados se ele passar de fase e verifica a pontuação máxima dele
 //retorna os dados:  (name), (points), (stage) e (highscore) do usuário
@@ -93,4 +81,4 @@ function upStage(_userid){
    return userUp
 }
 
-module.exports = { sortComponents, randomSort, sortPotions, ranking, upStage};
+module.exports = { sortComponents, randomSort, sortPotions, upStage};
