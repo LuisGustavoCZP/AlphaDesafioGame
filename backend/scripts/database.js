@@ -5,6 +5,7 @@ const path = __dirname.replace("scripts", "data/");
 //const recipes = JSON.parse(fs.readFileSync(path + "recipes.json"));
 const items = JSON.parse(fs.readFileSync(path + "ingredients.json"));
 const potions = JSON.parse(fs.readFileSync(path + "potions.json"));
+const users = JSON.parse(fs.readFileSync(path + "users.json"));
 
 //potions retorna um array onde cada posição dele contém as poções referentes à um nível 
 //Ex: potions[0] = dados das poções do nível 1
@@ -17,27 +18,22 @@ function randomSort(_items) {
    return parseInt(Math.random() * numero);
 }
 
-// sortPotions retorna um array com um objeto da poção sorteada no formato:
-/* [{
-  components: [0, 4, 3],
-  icon: "resources/ingredients/Potion (1).png",
-  potionName: "Poção do Sono"
-}] */
-function sortPotions(_stage) {
-   if (_stage >= potions.length) return [];
-   const num_potions = 1;
-   const total_pots = [...potions[_stage]];
-   const sorted_pots = [];
-   for (let j = 0; j < num_potions; j++) {
-      const potionID = randomSort(total_pots);
-      sorted_pots.push(total_pots[potionID]);
-      total_pots.splice(potionID, 1);
-   }
+// sortPotions retorna um objeto da poção sorteada no formato:
+/* {
+  icon: "resources/ingredients/Potion (2).png",
+  id: 2,
+  name: "Poção do Sumiço"
+} */
+function sortPotions() {
+
+   const total_pots = [...potions];
+   const potionID = randomSort(total_pots);
+   const sorted_pots = total_pots[potionID];
    return sorted_pots;
 }
 
 
-// serach components retorna um array com as informações dos ingredientes no formato:
+// sort components retorna um array com as informações dos ingredientes no formato:
 /* [{
    icon: "resources/ingredients/passionfruit.png",
    name: "Maracujá"
@@ -45,16 +41,44 @@ function sortPotions(_stage) {
    icon: "resources/ingredients/spiderweb.png",
    name: "Teia de Aranha"
  }] */
-function searchComponents(potion) {
-   const potionSelected = potion[0];
-   const componentsId = potionSelected.components;
-   const components = componentsId.map(function (element, index){
-      return items[element]
+ function sortComponentsAleatory(_stage) {
+   const total_components = [...items];
+   console.log(total_components)
+   const componentsID = [];
+   const components = [];
+   for(let i=0; i < _stage+2 ; i++){
+      componentsID.push(randomSort(total_components));
+      while(componentsID[i] === componentsID[i-1]){
+         componentsID[i] = (randomSort(total_components));
+      }
+      components.push(total_components[componentsID[i]]);
+    }
+    return components;
+ }
+
+
+
+//função que recebe o nome do usuário e altera o banco de dados se ele passar de fase e verifica a pontuação máxima dele
+//retorna os dados:  (name), (points), (stage) e (highscore) do usuário
+function upStage(_userid){
+   const userId = _userid;
+   const database = [...users];
+   let userUp = {};
+   database.forEach( (element, index) => {
+      if(element.id === userId ){
+         element.points += 50*element.stage + element.points;
+         element.stage += 1;
+         
+         if(element.points > element.highscore){
+            element.highscore = element.points;
+         }
+
+         userUp = {name: element.name , points: element.points , stage: element.stage , highscore: element.highscore}
+      }
    });
+   fs.writeFileSync("database.json", JSON.stringify([...database]));
 
-  
-
-   return components;
+   return userUp
 }
 
-module.exports = { items, searchComponents, randomSort, sortPotions};
+module.exports = { sortComponentsAleatory, randomSort, sortPotions, upStage};

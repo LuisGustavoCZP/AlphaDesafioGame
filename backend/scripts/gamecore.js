@@ -89,6 +89,20 @@ function ClearRecipe (req, res)
     res.cookie("recipeData", token);
 }
 
+// ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
+function ranking(req, res){
+   const theBest = 5;
+   const ordened = users.sort((a,b) => b.highcore - a.highcore);
+   const topRanking = ordened.map(function (element , index){
+      if(index < theBest){
+         return {classification: index+1 , name: element.name , highscore: element.highcore}
+      }
+      
+   })
+ 	topRanking.splice(theBest, topRanking.length - theBest);
+   res.json(topRanking);
+}
+
 module.exports =
 {
     Start,
@@ -97,5 +111,6 @@ module.exports =
     CreateRecipe,
     VerifyRecipe,
     SortItem,
-    SortStock
+    SortStock,
+    ranking
 };

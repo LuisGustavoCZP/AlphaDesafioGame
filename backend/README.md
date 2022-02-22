@@ -51,7 +51,8 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 # app.post("/result", user.VerifySession, game.Check) 
 -> Requisição do tipo POST para checar a sequencia recebida e alterar os dados de pontuação do usuario
 
-
+# app.get("/ranking", users.RequestUser)
+-> requisição do tipo GET para obter as 5 maiores pontuações do banco de dados users.json
 
 ## OBS:
 

@@ -1,7 +1,11 @@
 [
-    {"name": "Maracujá", "icon": "assets/ingredients/1.png"},
-    {"name": "Abóbora", "icon": "assets/ingredients/2.png"},
-    {"name": "Alface", "icon": "assets/ingredients/3.png"},
-    {"name": "Tomate", "icon": "assets/ingredients/4.png"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}
+   {"src": "assets/escolhidos/1.png", "id": "1"},
+   {"src": "assets/escolhidos/2.png", "id": "2"},
+   {"src": "assets/escolhidos/3.png", "id": "3"},
+   {"src": "assets/escolhidos/4.png", "id": "4"},
+   {"src": "assets/escolhidos/5.png", "id": "5"},
+   {"src": "assets/escolhidos/10.png", "id": "6"},
+   {"src": "assets/escolhidos/15.png", "id": "7"}, 
+   {"src": "assets/escolhidos/8.png", "id": "8"},
+   {"src": "assets/escolhidos/18.png", "id": "9"}
 ]
