@@ -1,7 +1,8 @@
-/* import { json } from "express"; */
-
+/* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
 function RequestSys (url="http://vacsina.servegame.com:8000/") 
 {
+    /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
+    /* Função que cria uma query string para ser colocada na rota */
     function createQuery (infos) {
         if(!infos) return "";
         const infokeys = Object.keys(infos);
@@ -14,7 +15,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         console.log(query);
         return query;
     }
-
+    /* Função que cria uma params string para ser colocada na rota */
     function createParams (infos) {
         
         //console.log(infos);
@@ -30,8 +31,19 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
         return params;
     }
 
-    function post (body, onsucess, onerror){
-        fetch(`${url}login`, 
+    /* Função que faz a verificação da resposta do servidor, retornando true = sucess, false = failed  */
+    function verifySession (resp) 
+    {
+        //console.log(resp);
+        if(resp == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /* Função que faz um post na rota com um body e as funções de sucesso ou falha */
+    function post (path, body, onsucess = ()=>{}, onfail = ()=>{}){
+        fetch(`${url}${path}`, 
         {
             method: 'post',
             mode: 'cors',
@@ -39,11 +51,24 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
             headers: { 'Content-Type': 'application/json' }
         })
         .then((resp) => resp.json())
-        .then(onsucess)
+        .then(resp => 
+        {
+            if(verifySession(resp)) { 
+                //console.log(resp);
+                onsucess(resp); 
+            } else onfail (resp);
+        })
         .catch(onerror);
     }
 
-    function get (path, info, onsucess, onfail)
+    /*  
+        Função que faz um post na rota com um info e as funções de sucesso ou falha 
+        O parametro info deve conter um objeto nesse modelo:
+            { params:{...}, query:{...} }
+        Caso nenhuma informação seja passada, o objeto pode ser vazio. Ex : {}
+        Caso só params seja usado a query não precisa estar presente no objeto e vice versa. Ex : { params:{...} }
+    */
+    function get (path, info, onsucess = ()=>{}, onfail = ()=>{})
     {
         const urlFinal = info ? `${url}${createParams(info.params)}/${path}/${createQuery(info.query)}` : `${url}${path}/`;
         //console.log(urlFinal);
@@ -62,15 +87,6 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
             } else onfail (resp);
         })
         .catch(resp => { console.log(resp); });
-    }
-
-    function verifySession (resp) 
-    {
-        //console.log(resp);
-        if(resp == null) {
-            return false;
-        }
-        return true;
     }
 
     return { post, get };

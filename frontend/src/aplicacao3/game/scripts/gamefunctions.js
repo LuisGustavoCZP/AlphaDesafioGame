@@ -1,8 +1,50 @@
 import { Request } from "../../scripts/request.js";
+import { SoundSys } from "../scripts/soundsys.js";
 
 /* Define as funções básicas do jogo */
 class GameFunctions{
-    constructor(){};
+    gamePaused;
+    gameMode;
+    audio;
+    #lives;
+    #score;
+    #itensAsked;
+    #cauldron;
+    constructor()
+    {
+        /* Diz se o jogo está pausado */
+        this.gamePaused = true;
+
+        /* define o modo de jogo */
+        this.gameMode = "";
+
+        /* define o controlador de audio */
+        this.audio = new SoundSys ();
+        console.log(this.audio);
+
+        /* Conta as vidas */
+        this.#lives = 3;
+
+        /* conta os pontos */
+        this.#score = 0;
+        /* Itens necessários para fazer a poção */
+        this.#itensAsked = [];
+
+        /* Itens que o jogador colocou no caldeirão */
+        this.#cauldron = [];
+
+    };
+
+    get isPaused ()
+    {
+        return this.gamePaused;
+    }
+
+    get gameMode ()
+    {
+        return this.gameMode;
+    }
+
 
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
     victory(){
@@ -79,25 +121,69 @@ class GameFunctions{
         }
     }
 
+    /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
+    potionMaking(valor){
+        let quantity = cauldron.length;
+        cauldron.push(ITENS[valor]);
+
+        if(quantity === numberIngredients - 1){
+            animations.removeAnimations();
+            soundTremor.play();
+            setTimeout(animations.finishedPotion, 50);
+            const compareOrder= cauldron.find((v,i) => v !== itensAsked[i]);
+            if(compareOrder === undefined){
+                score += 500 * numberIngredients;
+                $("#score").html(score);
+                setTimeout(animations.mageVictory, 1000);
+                setTimeout(animations.potionShine, 1000);
+                setTimeout(potionSfx, 2000);
+                setTimeout(gameSettings.victory , 4500);
+                cauldron = [];
+                return true;
+            }
+            else{
+                setTimeout(animations.mageDefeat, 1000);
+                setTimeout(wrongSfx, 1000);
+                gameSettings.lifeCount();
+            }
+        }
+        return false;
+    }
+
+    /* Ativa o modo de jogo aleatório */
+    randomMode(){
+        $("#modo-de-jogo").fadeOut("slow");
+        $("#play").fadeIn("slow");
+        this.gameMode = "random";
+    }
+
+    /* Ativa o modo de jogo sequencial */
+    sequentialMode(){
+        $("#modo-de-jogo").fadeOut("slow");
+        $("#play").fadeIn("slow");
+        this.gameMode = "";
+    }
+
     /* Começa o jogo */
     gameStart(){
-        gamePaused = false;
+        this.gamePaused = false;
         $("main").removeClass("blur");
         $("#play").fadeOut("slow");
-        musicPlay();
-        actualLotery();
-        setTimeout(showLotery ,1000);
+        console.log(this.audio);
+        this.audio.musicPlay();
+        //actualLotery();
+        //setTimeout(showLotery ,1000);
     };
 
     /* Pausa o jogo */
     pauseGame(){
-        gamePaused = true;
+        this.gamePaused = true;
         clearTimeout(showLotery);
         animations.removeAnimations();
         $("main").addClass("blur");
         $("#play").fadeIn("slow");
-        music.pause();
+        this.audio.music.pause();
     };
 }
 
-export { GameFunctions };
+export { SoundSys, GameFunctions };
