@@ -81,4 +81,4 @@ function upStage(_userid){
    return userUp
 }
 
-module.exports = { sortComponents, randomSort, sortPotions, upStage};
+module.exports = { sortComponentsAleatory, randomSort, sortPotions, upStage};
