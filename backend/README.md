@@ -42,7 +42,8 @@
 # app.post("/playgame", users.RequestUser) 
 -> Requisição do tipo POST para alterar os dados de pontuação e fase da base de dados users.json
 
-
+# app.get("/ranking", users.RequestUser)
+-> requisição do tipo GET para obter as 5 maiores pontuações do banco de dados users.json
 
 ## OBS:
 
