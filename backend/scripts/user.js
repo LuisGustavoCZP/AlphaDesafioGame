@@ -131,7 +131,7 @@ function UserData (req, res)
 module.exports = 
 {
     Get,
-    search,
+    Search,
     RequestUser,
     CreateUser,
     UserData,

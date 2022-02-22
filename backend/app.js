@@ -29,7 +29,7 @@ app.post("/login", user.RequestUser);
 
 app.get("/user", user.VerifySession, user.UserData);
 
-app.get("/ranking", gamecore.ranking);
+app.get("/ranking", game.ranking);
 /* 
 app.get("/stage", user.VerifySession, game.Start);
 app.post("/stage", user.VerifySession, game.VerifyRecipe, game.End); */
