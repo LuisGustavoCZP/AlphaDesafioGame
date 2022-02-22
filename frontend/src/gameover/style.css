@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e4e6ee;
+    font-size: 45px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-image: url("background-gameover.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+} 
+#gameover, #points, #ranking {
+    background-color: #15161862;
+}
+#buttons{
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+
+button{
+    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#btn-restart {
+    background-image: url("icons/restart.svg");
+}
+#btn-home {
+    background-image: url("icons/home.svg");
+}
+
+
+

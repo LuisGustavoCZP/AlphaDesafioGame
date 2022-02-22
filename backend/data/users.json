@@ -6,4 +6,5 @@
    {"id": 6,"name":"bruno","pass":"4444","stage":0,"slot":0,"points":0, "highscore": 0},
    {"id": 7, "name":"Rita","pass":"1234","stage":0,"slot":0,"points":0, "highscore": 0},
    {"id": 8, "name":"Vera","pass":"1212","stage":0,"slot":0,"points":0, "highscore": 0},
-   {"id": 9,"name":"ivan","pass":"1234","stage":0,"slot":0,"points":0, "highscore": 0}]
+   {"id": 9,"name":"ivan","pass":"1234","stage":0,"slot":0,"points":0, "highscore": 0},
+   {"id": 10, "name":"plinio","pass":"lopiin20","stage":0,"slot":0,"points":0, "highscore": 0}]

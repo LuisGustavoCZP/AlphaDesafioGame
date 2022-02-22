@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#rules{
+    overflow: auto; 
+    height: 300px;
+    width: 90%;
+    margin: auto;
+}
+h3 {
+    text-align: center;
+    color: white;
+}
+.content {
+    overflow: auto; 
+    height: 300px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+
+  
+}
+.small{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+/* Modal Content */
+.big-background, .small-background {
+  background-image: url("menu/big-menu.svg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid rgba(136, 136, 136, 0);
+  width: 80%;
+  height: 365px;
+}
+.small-background{
+    background-image: url("menu/small-menu.svg");
+    width: 25%;
+    height: 380px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* teste */
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #aaaaaa;
+
+    background-image: url("background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+} 
+
+#buttons{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+#options{
+    display: flex;
+    align-items: flex-end;
+}
+button{
+    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#btn-play, #btn-login {
+    border-radius: 60px;
+    background-image: url("icons/play.svg");
+    width: 120px;
+    height: 120px;
+    margin-top: 15px;
+}
+
+#btn-setting {
+    background-image: url("icons/sound.svg");
+}
+#btn-ranking {
+    background-image: url("icons/ranking.svg");
+}
+#btn-howToPlay {
+    background-image: url("icons/question.svg");
+}
+
+#lbl-login-register{
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+input{
+    border-radius: 20px;
+    height: 30px;
+    margin: 5px;
+    text-align: center;
+    user-select: none;
+}
+
+/* Game Title*/
+#gameTitle{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 80%;
+    margin: 80px;
+    margin-right: 200px;
+} 

@@ -24,8 +24,7 @@ function randomSort(_items) {
   id: 2,
   name: "Poção do Sumiço"
 } */
-function sortPotions(_stage) {
-   //if (_stage >= potions.length) return [];
+function sortPotions() {
    
    const total_pots = [...potions];
    const potionID = randomSort(total_pots);
@@ -93,10 +92,5 @@ function upStage(_userid){
 
    return userUp
 }
-
-
-
-
-
 
 module.exports = { sortComponents, randomSort, sortPotions, ranking, upStage};

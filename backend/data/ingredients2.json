@@ -1,0 +1,10 @@
+[
+    {"id":0, "name": "Maracujá", "icon": "resources/ingredients/passionfruit.png"},
+    {"id":1, "name": "Abóbora", "icon": "resources/ingredients/pumpkin1.png"},
+    {"id":2, "name": "Alface", "icon": "resources/ingredients/salad-leaves.png"},
+    {"id":3, "name": "Tomate", "icon": "resources/ingredients/sliced-tomato.png"},
+    {"id":4, "name": "Teia de Aranha", "icon": "resources/ingredients/spiderweb.png"},
+    {"id":5, "name": "Poção do Sono", "icon": "resources/ingredients/Potion (1).png"},
+    {"id":6, "name": "Poção do Sumiço", "icon": "resources/ingredients/Potion (2).png"},
+    {"id":7, "name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png"}
+]
