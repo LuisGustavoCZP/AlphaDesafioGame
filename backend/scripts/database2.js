@@ -26,7 +26,7 @@ function RandomItems (count, set=items, excludes = [])
         let itemID = -1;
 
         while (itemID == -1 || lastID == itemID || Utility.Contains(excludes, itemID)){
-            itemID = set[Utility.randomSort(set)].id;
+            itemID = set[Utility.randomSort(set)];
         }
 
         //console.log(itemID);

@@ -17,8 +17,10 @@ function randomizeArray (array, max=array.length)
     //console.log(narray);
     for(let i = 0; i < Math.min(max, narray.length); i++)
     {
-        newArray.push(narray[i]);
+        //newArray.push(narray[i]);
+        newArray.push(i);
     }
+    console.log(newArray);
     return newArray;
 }
 

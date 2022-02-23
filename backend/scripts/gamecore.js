@@ -65,7 +65,9 @@ function SortStock (req, res)
     //console.log(stock);
     //const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
     //res.cookie("stockData", token);
-    const resp = {"stock":stock};
+    //const resp = {"stock":stock};
+    const resp = {"stock":Database.GetItem(...stock)};
+    
     res.json(resp);
 }
 

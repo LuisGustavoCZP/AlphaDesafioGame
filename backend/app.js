@@ -36,6 +36,7 @@ app.post("/stage", user.VerifySession, game.VerifyRecipe, game.End); */
 
 app.get("/:userData/stock", user.VerifySession, game.SortStock);
 app.get("/:userData/recipe", user.VerifySession, game.CreateRecipe);
+app.post("/:userData/recipe", user.VerifySession, game.VerifyRecipe);
 app.get("/:userData/item", user.VerifySession, game.VerifyRecipe, game.SortItem);
 
 app.listen(port, () => {console.log(`Servidor iniciado em ${port}`)})
