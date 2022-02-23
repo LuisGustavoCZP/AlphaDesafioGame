@@ -137,4 +137,5 @@ module.exports =
     UserData,
     CreateSession,
     VerifySession,
+    users,
 };
