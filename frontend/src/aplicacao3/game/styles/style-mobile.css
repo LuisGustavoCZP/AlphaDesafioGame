@@ -1,0 +1,478 @@
+@media only screen and (max-width: 799px) {
+    body{
+        margin:0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-position: bottom;
+        background-image: url("../assets/background/WoodTexture2.png");
+        overflow: hidden;
+        background-size: 10%;
+        background-repeat: repeat;
+        z-index: -1;
+        user-select: none;
+    }
+    
+    main{
+        display: flex;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/background/parede.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+
+    }
+    
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 80%;
+        height: 70px;
+        position: fixed;
+        top: 0;
+        margin: 0;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 0;
+        font-size: 1em;
+        color: gold;
+        text-shadow: 1px 1px 2px black;
+        z-index: 2;
+    }
+    
+
+    
+    .blur{
+        filter: blur(5px) brightness(50%);
+    }
+    
+    .individual-shelves{
+        background-color: rgb(165, 91, 42);
+        height: 13px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .item{
+        width: 9vh;
+        background-color: none;
+        z-index: 1;
+    }
+    
+    .item-row{
+        display: flex;
+        justify-content: space-between;
+        flex: 1 0.5 100%;
+        margin-bottom: -5%;
+    
+    }
+    
+    .pedido{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 30px;
+    }
+    
+    .shadow{
+        background-color: rgb(124, 64, 24);
+        height: 8px;
+        width: 100%;
+    }
+    
+    .s0{
+        fill: #9b9ca1;
+    } 
+    
+    .s1{
+        fill: #00afef;
+    } 
+    
+    .s2{
+        fill: #363944;
+    }
+    
+    .star0{
+        fill:#ffff00;
+        filter: drop-shadow(0 0 3px black);
+    }
+    
+    .stage-bomb{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        height: 208px;
+        width: 184px;
+        color: white;
+        text-shadow: 1px 1px black;
+        font-size: 2.5em;
+        background-image: url('../assets/background/bomba.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .stage-bomb h2{
+        padding-top: 10px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .stage-star{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        height: 150px;
+        width: 150px;
+        color: black;
+        text-shadow: 1px 1px white;
+        font-size: 1em;
+        background-image: url('../assets/background/star.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    #cauldron{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 105px;
+        height: 105px;
+        flex: 1 0.5 210px;
+    }
+    
+    #cal-svg{
+        max-width: 105px;
+        max-height: 105px;
+    }
+    
+    #client{
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+    
+    #client-1{
+        width: 7vh;
+        transform: scaleX(-1);
+    }
+    
+    #interface{
+        padding-left: 5%;
+        margin-bottom: -3%;
+        display: flex;
+        height: 100px;
+        max-width: 250px;
+        align-self: flex-end;
+        flex: auto;
+        justify-content: center;
+    }
+    
+    #lifes{
+        display: flex;
+        align-items: flex-start;
+        font-size: 1.5em;
+        width: 165px;
+        font-weight: bold;
+        justify-content: space-between;
+        margin-top: 10px;
+        
+    }
+    #lifes p{
+        padding: 0;
+        margin: 0;
+        margin-right: 5px;
+        align-self: center;
+    }
+    
+    #mage{
+        display: flex;
+        margin-right: -25px;
+        height: 100px;
+        flex-shrink: 0.5;
+    }
+    
+    #modo-de-jogo{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 3;
+    }
+    
+    #play{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 2;
+    }
+    
+    #play-button{
+        height: 150px;
+        width: 150px;
+    }
+    
+    #pause{
+        width: 40px;
+        align-self: center;
+    }
+
+    #points{
+        margin: 0;
+        padding: 0;
+        align-self: center;
+    }
+    
+    #potion{
+        padding-left: 35px;
+        position: absolute;
+        width: 10vh;
+    }
+    
+    #opcoes{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 35%;
+        padding: 10px;
+        background-color: #ff7900;
+        color: #fff;
+        text-shadow: 1px 1px #000000;
+        border: solid 3px black;
+        border-radius: 10px;
+    
+    }
+    
+    #opcoes button{
+        font-size: 1em;
+    }
+
+    #opcoes h1{
+        font-size: 1.3em;
+    }
+    
+    #recipe{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-betwebetweenen;
+        border: 1px solid black;
+        max-height: 100px;
+        height: 50px;
+        width: 150px;
+        background-color: white;
+    }
+    
+    #room{
+        display: flex;
+        width: 150px;
+        max-width: 150px;
+        max-height: 275px;
+        height: 275px;
+        justify-content: center;
+        align-self: center;
+        flex: 1 0.5 auto;
+        margin-bottom: 3%;
+    }
+    
+    #shelves{
+        margin-left: 5%;
+        flex: 1 0.5 125px;
+        align-self: flex-end;
+        
+    }
+    
+    #stage{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 2;
+    }
+    
+    #water{
+        margin-top: 20px;
+        width: 65px;
+        height: 15px;
+    }
+    
+    /* Animações */
+    
+    @keyframes change1{
+        0% {fill: #00afef}
+        100% {fill: #ffae00 }
+    }
+    @keyframes change2{
+        0% {fill: #ffae00}
+        100% {fill: #ff0000 }
+    }
+    
+    @keyframes changeBack{
+        0% {fill: #ff0000}
+        100% {fill: #00afef }
+    }
+    
+    @keyframes happyMage{
+        0% {transform: scaleY(1);}
+        15% {transform: scaleY(0.6);}
+        30% {transform: scaleY(1);}
+        45% {transform: scaleY(0.6);}
+        60% {transform: scaleY(1);}
+        75% {transform: scaleY(0.6);}
+        100% {transform: scaleY(1);}
+    }
+    
+    @keyframes fallingMage{
+        0% {transform: rotate(0deg) translateY(0px);}
+        10% {transform: rotate(-90deg) translateY(-50px);}
+        90% {transform: rotate(-90deg) translateY(-50px);}
+        100% {transform: rotate(0deg) translateY(0px);}
+    }
+    
+    @keyframes lostLife{
+        0% {fill: #ffff00}
+        100% {fill: #000000 }
+    }
+    
+    @keyframes moveMage{
+        0% { transform: translate(1px, 1px) rotate(0deg); top: 0px; }
+        50% { transform: translate( 10px, 0px) rotate(8deg); top: 20px; }
+        100% { transform: translate(1px, 1px) rotate(0deg); top: 0px; }
+    }
+    
+    @keyframes potionRise{
+        0% {transform: translateY(0px); filter: none;}
+        25% {transform: translateY(-40px); filter: none;}
+        50% {filter: brightness(2) drop-shadow(2px 2px 10px rgb(243, 115, 255)); transform: scale(1.2) translateY(-40px) translateX(-5px);}
+        100% {filter: brightness(2) drop-shadow(2px 2px 10px rgb(243, 115, 255)); transform: scale(1) translateY(-40px);}
+    }
+    
+    @keyframes shake{
+        0% { transform: translate(1px, 1px) rotate(0deg) scale(1);}  
+        20% { transform: translate(-3px, 0px) rotate(1deg) scale(1.025);} 
+        40% { transform: translate(1px, -1px) rotate(1deg) scale(1.05);}
+        60% { transform: translate(-3px, 1px) rotate(0deg) scale(1.025);} 
+        80% { transform: translate(-1px, -1px) rotate(1deg) scale(1.05);}
+        100% { transform: translate(1px, -2px) rotate(-1deg) scale(1);}
+    }
+    @keyframes lastShake{
+        0% { transform: translate(1px, 1px) rotate(0deg) scale(1);}  
+        10% { transform: translate(-3px, 0px) rotate(3deg) scale(1.025);} 
+        20% { transform: translate(6px, -1px) rotate(3deg) scale(1.05);}
+        30% { transform: translate(-3px, 1px) rotate(0deg) scale(1.05);} 
+        40% { transform: translate(-2px, -2px) rotate(6deg) scale(1.02);}
+        50% { transform: translate(2px, -4px) rotate(-6deg) scale(1);}
+        60% { transform: translate(2px, 2px) rotate(0deg) scale(1.02);}  
+        70% { transform: translate(-6px, 0px) rotate(6deg) scale(1.055);} 
+        80% { transform: translate(2px, -2px) rotate(6deg) scale(1.05);}
+        90% { transform: translate(-6px, 2px) rotate(0deg) scale(1.03);} 
+        100% { transform: translate(2px, -4px) rotate(-6deg) scale(1);}
+    }
+    
+    @keyframes star-rotate{
+        100%{transform: rotateX(-10deg);}
+    }
+    
+    @keyframes shine{
+        0% {filter: none; transform: scale(1);}
+        50% {filter: brightness(3) drop-shadow(2px 2px 10px rgb(243, 115, 255)); transform: scale(1.3);}
+        100% {filter: none; transform: scale(1);}
+    }
+    @keyframes shine2{
+        0% {filter: none; transform: scale(1);}
+        50% {filter: brightness(3) drop-shadow(2px 2px 10px rgb(243, 115, 255)); transform: scale(1.3);}
+        100% {filter: none; transform: scale(1);}
+    }
+    
+    .backgroundShake{
+        animation-name: shake;
+        animation-duration: 0.5s;
+        animation-iteration-count: 2;
+    }
+    
+    .cauldronShake{
+        animation-name: shake;
+        animation-duration: 0.5s;
+    }
+    
+    .cauldronShake2{
+        animation-name: lastShake;
+        animation-duration: 2s;
+        animation-iteration-count: 2;
+    }
+    
+    .happyMage{
+        animation-name: happyMage;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        transform-origin: bottom;
+    }
+    
+    .fallingMage{
+        animation-name: fallingMage;
+        animation-duration: 3s;
+    }
+    
+    .itemShine{
+        animation-name: shine;
+        animation-duration: 1s;
+    }
+    
+    .itemShine2{
+        animation-name: shine2;
+        animation-duration: 1s;
+    }
+    
+    .lostLife{
+        animation-name: lostLife;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+    
+    .moveMage{
+        animation-name: moveMage;
+        animation-duration: 1s;
+    }
+    
+    .potionRise{
+        animation-name: potionRise;
+        animation-duration: 4s;
+    }
+    
+    .stage-star-rotate{
+        animation-name: star-rotate;
+        animation-duration: 2s;
+    }
+    
+    .waterBase{
+        animation-name: changeBack;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    } 
+    
+    .water1{
+        animation-name: change1;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+    .water2{
+        animation-name: change2;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+    
+}
+

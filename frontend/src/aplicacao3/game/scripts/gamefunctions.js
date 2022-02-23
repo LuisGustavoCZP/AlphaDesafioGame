@@ -241,8 +241,7 @@ class GameFunctions{
     crafing(data){
         console.log(data);
         if(data !== 1){
-            score += 500 * numberIngredients;
-            $("#score").html(this.score);
+            $("#score").html(data.points);
             setTimeout(() => {this.animations.mageVictory()}, 1000);
             setTimeout(() => {this.animations.potionShine()}, 1000);
             setTimeout(() => {this.audio.potionSfx()}, 2000);
@@ -271,17 +270,12 @@ class GameFunctions{
         this.gameMode = "item";
     }
 
-
-    /* Começa o jogo */
-    gameStart(){
-        this.gamePaused = false;
-        $("main").removeClass("blur");
-        $("#play").fadeOut("slow");
+    getStartInfo(){
         Request.get("user", 
             {params:document.cookie.replace("userData=", "")},
             data => 
             {
-                console.log(data);
+                $("#score").html(data.points);
                 this.lives = data.lives;
                 if(this.lives < 3){
                     for(let i = this.lives; i < 3; i++){
@@ -297,6 +291,14 @@ class GameFunctions{
             });
         this.audio.musicPlay();
         this.lotery();
+    }
+
+    /* Começa o jogo */
+    gameStart(){
+        this.gamePaused = false;
+        $("main").removeClass("blur");
+        $("#play").fadeOut("slow");
+        this.getStartInfo();
     };
 
     /* Pausa o jogo */
