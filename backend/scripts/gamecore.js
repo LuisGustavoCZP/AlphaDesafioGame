@@ -64,7 +64,7 @@ function SortStock (req, res)
 
 function CheckRecipe (recipe, itens) 
 {
-    for (let i = 0; i < recipe.length; i++)
+    for (let i = 0; i < Math.min(recipe.length, itens.length); i++)
     {
         if(itens[i] != recipe[i]) return false;
     }
