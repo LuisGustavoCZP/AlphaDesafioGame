@@ -190,7 +190,21 @@ class GameFunctions{
     }
 
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
-    potionMaking(valor, ITENS, cauldron){
+    potionMaking(valor, itens, cauldron){
+        Request.post("recipe", 
+        itens,
+        data => 
+        {
+            console.log(data);
+        },
+        error => 
+        {
+            console.log("Redirecionando para o login");
+            window.location.replace(`../menu`);
+        },
+        document.cookie.replace("userData=", ""));
+    }
+    /* potionMaking(valor, ITENS, cauldron){
         let numberIngredients = this.itensAsked.length;
         let quantity = cauldron.length;
         cauldron.push(ITENS[valor]);
@@ -217,8 +231,8 @@ class GameFunctions{
             }
         }
         return false;
-    }
-
+    } */
+    
     /* Ativa o modo de jogo aleatório */
     randomMode(){
         $("#modo-de-jogo").fadeOut("slow");

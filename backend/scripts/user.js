@@ -134,6 +134,15 @@ function UserData (req, res)
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
+function UserReset (req, res)
+{
+    const p = users[req.userid];
+    p.stage = 0;
+    p.lives = 3;
+    p.points = 0;
+    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
+}
+
 module.exports = 
 {
     Get,
@@ -141,7 +150,9 @@ module.exports =
     RequestUser,
     CreateUser,
     UserData,
+    UserReset,
     CreateSession,
     VerifySession,
+    SaveUsers,
     users,
 };

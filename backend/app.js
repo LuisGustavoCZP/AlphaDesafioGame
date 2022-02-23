@@ -32,6 +32,7 @@ app.get("/ranking/:top", game.ranking);
 app.get("/stage", user.VerifySession, game.Start);
 app.post("/stage", user.VerifySession, game.VerifyRecipe, game.End); */
 app.get("/:userData/user", user.VerifySession, user.UserData);
+app.post("/:userData/reset", user.VerifySession, user.UserReset);
 app.get("/:userData/stock", user.VerifySession, game.SortStock);
 app.get("/:userData/recipe", user.VerifySession, game.CreateRecipe);
 app.post("/:userData/recipe", user.VerifySession, game.VerifyRecipe);
