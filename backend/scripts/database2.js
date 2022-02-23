@@ -17,7 +17,7 @@ function GetItem (...ids)
     return ids.map((id) => {return items[id]});
 }
 
-function RandomItems (count, excludes = [])
+function RandomItems (count, set=items, excludes = [])
 {
     const array = [];
     let lastID = -1;
@@ -26,9 +26,10 @@ function RandomItems (count, excludes = [])
         let itemID = -1;
 
         while (itemID == -1 || lastID == itemID || Utility.Contains(excludes, itemID)){
-            itemID = Utility.randomSort(items);
+            itemID = set[Utility.randomSort(set)].id;
         }
 
+        //console.log(itemID);
         lastID = itemID;
         array.push(itemID);
     }

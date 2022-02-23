@@ -22,10 +22,11 @@ class GameFunctions{
 
         /* define o controlador de audio */
         this.audio = new SoundSys ();
-        console.log(this.audio);
+        //console.log(this.audio);
 
         /* Define o objeto que governa as animações */
         this.animations = new Animations();
+        console.log(this.animations);
 
         /* Conta as vidas */
         this.lives = 3;
@@ -49,7 +50,6 @@ class GameFunctions{
     {
         return this.gameMode;
     }
-
 
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
     victory(){
@@ -98,7 +98,9 @@ class GameFunctions{
         data => 
         {
             console.log(data);
-            this.itensAsked = data;
+            this.itensAsked = data.recipe;
+            
+            setTimeout(this.showLotery, 1000);
             //.push(arrayCopia[sorteado]);
         },
         error => 
@@ -130,7 +132,7 @@ class GameFunctions{
             $(`#life${lives}`).addClass("lostLife");
             this.lives = lives -1;
             this.cauldron = [];
-            this.actualLotery();
+            this.lotery();
             setTimeout(this.showLotery ,3500);
         }
         else{
@@ -161,11 +163,12 @@ class GameFunctions{
         }
         else{
             $("#pedido").remove();
-            animations.showShine();
+            console.log(this.animations);
+            this.animations.showShine();
 
             $("#client").delay(1000).queue(function (next) {
                 $(`#${this.itensAsked[numberIngredients-1].id}`).addClass('itemShine');
-                hideLotery();
+                this.hideLotery();
                 next();
             });
         }
@@ -222,7 +225,6 @@ class GameFunctions{
         console.log(this.audio);
         this.audio.musicPlay();
         this.lotery();
-        //setTimeout(showLotery ,1000);
     };
 
     /* Pausa o jogo */

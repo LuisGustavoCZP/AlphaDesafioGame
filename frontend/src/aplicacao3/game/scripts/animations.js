@@ -1,6 +1,9 @@
 /* Define o governante das animações do jogo*/
 class Animations {
-    constructor(){};
+    constructor()
+    {
+        
+    }
 
     /* Animação do mago ao acertar a poção */
     mageVictory(){

@@ -30,10 +30,10 @@ function CreateRecipe (req, res)
 {
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
-    const recipe = Database.RandomItems(stage.max);
-    
-    const token = jwt.sign({recipe:recipe}, recipesecret, {expiresIn:"1d"});
-    res.cookie("recipeData", token);
+    const recipe = Database.RandomItems(stage.max, user.stock);
+    user.recipe = recipe;
+    /* const token = jwt.sign({recipe:recipe}, recipesecret, {expiresIn:"1d"});
+    res.cookie("recipeData", token); */
 
     res.json({recipe:Database.GetItem(...recipe)});
 }
@@ -43,14 +43,14 @@ function SortItem (req, res)
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
 
-    const lastRecipe = req.recipe? req.recipe : [];
+    const lastRecipe = user.recipe? user.recipe : [];
     console.log(lastRecipe);
     const exclude = lastRecipe ? [lastRecipe[lastRecipe.length-1]] : [];
-    const recipe = Database.RandomItems(1, exclude);
+    const recipe = Database.RandomItems(1, user.stock, exclude);
     lastRecipe.push(...recipe);
-
-    const token = jwt.sign({recipe:lastRecipe}, recipesecret, {expiresIn:"1d"});
-    res.cookie("recipeData", token);
+    user.recipe = recipe;
+    /* const token = jwt.sign({recipe:lastRecipe}, recipesecret, {expiresIn:"1d"});
+    res.cookie("recipeData", token); */
 
     res.json({recipe:Database.GetItem(...lastRecipe)});
 }
@@ -61,6 +61,7 @@ function SortStock (req, res)
     const stage = Database.GetStage(user.stage);
 
     const stock = Database.RandomStock(stage.max);
+    user.stock = stock;
     //console.log(stock);
     //const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
     //res.cookie("stockData", token);
