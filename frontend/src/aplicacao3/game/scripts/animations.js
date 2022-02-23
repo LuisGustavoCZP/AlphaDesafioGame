@@ -49,25 +49,24 @@ class Animations {
     /* Faz os ingredientes escolhidos brilharem */
     showShine(audio, itensAsked){
         $("#pedido").remove();
-        for(let i = 0; i < itensAsked.length -1; i++){
+        for(let i = 0; i < itensAsked.length; i++){
             $("#client").delay(1000).queue(function (next) {
                 audio.shineSound();
                 $(`.item`).removeClass('itemShine itemShine2');
-                if(i > 0 && itensAsked[i-1].id === itensAsked[i].id){
+                if(i > 1 && itensAsked[i-2].id === itensAsked[i].id){
+                    console.log("repetido" + `${itensAsked[i].id}`);
                     $(`.item`).removeClass('itemShine itemShine2');
                     $(`#${itensAsked[i].id}`).delay(800).addClass('itemShine2');
                 }
                 else{
-                    $(`#${itensAsked[i].id}`).delay(800).addClass('itemShine');
+                    console.log("nao repetido" + `${itensAsked[i].id}`);
+                    //$(`.item`).removeClass('itemShine itemShine2');
+                    $(`#${itensAsked[i].id}`).delay(1000).addClass('itemShine');
                 }
                  next();
             });
         }
-        $("#client").delay(1000).queue(function (next) {
-            audio.shineSound();
-            $(`#${itensAsked[itensAsked.length-1].id}`).addClass('itemShine');
-            next();
-          });
+        $(`.item`).removeClass('itemShine itemShine2');
     }
 
     /* retira as animações que ainda estão ativas */

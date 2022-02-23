@@ -57,7 +57,9 @@ class GameFunctions{
         $("#potion").attr("src", `./assets/escolhidos/pocoes/${numberIngredients}.png`);
         numberIngredients = numberIngredients +1;
         actualLotery();
-        setTimeout(showLotery ,2000);
+        setTimeout(() =>{
+            this.showLotery();
+        } ,2000);
     };
     
     /* Preenche as prateleiras de itens */
@@ -71,13 +73,17 @@ class GameFunctions{
             const stock = data.stock;
             for(let i = 0; i < stock.length; i++){
                 if(i < 3){
-                    $("#itens-1").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
+                    $(`#${i+20}`).attr("src", `${stock[i].icon}`);
+                    $(`#${i+20}`).attr("id", `${stock[i].id}`);
+                    /* $("#itens-1").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`) */
                 }
                 else if(i < 6){
-                    $("#itens-2").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
+                    $(`#${i+20}`).attr("src", `${stock[i].icon}`);
+                    $(`#${i+20}`).attr("id", `${stock[i].id}`);
                 }
                 else{
-                    $("#itens-3").append(`<img src="${stock[i].icon}" id="${stock[i].id}" class="item">`)
+                    $(`#${i+20}`).attr("src", `${stock[i].icon}`);
+                    $(`#${i+20}`).attr("id", `${stock[i].id}`);
                 }
             }
         },
@@ -128,16 +134,16 @@ class GameFunctions{
     lifeCount(){
         if(this.lives > 1){
             this.animations.removeAnimations();
-            $(`#life${lives}`).addClass("lostLife");
-            this.lives = lives -1;
+            $(`#life${this.lives}`).addClass("lostLife");
+            this.lives = this.lives -1;
             this.cauldron = [];
             this.lotery();
             setTimeout(this.showLotery ,3500);
         }
         else{
             this.animations.removeAnimations();
-            $(`#life${lives}`).addClass("lostLife");
-            this.lives = lives -1;
+            $(`#life${this.lives}`).addClass("lostLife");
+            this.lives = this.lives -1;
             alert("GAME OVER");
         }
     }
@@ -172,8 +178,7 @@ class GameFunctions{
     }
 
     showInDelay (next) {
-        console.log(this.itensAsked);
-        $(`#${this.itensAsked[this.itensAsked.length-1].id}`).addClass('itemShine');
+        //$(`#${this.itensAsked[this.itensAsked.length-1].id}`).addClass('itemShine');
         this.hideLotery();
         //next();
     }
@@ -185,29 +190,30 @@ class GameFunctions{
     }
 
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
-    potionMaking(valor){
+    potionMaking(valor, ITENS, cauldron){
+        let numberIngredients = this.itensAsked.length;
         let quantity = cauldron.length;
         cauldron.push(ITENS[valor]);
 
         if(quantity === numberIngredients - 1){
-            animations.removeAnimations();
-            soundTremor.play();
-            setTimeout(animations.finishedPotion, 50);
-            const compareOrder= cauldron.find((v,i) => v !== itensAsked[i]);
+            this.animations.removeAnimations();
+            //soundTremor.play();
+            setTimeout(() =>{this.animations.finishedPotion()}, 50);
+            const compareOrder= cauldron.find((v,i) => v !== this.itensAsked[i]);
             if(compareOrder === undefined){
                 score += 500 * numberIngredients;
-                $("#score").html(score);
-                setTimeout(animations.mageVictory, 1000);
-                setTimeout(animations.potionShine, 1000);
-                setTimeout(potionSfx, 2000);
-                setTimeout(gameSettings.victory , 4500);
+                $("#score").html(this.score);
+                setTimeout(() => {this.animations.mageVictory()}, 1000);
+                setTimeout(() => {this.animations.potionShine()}, 1000);
+                setTimeout(() => {this.audio.potionSfx()}, 2000);
+                setTimeout(() => {this.victory()} , 4500);
                 cauldron = [];
                 return true;
             }
             else{
-                setTimeout(animations.mageDefeat, 1000);
-                setTimeout(wrongSfx, 1000);
-                gameSettings.lifeCount();
+                setTimeout(() => {this.animations.mageDefeat()}, 1000);
+                setTimeout(() => {this.audio.wrongSfx()}, 1000);
+                this.lifeCount();
             }
         }
         return false;
@@ -232,7 +238,6 @@ class GameFunctions{
         this.gamePaused = false;
         $("main").removeClass("blur");
         $("#play").fadeOut("slow");
-        console.log(this.audio);
         this.audio.musicPlay();
         this.lotery();
     };
@@ -240,8 +245,7 @@ class GameFunctions{
     /* Pausa o jogo */
     pauseGame(){
         this.gamePaused = true;
-        clearTimeout(showLotery);
-        animations.removeAnimations();
+        this.animations.removeAnimations();
         $("main").addClass("blur");
         $("#play").fadeIn("slow");
         this.audio.music.pause();

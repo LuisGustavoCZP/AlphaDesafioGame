@@ -4,6 +4,7 @@ const url = "http://vacsina.servegame.com:8000";
 
 $(document).ready(function(){
 
+    let cauldron = [];
     const ITENS = [
         {"src": `assets/escolhidos/1.png`, "id": "0"},
         {"src": `assets/escolhidos/2.png`, "id": "1"},
@@ -34,11 +35,11 @@ $(document).ready(function(){
     });
 
     /* Define que objetos da classe item podem ser colocados dentro do objeto com id Interface */
-     $( "#cauldron" ).droppable({
+        $( "#cauldron" ).droppable({
         accept: `.item`,
         drop: function( event, ui ) {
             $( this )
-                gameSettings.potionMaking(ui.draggable.attr("id"));
+                gameSettings.potionMaking(ui.draggable.attr("id"), ITENS, cauldron);
                 gameSettings.animations.removeAnimations();
                 gameSettings.animations.changeColor();
                 gameSettings.audio.droppingSound();
