@@ -53,10 +53,10 @@ class GameFunctions{
 
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
     victory(){
-        animations.removeAnimations();
+        this.animations.removeAnimations();
+        const numberIngredients = this.itensAsked.length;
         $("#potion").attr("src", `./assets/escolhidos/pocoes/${numberIngredients}.png`);
-        numberIngredients = numberIngredients +1;
-        actualLotery();
+        /* actualLotery(); */
         setTimeout(() =>{
             this.showLotery();
         } ,2000);
@@ -246,7 +246,6 @@ class GameFunctions{
             setTimeout(() => {this.animations.potionShine()}, 1000);
             setTimeout(() => {this.audio.potionSfx()}, 2000);
             setTimeout(() => {this.victory()} , 4500);
-            cauldron = [];
             return true;
         }
         else{
