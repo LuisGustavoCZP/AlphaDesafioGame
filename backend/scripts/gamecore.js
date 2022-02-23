@@ -71,19 +71,13 @@ function SortStock (req, res)
     res.json(resp);
 }
 
-function VerifyRecipe (req, res, next)
+function VerifyRecipe (req, res)
 {
-    const token = req.cookies["recipeData"];
-    //console.log(token);
-    if(!token) {
-        next();
-        return;
-    }
-    jwt.verify(token, recipesecret, (err, decoded) => 
-    {   //console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
-        req.recipe = decoded.recipe;
-        next();
-    });
+    const user = User.Get(req.userid);
+    
+    //if()
+
+    res.json(user);
 }
 
 function ClearRecipe (req, res)
