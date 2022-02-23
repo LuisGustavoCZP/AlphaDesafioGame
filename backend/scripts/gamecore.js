@@ -93,10 +93,10 @@ function ClearRecipe (req, res)
 // ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
 function ranking(req, res){
    const theBest = 5;
-   const ordened = User.users.sort((a,b) => b.highcore - a.highcore);
+   const ordened = User.users.sort((a,b) => b.highscore - a.highscore);
    const topRanking = ordened.map(function (element , index){
       if(index < theBest){
-         return {classification: index+1 , name: element.name , highscore: element.highcore}
+         return {classification: index+1 , name: element.name , highscore: element.highscore}
       }
       
    })
