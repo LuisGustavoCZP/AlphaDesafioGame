@@ -1,15 +1,17 @@
 import { Request } from "../../scripts/request.js";
 import { SoundSys } from "../scripts/soundsys.js";
+import { Animations } from "../scripts/animations.js";
 
 /* Define as funções básicas do jogo */
 class GameFunctions{
     gamePaused;
     gameMode;
     audio;
-    #lives;
-    #score;
-    #itensAsked;
-    #cauldron;
+    animations;
+    lives;
+    score;
+    itensAsked;
+    cauldron;
     constructor()
     {
         /* Diz se o jogo está pausado */
@@ -22,16 +24,19 @@ class GameFunctions{
         this.audio = new SoundSys ();
         console.log(this.audio);
 
+        /* Define o objeto que governa as animações */
+        this.animations = new Animations();
+
         /* Conta as vidas */
-        this.#lives = 3;
+        this.lives = 3;
 
         /* conta os pontos */
-        this.#score = 0;
+        this.score = 0;
         /* Itens necessários para fazer a poção */
-        this.#itensAsked = [];
+        this.itensAsked = [];
 
         /* Itens que o jogador colocou no caldeirão */
-        this.#cauldron = [];
+        this.cauldron = [];
 
     };
 
@@ -63,7 +68,7 @@ class GameFunctions{
         {params:cookie.replace("userData=", "")},
         data => 
         {
-            //console.log();
+            console.log(data);
             const stock = data.stock;
             for(let i = 0; i < stock.length; i++){
                 if(i < 3){
@@ -121,6 +126,36 @@ class GameFunctions{
         }
     }
 
+    /* Esconde os ingredientes necessários após eles serem mostrados ao jogador */
+    hideLotery(){
+        $(".pedido").delay(2000).queue(function(next) {
+            $(this).fadeOut();
+            next();
+        })
+        $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
+            animations.hideShine();
+            animations.removeAnimations();
+            next();
+        })
+    }
+
+    /* Faz os ingredientes brilharem */
+    showLotery(){
+        if(this.gamePaused){
+            return false;
+        }
+        else{
+            $("#pedido").remove();
+            animations.showShine();
+
+            $("#client").delay(1000).queue(function (next) {
+                $(`#${this.itensAsked[numberIngredients-1].id}`).addClass('itemShine');
+                hideLotery();
+                next();
+            });
+        }
+    }
+
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
     potionMaking(valor){
         let quantity = cauldron.length;
@@ -171,7 +206,7 @@ class GameFunctions{
         $("#play").fadeOut("slow");
         console.log(this.audio);
         this.audio.musicPlay();
-        //actualLotery();
+        this.lotery();
         //setTimeout(showLotery ,1000);
     };
 
@@ -186,4 +221,4 @@ class GameFunctions{
     };
 }
 
-export { SoundSys, GameFunctions };
+export { SoundSys, Animations, GameFunctions };
