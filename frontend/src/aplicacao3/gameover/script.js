@@ -13,7 +13,7 @@ $(document).ready(function() {
         error => 
         {
             console.log("Erro: " + error);
-        window.location.replace(`../menu`);
+            window.location.replace(`../menu`);
         }
     );
 

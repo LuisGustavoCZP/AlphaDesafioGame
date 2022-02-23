@@ -192,9 +192,10 @@ class GameFunctions{
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
     potionMaking(valor, ITENS, cauldron){
         let numberIngredients = this.itensAsked.length;
-        let quantity = cauldron.length;
+        
         cauldron.push(ITENS[valor]);
-
+        let quantity = cauldron.length;
+        
         if(quantity === numberIngredients - 1){
             this.animations.removeAnimations();
             //soundTremor.play();
@@ -204,6 +205,13 @@ class GameFunctions{
             data => 
             {
                 console.log(data);
+                if(data == 1) {
+                    if(data.lives == 0) {
+                        window.location.replace(`../gameover`);
+                    } 
+                } else {
+
+                }
                 this.audio.tremor();
                 this.crafing(data);
                 /* if(data === 1){
@@ -223,7 +231,7 @@ class GameFunctions{
             error => 
             {
                 console.log("Redirecionando para o login");
-                //window.location.replace(`../menu`);
+                window.location.replace(`../menu`);
             },
             document.cookie.replace("userData=", ""));
         }
@@ -263,7 +271,6 @@ class GameFunctions{
         this.gameMode = "item";
     }
 
-
     /* Começa o jogo */
     gameStart(){
         this.gamePaused = false;
@@ -273,9 +280,14 @@ class GameFunctions{
             {params:document.cookie.replace("userData=", "")},
             data => 
             {
-                this.lives = data.lives;
-                console.log(data);
-
+                if(data.lives < 1) {
+                    window.location.replace(`../gameover`);
+                } 
+                else 
+                {
+                    this.lives = data.lives;
+                    console.log(data);
+                }
             },
             error => 
             {
