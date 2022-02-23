@@ -104,8 +104,8 @@ async function insertRanking(){
                         </tr>`);
     ranking.forEach((element,index) => {
         $("table").append(` <tr id="place-${index+1}">
-                                <td>${element.classification}</td>
                                 <td>${element.name}</td>
+                                <td>${element.highscore}</td>
                             </tr>`);
         
     });
