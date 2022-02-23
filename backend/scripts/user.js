@@ -140,6 +140,7 @@ function UserReset (req, res)
     p.stage = 1;
     p.lives = 3;
     p.points = 0;
+    SaveUsers();
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
