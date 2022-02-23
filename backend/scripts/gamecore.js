@@ -62,9 +62,13 @@ function SortStock (req, res)
     res.json(resp);
 }
 
-function CheckRecipe (recipe) 
+function CheckRecipe (recipe, itens) 
 {
-    
+    for (let i = 0; i < recipe.length; i++)
+    {
+        if(itens[i] != recipe[i]) return false;
+    }
+    return true;
 }
 
 function VerifyRecipe (req, res)
@@ -72,7 +76,7 @@ function VerifyRecipe (req, res)
     const user = User.Get(req.userid);
     const response = req.body;
     console.log(response, user.recipe);
-    if(user.recipe == response)
+    if(CheckRecipe(user.recipe, response))
     {
         user.points += 300;
         return res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
