@@ -90,14 +90,17 @@ function ClearRecipe (req, res)
     res.cookie("recipeData", token);
 }
 
-function isNumber(n) {
-   return !isNaN(parseFloat(n)) && isFinite(n);
-}
+
 // ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
 function ranking(req, res){
 
+   function isNumber(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+   }
+   const theBest = Number(req.params.top);
+   
    if(isNumber(theBest)){
-      const theBest = Number(req.params.top);
+
       if(Number.isInteger(theBest)){
          const ordened = User.users.sort((a,b) => b.highscore - a.highscore);
          const topRanking = ordened.map(function (element , index){
