@@ -86,7 +86,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
                 onsucess(resp); 
             } else onfail (resp);
         })
-        .catch(resp => { console.log(resp); });
+        .catch(resp => { console.log(resp); onfail(resp); });
     }
 
     return { post, get };
