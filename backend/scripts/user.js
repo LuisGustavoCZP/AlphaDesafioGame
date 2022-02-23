@@ -33,7 +33,7 @@ function NewUser (_name, _pass)
         "name":_name,
         "pass":_pass,
         stage:0,
-        slot:0,
+        lives:0,
         points:0,
         highscore:0
     };
@@ -52,21 +52,25 @@ function CreateSession (userid, res)
 
 function VerifySession (req, res, next)
 {
-    //const q = req.query["userData"], p = ];
     const token = req.params["userData"];
     //console.log(token);
     jwt.verify(token, cryptokey, (err, decoded) => 
-    { // //
-        //console.log(`${req.ip} : ${decoded}`);
+    { 
         if(err) {
             res.json(null);
             return;
-        }//redirect("../test/login.html");//.status(401).end();
+        }
         else {
-            console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
-            req.userid = decoded.userid;
-            //CreateSession(req.userid, res);
-            next();
+            
+            if(decoded.userid >= users.length)
+            {
+                res.json(null);
+            } else {
+                console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
+                req.userid = decoded.userid;
+                //CreateSession(req.userid, res);
+                next();
+            }
         }
     });
 }
@@ -75,6 +79,7 @@ function CheckUser (user)
 {
     const userid = search.Name(user.user);
     if(userid == -1) return -1;
+    if(userid >= users.length) return -1;
     const u = users[userid];
     if(u.pass != user.pass)
     {

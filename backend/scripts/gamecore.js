@@ -32,9 +32,6 @@ function CreateRecipe (req, res)
     const stage = Database.GetStage(user.stage);
     const recipe = Database.RandomItems(stage.max, user.stock);
     user.recipe = recipe;
-    /* const token = jwt.sign({recipe:recipe}, recipesecret, {expiresIn:"1d"});
-    res.cookie("recipeData", token); */
-
     res.json({recipe:Database.GetItem(...recipe)});
 }
 
@@ -49,8 +46,6 @@ function SortItem (req, res)
     const recipe = Database.RandomItems(1, user.stock, exclude);
     lastRecipe.push(...recipe);
     user.recipe = recipe;
-    /* const token = jwt.sign({recipe:lastRecipe}, recipesecret, {expiresIn:"1d"});
-    res.cookie("recipeData", token); */
 
     res.json({recipe:Database.GetItem(...lastRecipe)});
 }
@@ -62,10 +57,6 @@ function SortStock (req, res)
 
     const stock = Database.RandomStock(stage.max);
     user.stock = stock;
-    //console.log(stock);
-    //const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
-    //res.cookie("stockData", token);
-    //const resp = {"stock":stock};
     const resp = {"stock":Database.GetItem(...stock)};
     
     res.json(resp);
@@ -75,9 +66,24 @@ function VerifyRecipe (req, res)
 {
     const user = User.Get(req.userid);
     
-    //if()
-
-    res.json(user);
+    if(user.recipe == req.body["recipe"])
+    {
+        user.points += 300;
+        return res.json(user);
+    } 
+    else if(user.lives >= 0)
+    {
+        user.lives--;
+        res.json(1);
+    } 
+    else if(user.lives == 0)
+    {
+        if(user.points > user.highscore)
+            user.highscore = user.points;
+        res.json(2);
+    }
+    
+    User.SaveUsers();
 }
 
 function ClearRecipe (req, res)
@@ -85,7 +91,6 @@ function ClearRecipe (req, res)
     const token = jwt.sign({recipe:[]}, cryptokey, {expiresIn:"0"});
     res.cookie("recipeData", token);
 }
-
 
 // ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
 function ranking(req, res){
