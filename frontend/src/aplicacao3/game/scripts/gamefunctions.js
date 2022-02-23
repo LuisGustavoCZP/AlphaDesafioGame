@@ -188,6 +188,12 @@ class GameFunctions{
         //next();
     }
 
+    pluck(list, propertyName) {
+        return list.map(function(i) {
+          return parseInt(i[propertyName]);
+        });
+      }
+
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
     potionMaking(valor, ITENS, cauldron){
         let numberIngredients = this.itensAsked.length;
@@ -195,11 +201,14 @@ class GameFunctions{
         cauldron.push(ITENS[valor]);
 
         if(quantity === numberIngredients - 1){
+            console.log(cauldron);
+            let fullCauldron = this.pluck(cauldron, "id");
+            console.log(fullCauldron);
             this.animations.removeAnimations();
             //soundTremor.play();
             setTimeout(() =>{this.animations.finishedPotion()}, 50);
             Request.post("recipe", 
-            cauldron,
+            fullCauldron,
             data => 
             {
                 console.log(data);
@@ -231,7 +240,7 @@ class GameFunctions{
 
     crafing(data){
         console.log(data);
-        if(data === 0){
+        if(data !== 1){
             score += 500 * numberIngredients;
             $("#score").html(this.score);
             setTimeout(() => {this.animations.mageVictory()}, 1000);
