@@ -1,8 +1,12 @@
 [
-    {"name": "Poção do Sono", "icon": "assets/escolhidos/Potion (1).png", "id": 1 },
-    {"name": "Poção do Sumiço", "icon": "resources/ingredients/Potion (2).png", "id": 2},
-    {"name": "Poção do Amor", "icon": "resources/ingredients/Potion (3).png", "id": 3},
-    {"name": "Poção do Poder", "icon": "resources/ingredients/Potion (1).png", "id": 4},
-    {"name": "Poção da Fraqueza", "icon": "resources/ingredients/Potion (2).png", "id": 5},
-    {"name": "Poção do Lúxuria",  "icon": "resources/ingredients/Potion (3).png", "id": 6}
+   {"name": "", "icon": "assets/pocoes/1.png", "id": 1 },
+   {"name": "", "icon": "assets/pocoes/2.png", "id": 2},
+   {"name": "", "icon": "assets/pocoes/3.png", "id": 3},
+   {"name": "", "icon": "assets/pocoes/4.png", "id": 4},
+   {"name": "", "icon": "assets/pocoes/5.png", "id": 5},
+   {"name": "", "icon": "assets/pocoes/6.png", "id": 6},
+   {"name": "", "icon": "assets/pocoes/7.png", "id": 7},
+   {"name": "", "icon": "assets/pocoes/8.png", "id": 8},
+   {"name": "", "icon": "assets/pocoes/9.png", "id": 9},
+   {"name": "", "icon": "assets/pocoes/10.png", "id": 10}
 ]
