@@ -34,7 +34,8 @@ function NewUser (_name, _pass)
         "pass":_pass,
         stage:0,
         slot:0,
-        points:0
+        points:0,
+        highscore:0
     };
 
     users.push(user);
@@ -137,4 +138,5 @@ module.exports =
     UserData,
     CreateSession,
     VerifySession,
+    users,
 };

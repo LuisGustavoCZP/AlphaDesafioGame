@@ -65,23 +65,19 @@ function SortStock (req, res)
     //console.log(stock);
     //const token = jwt.sign({stock}, recipesecret, {expiresIn:"1d"});
     //res.cookie("stockData", token);
-    const resp = {"stock":stock};
+    //const resp = {"stock":stock};
+    const resp = {"stock":Database.GetItem(...stock)};
+    
     res.json(resp);
 }
 
-function VerifyRecipe (req, res, next)
+function VerifyRecipe (req, res)
 {
-    const token = req.cookies["recipeData"];
-    //console.log(token);
-    if(!token) {
-        next();
-        return;
-    }
-    jwt.verify(token, recipesecret, (err, decoded) => 
-    {   //console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
-        req.recipe = decoded.recipe;
-        next();
-    });
+    const user = User.Get(req.userid);
+    
+    //if()
+
+    res.json(user);
 }
 
 function ClearRecipe (req, res)
@@ -90,18 +86,35 @@ function ClearRecipe (req, res)
     res.cookie("recipeData", token);
 }
 
+
 // ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
 function ranking(req, res){
-   const theBest = 5;
-   const ordened = users.sort((a,b) => b.highcore - a.highcore);
-   const topRanking = ordened.map(function (element , index){
-      if(index < theBest){
-         return {classification: index+1 , name: element.name , highscore: element.highcore}
+
+   function isNumber(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+   }
+   const theBest = Number(req.params.top);
+   
+   if(isNumber(theBest)){
+
+      if(Number.isInteger(theBest)){
+         const ordened = User.users.sort((a,b) => b.highscore - a.highscore);
+         const topRanking = ordened.map(function (element , index){
+            if(index < theBest){
+               return {classification: index+1 , name: element.name , highscore: element.highscore}
+            }
+         
+         })
+         topRanking.splice(theBest, topRanking.length - theBest);
+         res.json(topRanking);
+      }else{
+         res.json("The router params is not a intenger");
       }
       
-   })
- 	topRanking.splice(theBest, topRanking.length - theBest);
-   res.json(topRanking);
+   }else{
+      res.json("The router params is not a number");
+   }
+   
 }
 
 module.exports =
