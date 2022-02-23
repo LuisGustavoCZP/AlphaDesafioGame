@@ -88,7 +88,6 @@ class GameFunctions{
         });
     };
 
-    
     /* Sorteia os ingredientes que deverão se jogados no caudeirão
         Caso o IF não esteja comentado os ingredientes serão sorteados aleatóriamentes
     */
@@ -100,7 +99,7 @@ class GameFunctions{
             console.log(data);
             this.itensAsked = data.recipe;
             
-            setTimeout(this.showLotery, 1000);
+            setTimeout(() => {this.showLotery()}, 1000);
             //.push(arrayCopia[sorteado]);
         },
         error => 
@@ -149,11 +148,10 @@ class GameFunctions{
             $(this).fadeOut();
             next();
         })
-        $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            this.animations.hideShine();
-            this.animations.removeAnimations();
-            next();
-        })
+        /* $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
+            
+        }) */
+        setTimeout(() => {this.hideInDelay();}, 2000);
     }
 
     /* Faz os ingredientes brilharem */
@@ -164,14 +162,26 @@ class GameFunctions{
         else{
             $("#pedido").remove();
             console.log(this.animations);
-            this.animations.showShine();
+            this.animations.showShine(this.audio, this.itensAsked);
 
-            $("#client").delay(1000).queue(function (next) {
-                $(`#${this.itensAsked[numberIngredients-1].id}`).addClass('itemShine');
-                this.hideLotery();
-                next();
-            });
+            setTimeout(() => {this.showInDelay();}, 1000);
+            /* $("#client").delay(1000).queue(function (next) {
+                this.execDelay(next);
+            }); */
         }
+    }
+
+    showInDelay (next) {
+        console.log(this.itensAsked);
+        $(`#${this.itensAsked[this.itensAsked.length-1].id}`).addClass('itemShine');
+        this.hideLotery();
+        //next();
+    }
+
+    hideInDelay (next) {
+        this.animations.hideShine();
+        this.animations.removeAnimations();
+        //next();
     }
 
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */

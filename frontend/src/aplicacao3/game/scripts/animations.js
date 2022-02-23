@@ -30,23 +30,28 @@ class Animations {
     }
 
     /* retira o brilho dos ingredientes */
-    hideShine(){
+    hideShine(itensAsked){
         $(".pedido").delay(2000).queue(function(next) {
             $(this).fadeOut();
             next();
         })
-        $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            $(`.item`).removeClass('itemShine');
-            next();
-        })
+
+        const f = (next) => {$(`.item`).removeClass('itemShine');/* next(); */};
+
+        setTimeout(()=>{f();}, 2000)
+        /* $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
+            
+        }) */
     }
+
+
     
     /* Faz os ingredientes escolhidos brilharem */
-    showShine(){
+    showShine(audio, itensAsked){
         $("#pedido").remove();
-        for(let i = 0; i < numberIngredients -1; i++){
+        for(let i = 0; i < itensAsked.length -1; i++){
             $("#client").delay(1000).queue(function (next) {
-                shineSound();
+                audio.shineSound();
                 $(`.item`).removeClass('itemShine itemShine2');
                 if(i > 0 && itensAsked[i-1].id === itensAsked[i].id){
                     $(`.item`).removeClass('itemShine itemShine2');
@@ -59,8 +64,8 @@ class Animations {
             });
         }
         $("#client").delay(1000).queue(function (next) {
-            shineSound();
-            $(`#${itensAsked[numberIngredients-1].id}`).addClass('itemShine');
+            audio.shineSound();
+            $(`#${itensAsked[itensAsked.length-1].id}`).addClass('itemShine');
             next();
           });
     }

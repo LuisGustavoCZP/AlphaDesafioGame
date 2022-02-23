@@ -38,10 +38,10 @@ $(document).ready(function(){
         accept: `.item`,
         drop: function( event, ui ) {
             $( this )
-                potionMaking(ui.draggable.attr("id"));
-                animations.removeAnimations();
-                animations.changeColor();
-                droppingSound();
+                gameSettings.potionMaking(ui.draggable.attr("id"));
+                gameSettings.animations.removeAnimations();
+                gameSettings.animations.changeColor();
+                gameSettings.audio.droppingSound();
             }
     });
 
