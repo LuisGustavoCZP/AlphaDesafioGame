@@ -52,8 +52,8 @@ $("#btn-login").on("click", () => {
         if(username.length >= 3 || password.length >= 3){
             $(`#playModal`).css("display","none");
         
-            const status = callFetch(username,password, "newuser");
-            if(status == 1 ){//already exists 
+            callFetchNewUser(username,password);
+           /* if(status == 1 ){//already exists 
                 loginUser(username, password);
             } else if(status == 0){ //New user created
                 loginUser(username, password);
@@ -62,17 +62,52 @@ $("#btn-login").on("click", () => {
                 //window.location.replace("https://dunas-lopiin.github.io/jogo/prototipo/jogo/");
             } else {
                 console.log(status);
-            }
+            }*/
         } else {
             alert("O nome precisa ser mais de 2 caracteres!");
         }
     } else {
-        loginUser(username, password);
+        callFetchLogin(username, password);
     }
 });
 
-async function callFetch(user, pass, route){
-    const response = await fetch(`http://vacsina.servegame.com:8000/${route}`, {
+async function callFetchNewUser(user, pass,){
+    const response = await fetch(`http://vacsina.servegame.com:8000/newuser`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: `{
+                "user": "${user}",
+                "pass": "${pass}" 
+          }`})
+        .then((resp) => resp.json())
+        .then(function (data) {
+            const status = data;
+            console.log(data)
+            if(status == 1 ){//already exists 
+                callFetchLogin(username, password);
+            } else if(status == 0){ //New user created
+                callFetchLogin(username, password);
+                //console.log(status)
+                // login = true;
+                //window.location.replace("https://dunas-lopiin.github.io/jogo/prototipo/jogo/");
+            }/* else {
+                console.log(status);
+            }*/
+    
+        })
+        .catch(function (error) {
+            //console.log('Request failed', error);
+            console.log(error);
+        });
+}
+
+
+
+async function callFetchLogin(user, pass){
+    const response = await fetch(`http://vacsina.servegame.com:8000/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -105,8 +140,8 @@ async function callFetch(user, pass, route){
         });
 }
 
-function loginUser(username, password){
+/*function loginUser(username, password){
     callFetch(username, password, "login");
     //console.log("Meu status: " + status)
    
-}
+}*/
