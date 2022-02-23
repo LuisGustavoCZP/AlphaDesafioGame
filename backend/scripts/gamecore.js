@@ -69,7 +69,7 @@ function VerifyRecipe (req, res)
     if(user.recipe == req.body["recipe"])
     {
         user.points += 300;
-        return res.json(user);
+        return res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
     else if(user.lives >= 0)
     {

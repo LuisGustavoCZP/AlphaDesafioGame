@@ -131,7 +131,7 @@ function Get (id)
 function UserData (req, res)
 {
     const p = users[req.userid];
-    res.json({name:p.name, stage:p.stage, slot:p.slot, points:p.points});
+    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
 module.exports = 
