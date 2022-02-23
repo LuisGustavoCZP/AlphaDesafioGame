@@ -62,10 +62,9 @@ class GameFunctions{
     
     /* Preenche as prateleiras de itens */
     fillShelves(){
-        const cookie = document.cookie;
         //console.log(cookie);
         Request.get("stock", 
-        {params:cookie.replace("userData=", "")},
+        {params:document.cookie.replace("userData=", "")},
         data => 
         {
             console.log(data);
@@ -89,10 +88,26 @@ class GameFunctions{
         });
     };
 
+    
     /* Sorteia os ingredientes que deverão se jogados no caudeirão
         Caso o IF não esteja comentado os ingredientes serão sorteados aleatóriamentes
     */
-    lotery(){
+    lotery (){
+        Request.get(this.gameMode, 
+        {params:document.cookie.replace("userData=", "")},
+        data => 
+        {
+            console.log(data);
+           
+            //itensAsked.push(arrayCopia[sorteado]);
+        },
+        error => 
+        {
+            console.log("Redirecionando para o login");
+            window.location.replace(`../menu`);
+        });
+    }
+    /* lotery(){
         if(gameMode === "random"){
             itensAsked = [];
         }
@@ -106,7 +121,7 @@ class GameFunctions{
             }
             itensAsked.push(arrayCopia[sorteado]);
         }
-    };
+    }; */
 
     /* Contagem de vida */
     lifeCount(){
@@ -189,14 +204,14 @@ class GameFunctions{
     randomMode(){
         $("#modo-de-jogo").fadeOut("slow");
         $("#play").fadeIn("slow");
-        this.gameMode = "random";
+        this.gameMode = "recipe";
     }
 
     /* Ativa o modo de jogo sequencial */
     sequentialMode(){
         $("#modo-de-jogo").fadeOut("slow");
         $("#play").fadeIn("slow");
-        this.gameMode = "";
+        this.gameMode = "item";
     }
 
     /* Começa o jogo */
