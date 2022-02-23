@@ -4,6 +4,8 @@ let idBtn ;
 let login = false;
 let username;
 let password;
+$(document).ready(function() {
+
 
 $("main").on("click", (e) => {
     const btn = e.target.id; //btn-XXXX
@@ -16,7 +18,11 @@ $("main").on("click", (e) => {
         }else {
             $(`#playModal`).css("display","block");
         }
-    } else if(btn === `btn-${idBtn}`){
+    } else if(btn === "btn-ranking"){
+        // const ranking = [{name: "Lucas", points: 320}, {name:"Julia", points: 330}, {name: "Carlos", points: 200}]
+         insertRanking();
+         $(`#rankingModal`).css("display","block");
+     } else if(btn === `btn-${idBtn}`){
         $(`#${idBtn}Modal`).css("display","block");
     }
    
@@ -71,6 +77,43 @@ $("#btn-login").on("click", () => {
     }
 });
 
+
+// Ranking Table
+async function insertRanking(){
+    let ranking = [];
+    const response = await fetch(`http://vacsina.servegame.com:8000/ranking/5`, {
+        method: 'GET'})
+        .then((resp) => resp.json())
+        .then(function (data) {
+            ranking = data;
+            console.log(data)
+            
+        })
+        .catch(function (error) {
+            //console.log('Request failed', error);
+            console.log(error);
+        });
+   
+    $("table").remove();
+
+    $(".ranking-table").append(`<table></table>`);
+    
+    $("table").append(` <tr id="title">
+                            <th>Nome</th>
+                            <th>Pontos</th>
+                        </tr>`);
+    ranking.forEach((element,index) => {
+        $("table").append(` <tr id="place-${index+1}">
+                                <td>${element.classification}</td>
+                                <td>${element.name}</td>
+                            </tr>`);
+        
+    });
+}
+
+
+
+});
 async function callFetchNewUser(user, pass,){
     const response = await fetch(`http://vacsina.servegame.com:8000/newuser`, {
         method: 'POST',

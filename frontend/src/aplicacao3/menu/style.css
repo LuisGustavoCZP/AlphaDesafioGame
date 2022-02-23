@@ -23,6 +23,7 @@ body {
     width: 90%;
     margin: auto;
 }
+
 h3 {
     text-align: center;
     color: white;
@@ -33,7 +34,6 @@ h3 {
     width: 90%;
     margin: auto;
     text-align: center;
-
   
 }
 .small{
@@ -67,7 +67,8 @@ h3 {
   float: right;
   font-size: 28px;
   font-weight: bold;
-  padding-top: 10px;
+  padding-top: 16px;
+  
 }
 
 .close:hover,
@@ -103,22 +104,52 @@ main{
     display: flex;
     align-items: flex-end;
 }
-button{
+/*button{
     border-radius: 50px;
     width: 70px;
     height: 70px;
     background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;
+    background-color:#A07048;
+    border: 0;
+}*/
+button {
+    width: 70px;
+    height: 70px;
+    /*font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;*/
+    font-weight: 500;
+    color: #000;
+    background-color: #A07048;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+  
+
 #btn-play, #btn-login {
     border-radius: 60px;
     background-image: url("icons/play.svg");
     width: 120px;
     height: 120px;
     margin-top: 15px;
+    background-color: #BF5B17;
 }
-
+button:hover, #btn-play:hover, #btn-login:hover {
+    background-color: #26b179;
+  /*  box-shadow: 0px 15px 20px rgba(143, 88, 51, 0.4);*/
+   /* color: #fff;*/
+    transform: translateY(-7px);
+}
 #btn-setting {
     background-image: url("icons/sound.svg");
 }
@@ -143,10 +174,36 @@ input{
 }
 
 /* Game Title*/
-#gameTitle{
+strong{
     display: flex;
     flex-direction: row-reverse;
     width: 80%;
-    margin: 80px;
-    margin-right: 200px;
+    margin: 110px;
+    margin-right: 500px;
+    font-size: 30px;
+    text-align: center;
+    color: #EA8541;
 } 
+
+
+/* table*/
+table{
+    width: 35%;
+    margin: auto;
+    font-size: 28px;
+    color: white;
+}
+#title {
+    color: black;
+}
+#place-1 {
+    color: #DAA520;
+}
+
+#place-2 {
+    color: #A3A2A0;
+}
+
+#place-3 {
+    color: #CD7F32;
+}
