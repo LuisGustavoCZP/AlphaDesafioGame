@@ -90,6 +90,9 @@ function ClearRecipe (req, res)
     res.cookie("recipeData", token);
 }
 
+function isNumber(n) {
+   return !isNaN(parseFloat(n)) && isFinite(n);
+}
 // ranking() retorna as melhores pontuações como um objeto {classification: , name: , score: } 
 function ranking(req, res){
 
