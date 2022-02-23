@@ -49,6 +49,7 @@ class Animations {
     /* Faz os ingredientes escolhidos brilharem */
     showShine(audio, itensAsked){
         $("#pedido").remove();
+        let count = 0;
         for(let i = 0; i < itensAsked.length; i++){
             $("#client").delay(1000).queue(function (next) {
                 audio.shineSound();
@@ -56,17 +57,31 @@ class Animations {
                 if(i > 1 && itensAsked[i-2].id === itensAsked[i].id){
                     console.log("repetido" + `${itensAsked[i].id}`);
                     $(`.item`).removeClass('itemShine itemShine2');
-                    $(`#${itensAsked[i].id}`).delay(800).addClass('itemShine2');
+                    setTimeout(function(){
+                        $(`#${itensAsked[i].id}`).addClass('itemShine2');
+                    },20);
                 }
                 else{
                     console.log("nao repetido" + `${itensAsked[i].id}`);
-                    //$(`.item`).removeClass('itemShine itemShine2');
-                    $(`#${itensAsked[i].id}`).delay(1000).addClass('itemShine');
+                    $(`.item`).removeClass('itemShine itemShine2');
+                    setTimeout(function(){
+                        $(`#${itensAsked[i].id}`).addClass('itemShine');
+                    },20);
+                    
+                }
+                count++;
+                if(count = itensAsked.length){
+                    setTimeout(function(){
+                        $(`.item`).removeClass('itemShine itemShine2');
+                    }, 2000);
                 }
                  next();
             });
         }
-        $(`.item`).removeClass('itemShine itemShine2');
+    }
+
+    lostLife(lives){
+        $(`#life${lives}`).addClass("lostLife");
     }
 
     /* retira as animações que ainda estão ativas */

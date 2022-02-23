@@ -190,21 +190,7 @@ class GameFunctions{
     }
 
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
-    potionMaking(valor, itens, cauldron){
-        Request.post("recipe", 
-        itens,
-        data => 
-        {
-            console.log(data);
-        },
-        error => 
-        {
-            console.log("Redirecionando para o login");
-            window.location.replace(`../menu`);
-        },
-        document.cookie.replace("userData=", ""));
-    }
-    /* potionMaking(valor, ITENS, cauldron){
+    potionMaking(valor, ITENS, cauldron){
         let numberIngredients = this.itensAsked.length;
         let quantity = cauldron.length;
         cauldron.push(ITENS[valor]);
@@ -213,26 +199,56 @@ class GameFunctions{
             this.animations.removeAnimations();
             //soundTremor.play();
             setTimeout(() =>{this.animations.finishedPotion()}, 50);
-            const compareOrder= cauldron.find((v,i) => v !== this.itensAsked[i]);
-            if(compareOrder === undefined){
-                score += 500 * numberIngredients;
-                $("#score").html(this.score);
-                setTimeout(() => {this.animations.mageVictory()}, 1000);
-                setTimeout(() => {this.animations.potionShine()}, 1000);
-                setTimeout(() => {this.audio.potionSfx()}, 2000);
-                setTimeout(() => {this.victory()} , 4500);
-                cauldron = [];
-                return true;
-            }
-            else{
-                setTimeout(() => {this.animations.mageDefeat()}, 1000);
-                setTimeout(() => {this.audio.wrongSfx()}, 1000);
-                this.lifeCount();
-            }
+            Request.post("recipe", 
+            cauldron,
+            data => 
+            {
+                console.log(data);
+                this.audio.tremor();
+                this.crafing(data);
+                /* if(data === 1){
+                    this.animations.lostLife(this.lives);
+                    this.lives = this.lives -1;
+                    
+                    
+                    setTimeout(()=>{
+                        this.animations.mageDefeat();
+                    },1000);
+                    setTimeout(()=>{
+                        this.audio.wrongSfx();
+                    },1100);
+
+                } */
+            },
+            error => 
+            {
+                console.log("Redirecionando para o login");
+                //window.location.replace(`../menu`);
+            },
+            document.cookie.replace("userData=", ""));
         }
         return false;
-    } */
-    
+    }
+
+    crafing(data){
+        console.log(data);
+        if(data === 0){
+            score += 500 * numberIngredients;
+            $("#score").html(this.score);
+            setTimeout(() => {this.animations.mageVictory()}, 1000);
+            setTimeout(() => {this.animations.potionShine()}, 1000);
+            setTimeout(() => {this.audio.potionSfx()}, 2000);
+            setTimeout(() => {this.victory()} , 4500);
+            cauldron = [];
+            return true;
+        }
+        else{
+            setTimeout(() => {this.animations.mageDefeat()}, 1000);
+            setTimeout(() => {this.audio.wrongSfx()}, 1000);
+            this.lifeCount();
+        }
+    }
+
     /* Ativa o modo de jogo aleatório */
     randomMode(){
         $("#modo-de-jogo").fadeOut("slow");
@@ -247,11 +263,25 @@ class GameFunctions{
         this.gameMode = "item";
     }
 
+
     /* Começa o jogo */
     gameStart(){
         this.gamePaused = false;
         $("main").removeClass("blur");
         $("#play").fadeOut("slow");
+        Request.get("user", 
+            {params:document.cookie.replace("userData=", "")},
+            data => 
+            {
+                this.lives = data.lives;
+                console.log(data);
+
+            },
+            error => 
+            {
+                console.log("Redirecionando para o login");
+                window.location.replace(`../menu`);
+            });
         this.audio.musicPlay();
         this.lotery();
     };

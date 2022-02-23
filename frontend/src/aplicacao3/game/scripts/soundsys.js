@@ -36,6 +36,11 @@ class SoundSys
         const wrongChoice = new Audio('assets/sons/Retro Negative Short 23.wav');
         wrongChoice.play();
     }
+
+    tremor(){
+        const soundTremor = new Audio('assets/sons/Retro Impact Water 03.wav');
+        soundTremor.play();
+    }
 }
 
 export { SoundSys };
