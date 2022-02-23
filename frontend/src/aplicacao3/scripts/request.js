@@ -42,8 +42,8 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
     }
 
     /* Função que faz um post na rota com um body e as funções de sucesso ou falha */
-    function post (path, body, onsucess = ()=>{}, onfail = ()=>{}){
-        fetch(`${url}${path}`, 
+    function post (path, body, onsucess = ()=>{}, onfail = ()=>{}, params){
+        fetch(`${url}${params?createParams(params)+"/":""}${path}`, 
         {
             method: 'post',
             mode: 'cors',
@@ -58,7 +58,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
                 onsucess(resp); 
             } else onfail (resp);
         })
-        .catch(onerror);
+        .catch(resp => { console.log(resp); onfail(resp); });
     }
 
     /*  

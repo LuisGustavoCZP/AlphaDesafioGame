@@ -98,8 +98,8 @@ class GameFunctions{
         data => 
         {
             console.log(data);
-           
-            //itensAsked.push(arrayCopia[sorteado]);
+            this.itensAsked = data;
+            //.push(arrayCopia[sorteado]);
         },
         error => 
         {
@@ -125,18 +125,18 @@ class GameFunctions{
 
     /* Contagem de vida */
     lifeCount(){
-        if(lives > 1){
-            animations.removeAnimations();
+        if(this.lives > 1){
+            this.animations.removeAnimations();
             $(`#life${lives}`).addClass("lostLife");
-            lives = lives -1;
-            cauldron = [];
-            actualLotery();
-            setTimeout(showLotery ,3500);
+            this.lives = lives -1;
+            this.cauldron = [];
+            this.actualLotery();
+            setTimeout(this.showLotery ,3500);
         }
         else{
-            animations.removeAnimations();
+            this.animations.removeAnimations();
             $(`#life${lives}`).addClass("lostLife");
-            lives = lives -1;
+            this.lives = lives -1;
             alert("GAME OVER");
         }
     }
@@ -148,8 +148,8 @@ class GameFunctions{
             next();
         })
         $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            animations.hideShine();
-            animations.removeAnimations();
+            this.animations.hideShine();
+            this.animations.removeAnimations();
             next();
         })
     }
