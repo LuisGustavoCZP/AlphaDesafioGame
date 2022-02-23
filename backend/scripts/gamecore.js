@@ -30,7 +30,7 @@ function CreateRecipe (req, res)
 {
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
-    const recipe = Database.RandomItems(stage.max, user.stock);
+    const recipe = Database.RandomItems(stage.recipe, user.stock);
     user.recipe = recipe;
     res.json({recipe:Database.GetItem(...recipe)});
 }
@@ -55,7 +55,7 @@ function SortStock (req, res)
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
 
-    const stock = Database.RandomStock(stage.max);
+    const stock = Database.RandomStock(stage.stock);
     user.stock = stock;
     const resp = {"stock":Database.GetItem(...stock)};
     
