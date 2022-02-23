@@ -62,6 +62,11 @@ function SortStock (req, res)
     res.json(resp);
 }
 
+function CheckRecipe (recipe) 
+{
+    
+}
+
 function VerifyRecipe (req, res)
 {
     const user = User.Get(req.userid);
