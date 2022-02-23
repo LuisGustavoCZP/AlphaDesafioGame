@@ -1,11 +1,11 @@
 [
-   {"src": "assets/escolhidos/1.png", "id": "1"},
-   {"src": "assets/escolhidos/2.png", "id": "2"},
-   {"src": "assets/escolhidos/3.png", "id": "3"},
-   {"src": "assets/escolhidos/4.png", "id": "4"},
-   {"src": "assets/escolhidos/5.png", "id": "5"},
-   {"src": "assets/escolhidos/10.png", "id": "6"},
-   {"src": "assets/escolhidos/15.png", "id": "7"}, 
-   {"src": "assets/escolhidos/8.png", "id": "8"},
-   {"src": "assets/escolhidos/18.png", "id": "9"}
+   {"src": "assets/escolhidos/1.png", "icon": "assets/ingredients/1.png", "id": "1"},
+   {"src": "assets/escolhidos/2.png", "icon": "assets/ingredients/2.png", "id": "2"},
+   {"src": "assets/escolhidos/3.png", "icon": "assets/ingredients/3.png", "id": "3"},
+   {"src": "assets/escolhidos/4.png", "icon": "assets/ingredients/4.png", "id": "4"},
+   {"src": "assets/escolhidos/5.png", "icon": "assets/ingredients/5.png", "id": "5"},
+   {"src": "assets/escolhidos/10.png", "icon": "assets/ingredients/6.png", "id": "6"},
+   {"src": "assets/escolhidos/15.png", "icon": "assets/ingredients/7.png", "id": "7"}, 
+   {"src": "assets/escolhidos/8.png", "icon": "assets/ingredients/8.png", "id": "8"},
+   {"src": "assets/escolhidos/18.png", "icon": "assets/ingredients/18.png", "id": "9"}
 ]

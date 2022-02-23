@@ -1,4 +1,3 @@
-import { Animations } from "../scripts/animations.js";
 import { GameFunctions } from "../scripts/gamefunctions.js";
 
 const url = "http://vacsina.servegame.com:8000";
@@ -17,9 +16,6 @@ $(document).ready(function(){
         {"src": `assets/escolhidos/18.png`, "id": "8"}
     ];
 
-    /* Define o objeto que governa as animações */
-    const animations = new Animations();
-
     /* Define o objeto que governa as funções do jogo */
     const gameSettings = new GameFunctions();
 
@@ -27,9 +23,9 @@ $(document).ready(function(){
     gameSettings.fillShelves();
 
     /* Sorteia os itens necessários para a poção */
-    function actualLotery(){
+    /* function actualLotery(){
         gameSettings.lotery();
-    }
+    } */
 
     /* Define que objetos com a classe item podem ser arrastados */
     $( ".item" ).draggable({
@@ -48,43 +44,12 @@ $(document).ready(function(){
                 droppingSound();
             }
     });
-    
-
-    /* Esconde os ingredientes necessários após eles serem mostrados ao jogador */
-    function hideLotery(){
-        $(".pedido").delay(2000).queue(function(next) {
-            $(this).fadeOut();
-            next();
-        })
-        $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            animations.hideShine();
-            animations.removeAnimations();
-            next();
-        })
-    }
-    
-    /* Faz os ingredientes brilharem */
-    function showLotery(){
-        if(gamePaused){
-            return false;
-        }
-        else{
-            $("#pedido").remove();
-            animations.showShine();
-    
-            $("#client").delay(1000).queue(function (next) {
-                $(`#${itensAsked[numberIngredients-1].id}`).addClass('itemShine');
-                hideLotery();
-                next();
-            });
-        }
-    }
 
     /* Define configurações iniciais do jogo */
     $("#play").hide();
     $("#potion").hide();
-    $("#random").on("click", gameSettings.randomMode);
-    $("#sequential").on("click", gameSettings.sequentialMode);
+    $("#random").on("click", () => {gameSettings.randomMode ()});
+    $("#sequential").on("click", () => {gameSettings.sequentialMode ()});
     $("#play").on("click", () => { gameSettings.gameStart() });
     $("#pause").on("click", () => { gameSettings.pauseGame() });
 });

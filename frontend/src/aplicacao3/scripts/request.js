@@ -71,7 +71,7 @@ function RequestSys (url="http://vacsina.servegame.com:8000/")
     function get (path, info, onsucess = ()=>{}, onfail = ()=>{})
     {
         const urlFinal = info ? `${url}${createParams(info.params)}/${path}/${createQuery(info.query)}` : `${url}${path}/`;
-        //console.log(urlFinal);
+        console.log(urlFinal);
         fetch(urlFinal, 
         {
             method: 'get',
