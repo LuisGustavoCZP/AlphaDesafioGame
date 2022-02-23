@@ -32,8 +32,8 @@ function NewUser (_name, _pass)
     {
         "name":_name,
         "pass":_pass,
-        stage:0,
-        lives:0,
+        stage:1,
+        lives:3,
         points:0,
         highscore:0
     };
@@ -137,7 +137,7 @@ function UserData (req, res)
 function UserReset (req, res)
 {
     const p = users[req.userid];
-    p.stage = 0;
+    p.stage = 1;
     p.lives = 3;
     p.points = 0;
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
