@@ -62,14 +62,25 @@ function SortStock (req, res)
     res.json(resp);
 }
 
+function CheckRecipe (recipe, itens) 
+{
+    for (let i = 0; i < Math.min(recipe.length, itens.length); i++)
+    {
+        if(itens[i] != recipe[i]) return false;
+    }
+    return true;
+}
+
 function VerifyRecipe (req, res)
 {
     const user = User.Get(req.userid);
-    
-    if(user.recipe == req.body["recipe"])
+    const response = req.body;
+    console.log(response, user.recipe);
+    if(CheckRecipe(user.recipe, response))
     {
         user.points += 300;
-        return res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
+        user.stage++;
+        res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
     else if(user.lives >= 0)
     {

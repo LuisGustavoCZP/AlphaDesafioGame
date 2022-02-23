@@ -1,3 +1,4 @@
+import {Request} from "../scripts/request.js"
 $(document).ready(function() {
     let userData = {};
 
@@ -7,8 +8,10 @@ $(document).ready(function() {
         {params:cookie.replace("userData=", "")},
         data => 
         {
-            userData = data;
-            console.log(data);
+
+            userData = JSON.parse(JSON.stringify(data));
+            $("#points").html(`Pontos: ${userData.points}`);
+            $("#highscore").html(`Melhor Pontuação: ${userData.highscore}`);
         },
         error => 
         {
@@ -18,12 +21,11 @@ $(document).ready(function() {
     );
 
     //Send points to the Frontend
-    $("#points").html(`Pontos: ${userData.points}`);
-    $("#highscore").html(`Melhor Pontuação: #${userData.highscore}`);
+ 
     setTimeout(()=>{$(`#gameOverModal`).css("display","block")},2000);
 
     //ações dos botões
-    $("btn-restart").on("click", () => {
+    $("#btn-restart").on("click", () => {
         Request.post("reset", 
             {},
             data => 
@@ -41,7 +43,8 @@ $(document).ready(function() {
         window.location.replace(`../game`);
     });
 
-    $("btn-home").on("click", () => {
+    $("#btn-home").on("click", () => {
+        console.log("Home");
         window.location.replace(`../menu`);
     });
 
