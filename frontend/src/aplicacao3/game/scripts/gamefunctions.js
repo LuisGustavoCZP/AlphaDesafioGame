@@ -32,6 +32,7 @@ class GameFunctions{
 
         /* conta os pontos */
         this.score = 0;
+
         /* Itens necessários para fazer a poção */
         this.itensAsked = [];
 
@@ -53,15 +54,15 @@ class GameFunctions{
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
     victory(){
         this.cauldron = [];
-        console.log(this.cauldron);
+        //console.log(this.cauldron);
         this.animations.removeAnimations();
         const numberIngredients = this.itensAsked.length;
         $("#potion").attr("src", `./assets/pocoes/${numberIngredients}.png`);
-        /* actualLotery(); */
+
         this.fillShelves();
         setTimeout(() =>{
             this.lotery();
-        } ,2000);
+        } ,1000);
     };
     
     /* Preenche as prateleiras de itens */
@@ -94,18 +95,15 @@ class GameFunctions{
         });
     };
 
-    /* Sorteia os ingredientes que deverão se jogados no caudeirão
-        Caso o IF não esteja comentado os ingredientes serão sorteados aleatóriamentes
-    */
+    /* Sorteia os ingredientes que deverão se jogados no caudeirão */
     lotery (){
         Request.get(this.gameMode, 
         {params:document.cookie.replace("userData=", "")},
         data => 
         {
             this.itensAsked = data.recipe;
-            
+            //console.log(this.itensAsked);
             setTimeout(() => {this.showLotery()}, 1000);
-            //.push(arrayCopia[sorteado]);
         },
         error => 
         {
@@ -126,7 +124,7 @@ class GameFunctions{
             setTimeout(()=>{
                 this.lotery();
                 this.fillShelves();
-            },3000);
+            }, 3000);
         }
         else{
             this.animations.removeAnimations();
@@ -135,7 +133,7 @@ class GameFunctions{
             
             setTimeout(()=>{
                 window.location.replace(`../gameover`);
-            }, 4000); 
+            }, 2500); 
         }
     }
 
@@ -145,9 +143,7 @@ class GameFunctions{
             $(this).fadeOut();
             next();
         })
-        /* $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            
-        }) */
+
         setTimeout(() => {this.hideInDelay();}, 2000);
     }
 
@@ -161,14 +157,12 @@ class GameFunctions{
             this.animations.showShine(this.audio, this.itensAsked);
 
             setTimeout(() => {this.showInDelay();}, 1000);
-            /* $("#client").delay(1000).queue(function (next) {
-                this.execDelay(next);
-            }); */
+
         }
     }
 
     showInDelay (next) {
-        //$(`#${this.itensAsked[this.itensAsked.length-1].id}`).addClass('itemShine');
+
         this.hideLotery();
         //next();
     }
@@ -179,13 +173,16 @@ class GameFunctions{
         //next();
     }
 
+
+    /* Organiza o array que será enviado para o backend */
     pluck(list, propertyName) {
         return list.map(function(i) {
           return parseInt(i[propertyName]);
         });
       }
 
-    /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
+    /* Adiciona os itens jogados no caldeirão em um array e no final envia o array para
+    o backend, que compara se os itens jogados foram os corretos */
     potionMaking(valor, ITENS){
         let numberIngredients = this.itensAsked.length;
         let quantity = this.cauldron.length;
@@ -204,7 +201,7 @@ class GameFunctions{
             error => 
             {
                 console.log("Redirecionando para o login");
-                //window.location.replace(`../menu`);
+                window.location.replace(`../menu`);
             },
             document.cookie.replace("userData=", ""));
             this.cauldron = [];
@@ -212,6 +209,7 @@ class GameFunctions{
         return false;
     }
 
+    /* Gerencia as animações da criação de poção */
     crafing(data){
         
         if(data !== 1){
@@ -219,16 +217,17 @@ class GameFunctions{
             setTimeout(() => {this.animations.mageVictory()}, 1000);
             setTimeout(() => {this.animations.potionShine()}, 1000);
             setTimeout(() => {this.audio.potionSfx()}, 2000);
-            setTimeout(() => {this.victory()} , 4500);
+            setTimeout(() => {this.victory()} , 3500);
             return true;
         }
         else{
-            setTimeout(() => {this.animations.mageDefeat()}, 1000);
+            setTimeout(() => {this.animations.mageDefeat()}, 700);
             setTimeout(() => {this.audio.wrongSfx()}, 1000);
-            this.lifeCount();
+            setTimeout(() => {this.lifeCount()}, 2300);
         }
     }
 
+    /* Devolve as vidas ao jogador e volta ele para a primeira fase */
     resetGame(){
         Request.post("reset", 
         {},
@@ -236,17 +235,15 @@ class GameFunctions{
         {
             this.lives = data.lives;
             $("#score").html(data.points);
-            console.log(data);
+            //console.log(data);
         },
         error => 
         {
             console.log("Erro: " + error);
-           // window.location.replace(`../menu`);
         },
         {params:document.cookie.replace("userData=", "")}
     );
 
-    //window.location.replace(`../game`);
     }
 
     /* Ativa o modo de jogo aleatório */
@@ -263,12 +260,12 @@ class GameFunctions{
         this.gameMode = "item";
     }
 
+    /* Pega as informações iniciais do jogador */
     getStartInfo(){
         Request.get("user", 
             {params:document.cookie.replace("userData=", "")},
             data => 
             {
-                
                 this.lives = data.lives;
                 if(this.lives <= 0){
                     this.resetGame();
@@ -284,7 +281,8 @@ class GameFunctions{
             error => 
             {
                 console.log("Redirecionando para o login");
-                //window.location.replace(`../menu`);
+                window.location.replace(`../menu`);
+
             });
         this.audio.musicPlay();
         setTimeout(()=>{

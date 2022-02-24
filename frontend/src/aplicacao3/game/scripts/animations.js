@@ -9,7 +9,6 @@ class Animations {
     mageVictory(){
         $("#mage").removeClass("happyMage");
         $("#mage").addClass("happyMage");
-
     }
 
     /* Animação do mago ao errar a poção */
@@ -41,9 +40,7 @@ class Animations {
         const f = (next) => {$(`.item`).removeClass('itemShine');/* next(); */};
 
         setTimeout(()=>{f();}, 2000)
-        /* $(`#${itensAsked[0].id}`).delay(2000).queue(function(next) {
-            
-        }) */
+
     }
 
 
@@ -52,6 +49,7 @@ class Animations {
     showShine(audio, itensAsked){
         $("#pedido").remove();
         let count = 0;
+        console.log(itensAsked);
         for(let i = 0; i < itensAsked.length; i++){
             $("#client").delay(1000).queue(function (next) {
                 audio.shineSound();
