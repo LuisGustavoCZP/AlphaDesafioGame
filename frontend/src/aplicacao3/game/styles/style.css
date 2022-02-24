@@ -8,6 +8,7 @@ body{
     overflow: hidden;
     background-size: 10%;
     background-repeat: repeat;
+    font-family: Arial, Helvetica, sans-serif;
     z-index: -1;
     user-select: none;
 }
@@ -185,7 +186,7 @@ nav h2{
 }
 
 #pause{
-    width: 80px;
+    width: 55px;
 }
 
 #potion{

@@ -22,10 +22,6 @@ $(document).ready(function(){
     /* Ativa as funções iniciais */
     gameSettings.fillShelves();
 
-    /* Sorteia os itens necessários para a poção */
-    /* function actualLotery(){
-        gameSettings.lotery();
-    } */
 
     /* Define que objetos com a classe item podem ser arrastados */
     $( ".item" ).draggable({
@@ -46,8 +42,8 @@ $(document).ready(function(){
     });
 
     /* Define configurações iniciais do jogo */
-    $("#play").hide();
     $("#potion").hide();
+    gameSettings.randomMode();
     $("#random").on("click", () => {gameSettings.randomMode ()});
     $("#sequential").on("click", () => {gameSettings.sequentialMode ()});
     $("#play").on("click", () => { gameSettings.gameStart() });

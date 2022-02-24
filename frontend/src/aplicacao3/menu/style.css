@@ -19,9 +19,25 @@ body {
 }
 #rules{
     overflow: auto; 
-    height: 300px;
+    height: 350px;
     width: 90%;
     margin: auto;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+#tuto-img{
+    margin: 0 auto;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+#tuto-img div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
 }
 
 h3 {
