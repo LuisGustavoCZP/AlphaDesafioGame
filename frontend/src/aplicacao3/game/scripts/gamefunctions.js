@@ -55,10 +55,11 @@ class GameFunctions{
     victory(){
         this.animations.removeAnimations();
         const numberIngredients = this.itensAsked.length;
-        $("#potion").attr("src", `./assets/escolhidos/pocoes/${numberIngredients}.png`);
+        $("#potion").attr("src", `./assets/pocoes/${numberIngredients}.png`);
         /* actualLotery(); */
+        this.fillShelves();
         setTimeout(() =>{
-            this.showLotery();
+            this.lotery();
         } ,2000);
     };
     
