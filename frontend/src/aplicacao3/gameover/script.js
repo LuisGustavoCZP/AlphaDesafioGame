@@ -31,6 +31,7 @@ $(document).ready(function() {
             data => 
             {
                 console.log(data);
+                window.location.replace(`../game`);
             },
             error => 
             {
@@ -40,7 +41,6 @@ $(document).ready(function() {
             {params:cookie.replace("userData=", "")}
         );
 
-        window.location.replace(`../game`);
     });
 
     $("#btn-home").on("click", () => {
