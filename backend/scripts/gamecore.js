@@ -80,21 +80,28 @@ function VerifyRecipe (req, res)
     {
         user.points += 300;
         user.stage++;
+        
+        User.SaveUsers();
         res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
     else if(user.lives >= 0)
     {
         user.lives--;
+        
+        User.SaveUsers();
         res.json(1);
     } 
     else if(user.lives == 0)
     {
-        if(user.points > user.highscore)
+        if(user.points > user.highscore) 
+        {
             user.highscore = user.points;
+            User.SaveUsers();
+        }
+            
         res.json(2);
     }
     
-    User.SaveUsers();
 }
 
 function ClearRecipe (req, res)
