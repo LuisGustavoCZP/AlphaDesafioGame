@@ -193,6 +193,7 @@ class GameFunctions{
         if(quantity === numberIngredients - 1){
             let fullCauldron = this.pluck(this.cauldron, "id");
             this.animations.removeAnimations();
+            setTimeout(() =>{this.audio.tremor()}, 50);
             setTimeout(() =>{this.animations.finishedPotion()}, 50);
             Request.post("recipe", 
             fullCauldron,
@@ -212,6 +213,7 @@ class GameFunctions{
     }
 
     crafing(data){
+        
         if(data !== 1){
             $("#score").html(data.points);
             setTimeout(() => {this.animations.mageVictory()}, 1000);
@@ -222,14 +224,29 @@ class GameFunctions{
         }
         else{
             setTimeout(() => {this.animations.mageDefeat()}, 1000);
-            setTimeout(() =>{this.audio.tremor()}, 1000);
             setTimeout(() => {this.audio.wrongSfx()}, 1000);
             this.lifeCount();
         }
     }
 
     resetGame(){
+        Request.post("reset", 
+        {},
+        data => 
+        {
+            this.lives = data.lives;
+            $("#score").html(data.points);
+            console.log(data);
+        },
+        error => 
+        {
+            console.log("Erro: " + error);
+           // window.location.replace(`../menu`);
+        },
+        {params:document.cookie.replace("userData=", "")}
+    );
 
+    //window.location.replace(`../game`);
     }
 
     /* Ativa o modo de jogo aleatório */
@@ -251,25 +268,28 @@ class GameFunctions{
             {params:document.cookie.replace("userData=", "")},
             data => 
             {
-                $("#score").html(data.points);
+                
                 this.lives = data.lives;
-                if(this.lives < 3){
+                if(this.lives <= 0){
+                    this.resetGame();
+                }
+                else if(this.lives < 3){
                     for(let i = this.lives; i < 3; i++){
                         $(`#life${i+1}`).addClass("lostLife"); 
                     }
                 }
-                if(this.lives <= 0){
-                    window.location.replace(`../gameover`);
-                }
+                $("#score").html(data.points);
 
             },
             error => 
             {
                 console.log("Redirecionando para o login");
-                window.location.replace(`../menu`);
+                //window.location.replace(`../menu`);
             });
         this.audio.musicPlay();
-        this.lotery();
+        setTimeout(()=>{
+            this.lotery();
+        },500);
     }
 
     /* Começa o jogo */

@@ -9,22 +9,20 @@ class Animations {
     mageVictory(){
         $("#mage").removeClass("happyMage");
         $("#mage").addClass("happyMage");
+
     }
 
     /* Animação do mago ao errar a poção */
     mageDefeat(){
         $("#mage").removeClass("fallingMage");
-        $("main").removeClass("backgroundShake");
-        $("#potion").removeClass("potionRise");
-        $("#potion").attr("src", `./assets/pocoes/bomba.svg`);
-        $("#potion").addClass("potionRise");
-        $("main").addClass("backgroundShake");
         $("#mage").addClass("fallingMage");
     }
     
     /* Animação do caudeirão quando a poção é feita */
     finishedPotion(){
         $("#cauldron").addClass("cauldronShake2");
+        $("main").removeClass("backgroundShake");
+        $("main").addClass("backgroundShake");
     }
 
     /* Poção sobe do caudeirão caso a sequencia de itens esteja certa */
