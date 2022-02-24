@@ -1,35 +1,12 @@
 const User = require(`${__dirname}/user`);
 const Database = require(`${__dirname}/database2`);
-const Craft = require(`${__dirname}/craft`);
 const jwt = require('jsonwebtoken');
 
 const recipesecret = "R4kunN4-m4Tat4";
 
-function Start (req, res) 
-{
-    const user = User.Get(req.userid);
-    const recipe = Craft.GetRecipe(user);
-    //console.log(recipe, Craft.items);
-    const itens = Craft.GetIngredients(user, recipe);
-    const recipeItem = Craft.items[recipe.item];
-    //console.log(recipe, Craft.items);
-    //Database.items[int]
-    res.json({recipe:{name:recipeItem.name, icon:recipeItem.icon, components:recipe.components}, itens:itens});
-}
-
-function End (req, res) 
-{
-    const user = User.Get(req.userid);
-    const itens = req.body;
-    //Database.items 
-    
-    res.json({userid:req.userid});
-}
-
 function CreateRecipe (req, res) 
 {
     const user = User.Get(req.userid);
-    /* const stage = Database.GetStage(user.stage); */
     const recipe = Database.RandomItems(user.stage, user.stock);
     user.recipe = recipe;
     res.json({recipe:Database.GetItem(...recipe)});
@@ -38,8 +15,6 @@ function CreateRecipe (req, res)
 function SortItem (req, res) 
 {
     const user = User.Get(req.userid);
-    /* const stage = Database.GetStage(user.stage); */
-
     const lastRecipe = user.recipe? user.recipe : [];
     console.log(lastRecipe);
     const exclude = lastRecipe ? [lastRecipe[lastRecipe.length-1]] : [];
@@ -53,12 +28,6 @@ function SortItem (req, res)
 function SortStock (req, res) 
 {
     const user = User.Get(req.userid);
-    /* const stage = Database.GetStage(user.stage);
-    if(!stage) 
-    {
-        user.stage = 0;
-        stage = Database.GetStage(user.stage);
-    } */
     const stock = Database.RandomStock(9);
     user.stock = stock;
     const resp = {"stock":Database.GetItem(...stock)};
@@ -100,12 +69,6 @@ function VerifyRecipe (req, res)
     } 
     else if(user.lives == 0)
     {
-        /* if(user.points > user.highscore) 
-        {
-            user.highscore = user.points;
-            User.SaveUsers();
-        }
-            */ 
         res.json(2);
     }
     
@@ -113,7 +76,7 @@ function VerifyRecipe (req, res)
 
 function ClearRecipe (req, res)
 {
-    const token = jwt.sign({recipe:[]}, cryptokey, {expiresIn:"0"});
+    const token = jwt.sign({recipe:[]}, cryptokey); //, {expiresIn:"0"}
     res.cookie("recipeData", token);
 }
 
@@ -149,8 +112,6 @@ function ranking(req, res){
 
 module.exports =
 {
-    Start,
-    End,
     ClearRecipe,
     CreateRecipe,
     VerifyRecipe,

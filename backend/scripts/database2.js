@@ -4,7 +4,6 @@ const Utility = require(`${__dirname}/utility`);
 const path = __dirname.replace("scripts", "data/");
 
 const stages = JSON.parse(fs.readFileSync(path + "stages.json"));
-//const recipes = JSON.parse(fs.readFileSync(path + "recipes.json"));
 const items = JSON.parse(fs.readFileSync(path + "ingredients.json"));
 
 function GetStage (id)
@@ -29,7 +28,6 @@ function RandomItems (count, set=items, excludes = [])
             itemID = set[Utility.randomSort(set)];
         }
 
-        //console.log(itemID);
         lastID = itemID;
         array.push(itemID);
     }
