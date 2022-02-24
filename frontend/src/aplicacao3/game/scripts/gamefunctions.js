@@ -65,12 +65,10 @@ class GameFunctions{
     
     /* Preenche as prateleiras de itens */
     fillShelves(){
-        //console.log(cookie);
         Request.get("stock", 
         {params:document.cookie.replace("userData=", "")},
         data => 
         {
-            console.log(data);
             const stock = data.stock;
             for(let i = 0; i < stock.length; i++){
                 if(i < 3){
@@ -115,21 +113,6 @@ class GameFunctions{
             window.location.replace(`../menu`);
         });
     }
-    /* lotery(){
-        if(gameMode === "random"){
-            itensAsked = [];
-        }
-        let arrayCopia = [...ITENS];
-        let numero = arrayCopia.length - 1;
-        for(let i = itensAsked.length; i < numberIngredients; i++){
-            numero = arrayCopia.length - 1;
-            let sorteado = parseInt(Math.random() * (numero - 0) + 0);
-            while(i > 0 && arrayCopia[sorteado] === itensAsked[i-1]){
-                sorteado = parseInt(Math.random() * (numero - 0) + 0);
-            }
-            itensAsked.push(arrayCopia[sorteado]);
-        }
-    }; */
 
     /* Contagem de vida */
     lifeCount(){
@@ -138,13 +121,20 @@ class GameFunctions{
             $(`#life${this.lives}`).addClass("lostLife");
             this.lives = this.lives -1;
             this.cauldron = [];
-            this.lotery();
+            
+            setTimeout(()=>{
+                this.lotery();
+                this.fillShelves();
+            },3000);
         }
         else{
             this.animations.removeAnimations();
             $(`#life${this.lives}`).addClass("lostLife");
             this.lives = this.lives -1;
-            alert("GAME OVER");
+            
+            setTimeout(()=>{
+                window.location.replace(`../gameover`);
+            }, 4000); 
         }
     }
 
@@ -281,6 +271,9 @@ class GameFunctions{
                     for(let i = this.lives; i < 3; i++){
                         $(`#life${i+1}`).addClass("lostLife"); 
                     }
+                }
+                if(this.lives <= 0){
+                    window.location.replace(`../gameover`);
                 }
 
             },
