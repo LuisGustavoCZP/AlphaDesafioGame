@@ -1,6 +1,6 @@
 import { Request } from "../../scripts/request.js";
-import { SoundSys } from "../scripts/soundsys.js";
-import { Animations } from "../scripts/animations.js";
+import { SoundSys } from "./soundsys.js";
+import { Animations } from "./animations.js";
 
 /* Define as funções básicas do jogo */
 class GameFunctions{

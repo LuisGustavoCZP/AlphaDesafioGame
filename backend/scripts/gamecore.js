@@ -121,7 +121,7 @@ function randomSort(_items) {
   id: 2,
   name: "Poção do Sumiço"
 } */
-function sortPotions(req, res) {
+function sortPotion(req, res) {
 
    const total_pots = [...potions];
    const potionID = randomSort(total_pots);
@@ -137,5 +137,5 @@ module.exports =
     SortItem,
     SortStock,
     ranking,
-    sortPotions
+    sortPotion
 };
