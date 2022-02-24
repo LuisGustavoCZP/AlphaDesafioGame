@@ -48,6 +48,8 @@ $(document).ready(function(){
     /* Define configurações iniciais do jogo */
     $("#play").hide();
     $("#potion").hide();
+    $("#modo-de-jogo").hide("slow");
+    $("#play").fadeIn("slow");
     $("#random").on("click", () => {gameSettings.randomMode ()});
     $("#sequential").on("click", () => {gameSettings.sequentialMode ()});
     $("#play").on("click", () => { gameSettings.gameStart() });
