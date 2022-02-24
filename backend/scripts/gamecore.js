@@ -30,7 +30,7 @@ function CreateRecipe (req, res)
 {
     const user = User.Get(req.userid);
     /* const stage = Database.GetStage(user.stage); */
-    const recipe = Database.RandomItems(2+user.stage, user.stock);
+    const recipe = Database.RandomItems(user.stage, user.stock);
     user.recipe = recipe;
     res.json({recipe:Database.GetItem(...recipe)});
 }
