@@ -20,3 +20,5 @@ cd AlphaDesafioGame & sudo apt install pm2
 
 cd frontend & npm install
 cd ../backend & npm install
+
+sudo npm install pm2 --global

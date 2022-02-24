@@ -29,8 +29,8 @@ function End (req, res)
 function CreateRecipe (req, res) 
 {
     const user = User.Get(req.userid);
-    const stage = Database.GetStage(user.stage);
-    const recipe = Database.RandomItems(stage.recipe, user.stock);
+    /* const stage = Database.GetStage(user.stage); */
+    const recipe = Database.RandomItems(2+user.stage, user.stock);
     user.recipe = recipe;
     res.json({recipe:Database.GetItem(...recipe)});
 }
@@ -38,7 +38,7 @@ function CreateRecipe (req, res)
 function SortItem (req, res) 
 {
     const user = User.Get(req.userid);
-    const stage = Database.GetStage(user.stage);
+    /* const stage = Database.GetStage(user.stage); */
 
     const lastRecipe = user.recipe? user.recipe : [];
     console.log(lastRecipe);
@@ -53,9 +53,13 @@ function SortItem (req, res)
 function SortStock (req, res) 
 {
     const user = User.Get(req.userid);
-    const stage = Database.GetStage(user.stage);
-
-    const stock = Database.RandomStock(stage.stock);
+    /* const stage = Database.GetStage(user.stage);
+    if(!stage) 
+    {
+        user.stage = 0;
+        stage = Database.GetStage(user.stage);
+    } */
+    const stock = Database.RandomStock(9);
     user.stock = stock;
     const resp = {"stock":Database.GetItem(...stock)};
     
@@ -80,21 +84,31 @@ function VerifyRecipe (req, res)
     {
         user.points += 300;
         user.stage++;
+        if(user.points > user.highscore) 
+        {
+            user.highscore = user.points;
+        }
+        User.SaveUsers();
         res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
     else if(user.lives >= 0)
     {
         user.lives--;
+        
+        User.SaveUsers();
         res.json(1);
     } 
     else if(user.lives == 0)
     {
-        if(user.points > user.highscore)
+        /* if(user.points > user.highscore) 
+        {
             user.highscore = user.points;
+            User.SaveUsers();
+        }
+            */ 
         res.json(2);
     }
     
-    User.SaveUsers();
 }
 
 function ClearRecipe (req, res)
