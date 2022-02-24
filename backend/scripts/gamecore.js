@@ -51,7 +51,7 @@ function VerifyRecipe (req, res)
     console.log(response, user.recipe);
     if(CheckRecipe(user.recipe, response))
     {
-        user.points += 300;
+        user.points += 300*user.stage;
         user.stage++;
         if(user.points > user.highscore) 
         {
@@ -76,7 +76,7 @@ function VerifyRecipe (req, res)
 
 function ClearRecipe (req, res)
 {
-    const token = jwt.sign({recipe:[]}, cryptokey); //, {expiresIn:"0"}
+    const token = jwt.sign({recipe:[]}, cryptokey);
     res.cookie("recipeData", token);
 }
 
