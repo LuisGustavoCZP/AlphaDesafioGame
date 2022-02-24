@@ -18,21 +18,6 @@ function randomSort(_items) {
    return parseInt(Math.random() * numero);
 }
 
-// sortPotions retorna um objeto da poção sorteada no formato:
-/* {
-  icon: "resources/ingredients/Potion (2).png",
-  id: 2,
-  name: "Poção do Sumiço"
-} */
-function sortPotions() {
-
-   const total_pots = [...potions];
-   const potionID = randomSort(total_pots);
-   const sorted_pots = total_pots[potionID];
-   return sorted_pots;
-}
-
-
 // sort components retorna um array com as informações dos ingredientes no formato:
 /* [{
    icon: "resources/ingredients/passionfruit.png",
@@ -81,4 +66,4 @@ function upStage(_userid){
    return userUp
 }
 
-module.exports = { sortComponentsAleatory, randomSort, sortPotions, upStage};
+module.exports = { sortComponentsAleatory, randomSort, upStage};

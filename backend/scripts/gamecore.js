@@ -147,6 +147,25 @@ function ranking(req, res){
    
 }
 
+function randomSort(_items) {
+   const numero = _items.length;
+   return parseInt(Math.random() * numero);
+}
+
+// sortPotions retorna um objeto da poção sorteada no formato:
+/* {
+  icon: "resources/ingredients/Potion (2).png",
+  id: 2,
+  name: "Poção do Sumiço"
+} */
+function sortPotions(req, res) {
+
+   const total_pots = [...potions];
+   const potionID = randomSort(total_pots);
+   const sorted_pots = total_pots[potionID];
+   return sorted_pots;
+}
+
 module.exports =
 {
     Start,
@@ -156,5 +175,6 @@ module.exports =
     VerifyRecipe,
     SortItem,
     SortStock,
-    ranking
+    ranking,
+    sortPotions
 };

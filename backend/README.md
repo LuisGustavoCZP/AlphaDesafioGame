@@ -54,6 +54,13 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 # app.get("/ranking", users.RequestUser)
 -> requisição do tipo GET para obter as 5 maiores pontuações do banco de dados users.json
 
+# app.get("/:userData/item", user.VerifySession, game.VerifyRecipe, game.SortItem);
+
+
+# app.get("/:userData/potion", user.VerifySession, game.VerifyRecipe, game.sortPotion);
+-> requisição do tipo GET para obter um objeto com as características e rota da poção sorteada;
+
+
 ## OBS:
 
 
