@@ -54,7 +54,7 @@ function SortStock (req, res)
 {
     const user = User.Get(req.userid);
     const stage = Database.GetStage(user.stage);
-
+    if(!stage) return res.json(undefined);
     const stock = Database.RandomStock(stage.stock);
     user.stock = stock;
     const resp = {"stock":Database.GetItem(...stock)};
@@ -80,7 +80,10 @@ function VerifyRecipe (req, res)
     {
         user.points += 300;
         user.stage++;
-        
+        if(user.points > user.highscore) 
+        {
+            user.highscore = user.points;
+        }
         User.SaveUsers();
         res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
@@ -93,12 +96,12 @@ function VerifyRecipe (req, res)
     } 
     else if(user.lives == 0)
     {
-        if(user.points > user.highscore) 
+        /* if(user.points > user.highscore) 
         {
             user.highscore = user.points;
             User.SaveUsers();
         }
-            
+            */ 
         res.json(2);
     }
     
