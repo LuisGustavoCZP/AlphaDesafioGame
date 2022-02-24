@@ -14,13 +14,17 @@ class Animations {
     /* Animação do mago ao errar a poção */
     mageDefeat(){
         $("#mage").removeClass("fallingMage");
+        $("main").removeClass("backgroundShake");
+        $("#potion").removeClass("potionRise");
+        $("#potion").attr("src", `./assets/pocoes/bomba.svg`);
+        $("#potion").addClass("potionRise");
+        $("main").addClass("backgroundShake");
         $("#mage").addClass("fallingMage");
     }
     
     /* Animação do caudeirão quando a poção é feita */
     finishedPotion(){
         $("#cauldron").addClass("cauldronShake2");
-        $("main").addClass("backgroundShake");
     }
 
     /* Poção sobe do caudeirão caso a sequencia de itens esteja certa */
@@ -55,14 +59,12 @@ class Animations {
                 audio.shineSound();
                 $(`.item`).removeClass('itemShine itemShine2');
                 if(i > 1 && itensAsked[i-2].id === itensAsked[i].id){
-                    console.log("repetido" + `${itensAsked[i].id}`);
                     $(`.item`).removeClass('itemShine itemShine2');
                     setTimeout(function(){
                         $(`#${itensAsked[i].id}`).addClass('itemShine2');
                     },20);
                 }
                 else{
-                    console.log("nao repetido" + `${itensAsked[i].id}`);
                     $(`.item`).removeClass('itemShine itemShine2');
                     setTimeout(function(){
                         $(`#${itensAsked[i].id}`).addClass('itemShine');

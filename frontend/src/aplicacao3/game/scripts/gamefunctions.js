@@ -26,7 +26,6 @@ class GameFunctions{
 
         /* Define o objeto que governa as animações */
         this.animations = new Animations();
-        console.log(this.animations);
 
         /* Conta as vidas */
         this.lives = 3;
@@ -53,6 +52,8 @@ class GameFunctions{
 
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
     victory(){
+        this.cauldron = [];
+        console.log(this.cauldron);
         this.animations.removeAnimations();
         const numberIngredients = this.itensAsked.length;
         $("#potion").attr("src", `./assets/pocoes/${numberIngredients}.png`);
@@ -101,7 +102,6 @@ class GameFunctions{
         {params:document.cookie.replace("userData=", "")},
         data => 
         {
-            console.log(data);
             this.itensAsked = data.recipe;
             
             setTimeout(() => {this.showLotery()}, 1000);
@@ -116,6 +116,7 @@ class GameFunctions{
 
     /* Contagem de vida */
     lifeCount(){
+        this.cauldron = [];
         if(this.lives > 1){
             this.animations.removeAnimations();
             $(`#life${this.lives}`).addClass("lostLife");
@@ -157,7 +158,6 @@ class GameFunctions{
         }
         else{
             $("#pedido").remove();
-            console.log(this.animations);
             this.animations.showShine(this.audio, this.itensAsked);
 
             setTimeout(() => {this.showInDelay();}, 1000);
@@ -186,38 +186,19 @@ class GameFunctions{
       }
 
     /* Adiciona os itens jogados no caldeirão em um array e no final compara se os itens jogados foram os corretos */
-    potionMaking(valor, ITENS, cauldron){
+    potionMaking(valor, ITENS){
         let numberIngredients = this.itensAsked.length;
-        let quantity = cauldron.length;
-        cauldron.push(ITENS[valor]);
-
+        let quantity = this.cauldron.length;
+        this.cauldron.push(ITENS[valor]);
         if(quantity === numberIngredients - 1){
-            console.log(cauldron);
-            let fullCauldron = this.pluck(cauldron, "id");
-            console.log(fullCauldron);
+            let fullCauldron = this.pluck(this.cauldron, "id");
             this.animations.removeAnimations();
-            //soundTremor.play();
             setTimeout(() =>{this.animations.finishedPotion()}, 50);
             Request.post("recipe", 
             fullCauldron,
             data => 
             {
-                console.log(data);
-                this.audio.tremor();
                 this.crafing(data);
-                /* if(data === 1){
-                    this.animations.lostLife(this.lives);
-                    this.lives = this.lives -1;
-                    
-                    
-                    setTimeout(()=>{
-                        this.animations.mageDefeat();
-                    },1000);
-                    setTimeout(()=>{
-                        this.audio.wrongSfx();
-                    },1100);
-
-                } */
             },
             error => 
             {
@@ -225,12 +206,12 @@ class GameFunctions{
                 //window.location.replace(`../menu`);
             },
             document.cookie.replace("userData=", ""));
+            this.cauldron = [];
         }
         return false;
     }
 
     crafing(data){
-        console.log(data);
         if(data !== 1){
             $("#score").html(data.points);
             setTimeout(() => {this.animations.mageVictory()}, 1000);
@@ -241,9 +222,14 @@ class GameFunctions{
         }
         else{
             setTimeout(() => {this.animations.mageDefeat()}, 1000);
+            setTimeout(() =>{this.audio.tremor()}, 1000);
             setTimeout(() => {this.audio.wrongSfx()}, 1000);
             this.lifeCount();
         }
+    }
+
+    resetGame(){
+
     }
 
     /* Ativa o modo de jogo aleatório */
