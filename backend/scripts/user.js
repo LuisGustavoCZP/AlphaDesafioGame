@@ -37,7 +37,7 @@ function NewUser (_name, _pass)
     const user = 
     {
         "name":_name,
-        "pass":_pass,
+        "pass":CriptoPass(_pass),
         stage:1,
         lives:3,
         points:0,
@@ -94,7 +94,7 @@ function CheckUser (user)
     if(userid == -1) return -1;
     if(userid >= users.length) return -1;
     const u = users[userid];
-    if(u.pass != user.pass)
+    if(u.pass != CriptoPass(user.pass))
     {
         return -2;
     }
