@@ -10,8 +10,8 @@ const fs = require('fs');
 
 // Carrega o certificado e a key necessários para a configuração.
 const options = {
-    key: fs.readFileSync(`${__dirname}/server.key`),
-    cert: fs.readFileSync(`${__dirname}/server.crt`)
+    key: fs.readFileSync(`${__dirname}/backend.key`),
+    cert: fs.readFileSync(`${__dirname}/backend.crt`)
 };
 
 const { ranking } = require('./scripts/gamecore');
@@ -56,8 +56,3 @@ app.get("/:userData/potion", user.VerifySession, game.sortPotion);
 //app.listen(port, )
 
 https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
-/* https.createServer({
-    key: fs.readFileSync("server.key"),
-    cert: certificate
-}, app).listen(port);
- */
