@@ -1,6 +1,6 @@
 import { GameFunctions } from "./gamefunctions.js";
 
-const url = "http://vacsina.servegame.com:8000";
+const url = "https://vacsina.servegame.com:8000";
 
 $(document).ready(function(){
 
