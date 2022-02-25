@@ -3,6 +3,17 @@ const path = __dirname;
 
 const express = require('express');
 const cors = require('cors');
+const https = require('https');
+const fs = require('fs');
+
+//console.log(__dirname);
+
+// Carrega o certificado e a key necessários para a configuração.
+const options = {
+    key: fs.readFileSync(`${__dirname}/server.key`),
+    cert: fs.readFileSync(`${__dirname}/server.crt`)
+};
+
 const { ranking } = require('./scripts/gamecore');
 const app = express();
 
@@ -42,4 +53,11 @@ app.post("/:userData/recipe", user.VerifySession, game.VerifyRecipe);
 //Pegar uma poção aleatória
 app.get("/:userData/potion", user.VerifySession, game.sortPotion);
 
-app.listen(port, () => {console.log(`Servidor iniciado em ${port}`)})
+//app.listen(port, )
+
+https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
+/* https.createServer({
+    key: fs.readFileSync("server.key"),
+    cert: certificate
+}, app).listen(port);
+ */
