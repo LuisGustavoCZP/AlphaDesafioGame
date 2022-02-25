@@ -1,7 +1,13 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto')
 const path = __dirname.replace("scripts", "data/");
-const cryptokey = "m4C4c0-Qu3r-b4n4N4";
+const sessionkey = "m4C4c0-Qu3r-b4n4N4";
+const passCriptoOption = {
+    algoritm: "aes256",
+    secret: "aS3Nh4-3H-F0d4",
+    type: "hex"
+}
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
 const search = Search ();
@@ -43,10 +49,17 @@ function NewUser (_name, _pass)
     return user;
 }
 
+function CriptoPass (pass)
+{
+    const cipher = crypto.createCipher(passCriptoOption.algoritm, passCriptoOption.secret);
+    cipher.update(pass);
+    return cipher.final(passCriptoOption.type);
+}
+
 function CreateSession (userid, res)
 {
     //const cookiedata = { domain: 'localhost:8080', path: '/admin', secure: true, expiresIn:300};
-    const token = jwt.sign({userid:userid}, cryptokey); //, { expiresIn:300 }
+    const token = jwt.sign({userid:userid}, sessionkey); //, { expiresIn:300 }
     res.json({"userData":token});
 }
 
@@ -54,7 +67,7 @@ function VerifySession (req, res, next)
 {
     const token = req.params["userData"];
     //console.log(token);
-    jwt.verify(token, cryptokey, (err, decoded) => 
+    jwt.verify(token, sessionkey, (err, decoded) => 
     { 
         if(err) {
             res.json(null);
