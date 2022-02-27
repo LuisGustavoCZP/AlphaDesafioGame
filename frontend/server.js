@@ -4,6 +4,7 @@ const https = require('https');
 const app = express();
 const path = __dirname;
 const port = 8080;
+const fs = require('fs');
 
 // Carrega o certificado e a key necessários para a configuração.
 const options = {
