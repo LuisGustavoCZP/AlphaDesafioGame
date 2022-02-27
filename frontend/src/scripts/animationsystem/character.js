@@ -1,5 +1,6 @@
 import { Math2D } from "./math2d.js";
 import { CanvasSpriteFrame, CanvasSprite } from "./canvassprite.js";
+
 class Transform 
 {
     constructor (x, y, r, s){
@@ -19,9 +20,9 @@ class Objeto
         this.transform = transform;
     }
 
-    RotateTo (dirX, dirY)
+    RotateTo (dirX, dirY, rot = 0)
     {
-        this.transform.r = Math2D.RotateTo(dirX, dirY, 0);
+        this.transform.r = Math2D.RotateTo(dirX, dirY, 0) + rot;
     }
 }
 
@@ -48,7 +49,7 @@ class DrawObjeto extends Objeto
         context.rotate((Math.PI / 180) * this.transform.r);
         context.translate(-fx, -fy);
 
-        this.sprite.draw(context, x, y, this.transform.s);
+        this.sprite.draw(context, x, y, s);
         
         context.translate(fx, fy);
         context.rotate((Math.PI / 180) * -this.transform.r);

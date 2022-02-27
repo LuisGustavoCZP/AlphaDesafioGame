@@ -12,7 +12,7 @@ var p1 = {
         "x":0,
         "y":0,
         "r":0,
-        "s":1,
+        "s":.25,
         "cx":0,
         "cy":0
     },
@@ -56,12 +56,8 @@ function gameloop ()
     window.requestAnimationFrame(gameloop, characters);
     charactersCtx.clearRect(0,0, characters.width, characters.height);
     obj.draw();
-    if(obj.parts[1]){
-        const p = obj.parts[1];
-        const or = -360;
-        p.transform.r = or+(((p.transform.r-or) + .5) % 30); 
-    }
     
+    //obj.transform.r = ((obj.transform.r + .5) % 360); 
 }
 gameloop();
 
@@ -69,5 +65,10 @@ const dragndrop = DragNDrop(characters, (x,y) =>
 { 
     //obj.transform.cx = x - (obj.transform.x + (characters.width/2)); 
     //obj.transform.cy = y - (obj.transform.y + (characters.height/2)); 
-    
+    if(obj.parts[1]){
+        const p = obj.parts[1];
+        const cx = x - (p.transform.x + (characters.width/2)); 
+        const cy = y - (p.transform.y + (characters.height/2)); 
+        p.RotateTo(x, y, 180);
+    }
 }); //
