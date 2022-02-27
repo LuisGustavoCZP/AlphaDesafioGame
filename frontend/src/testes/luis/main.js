@@ -12,7 +12,7 @@ var p1 = {
         "x":0,
         "y":0,
         "r":0,
-        "s":.25,
+        "s":.5,
         "cx":0,
         "cy":0
     },
@@ -42,7 +42,23 @@ var p1 = {
                 "s":1,
                 "cx":-60,
                 "cy":-30
-            }
+            },
+            "childs":
+            [
+                {
+                    "src":"images/blueArm_long.png", 
+                    "contraints":{"min": 0, "max":360},
+                    "transform":
+                    {
+                        "x":230,
+                        "y":-15,
+                        "r":0,
+                        "s":1,
+                        "cx":-60,
+                        "cy":-30
+                    }
+                }
+            ]
         }
     ]
 };
@@ -65,10 +81,10 @@ const dragndrop = DragNDrop(characters, (x,y) =>
 { 
     //obj.transform.cx = x - (obj.transform.x + (characters.width/2)); 
     //obj.transform.cy = y - (obj.transform.y + (characters.height/2)); 
-    if(obj.parts[1]){
-        const p = obj.parts[1];
+    if(obj.childs[1]){
+        const p = obj.childs[1];
         const cx = x - (p.transform.x + (characters.width/2)); 
         const cy = y - (p.transform.y + (characters.height/2)); 
-        p.RotateTo(x, y, 180);
+        p.RotateTo(x, y, 220);
     }
 }); //

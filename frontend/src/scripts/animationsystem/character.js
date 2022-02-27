@@ -1,18 +1,6 @@
 import { Math2D } from "./math2d.js";
 import { CanvasSpriteFrame, CanvasSprite } from "./canvassprite.js";
 
-class Transform 
-{
-    constructor (x, y, r, s){
-        this.x = x;
-        this.y = y;
-        this.r = r;
-        this.s = s;
-        this.cx = 0;
-        this.cy = 0;
-    }
-}
-
 class Objeto 
 {
     constructor (transform)
@@ -26,15 +14,56 @@ class Objeto
     }
 }
 
-class DrawObjeto extends Objeto
+class Transform extends Objeto
 {
-    constructor (sprite, transform)
-    {
+    constructor (transform, childs){
         super(transform);
-        this.sprite = sprite;
+        this.childs = childs;
     }
 
     draw(context, parentTransform) 
+    {
+        const s = parentTransform.s * this.transform.s;
+        const x = s * this.transform.x;
+        const y = s * this.transform.y;
+        const cx = s * this.transform.cx;
+        const cy = s * this.transform.cy;
+        const fx = x+cx, fy = y+cy;
+        //console.log(cx, cy)
+        //console.log("Drawing GO");
+        //context.translate(cx, cy);
+        context.translate(fx, fy);
+        context.rotate((Math.PI / 180) * this.transform.r);
+        context.translate(-fx, -fy);
+
+        if(this.sprite) this.sprite.draw(context, x, y, s);
+        context.translate(x, y);
+        if(this.childs)
+        {
+            this.childs.forEach(child => 
+            {
+                child.draw(this.context, {"x":x, "y":y, "r":this.transform.r, "s":this.transform.s, "cx":cx, "cy":cy});
+            });
+        }
+        context.translate(-x, -y);
+        
+        context.translate(fx, fy);
+        context.rotate((Math.PI / 180) * -this.transform.r);
+        context.translate(-fx, -fy);
+        //context.translate(-cx, -cy);
+    }
+
+}
+
+class DrawObjeto extends Transform
+{
+    constructor (sprite, transform, childs)
+    {
+        super(transform, childs);
+        this.sprite = sprite;
+    }
+
+    /* draw(context, parentTransform) 
     {
         const s = parentTransform.s * this.transform.s;
         const x = s * this.transform.x;
@@ -55,7 +84,7 @@ class DrawObjeto extends Objeto
         context.rotate((Math.PI / 180) * -this.transform.r);
         context.translate(-fx, -fy);
         //context.translate(-cx, -cy);
-    }
+    } */
 }
 
 //Classe que representa as partes do corpo do boneco
@@ -67,11 +96,11 @@ class CharacterPart extends DrawObjeto
     //rotation => r: graus de rotação
     //src => "...png": destino que contem a imagem
     //img => elemento Image do DOM
-    constructor (parent, spriteSource, transform = {x:0, y:0, r:0, s:0}, contraints = {min:0, max:360}) 
+    constructor (parent, spriteSource, transform = {x:0, y:0, r:0, s:0}, childs) 
     {
-        super(new CanvasSprite(new CanvasSpriteFrame(153, 76), spriteSource), transform);
+        super(new CanvasSprite(new CanvasSpriteFrame(153, 76), spriteSource), transform, childs);
         this.parent = parent;
-        this.contraints = contraints;
+        //this.contraints = contraints;
         this.spriteSource = spriteSource;
     }
 
@@ -84,22 +113,24 @@ class CharacterPart extends DrawObjeto
 
     static Load (parent, obj)
     {
-        
-        return new CharacterPart(parent, obj.src, obj.transform, obj.contraints);
+        const ps = obj.parts ? obj.parts.map(function(part) 
+        {
+            return CharacterPart.Load(this, part);
+        }) : [];
+        return new CharacterPart(parent, obj.src, obj.transform, ps);
     }
 }
 
 //Classe que representa o tronco do corpo do boneco
-class Character extends Objeto
+class Character extends Transform
 {
     //parent => SVG element: SVG na qual está grudada
     //childs => 
     constructor (canvas, transform, parts) 
     {
-        super(transform);
+        super(transform, parts);
         this.canvas = canvas;
         this.context = canvas.getContext("2d");
-        this.parts = parts;
         console.log(this);
     }
 
@@ -114,20 +145,18 @@ class Character extends Objeto
 
         this.context.translate(w, h);
         
-        this.context.translate(fx, fy);
+        super.draw(this.context, this.transform)
+        /* this.context.translate(fx, fy);
         this.context.rotate((Math.PI / 180) * this.transform.r);     
         this.context.translate(-fx, -fy);
         
         this.context.translate(x, y);
-        this.parts.forEach(part => 
-        {
-            part.draw(this.context, {"x":x, "y":y, "r":this.transform.r, "s":this.transform.s, "cx":cx, "cy":cy});
-        });
+        
         this.context.translate(-x, -y);
 
         this.context.translate(fx, fy);
         this.context.rotate((Math.PI / 180) * -this.transform.r);
-        this.context.translate(-fx, -fy);
+        this.context.translate(-fx, -fy); */
         
         this.context.translate(-w, -h);
     }
