@@ -19,16 +19,20 @@ function DragNDrop (_target = window, _onmove=()=>{}, _onstart=()=>{}, _onstop=(
         return target.height;
     }
     
-    function mouseDragging ()
+    function mouseDragging (e)
     {
+        e.stopPropagation();
+        e.preventDefault();
         const px = event.clientX - (width()/2);
         const py = event.clientY - (height()/2);
         
         onmove(px - startX, py - startY);
     }
     
-    function mouseStartDrag ()
+    function mouseStartDrag (e)
     {
+        e.stopPropagation();
+        e.preventDefault();
         startX = event.clientX - (width()/2);
         startY = event.clientY - (height()/2);
         //console.log(target);
@@ -41,8 +45,10 @@ function DragNDrop (_target = window, _onmove=()=>{}, _onstart=()=>{}, _onstop=(
         onstart(startX, startY);
     }
     
-    function mouseEndDrag ()
+    function mouseEndDrag (e)
     {
+        e.stopPropagation();
+        e.preventDefault();
         const px = event.clientX - (width()/2);
         const py = event.clientY - (height()/2);
         if(target) 

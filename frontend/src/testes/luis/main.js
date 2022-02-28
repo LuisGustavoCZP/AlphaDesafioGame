@@ -3,7 +3,7 @@ import {DragNDrop} from "../../scripts/animationsystem/dragging.js";
 import { LoadSys } from "../../scripts/loadsys.js";
 var id = null;
 var p1, charMage, ready;
-LoadSys.toJSON("person1.json", (data) => 
+LoadSys.toJSON("testes/luis/person1.json", (data) => 
 {
     p1 = data;
     charMage = Character.Load(p1, "characters");
@@ -31,3 +31,5 @@ const dragndrop = DragNDrop(characters, (x,y) =>
         p.RotateTo(x, y, 0);
     }
 }); //
+
+console.log("Fui");
