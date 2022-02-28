@@ -21,7 +21,7 @@ class Transform extends Objeto
         this.childs = childs;
     }
 
-    draw(context, parentTransform) 
+    draw(context, parentTransform = {"x":0, "y":0, "r":0, "s":1, "cx":0, "cy":0}) 
     {
         const s = parentTransform.s * this.transform.s;
         const x = s * this.transform.x;
@@ -29,9 +29,7 @@ class Transform extends Objeto
         const cx = s * this.transform.cx;
         const cy = s * this.transform.cy;
         const fx = x+cx, fy = y+cy;
-        //console.log(cx, cy)
         //console.log("Drawing GO");
-        //context.translate(cx, cy);
         context.translate(fx, fy);
         context.rotate((Math.PI / 180) * this.transform.r);
         context.translate(-fx, -fy);
@@ -42,7 +40,7 @@ class Transform extends Objeto
         {
             this.childs.forEach(child => 
             {
-                child.draw(this.context, {"x":x, "y":y, "r":this.transform.r, "s":this.transform.s, "cx":cx, "cy":cy});
+                child.draw(context, {"x":x, "y":y, "r":this.transform.r, "s":s, "cx":cx, "cy":cy});
             });
         }
         context.translate(-x, -y);
@@ -50,7 +48,6 @@ class Transform extends Objeto
         context.translate(fx, fy);
         context.rotate((Math.PI / 180) * -this.transform.r);
         context.translate(-fx, -fy);
-        //context.translate(-cx, -cy);
     }
 
 }
@@ -62,29 +59,6 @@ class DrawObjeto extends Transform
         super(transform, childs);
         this.sprite = sprite;
     }
-
-    /* draw(context, parentTransform) 
-    {
-        const s = parentTransform.s * this.transform.s;
-        const x = s * this.transform.x;
-        const y = s * this.transform.y;
-        const cx = s * this.transform.cx;
-        const cy = s * this.transform.cy;
-        const fx = x+cx, fy = y+cy;
-        //console.log(cx, cy)
-        //console.log("Drawing GO");
-        //context.translate(cx, cy);
-        context.translate(fx, fy);
-        context.rotate((Math.PI / 180) * this.transform.r);
-        context.translate(-fx, -fy);
-
-        this.sprite.draw(context, x, y, s);
-        
-        context.translate(fx, fy);
-        context.rotate((Math.PI / 180) * -this.transform.r);
-        context.translate(-fx, -fy);
-        //context.translate(-cx, -cy);
-    } */
 }
 
 //Classe que representa as partes do corpo do boneco
@@ -113,7 +87,7 @@ class CharacterPart extends DrawObjeto
 
     static Load (parent, obj)
     {
-        const ps = obj.parts ? obj.parts.map(function(part) 
+        const ps = obj.childs ? obj.childs.map(function(part) 
         {
             return CharacterPart.Load(this, part);
         }) : [];
@@ -145,18 +119,7 @@ class Character extends Transform
 
         this.context.translate(w, h);
         
-        super.draw(this.context, this.transform)
-        /* this.context.translate(fx, fy);
-        this.context.rotate((Math.PI / 180) * this.transform.r);     
-        this.context.translate(-fx, -fy);
-        
-        this.context.translate(x, y);
-        
-        this.context.translate(-x, -y);
-
-        this.context.translate(fx, fy);
-        this.context.rotate((Math.PI / 180) * -this.transform.r);
-        this.context.translate(-fx, -fy); */
+        super.draw(this.context)
         
         this.context.translate(-w, -h);
     }

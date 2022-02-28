@@ -31,7 +31,7 @@ function DragNDrop (_target = window, _onmove=()=>{}, _onstart=()=>{}, _onstop=(
     {
         startX = event.clientX - (width()/2);
         startY = event.clientY - (height()/2);
-        console.log(target);
+        //console.log(target);
         if(target) 
         {
             target.isDragging = true;
