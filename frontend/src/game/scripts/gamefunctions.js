@@ -12,6 +12,8 @@ class GameFunctions{
     score;
     itensAsked;
     cauldron;
+    time;
+    timeControl;
     constructor()
     {
         /* Diz se o jogo está pausado */
@@ -39,6 +41,12 @@ class GameFunctions{
         /* Itens que o jogador colocou no caldeirão */
         this.cauldron = [];
 
+        /* tempo inicial do timer */
+        this.time = 10;
+
+        /* controla o tempo */
+        this.timeControl = "";
+
     };
 
     get isPaused ()
@@ -49,6 +57,17 @@ class GameFunctions{
     get gameMode ()
     {
         return this.gameMode;
+    }
+
+    gameTimer(){
+        this.time -= 1;
+        $("#time-left").html(this.time);
+        if(this.time < 0){
+            $("#time-left").html("0");
+            alert("tempo acabou");
+            clearInterval(this.timeControl);
+            /* window.location.replace(`../gameover`); */
+        }
     }
 
     /* Acontece quando o jogador acerta a sequencia de ingredientes */
@@ -296,6 +315,7 @@ class GameFunctions{
         $("main").removeClass("blur");
         $("#play").fadeOut("slow");
         this.getStartInfo();
+        this.timeControl = setInterval(() =>{this.gameTimer()}, 1000);
     };
 
     /* Pausa o jogo */
@@ -305,6 +325,7 @@ class GameFunctions{
         $("main").addClass("blur");
         $("#play").fadeIn("slow");
         this.audio.music.pause();
+        clearInterval(this.timeControl);
     };
 }
 
