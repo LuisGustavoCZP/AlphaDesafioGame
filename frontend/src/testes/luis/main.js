@@ -1,9 +1,14 @@
 import { CharacterPart, Character } from "../../scripts/animationsystem/character.js";
-import {DragNDrop} from "../../scripts/animationsystem/dragging.js";
-import { LoadSys } from "../../scripts/loadsys.js";
-var id = null;
-var p1, charMage, ready;
-LoadSys.toJSON("testes/luis/person1.json", (data) => 
+import { DragNDrop } from "../../scripts/animationsystem/dragging.js";
+import { LoadSys, OrtoPath } from "../../scripts/loadsys.js";
+
+var scripts = self.src;
+console.log(scripts);
+//const originPath = OrtoPath();
+
+
+let p1, charMage, ready;
+LoadSys.toJSON("database/person1.json", (data) => 
 {
     p1 = data;
     charMage = Character.Load(p1, "characters");

@@ -57,6 +57,30 @@ function loadSys ()
     return { toXML, toJSON, toHTML, toText, parse };
 }
 
+/**
+* @param {String} origin
+*/
+function OrtoPath (origin) 
+{
+    /**
+    * @param {String} path
+    * @returns {String}
+    */
+    function Convert (path){
+        const lastFolder = origin.slice(0, origin.lastIndexOf("/"));
+        let upFolder = path.indexOf("../");
+        while(upFolder != -1)
+        {
+            path.slice(upFolder+3);
+            upFolder = path.indexOf("../");
+        }
+
+        console.log(path);
+    }
+
+    return {Convert};
+}
+
 const LoadSys = loadSys ();
 
-export {LoadSys};
+export { LoadSys, OrtoPath };
