@@ -35,14 +35,17 @@ class GameElement extends HTMLElement
                 const urlSrc = this.src.slice(0, urlSrcLast+1);
                 element.forEach(child => 
                 {
-                    if(child instanceof HTMLScriptElement && child.src && child.src != this.src)
+                    if(child instanceof HTMLScriptElement)
                     {
-                        const file = child.src.replace(urlDir, "");
-                        console.log(child.src, urlSrc+file);
-                        const nscript = document.createElement("script");
-                        nscript.type = child.type;
-                        nscript.src = urlSrc+file;
-                        this.appendChild(nscript);
+                        if(child.src && child.src != this.src)
+                        {
+                            const file = child.src.replace(urlDir, "");
+                            console.log(child.src, urlSrc+file);
+                            const nscript = document.createElement("script");
+                            nscript.type = child.type;
+                            nscript.src = urlSrc+file;
+                            this.appendChild(nscript);
+                        }
                     } else {
                         this.appendChild(child);
                     }
