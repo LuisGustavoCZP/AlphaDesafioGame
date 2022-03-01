@@ -8,8 +8,8 @@ body {
 header{
     display: flex;
     position: fixed;
+    width: calc(100% - 20px);
     left: 0;
-    width: 98%;
     padding: 10px;
     justify-content: space-between;
     align-items: flex-start;
@@ -44,6 +44,7 @@ footer{
     width: 100%;
     background-color: #51341F
 }
+
 #buttons{
     display: flex;
     width: 80%;
@@ -87,7 +88,9 @@ button:hover, #btn-play:hover, #btn-login:hover {
     transform: translateY(-7px);
 }
 #btn-setting{
+    position: relative;
     transform: translateY(0px);
+    left: calc(100% - 70px);
 }
 #btn-setting {
     background-image: url("icons/sound.svg");
@@ -145,6 +148,9 @@ button:hover, #btn-play:hover, #btn-login:hover {
   cursor: pointer;
 }
 
+.menu-title {
+    position: absolute;
+}
 /*#place-1 {
     color: #DAA520;
 }
