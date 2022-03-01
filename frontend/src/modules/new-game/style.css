@@ -18,21 +18,41 @@ header {
 
 #hearts{
     display: flex;
+    background-color: #3d3d3d;
+    border-radius: 40px;
+    border: solid #000 5px;
     position: fixed;
-    left: 0;
-    width: 62%;
-    padding: 10px;
-    margin: auto;
-    justify-content: flex-end;
-    align-items: flex-start;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+    left: 370px;
+    width: 180px;
+    height: 40px;
+    padding: 15px 25px;
+    margin: 10px 10px;
+    justify-content: space-between;
+    align-items: center;
     flex-direction: row;
+    z-index: 1000;
   
 }
-#hearts > * {
-    width: 40px;
-    height: 40px;
-    margin-top: 13px;
-    margin-left: 10px;
+#hearts > img {
+    width: 30%;
+    object-fit:contain;
+}
+
+#hearts > h3 {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 40%;
+    height: fit-content;
+    left: calc(50% - 20%);
+    padding: 10px 0px;
+    top: 40px;
+    background-color: #aaaaaa;
+    border-radius: 15px;
+    border: solid #000 5px;
 }
 
 #bookcase {
