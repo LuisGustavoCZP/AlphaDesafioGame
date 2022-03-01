@@ -6,14 +6,20 @@ class GameElement extends HTMLElement
 
     static define ()
     {
-        console.log("Iniciou static");
+        //console.log("Iniciou static");
         customElements.define('game-element', GameElement);
     }
 
     constructor()
     {
-        console.log("Iniciou instancia");
         self = super();
+
+        //console.log("Iniciou instancia");
+        this.style.display = "flex";
+        this.style.flexGrow = "0";
+        this.style.width = "fit-content";
+        this.style.height = "fit-content";
+
         if(this.hasAttribute('src')) {
             this.src = this.getAttribute('src');
         }
@@ -46,10 +52,17 @@ class GameElement extends HTMLElement
                             nscript.src = urlSrc+file;
                             this.appendChild(nscript);
                         } else {
-                            child.src = urlSrc+file;
+                            child.src = file;
+                            this.appendChild(child);
                         }
                     } else {
-                        this.appendChild(child);
+                        if(child instanceof HTMLScriptElement)
+                        {
+                            if(!child.innerHTML.includes("// <![CDATA[  <-- For SVG support")) this.appendChild(child);
+                        } else {
+                            this.appendChild(child);
+                        }
+                        
                     }
                 });
             }

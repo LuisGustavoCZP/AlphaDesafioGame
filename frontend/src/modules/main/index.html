@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+
+    </head>
+    <body>
+        <script type="module" src="weather.js"></script>
+        <game-weather layers="-10, 10" play="true" density="1" speed="1"></game-weather>
+        <div style="display: flex; position: relative; width: 500px; height: 300px; overflow: hidden;">
+            <img style="position: absolute; width: 100%; z-index: 0; align-self: flex-end;" src="images/castle.svg" /> 
+            <img style="position: absolute; width: 100%; z-index: -9; align-self: flex-end;" src="images/background/mountains.png" />
+            <img style="position: absolute; width: 100%; z-index: -5; align-self: flex-end;" src="images/background/groundLayer2.png" />
+        </div>
+        <script type="module" src="main.js"></script>
+    </body>
+</html>

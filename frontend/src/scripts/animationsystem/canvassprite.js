@@ -11,8 +11,9 @@ class CanvasSprite
 { 
     constructor (spriteFrame, source){
         this.spriteFrame = spriteFrame;
-        this.spriteSheet = new Image();
+       
         this.readyDraw = false;
+        this.spriteSheet = new Image();
         this.spriteSheet.onload = () => 
         {
             this.readyDraw = true;
