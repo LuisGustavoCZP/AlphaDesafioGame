@@ -16,9 +16,9 @@ header {
     flex-direction: row;
 }
 
-#hearts{
+.menu-stats{
     display: flex;
-    background-color: #3d3d3d;
+    background-color: #5c5c5c;
     border-radius: 40px;
     border: solid #000 5px;
     position: fixed;
@@ -32,14 +32,15 @@ header {
     align-items: center;
     flex-direction: row;
     z-index: 1000;
-  
+    user-select: none;
 }
-#hearts > img {
+
+.menu-stats > img {
     width: 30%;
     object-fit:contain;
 }
 
-#hearts > h3 {
+.menu-stats > h3 {
     display: flex;
     flex-shrink: 0;
     align-items: center;
@@ -53,6 +54,10 @@ header {
     background-color: #aaaaaa;
     border-radius: 15px;
     border: solid #000 5px;
+}
+
+img.gray {
+    filter: grayscale(100%);
 }
 
 #bookcase {
