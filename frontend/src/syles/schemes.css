@@ -21,3 +21,16 @@ body {
   right: 0;
   background-color: silver/* show me! */
 }
+
+.icon {    
+  background-color: rgb(var(--color_11));
+  mask-clip: border-box;
+  mask-size: 100%;
+  -webkit-background-clip: border-box;
+  
+}
+
+.heart {
+  -webkit-mask: url(../images/svgs/foursquare1.svg) no-repeat center;
+  mask: url(../images/svgs/foursquare1.svg) no-repeat center;
+}
