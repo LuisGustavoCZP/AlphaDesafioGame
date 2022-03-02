@@ -31,48 +31,54 @@ class GameElement extends HTMLElement
     set src (_path)
     {
         this.#src = _path;
-        const pathreparer = reparerURL(window.location.href, _path);
+        //const pathreparer = reparerURL(window.location.href, _path);
         LoadSys.toHTML(_path, doc => 
         {
-            const element = [...doc.body.children];
-            //this.append(element);
-            if(element.length){
-                
-                element.forEach(child => 
+            const repairSrcs = (el, parent) =>
+            {
+                if(el.children.length == 0) return;
+                const element = [...el.children];
+                //this.append(element);
+                if(element.length)
                 {
-                    if (child.src && child.src != this.src)
+                    element.forEach(child => 
                     {
-                        const file = pathreparer.repair(child.src);
-                        
-                        if(child instanceof HTMLScriptElement)
+                        if (child.src && child.src != this.src)
                         {
-                            const nscript = document.createElement("script");
-                            nscript.type = child.type;
-                            nscript.src = child.src;
-                            this.appendChild(nscript);
-                        } 
-                        else 
-                        {
-                            child.src = file;
-                            this.appendChild(child);
-                        }
-                    } else {
-                        if(child instanceof HTMLScriptElement)
-                        {
-                            if(!child.innerHTML.includes("// <![CDATA[  <-- For SVG support")) this.appendChild(child);
-                        } 
-                        else if(child instanceof HTMLLinkElement)
-                        {
-                            /* const file = pathreparer.repair(child.href);
-                            child.href = file; */
-                            this.appendChild(child);
+                            if(child instanceof HTMLScriptElement)
+                            {
+                                const nscript = document.createElement("script");
+                                parent.appendChild(nscript);
+                                nscript.type = child.type;
+                                nscript.src = child.src;
+                                nscript.onload = ()=>{console.log("carregou", nscript); };
+                            } 
+                            else 
+                            {
+                                child.src = child.src;
+                                parent.appendChild(child);
+                            }
                         } else {
-                            this.appendChild(child);
-                        } 
-                        
-                    }
-                });
+                            if(child instanceof HTMLScriptElement)
+                            {
+                                if(!child.innerHTML.includes("// <![CDATA[  <-- For SVG support")) parent.appendChild(child);
+                            } 
+                            else if(child instanceof HTMLLinkElement)
+                            {
+                                /* const file = pathreparer.repair(child.href);
+                                child.href = file; */
+                                parent.appendChild(child);
+                            } else {
+                                parent.appendChild(child);
+                            }
+                        }
+                        //console.log(child);
+                        repairSrcs(child, child);
+                    });
+                }
             }
+            
+            repairSrcs(doc.body, this);
         });
     }
 
