@@ -1,4 +1,4 @@
 class Inventory extends HTMLOListElement
 {
-
+    
 }
