@@ -14,7 +14,9 @@ const options = {
 
 /* app.use('/aplicacao1', express.static(path+'/src/aplicacao1'));
 app.use('/aplicacao2', express.static(path+'/src/aplicacao2')); */
-app.use('/', express.static(path+'/src/'));
+const p = `${path}/src/`;
+console.log(p);
+app.use('/', express.static(p));
 
 https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));

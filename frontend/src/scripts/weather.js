@@ -104,12 +104,12 @@ class WeatherSys extends HTMLElement
         }
 
         if(this.hasAttribute('size')) {
-            const s = parseInt(this.getAttribute('size'));
+            const s = parseFloat(this.getAttribute('size'));
             this.size = s;
         }
         else
         {
-            this.size = 1;
+            this.size = 0.5;
         }
 
         if(this.hasAttribute('speed')) {
@@ -119,6 +119,15 @@ class WeatherSys extends HTMLElement
         else
         {
             this.speed = 1;
+        }
+
+        if(this.hasAttribute('altitude')) {
+            const s = parseFloat(this.getAttribute('altitude'));
+            this.altitude = s;
+        } 
+        else
+        {
+            this.altitude = 1;
         }
 
         if(this.hasAttribute('layers')) 
@@ -151,7 +160,7 @@ class WeatherSys extends HTMLElement
                 this.sprites.push(newSprite);
             });
         } else {
-            const srcs = ["images/background/clouds/cloud1.png", "images/background/clouds/cloud2.png", "images/background/clouds/cloud3.png", "images/background/clouds/cloud4.png", "images/background/clouds/cloud5.png", "images/background/clouds/cloud6.png", "images/background/clouds/cloud7.png", "images/background/clouds/cloud8.png"];
+            const srcs = ["/images/background/clouds/cloud1.png", "/images/background/clouds/cloud2.png", "/images/background/clouds/cloud3.png", "/images/background/clouds/cloud4.png", "/images/background/clouds/cloud5.png", "/images/background/clouds/cloud6.png", "/images/background/clouds/cloud7.png", "/images/background/clouds/cloud8.png"];
             srcs.forEach(src => {
                 const newSprite = new Image();
                 newSprite.src = src;
@@ -198,78 +207,94 @@ class WeatherSys extends HTMLElement
         this.#playing = false;
     }
 
+    layerloop (target, layer)
+    {
+        //const mds = (target.density / target.speed);
+        const w = layer.canvas.width/2, h = layer.canvas.height/2;
+        const ctx = layer.context;
+        ctx.clearRect(0,0,w*2,h*2);
+
+        if(!layer.objects) 
+        {
+            layer.objects=[];
+        }
+        
+        const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
+        //console.log(s);
+
+        ctx.translate(w, h);
+        
+        if(layer.objects.length < target.density*10*(1/s)) //*mds
+        { //* (1/mds)
+            if(layer.objects.timer == undefined || layer.objects.timer > (40/target.density))
+            {
+                layer.objects.timer = 0;
+
+                function randomSize () {
+                    return ((Math.random() * .5) + .5) * s * target.size;
+                }
+                function randomSpeed () {
+                    return ((.1 *  Math.random()) + .3) * s * target.speed;
+                }
+                function randomSprite () {
+                    return target.sprites[parseInt(Math.random()*target.sprites.length)];
+                }
+                function randomHeight () {
+                    const alt = target.altitude*h;
+                    return -h+(Math.random()*50+alt)*(1/s);
+                }
+
+                const newobj = {
+                    "x": (Math.random()*h*4)-h*2,
+                    "y": randomHeight (),
+                    "size": randomSize (),
+                    "speed": randomSpeed (),
+                    "sprite": randomSprite (),
+                    randomize ()
+                    {
+                        this.x = -w+(Math.random()*100)-200;
+                        this.y = randomHeight ();
+                        this.size = randomSize ();
+                        this.speed = randomSpeed ();
+                        this.sprite = randomSprite ();
+                    }
+                };
+                //newobj.randomize();
+                layer.objects.push(newobj);
+            } else {
+                layer.objects.timer++;
+            }
+        }
+
+        layer.objects.forEach(obj => 
+        {
+            obj.x += obj.speed;
+            if(obj.x > w + 100) 
+            {
+                obj.randomize();
+            }
+
+            //console.log(this.current.width);
+
+            //console.log(sprite);
+            if(obj.sprite && obj.sprite.complete) ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
+            //ctx.fillStyle = "lightgrey";
+            //ctx.fillRect(obj.x, obj.y, obj.width, obj.height)
+        });
+
+        ctx.translate(-w, -h);
+    }
+
     loop (target)
     {
         if(target.playing == false) return;
         window.requestAnimationFrame(() => target.loop(target), target);
 
-        const mds = target.density / target.speed;
-
         if(target.#ready || true)
         {
-            this.#layers.forEach((layer, i) => 
+            this.#layers.forEach((layer) => 
             {
-                const w = layer.canvas.width/2, h = layer.canvas.height/2;
-                const ctx = layer.context;
-                ctx.clearRect(0,0,w*2,h*2);
-
-                if(!layer.objects) 
-                {
-                    layer.objects=[];
-                }
-                
-                const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .5+.5*(sr);
-                //console.log(s);
-
-                ctx.translate(w, h);
-                
-                if(layer.objects.length < target.density*mds*30*(1/s))
-                {
-                    if(layer.objects.timer == undefined || layer.objects.timer > 0 * (1/mds))
-                    {
-                        layer.objects.timer = 0;
-                        const sprites = target.sprites;
-                        const spd = target.speed;
-                        const newobj = {
-                            "x": (Math.random()*h*4)-h*2,
-                            "y": -h+(Math.random()*50+15)*(1/s),
-                            "size": (Math.random()*.5 + .5)*s*.5,
-                            "speed": ((.1 *  Math.random())+.3)*s*spd,
-                            "sprite":sprites[parseInt(Math.random()*sprites.length)],
-                            randomize ()
-                            {
-                                this.x = -w+(Math.random()*100)-200;
-                                this.y = -h+(Math.random()*50+15)*(1/s);
-                                this.size = (Math.random()*.5 + 0.5)*s * .5;
-                                this.speed = ((.1 *  Math.random())+.3) * s * spd;
-                                const spriteid = parseInt(Math.random()*sprites.length);
-                                this.sprite = sprites[spriteid];
-                            }
-                        };
-                        //newobj.randomize();
-                        layer.objects.push(newobj);
-                    } else {
-                        layer.objects.timer++;
-                    }
-                }
-
-                layer.objects.forEach(obj => 
-                {
-                    obj.x += obj.speed;
-                    if(obj.x > w + 100) 
-                    {
-                        obj.randomize();
-                    }
-
-                    //console.log(this.current.width);
-
-                    //console.log(sprite);
-                    if(obj.sprite && obj.sprite.complete) ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
-                    //ctx.fillStyle = "lightgrey";
-                    //ctx.fillRect(obj.x, obj.y, obj.width, obj.height)
-                });
-
-                ctx.translate(-w, -h);
+                this.layerloop(target, layer);
             });
         }
     }

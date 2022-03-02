@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-
-    </head>
-    <body>
-        <script type="module" src="weather.js"></script>
-        <game-weather layers="-10, 10" play="true" density="1" speed="1"></game-weather>
-        <div style="display: flex; position: relative; width: 500px; height: 300px; overflow: hidden;">
-            <img style="position: absolute; width: 100%; z-index: 0; align-self: flex-end;" src="images/castle.svg" /> 
-            <img style="position: absolute; width: 100%; z-index: -9; align-self: flex-end;" src="images/background/mountains.png" />
-            <img style="position: absolute; width: 100%; z-index: -5; align-self: flex-end;" src="images/background/groundLayer2.png" />
+<html>
+  <head>
+    <title>Tela Main</title>
+  </head>
+  <body id="game-element"> <!-- Backgound -->
+    <link rel="stylesheet" href="../../modules/main/style.css">
+    <header>
+      <img class="menu-title" src="/images/icons/logo.png"></img> <!-- logo -->
+      <button id="btn-setting"></button>
+    </header>
+    <main class="box">
+      <link rel="stylesheet" href="../../modules/main/castle.css">
+      <script type="module" src="../../scripts/weather.js"></script>
+      <div id="background">
+        <game-weather layers="1, 20, 100" play="true" density="3" speed="1" size=".4" altitude=".3"></game-weather>
+        <div id="castle">
+            <img class="castle-part hover" style="z-index: 90;" src="/images/castle/castleright.png" />
+            <img class="castle-part hover" style="z-index: 40;" src="/images/castle/castleentrance.png" />
+            <img class="castle-part hover" style="z-index: 10;" src="/images/castle/castleleft.png" />
+            <img class="castle-part" style="z-index: 20;" src="/images/castle/castlemiddle.png" />
         </div>
-        <script type="module" src="main.js"></script>
-    </body>
-</html>
+        <div class="backimage a" style="z-index: 4;" src="/images/background/mountains.png"></div>
+        <div class="backimage b" style="z-index: 5;" src="/images/background/greenground.png"></div>
+      </div>
+    </main>
+    <footer> <!-- botões -->
+        <div id="buttons">
+            <button id="btn-ranking"></button>
+            <button id="btn-play"></button>
+            <button id="btn-howToPlay"></button>
+        </div>
+    </footer>   
+
+
+
+    <!-- The Modals -->
+    <div id="Modal" class="modal">
+      <!-- Modal content -->
+      <div class="menu-background">
+        <span class="close">&times;</span>
+        <h3>Ranking</h3>
+      </div>
+    </div>
+
+     <script src='../../modules/main/script.js'> </script>
+  </body>
+<html>
