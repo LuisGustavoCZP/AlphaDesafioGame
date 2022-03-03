@@ -1,5 +1,5 @@
 //import { Request } from "../scripts/request.js";
-$(document).ready(function() {
+$(document).ready(() => {
     $("button").on("click", (e) => {
     
         const btn = e.target.id; //btn-XXXX
@@ -13,7 +13,7 @@ $(document).ready(function() {
                modal.src="modules/windows/index.html";
                break;
            case 'play':
-               modal.src="modules/windows/login.html";
+               modal.src="modules/windows/login/";
                break;
            case 'howToPlay':
                modal.src="modules/windows/index.html";
