@@ -51,8 +51,8 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 # app.post("/result", user.VerifySession, game.Check) 
 -> Requisição do tipo POST para checar a sequencia recebida e alterar os dados de pontuação do usuario
 
-# app.get("/ranking", users.RequestUser)
--> requisição do tipo GET para obter as 5 maiores pontuações do banco de dados users.json
+# app.get("/ranking/:top", users.RequestUser)
+-> requisição do tipo GET para obter as (top = 5) 5 maiores pontuações do banco de dados users.json
 
 # app.get("/:userData/item", user.VerifySession, game.VerifyRecipe, game.SortItem);
 
@@ -60,6 +60,8 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 # app.get("/:userData/potion", user.VerifySession, game.VerifyRecipe, game.sortPotion);
 -> requisição do tipo GET para obter um objeto com as características e rota da poção sorteada;
 
+# app.get("/book", user.VerifySession, game.userBook);
+-> Requisição do tipo GET para obter o nome das poções, a rota do icone da poção, e um array com os ícones das ingredientes de cada poção
 
 ## OBS:
 

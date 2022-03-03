@@ -115,8 +115,8 @@ function sortPotion(req, res) {
 
 // retorna as poções e 
 function userBook(req, res){
-   const p = users[req.userid];
-   const result = getBook(p.stage);
+   const p = User.get(req.userid);
+   const result = Database.getBook(p.stage);
    res.json(result);
 
 }

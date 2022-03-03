@@ -32,9 +32,6 @@ app.post("/newuser", user.createUser);
 //Login usuario
 app.post("/login", user.requestUser);
 
-//Ranking usuarios
-app.get("/ranking/:top", game.ranking);
-
 //Dados usuario (vida, estagio, pontos)
 app.get("/:userData/user", user.VerifySession, user.userData);
 
@@ -49,6 +46,12 @@ app.post("/:userData/recipe", user.VerifySession, game.verifyRecipe);
 
 //Pegar uma poção aleatória
 app.get("/:userData/potion", user.VerifySession, game.sortPotion);
+
+//Ranking usuarios
+app.get("/ranking/:top", game.ranking);
+
+//livro
+app.get("/book", user.VerifySession, game.userBook);
 
 //app.listen(port, )
 

@@ -40,18 +40,27 @@ function getBook(userStage) {
       });
    });
 
+   let recipeIconsRow = [];
    let recipeIcons = [];
    for (let i = 0; i < recipes.length; i++) {
       const quant = recipes[i].length;
       for (let j = 0; j < quant; j++) {
          items.forEach((element) => {
             if (element.id === recipes[i][j]) {
-               recipeIcons.push(element.icon);
+               recipeIconsRow.push(element.icon);
             }
          });
-
       }
+      recipeIcons.push(recipeIconsRow);
+      recipeIconsRow = [];
    }
+
+   potionsAndRecipes.forEach((element, index) => {
+      element.recipe = recipeIcons[index];
+   })
+
+   console.log(potionsAndRecipes);
+   return potionsAndRecipes;
 
 }
 
