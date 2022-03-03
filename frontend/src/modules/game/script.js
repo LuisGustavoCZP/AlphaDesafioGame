@@ -6,9 +6,9 @@ $(document).ready(function() {
         const idBtn = btn.split("-")[1]; //Only XXXX
     
        // console.log(btn + " - " + idBtn);
-        modal.src="modules/windows/index.html";
+        //modal.src="modules/windows/index.html";
 
-        switch (idBtn) {
+        /* switch (idBtn) {
             case 'ranking':
                 modal.src="modules/windows/ranking.html";
                 break;
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 break;
             case 'howToPlay':
                 modal.src="modules/windows/howToPlay.html";
-                break;
+                break; */
             /*case 'setting':
                 resultContent = contentSetting();
                 break;
@@ -27,10 +27,10 @@ $(document).ready(function() {
             case 'gameOver':
                 resultContent = contentGameOver();
                 break;*/
-            default:
+            /* default:
                 console.log("Nada");
                 break;
-          }
+          } */
 
 
 

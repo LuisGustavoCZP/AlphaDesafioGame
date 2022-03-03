@@ -6,14 +6,14 @@ $(document).ready(() => {
         const idBtn = btn.split("-")[1]; //Only XXXX
     
        // $(`#Modal`).css("display","block");
-        modal.src="modules/windows/index.html";
+        /* modal.src="modules/windows/index.html"; */
 
        switch (idBtn) {
            case 'ranking':
                modal.src="modules/windows/index.html";
                break;
            case 'play':
-               modal.src="modules/windows/login/";
+               game.src="modules/game/";
                break;
            case 'howToPlay':
                modal.src="modules/windows/index.html";

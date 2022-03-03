@@ -42,7 +42,7 @@ class User
         .then(data => 
         {
             const status = data;
-            console.log(data)
+            //console.log(data)
             if(status == 1 || status == 2 ){
                 alert("Login ou Senha invalidos!");
             } 
@@ -73,7 +73,7 @@ class User
         .then(data => 
         {
             const status = data;
-            console.log(data)
+            //console.log(data)
             if(status == 1 || status == 2 ){
                 alert("Login ou Senha invalidos!");
             } 
@@ -105,7 +105,11 @@ class User
             {
                 window.game.src="modules/tutorial/index.html";
             }
-            else window.game.src="modules/game/index.html";
+            else 
+            {
+                window.modal.src="";
+                window.game.src="modules/main/index.html";
+            }
         }
 
         function UserError (data, unable)
@@ -116,6 +120,7 @@ class User
                 window.game.src="modules/error/index.html";
             } else {
                 window.game.src="modules/main/index.html";
+                window.modal.src="modules/windows/login/";
             }
         }
     }
