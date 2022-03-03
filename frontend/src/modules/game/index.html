@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body> <!-- Backgound -->
+    <script type="module" src="../../scripts/inventory.js"></script>
     <header>
       <div id="hearts" class="menu-stats">
         <h3>Vidas</h3>
@@ -22,14 +23,16 @@
 
     <main>
       <div id="gamecenter">
-
+        <ol is="ol-inventory"></ol>
         <img id="bookcase" src="./icons/estante.png"></img>
         <img id="cauldron" src="./icons/Caldeirao.svg"></img>
         <img id="wizard"   src="./icons/mago.png"></img>
       </div>
     </main>
    
-    
+    <div class="action-menu">
+      <button id="btn-setting">B</button>
+    </div>
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
     <!-- <script src='script.js'> </script> -->

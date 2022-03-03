@@ -6,12 +6,7 @@ $(document).ready(function() {
         const idBtn = btn.split("-")[1]; //Only XXXX
     
         console.log(btn + " - " + idBtn);
-        $(`#Modal`).css("display","block");
-    
-    });
-
-    $(".close").on("click", function() {
-        $(`#Modal`).css("display","none");
+        modal.src="modules/windows/index.html";
     });
 
 });

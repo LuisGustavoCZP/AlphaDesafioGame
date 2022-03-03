@@ -1,28 +1,28 @@
 import { Request } from "./request.js";
 
-class Inventory extends HTMLOListElement
+class Book extends HTMLOListElement
 {
     constructor()
     {
         super();
-        this.classList.add("inventory");
+        this.classList.add("book");
         const hash = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjAsImlhdCI6MTY0NjI1MDk5N30.OvOszzNfDXvgLwUaJmQXmhY5xeaTpzNeZs5uN02YQio";
-        Request.get("stock", {params:hash}, (data) => {this.createItens(data)});
+        Request.get("recipes", {params:hash}, (data) => {this.createRecipes(data)});
     }
 
-    createItens (data)
+    createRecipes (data)
     {
         console.log(data, this);
     }
 
     static define ()
     {
-        console.log("Iniciou Inventory");
+        console.log("Iniciou Book");
         /* customElements.define('modal', Modal); */
-        customElements.define('ol-inventory', Inventory, { extends: "ol" });
+        customElements.define('ol-book', Book, { extends: "ol" });
     }
 }
 
-Inventory.define();
+Book.define();
 
-export {Inventory};
+export {Book};
