@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/syles/pattern.css">
+        <link rel="stylesheet" href="/syles/schemes.css">
+    </head>
     <body>
         <!-- Modal content -->
         <div class="modal-background">
@@ -7,22 +12,14 @@
             <h3>Ranking</h3>   
         </div>
         <script>
+            
             $(document).ready(function() 
             {
-                $("button").on("click", (e) => 
-                {
-                
-                    const btn = e.target.id; //btn-XXXX
-                    const idBtn = btn.split("-")[1]; //Only XXXX
-                
-                    console.log(btn + " - " + idBtn);
-                    $(`#Modal`).css("display","block");
-                
-                });
-
                 $(".close").on("click", function() 
                 {
-                    $(`#Modal`).css("display","none");
+                    console.log("Close");
+                    parent.modal.hidden = true;
+                    //$(`#Modal`).css("display","none");
                 });
 
             });

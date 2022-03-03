@@ -4,15 +4,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script type="module" src="scripts/gameelement.js"></script>
+        <script type="module" src="scripts/modalsys.js"></script>
         <link rel="stylesheet" href="./syles/pattern.css">
         <link rel="stylesheet" href="./syles/schemes.css">
     </head>
     <body>
-        <game-element src="modules/main/index.html" />
-         <!-- The Modals -->
-        <div id="modal" class="modal">
-            <iframe src="modules/windows/"></iframe>
-        </div>
+        <iframe id="modal" is="modal-window"></iframe>
+        <game-element src="modules/main/index.html"></game-element>
         <script type="module" src="scripts/main.js"></script>
     </body>
 </html>
