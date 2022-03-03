@@ -10,7 +10,7 @@ class SoundSys
     musicPlay()
     {
         this.music.loop = true;
-        this.music.volume = 0.5;
+        this.music.volume = 0.05;
         this.music.play();
     }
 

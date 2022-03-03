@@ -1,0 +1,50 @@
+#background {
+    display: flex; 
+    position: relative; 
+    width: 100%; height: 100%; 
+    overflow: hidden;
+}
+
+#castle {
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+    justify-content: center;
+    align-items: flex-end;
+    width: 20%;
+    height: fit-content;
+    left: 40%;
+    bottom: 10%;
+}
+
+.hover {
+    position: absolute;
+}
+
+.castle-part {
+    width: 100%;
+}
+
+.backimage {
+    position: absolute; 
+    width: 100%;
+    bottom: 0;
+    align-self: flex-end;
+    background-size: cover;
+    background-clip: border-box;
+    /* object-fit: cover;
+    background-size: cover; */
+}
+
+.backimage.a {
+    bottom: 20%;
+    background-image: url("../../images/background/mountains.png");
+    background-repeat: repeat;
+    height: 50%;
+}
+
+.backimage.b {
+    background-image: url("../../images/background/greenground.png");
+    background-repeat: repeat;
+    height: 30%;
+}

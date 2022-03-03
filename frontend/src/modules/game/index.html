@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <title>Torre Flamel</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="../../styles/pattern.css">
+    <link rel="stylesheet" href="../../styles/schemes.css">
+  </head>
+  <body> <!-- Backgound -->
+    <link rel="stylesheet" href="/modules/game/style.css">
+    <script type="module" src="../../scripts/inventory.js"></script>
+    <header>
+      <div id="hearts" class="menu-stats">
+        <h3>Vidas</h3>
+        <img src="/images/game/heart.svg"></img>
+        <img src="/images/game/heart.svg"></img>
+        <img class="gray" src="/images/game/heart.svg"></img> 
+      </div>
+      <div id="points" class="menu-stats">
+        <h3>Pontos</h3>
+        <h2>0</h2>
+      </div>
+      <button id="btn-setting"></button>
+    </header>
+
+    <main>
+      <div id="gamecenter">
+        <!-- <img id="bookcase" src="./icons/estante.png"></img> -->
+        <game-inventory id="bookcase">
+          <h3>INGREDIENTES</h3>
+        </game-inventory>
+        <img id="cauldron" src="/images/game/Caldeirao.svg"></img>
+        <img id="wizard"   src="/images/game/mago.png"></img>
+      </div>
+    </main>
+   
+    <div class="action-menu">
+      <button id="btn-setting">B</button>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+    <!-- <script src='script.js'> </script> -->
+  </body>
+<html>

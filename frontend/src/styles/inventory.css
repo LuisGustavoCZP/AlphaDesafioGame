@@ -1,0 +1,56 @@
+.inventory {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    z-index: 10;
+    box-sizing: content-box;
+    background-color: rgb(139, 112, 75);
+    justify-content: center;
+    align-items: stretch;
+}
+
+.inventory h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    font-size: 40px;
+}
+
+.inventory > ul {
+    display: flex;
+    /* width: 100%; */
+    width: fit-content;
+    height: 100%;
+    list-style: none;
+    margin: 0 15px 15px 15px;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(182, 152, 111);
+    justify-content: flex-start;
+    /* justify-items: center; */
+    align-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.inventory > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+    width: 100%;
+    min-width: 10%;
+    max-width: 10%;
+    padding: 2%;
+    height: fit-content;
+    background-color: rgb(168, 151, 128);
+    border: solid rgb(139, 112, 75);
+}
+
+.inventory > ul > li > img {
+    object-fit: contain;
+}
+
+.inventory > ul > li * {
+    z-index: 16;
+}

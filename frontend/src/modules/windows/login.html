@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../styles/pattern.css">
+        <link rel="stylesheet" href="../../styles/schemes.css">
+        <script type="module" src="../../scripts/request.js"></script>
+    </head>
+    <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
+        <!-- The Modals -->
+        <div id="Modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-background">
+            <span class="close">&times;</span>
+            <div id="title"><strong></strong></div>
+            <div id="content">
+                <div class="title"><strong>NOME</strong></div>
+                <input id="username" type="content-title" placeholder="DIGITE SEU NOME AQUI">
+                <button id="btn-login"></button>
+            </div> 
+            
+        </div>
+        </div>
+
+        <style>
+            #buttons{
+                display: flex;
+                width: 80%;
+                margin: auto;
+                align-items: flex-end;
+                padding-bottom: 10px;
+                justify-content: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: flex-start;
+            }
+
+            #btn-play {
+                border-radius: 60px;
+                background-image: url("icons/play.svg");
+                width: 110px;
+                height: 110px;
+                margin-top: 15px;
+                background-color: #4EA466;
+            }
+
+            button {
+                width: 70px;
+                height: 70px;
+                font-weight: 500;
+                color: #000;
+                background-color: #A07048;
+                border: none;
+                border-radius: 45px;
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease 0s;
+                cursor: pointer;
+                outline: none;
+                background-size: 30px;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            
+            button:hover, #btn-play:hover, #btn-login:hover {
+                background-color: #26b179;
+                transform: translateY(-7px);
+            }
+            #btn-setting{
+                transform: translateY(0px);
+            }
+            #btn-setting {
+                background-image: url("icons/sound.svg");
+            }
+            #btn-ranking {
+                background-image: url("icons/ranking.svg");
+            }
+            #btn-howToPlay {
+                background-image: url("icons/question.svg");
+            }
+
+        </style>
+
+        <script>
+            
+            $(document).ready(function() 
+            {
+
+                //btn to Play the game
+                $("#btn-login").on("click", () => {
+                    username = $("#username").val();
+                    // password = $("#password").val();
+
+              
+                    if(username.length >= 3 ){
+                        //$(`#Modal`).css("display","none");
+                        /* callFetchLogin(username); */
+                        login(username);
+                    } else {
+                    alert("O nome precisa ser mais de 2 caracteres!");
+                    }
+                
+            });
+
+                $(".close").on("click", function() 
+                {
+                    console.log("Close");
+                    parent.modal.src = "";
+                    //$(`#Modal`).css("display","none");
+                });
+
+            });
+
+            function login (user)
+            {
+                fetch(`https://vacsina.servegame.com:8000/login`, 
+                {
+                    method: 'post',
+                    mode: 'cors',
+                    body: JSON.stringify({"user":user}),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then((resp) => resp.json())
+                .then(data => 
+                {
+                    const status = data;
+                    console.log(data)
+                    if(status == 1 || status == 2 ){
+                        alert("Login ou Senha invalidos!");
+                    } 
+                    else/*  if(status == 0) */
+                    {
+                        login = true;
+                        document.cookie = `userData=${data.userData}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+                        parent.game.src = "../modules/game/index.html";
+                        parent.modal.src = "";
+                    }
+                })
+                .catch(resp => { console.log(resp); });
+            }
+
+            async function callFetchNewUser(user)
+            {
+                const response = await fetch(`https://vacsina.servegame.com:8000/newuser`, {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    
+                    },
+                    body: `{
+                            "user": "${user}"
+                    }`})
+                    .then((resp) => resp.json())
+                    .then(function (data) {
+                        const status = data;
+                        console.log(data)
+                        if(status == 1 ){//already exists 
+                            callFetchLogin(username);
+                        } else if(status == 0){ //New user created
+                            callFetchLogin(username);  
+                        }
+                    })
+                    .catch(function (error) {
+                        //console.log('Request failed', error);
+                        console.log(error);
+                    });
+            }
+
+            async function callFetchLogin(user){
+                const response = await fetch(`https://vacsina.servegame.com:8000/login`, {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: `{
+                            "user": "${user}",
+                            "pass": "",
+                    }`})
+                    .then((resp) => resp.json())
+                    .then(function (data) {
+                        const status = data;
+                        console.log(data)
+                        if(status == 1 || status == 2 ){
+                            alert("Login ou Senha invalidos!");
+                        } 
+                        else/*  if(status == 0) */
+                        {
+                            login = true;
+                            document.cookie = `userData=${data.userData}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+                            parent.game.src = "../modules/game/index.html";
+                        }/*  else {
+                            console.log(status);
+                        } */
+                
+                    })
+                    .catch(function (error) {
+                        //console.log('Request failed', error);
+                        console.log(error);
+                    });
+            }
+
+        </script>
+    </body>
+</html>
