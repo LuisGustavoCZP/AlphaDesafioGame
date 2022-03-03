@@ -94,10 +94,10 @@ function CheckUser (user)
     if(userid == -1) return -1;
     if(userid >= users.length) return -1;
     const u = users[userid];
-    if(u.pass != CriptoPass(user.pass))
+    /* if(u.pass != CriptoPass(user.pass))
     {
         return -2;
-    }
+    } */
     return userid;
 }
 

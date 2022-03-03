@@ -1,0 +1,17 @@
+.inventory {
+    display: flex;
+    z-index: 10;
+}
+
+.inventory > li {
+    z-index: 15;
+    height: 100%;
+}
+
+.inventory > li > img {
+    object-fit: contain;
+}
+
+.inventory > li * {
+    z-index: 16;
+}
