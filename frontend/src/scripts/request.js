@@ -70,7 +70,9 @@ function requestSys (url="https://vacsina.servegame.com:8000/")
     */
     function get (path, info, onsucess = ()=>{}, onfail = ()=>{})
     {
-        const urlFinal = info ? `${url}${createParams(info.params)}/${path}/${createQuery(info.query)}` : `${url}${path}/`;
+        const params = info.params.userData != "" ? createParams(info.params)+"/" : "no/"; 
+        console.log(params);
+        const urlFinal = info ? `${url}${params}${path}/${createQuery(info.query)}` : `${url}${path}/`;
         console.log(urlFinal);
         fetch(urlFinal, 
         {
@@ -84,9 +86,9 @@ function requestSys (url="https://vacsina.servegame.com:8000/")
             if(verifySession(resp)) { 
                 //console.log(resp);
                 onsucess(resp); 
-            } else onfail (resp);
+            } else onfail (resp, false);
         })
-        .catch(resp => { console.log(resp); onfail(resp); });
+        .catch(resp => { console.log(resp); onfail(resp, true); });
     }
 
     function URL () {

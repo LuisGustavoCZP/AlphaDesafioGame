@@ -4,14 +4,27 @@ class User
 {
     #hasUser;
     #userData;
+    data;
 
     constructor ()
     {
         this.#hasUser = false;
+        this.#userData = this.#recoverCookie ();
+        this.data = null;
+    }
+
+    #createCookie (userData) 
+    {
+        const date = new Date();
+        date.setTime(date.getTime() + 1000*60*5); //31536000000
+        return `userData=${userData}; expires=${date.toGMTString()}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+    }
+
+    #recoverCookie () {
         const cookie = document.cookie;
         const cookieValues = cookie.split(";");
         console.log(cookieValues);
-        this.#userData = cookieValues[0].replace("userData=", "");
+        return cookieValues[0].replace("userData=", "");
     }
 
     login (user)
@@ -36,9 +49,9 @@ class User
             else/*  if(status == 0) */
             {
                 this.#hasUser = true;
-                this.#userData = `userData=${data.userData}; expires=${(new Date()).getTime() + (1000*60*5)}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
-                document.cookie = this.#userData;
-                parent.game.src = "../modules/game/index.html";
+                document.cookie = this.#createCookie(data.userData);
+                this.#userData = this.#recoverCookie ();
+                this.update();
                 parent.modal.src = "";
             }
         })
@@ -83,15 +96,27 @@ class User
         console.log(this.#userData);
         
         RequestSys.get("user", {params:{"userData":this.#userData}}, UserSucess, UserError);
-        
+        const thisuser = this;
         function UserSucess (data)
         {
-            window.game.src="modules/game/index.html";
+            thisuser.#hasUser = true;
+            thisuser.data = data;
+            if(!data.tutorial)
+            {
+                window.game.src="modules/tutorial/index.html";
+            }
+            else window.game.src="modules/game/index.html";
         }
 
-        function UserError (data)
+        function UserError (data, unable)
         {
-            window.game.src="modules/main/index.html";
+            thisuser.#hasUser = false;
+            if(unable)
+            {
+                window.game.src="modules/error/index.html";
+            } else {
+                window.game.src="modules/main/index.html";
+            }
         }
     }
 }

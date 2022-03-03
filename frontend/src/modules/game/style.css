@@ -135,6 +135,16 @@ img.gray {
     z-index: 30;
 }
 
+#cauldron{
+    position: absolute;
+    right: 10%;
+    bottom: 3%;
+    /* height: 19.439%;  */
+    height: 45%;
+    z-index: 30;
+    /* border: 1px solid lawngreen; */
+}
+
 #wizard {
     position: absolute;
     left: 45%;
