@@ -23,7 +23,7 @@ class User
     #recoverCookie () {
         const cookie = document.cookie;
         const cookieValues = cookie.split(";");
-        console.log(cookieValues);
+        //console.log(cookieValues);
         return cookieValues[0].replace("userData=", "");
     }
 
@@ -93,7 +93,7 @@ class User
 
     update () 
     {
-        console.log(this.#userData);
+        //console.log(this.#userData);
         
         RequestSys.get("user", {params:{"userData":this.#userData}}, UserSucess, UserError);
         const thisuser = this;
@@ -101,7 +101,7 @@ class User
         {
             thisuser.#hasUser = true;
             thisuser.data = data;
-            if(!data.tutorial)
+            if(false && !data.tutorial)
             {
                 window.game.src="modules/tutorial/index.html";
             }

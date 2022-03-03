@@ -52,7 +52,7 @@ class GameElement extends HTMLElement
                                 parent.appendChild(nscript);
                                 nscript.type = child.type;
                                 nscript.src = child.src;
-                                nscript.onload = ()=>{console.log("carregou", nscript); };
+                                //nscript.onload = ()=>{console.log("carregou", nscript); };
                             } 
                             else 
                             {
@@ -99,9 +99,9 @@ function reparerURL (lastOrigin, newOrigin)
 
     function repair (oldpath)
     {
-        console.log(oldpath, urlRoot, urlSrc);
+        //console.log(oldpath, urlRoot, urlSrc);
         const newpath = urlSrc + oldpath.replace(urlRoot, "");
-        console.log(oldpath, newpath);
+        //console.log(oldpath, newpath);
         return newpath;
     }
 
