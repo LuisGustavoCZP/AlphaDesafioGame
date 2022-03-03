@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../../styles/pattern.css">
+        <link rel="stylesheet" href="../../../styles/schemes.css">
+    </head>
+    <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
+
+        <!-- Modal content -->
+        <div class="modal-background">
+            <span class="close">&times;</span>
+            <div id="title"><strong></strong></div>
+            <div id="content">
+                <div class="title"><strong>NOME</strong></div>
+                <input id="username" type="content-title" placeholder="DIGITE SEU NOME AQUI">
+                <button id="btn-login"></button>
+            </div> 
+            
+        </div>
+
+        <style>
+            #buttons{
+                display: flex;
+                width: 80%;
+                margin: auto;
+                align-items: flex-end;
+                padding-bottom: 10px;
+                justify-content: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: flex-start;
+            }
+
+            #btn-play {
+                border-radius: 60px;
+                background-image: url("icons/play.svg");
+                width: 110px;
+                height: 110px;
+                margin-top: 15px;
+                background-color: #4EA466;
+            }
+
+            button {
+                width: 70px;
+                height: 70px;
+                font-weight: 500;
+                color: #000;
+                background-color: #A07048;
+                border: none;
+                border-radius: 45px;
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease 0s;
+                cursor: pointer;
+                outline: none;
+                background-size: 30px;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            
+            button:hover, #btn-play:hover, #btn-login:hover {
+                background-color: #26b179;
+                transform: translateY(-7px);
+            }
+            #btn-setting{
+                transform: translateY(0px);
+            }
+            #btn-setting {
+                background-image: url("icons/sound.svg");
+            }
+            #btn-ranking {
+                background-image: url("icons/ranking.svg");
+            }
+            #btn-howToPlay {
+                background-image: url("icons/question.svg");
+            }
+
+        </style>
+
+        <script src="./login.js"></script>
+    </body>
+</html>

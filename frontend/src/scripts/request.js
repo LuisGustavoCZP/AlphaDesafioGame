@@ -1,5 +1,5 @@
 /* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
-function RequestSys (url="https://vacsina.servegame.com:8000/") 
+function requestSys (url="https://vacsina.servegame.com:8000/") 
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */
@@ -96,6 +96,6 @@ function RequestSys (url="https://vacsina.servegame.com:8000/")
     return { post, get, URL };
 }
 
-const Request = RequestSys ();
+const RequestSys = requestSys ();
 
-export { Request, RequestSys };
+export { RequestSys, requestSys };

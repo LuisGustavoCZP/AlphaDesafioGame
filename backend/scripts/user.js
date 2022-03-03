@@ -1,6 +1,6 @@
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto')
+/* const crypto = require('crypto') */
 const path = __dirname.replace("scripts", "data/");
 const sessionkey = "m4C4c0-Qu3r-b4n4N4";
 const passCriptoOption = {
@@ -10,9 +10,9 @@ const passCriptoOption = {
 }
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
-const search = search ();
+const search = searchConstructor ();
 
-function search () {
+function searchConstructor () {
     function name (name){
         for(let userid = 0; userid < users.length; userid++)
         {
@@ -48,13 +48,13 @@ function newUser (_name, _pass)
     saveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
-
+/* 
 function criptoPass (pass)
 {
     const cipher = crypto.createCipher(passCriptoOption.algoritm, passCriptoOption.secret);
     cipher.update(pass);
     return cipher.final(passCriptoOption.type);
-}
+} */
 
 function createSession (userid, res)
 {
@@ -90,14 +90,14 @@ function verifySession (req, res, next)
 
 function checkUser (user)
 {
-    const userid = search.Name(user.user);
+    const userid = search.name(user.user);
     if(userid == -1) return -1;
     if(userid >= users.length) return -1;
     const u = users[userid];
-    if(u.pass != criptoPass(user.pass))
+    /* if(u.pass != criptoPass(user.pass))
     {
         return -2;
-    }
+    } */
     return userid;
 }
 

@@ -33,19 +33,19 @@ app.post("/newuser", user.createUser);
 app.post("/login", user.requestUser);
 
 //Dados usuario (vida, estagio, pontos)
-app.get("/:userData/user", user.VerifySession, user.userData);
+app.get("/:userData/user", user.verifySession, user.userData);
 
 //Resetar dados usuario
-app.post("/:userData/reset", user.VerifySession, user.userReset);
+app.post("/:userData/reset", user.verifySession, user.userReset);
 
 //Pegar receita de itens
-app.get("/:userData/recipe", user.VerifySession, game.createRecipe);
+app.get("/:userData/recipe", user.verifySession, game.createRecipe);
 
 //Checar receita de itens
-app.post("/:userData/recipe", user.VerifySession, game.verifyRecipe);
+app.post("/:userData/recipe", user.verifySession, game.verifyRecipe);
 
 //Pegar uma poção aleatória
-app.get("/:userData/potion", user.VerifySession, game.sortPotion);
+app.get("/:userData/potion", user.verifySession, game.sortPotion);
 
 //Ranking usuarios
 app.get("/ranking/:top", game.ranking);

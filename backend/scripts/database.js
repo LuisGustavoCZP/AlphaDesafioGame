@@ -119,13 +119,13 @@ function upStage(_userid) {
 }
 
 module.exports = {
-   sortComponentsAleatory,
+   /* sortComponentsAleatory, */
    randomSort,
    upStage,
    getStage,
    getItem,
-   randomPotion,
-   randomStock,
+   /* randomPotion,
+   randomStock, */
    sortPotion,
    getBook
 };
