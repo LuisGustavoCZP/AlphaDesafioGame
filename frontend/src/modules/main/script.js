@@ -8,7 +8,7 @@ $(document).ready(function() {
         console.log(btn + " - " + idBtn);
         $(`#Modal`).css("display","block");
         modal.src="modules/windows/index.html";
-        modal.hidden = false;
+        /* modal.hidden = false; */
     });
 });
 

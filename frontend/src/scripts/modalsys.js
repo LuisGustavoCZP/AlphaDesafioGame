@@ -15,6 +15,15 @@ class Modal extends HTMLIFrameElement
     }
 
     /**
+     * @param {string} path
+     */
+    set src (path)
+    {
+        if(path == "") { super.src = ""; this.hidden = true; }
+        else { super.src = path; this.hidden = false; }
+    }
+
+    /**
      * @param {boolean} valor
      */
     set hidden (valor)
