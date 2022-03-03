@@ -10,9 +10,9 @@ const passCriptoOption = {
 }
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
-const search = search ();
+const search = searchConstructor ();
 
-function search () {
+function searchConstructor () {
     function name (name){
         for(let userid = 0; userid < users.length; userid++)
         {
