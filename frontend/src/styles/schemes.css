@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+  
 }
 
 body {
@@ -40,9 +40,11 @@ body {
 }
 
 .modal {
-  
   display: flex;
   position: absolute; 
+  box-sizing: border-box;
+  display: flex; /* Hidden by default */
+  position: absolute; /* Stay in place */
   flex-grow: 1;
   z-index: 10000;
   width: 100%; 
@@ -55,6 +57,7 @@ body {
 
 .modal-background
 {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: var(--paper);
@@ -198,3 +201,4 @@ body {
       border-radius: 30px;
       text-align: center;
   }
+

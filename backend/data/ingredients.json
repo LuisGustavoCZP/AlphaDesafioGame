@@ -1,11 +1,7 @@
 [
-   {"icon": "assets/ingredients/1.png", "id": "0"},
-   {"icon": "assets/ingredients/2.png", "id": "1"},
-   {"icon": "assets/ingredients/3.png", "id": "2"},
-   {"icon": "assets/ingredients/4.png", "id": "3"},
-   {"icon": "assets/ingredients/5.png", "id": "4"},
-   {"icon": "assets/ingredients/6.png", "id": "5"},
-   {"icon": "assets/ingredients/7.png", "id": "6"}, 
-   {"icon": "assets/ingredients/8.png", "id": "7"},
-   {"icon": "assets/ingredients/18.png", "id": "8"}
+   {"id":0, "name": "Maracujá", "icon": "assets/ingredients/passionfruit.png"},
+   {"id":1, "name": "Abóbora", "icon": "assets/ingredients/pumpkin1.png"},
+   {"id":2, "name": "Alface", "icon": "assets/ingredients/salad-leaves.png"},
+   {"id":3, "name": "Tomate", "icon": "assets/ingredients/sliced-tomato.png"},
+   {"id":4, "name": "Teia de Aranha", "icon": "assets/ingredients/spiderweb.png"}
 ]

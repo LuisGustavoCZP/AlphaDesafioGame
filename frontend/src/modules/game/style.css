@@ -37,6 +37,7 @@ header {
 }
 
 .menu-stats {
+    
     background-color: #5c5c5c;
     border-radius: 40px;
     border: solid #000 5px;
@@ -117,7 +118,6 @@ img.gray {
     position: absolute;
     left: 5%;
     bottom: 16%;
-    /* height: 33.644%;  */
     height: 75.6%;
     z-index: 10;
 }
