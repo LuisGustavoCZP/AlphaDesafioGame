@@ -10,6 +10,7 @@ function randomKey(obj)
     return keys[parseInt(Math.random() * keys.length)];
 }
 
+// perguntar como funciona essa função
 function randomizeArray (array, max=array.length)
 {
     const narray = [...array].sort((a, b) => {return Math.random() >= .5? 1 : -1;});
@@ -24,7 +25,7 @@ function randomizeArray (array, max=array.length)
     return newArray;
 }
 
-function Contains (array, item)
+function contains (array, item)
 {
     let find = false;
     array.forEach(element => 
@@ -43,6 +44,8 @@ function randomSort2(_items) {
     return parseInt(Math.random() * numero);
 }
 
+
+// como funciona essa classe
 class Dictionary {
     constructor(...array)
     {
@@ -80,4 +83,4 @@ class Dictionary {
     }
 }
 
-module.exports = {randomSort, randomKey, randomizeArray, Contains, Dictionary};
+module.exports = {randomSort, randomKey, randomizeArray, contains, Dictionary};

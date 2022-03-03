@@ -1,7 +1,0 @@
-[
-   {"item": 0, "components":[1, 4, 3]},
-   {"item": 1, "components":[0, 2, 3]},
-   {"item": 2, "components":[0, 3, 4]},
-   {"item": 3, "components":[0, 4, 2]},
-   {"item": 4, "components":[1, 2, 3]}
-]

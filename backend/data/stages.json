@@ -1,23 +1,7 @@
 [
-    {
-        "recipe":1, "stock":3
-    },
-    {
-        "recipe":1, "stock":9
-    },
-    {
-        "recipe":2, "stock":9
-    },
-    {
-        "recipe":3, "stock":9
-    },
-    {
-        "recipe":4, "stock":9
-    },
-    {
-        "recipe":5, "stock":9
-    },
-    {
-        "recipe":6, "stock":9
-    }
+    {"stage": 1, "potions": ["poção da velocidade", "poção da resistencia", "poção da força", "poção do vigor","poção da vida"]},
+    {"stage": 2, "potions": ["poção da animação", "poção de transmorfo", "poção de concentração", "poção da mana", "poção de gelo"]},
+    {"stage": 3, "potions": ["poção de fogo", "poção de raio", "poção de euforia", "poção do amor", "poção da clarividência"]},
+    {"stage": 4, "potions": ["poção da disciplina", "poção da regeneração", "poção da beleza", "poção da juventude", "poção do encolhimento"]},
+    {"stage": 5, "potions": ["poção do engrandecimento", "poção do teleporte", "poção explosiva", "poção da levitação", "Elixir da imortalidade"]}
 ]

@@ -27,28 +27,25 @@ const user = require(`${__dirname}/scripts/user`);
 const game = require(`${__dirname}/scripts/gamecore`);
 
 //Criar usuario
-app.post("/newuser", user.CreateUser);
+app.post("/newuser", user.createUser);
 
 //Login usuario
-app.post("/login", user.RequestUser);
+app.post("/login", user.requestUser);
 
 //Ranking usuarios
 app.get("/ranking/:top", game.ranking);
 
 //Dados usuario (vida, estagio, pontos)
-app.get("/:userData/user", user.VerifySession, user.UserData);
+app.get("/:userData/user", user.VerifySession, user.userData);
 
 //Resetar dados usuario
-app.post("/:userData/reset", user.VerifySession, user.UserReset);
-
-//Pegar estoque de itens
-app.get("/:userData/stock", user.VerifySession, game.SortStock);
+app.post("/:userData/reset", user.VerifySession, user.userReset);
 
 //Pegar receita de itens
-app.get("/:userData/recipe", user.VerifySession, game.CreateRecipe);
+app.get("/:userData/recipe", user.VerifySession, game.createRecipe);
 
 //Checar receita de itens
-app.post("/:userData/recipe", user.VerifySession, game.VerifyRecipe);
+app.post("/:userData/recipe", user.VerifySession, game.verifyRecipe);
 
 //Pegar uma poção aleatória
 app.get("/:userData/potion", user.VerifySession, game.sortPotion);

@@ -1,81 +1,65 @@
 const User = require(`${__dirname}/user`);
-const Database = require(`${__dirname}/database2`);
+const Database = require(`${__dirname}/database`);
 const jwt = require('jsonwebtoken');
 
 const recipesecret = "R4kunN4-m4Tat4";
 
-function CreateRecipe (req, res) 
-{
-    const user = User.Get(req.userid);
-    const recipe = Database.RandomItems(user.stage, user.stock);
-    user.recipe = recipe;
-    res.json({recipe:Database.GetItem(...recipe)});
+
+// função armazena a receita no usuário, e retorna pra o front {name: , icon: } da poção sorteada
+function createRecipe (req, res){
+    const user = User.get(req.userid);
+    const potion = Database.sortPotion(user.stage);
+    user.recipe = potion.recipe;
+    res.json({name: potion.name, icon: potion.icon});
 }
 
-function SortItem (req, res) 
-{
-    const user = User.Get(req.userid);
+
+function sortItem (req, res){
+    const user = User.get(req.userid);
     const lastRecipe = user.recipe? user.recipe : [];
     console.log(lastRecipe);
     const exclude = lastRecipe ? [lastRecipe[lastRecipe.length-1]] : [];
-    const recipe = Database.RandomItems(1, user.stock, exclude);
+    const recipe = Database.randomItems(1, user.stock, exclude);
     lastRecipe.push(...recipe);
     user.recipe = recipe;
 
-    res.json({recipe:Database.GetItem(...lastRecipe)});
+    res.json({recipe:Database.getItem(...lastRecipe)});
 }
 
-function SortStock (req, res) 
-{
-    const user = User.Get(req.userid);
-    const stock = Database.RandomStock(9);
-    user.stock = stock;
-    const resp = {"stock":Database.GetItem(...stock)};
-    
-    res.json(resp);
-}
 
-function CheckRecipe (recipe, itens) 
-{
-    for (let i = 0; i < Math.min(recipe.length, itens.length); i++)
-    {
+function checkRecipe (recipe, itens){
+    for (let i = 0; i < Math.min(recipe.length, itens.length); i++){
         if(itens[i] != recipe[i]) return false;
     }
     return true;
 }
 
-function VerifyRecipe (req, res)
-{
-    const user = User.Get(req.userid);
+function verifyRecipe (req, res){
+    const user = User.get(req.userid);
     const response = req.body;
     console.log(response, user.recipe);
-    if(CheckRecipe(user.recipe, response))
-    {
+    if(checkRecipe(user.recipe, response)){
         user.points += 300*user.stage;
         user.stage++;
-        if(user.points > user.highscore) 
-        {
+        if(user.points > user.highscore){
             user.highscore = user.points;
         }
-        User.SaveUsers();
+        User.saveUsers();
         res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
-    else if(user.lives >= 0)
-    {
+    else if(user.lives >= 0){
         user.lives--;
         
-        User.SaveUsers();
+        User.saveUsers();
         res.json(1);
     } 
-    else if(user.lives == 0)
-    {
+    else if(user.lives == 0){
         res.json(2);
     }
     
 }
 
-function ClearRecipe (req, res)
-{
+function clearRecipe (req, res){
     const token = jwt.sign({recipe:[]}, cryptokey);
     res.cookie("recipeData", token);
 }
@@ -110,8 +94,8 @@ function ranking(req, res){
    
 }
 
-function randomSort(_items) {
-   const numero = _items.length;
+function randomSort(items) {
+   const numero = items.length;
    return parseInt(Math.random() * numero);
 }
 
@@ -129,13 +113,22 @@ function sortPotion(req, res) {
    return sorted_pots;
 }
 
+// retorna as poções e 
+function userBook(req, res){
+   const p = users[req.userid];
+   const result = getBook(p.stage);
+   res.json(result);
+
+}
+
+
 module.exports =
 {
-    ClearRecipe,
-    CreateRecipe,
-    VerifyRecipe,
-    SortItem,
-    SortStock,
+    clearRecipe,
+    createRecipe,
+    verifyRecipe,
+    sortItem,
     ranking,
-    sortPotion
+    sortPotion,
+    userBook
 };
