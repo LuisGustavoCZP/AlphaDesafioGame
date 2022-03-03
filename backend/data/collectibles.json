@@ -1,0 +1,16 @@
+[
+   {"icon": "assets/collectibles/1.png", "id": "c1"},
+   {"icon": "assets/collectibles/2.png", "id": "c2"},
+   {"icon": "assets/collectibles/3.png", "id": "c3"},
+   {"icon": "assets/collectibles/4.png", "id": "c4"},
+   {"icon": "assets/collectibles/5.png", "id": "c5"},
+   {"icon": "assets/collectibles/6.png", "id": "c6"},
+   {"icon": "assets/collectibles/7.png", "id": "c7"},
+   {"icon": "assets/collectibles/8.png", "id": "c8"},
+   {"icon": "assets/collectibles/9.png", "id": "c9"},
+   {"icon": "assets/collectibles/10.png", "id": "c10"},
+   {"icon": "assets/collectibles/11.png", "id": "c11"},
+   {"icon": "assets/collectibles/12.png", "id": "c12"},
+   {"icon": "assets/collectibles/13.png", "id": "c13"},
+   {"icon": "assets/collectibles/14.png", "id": "c14"}
+]

@@ -10,10 +10,10 @@ const passCriptoOption = {
 }
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
-const search = Search ();
+const search = search ();
 
-function Search () {
-    function Name (name){
+function search () {
+    function name (name){
         for(let userid = 0; userid < users.length; userid++)
         {
             const user = users[userid];
@@ -25,19 +25,19 @@ function Search () {
         }
         return -1;
     }
-    return { Name };
+    return { name };
 }
 
-function SaveUsers (callback = (x) => {}){
+function saveUsers (callback = (x) => {}){
     fs.writeFile(path+"users.json", JSON.stringify(users), callback);
 }
 
-function NewUser (_name, _pass)
+function newUser (_name, _pass)
 {
     const user = 
     {
         "name":_name,
-        "pass":CriptoPass(_pass),
+        "pass":criptoPass(_pass),
         stage:1,
         lives:3,
         points:0,
@@ -45,25 +45,25 @@ function NewUser (_name, _pass)
     };
 
     users.push(user);
-    SaveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
+    saveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
 
-function CriptoPass (pass)
+function criptoPass (pass)
 {
     const cipher = crypto.createCipher(passCriptoOption.algoritm, passCriptoOption.secret);
     cipher.update(pass);
     return cipher.final(passCriptoOption.type);
 }
 
-function CreateSession (userid, res)
+function createSession (userid, res)
 {
     //const cookiedata = { domain: 'localhost:8080', path: '/admin', secure: true, expiresIn:300};
     const token = jwt.sign({userid:userid}, sessionkey); //, { expiresIn:300 }
     res.json({"userData":token});
 }
 
-function VerifySession (req, res, next)
+function verifySession (req, res, next)
 {
     const token = req.params["userData"];
     //console.log(token);
@@ -88,23 +88,23 @@ function VerifySession (req, res, next)
     });
 }
 
-function CheckUser (user)
+function checkUser (user)
 {
     const userid = search.Name(user.user);
     if(userid == -1) return -1;
     if(userid >= users.length) return -1;
     const u = users[userid];
-    /* if(u.pass != CriptoPass(user.pass))
+    if(u.pass != criptoPass(user.pass))
     {
         return -2;
-    } */
+    }
     return userid;
 }
 
-function RequestUser (req, res) 
+function requestUser (req, res) 
 {
     const user = {user:req.body["user"], pass:req.body["pass"]};
-    const id = CheckUser(user);
+    const id = checkUser(user);
     //console.log(id);
     if(id == -1) {
         console.log(`${req.ip} : ${user.user} não existe!`);
@@ -118,55 +118,55 @@ function RequestUser (req, res)
     }
     
     console.log(`${req.ip} : ${user.user} realizou login.`);
-    CreateSession(id, res);
+    createSession(id, res);
     //res.json();
 }
 
-function CreateUser (req, res) 
+function createUser (req, res) 
 {
     const user = {name:req.body["user"], pass:req.body["pass"]};
-    if(search.Name(user.name) != -1)
+    if(search.name(user.name) != -1)
     {
         console.log(`${req.ip} : ${user.name} já existe!`);
         res.json(1);
         return;
     }
 
-    NewUser(user.name, user.pass);
+    newUser(user.name, user.pass);
     res.json(0);
 }
 
-function Get (id)
+function get (id)
 {
     return users[id];
 }
 
-function UserData (req, res)
+function userData (req, res)
 {
     const p = users[req.userid];
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
-function UserReset (req, res)
+function userReset (req, res)
 {
     const p = users[req.userid];
     p.stage = 1;
     p.lives = 3;
     p.points = 0;
-    SaveUsers();
+    saveUsers();
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
 module.exports = 
 {
-    Get,
+    get,
     search,
-    RequestUser,
-    CreateUser,
-    UserData,
-    UserReset,
-    CreateSession,
-    VerifySession,
-    SaveUsers,
+    requestUser,
+    createUser,
+    userData,
+    userReset,
+    createSession,
+    verifySession,
+    saveUsers,
     users,
 };
