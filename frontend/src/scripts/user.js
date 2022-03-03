@@ -8,7 +8,10 @@ class User
     constructor ()
     {
         this.#hasUser = false;
-        this.#userData = "";
+        const cookie = document.cookie;
+        const cookieValues = cookie.split(";");
+        console.log(cookieValues);
+        this.#userData = cookieValues[0].replace("userData=", "");
     }
 
     login (user)
@@ -33,7 +36,8 @@ class User
             else/*  if(status == 0) */
             {
                 this.#hasUser = true;
-                document.cookie = `userData=${data.userData}; expires=${(new Date()).getTime() + (1000*60*5)}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+                this.#userData = `userData=${data.userData}; expires=${(new Date()).getTime() + (1000*60*5)}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+                document.cookie = this.#userData;
                 parent.game.src = "../modules/game/index.html";
                 parent.modal.src = "";
             }
@@ -76,13 +80,13 @@ class User
 
     update () 
     {
-        console.log(document.cookie);
-        "userData"
-        RequestSys.get("userData", {params:{"userData":document.cookie}}, UserSucess, UserError);
+        console.log(this.#userData);
+        
+        RequestSys.get("user", {params:{"userData":this.#userData}}, UserSucess, UserError);
         
         function UserSucess (data)
         {
-            
+            window.game.src="modules/game/index.html";
         }
 
         function UserError (data)
