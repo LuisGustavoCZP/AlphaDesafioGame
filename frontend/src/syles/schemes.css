@@ -62,7 +62,7 @@ body {
   flex-direction: column;
   background-color: var(--paper);
   color: var(--azuldark);
-  border: 1px solid rgba(136, 136, 136, 0);
+ /*  border: 1px solid rgba(136, 136, 136); */
   border-radius: 50px 50px 25% 25%;
 /*   background-image: url("../images/icons/menu.svg");
   background-size: auto;
@@ -74,18 +74,21 @@ body {
   
   width: 500px;
   height: 500px;
+  /* overflow: hidden; */
 }
 
 .modal-background > span:nth-child(1) {
   display: flex;
   flex-direction: row;
   background-color: var(--azul);
+  /* border: 2px solid rgb(47, 106, 182); */
   border-radius: 50px 50px 0 0;
   justify-content: space-between;
   justify-self: center;
   align-self: center;
   width: 100%;
   padding: 0px 10px;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 .modal-background > span > *:nth-child(1) {
