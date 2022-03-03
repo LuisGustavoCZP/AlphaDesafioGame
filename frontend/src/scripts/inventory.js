@@ -10,13 +10,13 @@ class Inventory extends HTMLElement
         super();
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
-        linkcss.href = "../../styles/inventory.css";
+        linkcss.href = "/styles/inventory.css";
         this.before(linkcss);
         this.classList.add("inventory");
-        this.container = document.createElement("table");
+        this.container = document.createElement("ul");
         this.append(this.container);
-        if(this.hasAttribute('src')) {
-            this.src = this.getAttribute('src');
+        if(this.hasAttribute('columns')) {
+            this.columns = this.getAttribute('columns');
         }
         /* if(columns) */
         this.style.listStyle = "none";
@@ -27,6 +27,18 @@ class Inventory extends HTMLElement
     createItens (data)
     {
         console.log(data, this);
+        data.stock.forEach(item => 
+        {
+            const el = document.createElement("li");
+            el.innerHTML = `<img src="/images/${item.icon}"></img>`;
+            this.container.appendChild(el);
+        });
+        data.stock.forEach(item => 
+        {
+            const el = document.createElement("li");
+            el.innerHTML = `<img src="/images/${item.icon}"></img>`;
+            this.container.appendChild(el);
+        });
         data.stock.forEach(item => 
         {
             const el = document.createElement("li");

@@ -30,6 +30,7 @@ class GameElement extends HTMLElement
      */
     set src (_path)
     {
+        this.innerHTML = "";
         this.#src = _path;
         //const pathreparer = reparerURL(window.location.href, _path);
         LoadSys.toHTML(_path, doc => 

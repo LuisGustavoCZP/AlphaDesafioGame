@@ -19,7 +19,7 @@ main {
     align-items: center;
     background-color: #0962627a;
     background-position: center;
-    background-image: url("./icons/game-background.svg");
+    background-image: url("/images/game/game-background.svg");
     background-size: contain;
     background-repeat: repeat;
 }
@@ -115,10 +115,14 @@ img.gray {
 }
 
 #bookcase {
-    position: absolute;
-    left: 5%;
-    bottom: 16%;
+    /* position: absolute; */
+    /* background-image: url("./icons/estante.png");
+    background-clip: border-box;
+    background-size: contain; */
+    left: -20%;
+    bottom: 5%;
     height: 75.6%;
+    width: 40%;
     z-index: 10;
 }
 

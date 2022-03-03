@@ -67,7 +67,7 @@ footer{
 
 #btn-play {
     border-radius: 60px;
-    background-image: url("../../images/icons/play.svg");
+    background-image: url("../../images/main/play.svg");
     width: 110px;
     height: 110px;
     margin-top: 15px;
@@ -102,11 +102,11 @@ button:hover, #btn-play:hover, #btn-login:hover {
     left: calc(100% - 70px);
 }
 #btn-setting {
-    background-image: url("../../images/icons/sound.svg");
+    background-image: url("../../images/main/sound.svg");
 }
 #btn-ranking {
-    background-image: url("../../images/icons/ranking.svg");
+    background-image: url("../../images/main/ranking.svg");
 }
 #btn-howToPlay {
-    background-image: url("../../images/icons/question.svg");
+    background-image: url("../../images/main/question.svg");
 }

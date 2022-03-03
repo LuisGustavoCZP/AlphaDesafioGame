@@ -3,18 +3,19 @@
   <head>
     <!-- <title>Torre Flamel</title> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="../../styles/pattern.css">
     <link rel="stylesheet" href="../../styles/schemes.css">
   </head>
   <body> <!-- Backgound -->
+    <link rel="stylesheet" href="/modules/game/style.css">
     <script type="module" src="../../scripts/inventory.js"></script>
     <header>
       <div id="hearts" class="menu-stats">
         <h3>Vidas</h3>
-        <img src="./icons/heart.svg"></img>
-        <img src="./icons/heart.svg"></img>
-        <img class="gray" src="./icons/heart.svg"></img> 
+        <img src="/images/game/heart.svg"></img>
+        <img src="/images/game/heart.svg"></img>
+        <img class="gray" src="/images/game/heart.svg"></img> 
       </div>
       <div id="points" class="menu-stats">
         <h3>Pontos</h3>
@@ -26,9 +27,11 @@
     <main>
       <div id="gamecenter">
         <!-- <img id="bookcase" src="./icons/estante.png"></img> -->
-        <game-inventory id="bookcase"></game-inventory>
-        <img id="cauldron" src="./icons/Caldeirao.svg"></img>
-        <img id="wizard"   src="./icons/mago.png"></img>
+        <game-inventory id="bookcase">
+          <h3>INGREDIENTES</h3>
+        </game-inventory>
+        <img id="cauldron" src="/images/game/Caldeirao.svg"></img>
+        <img id="wizard"   src="/images/game/mago.png"></img>
       </div>
     </main>
    
