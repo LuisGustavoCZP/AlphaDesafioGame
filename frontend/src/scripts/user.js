@@ -91,36 +91,67 @@ class User
         .catch(resp => { console.log(resp); });
     }
 
+    userError = (data, unable) =>
+    {
+        this.#hasUser = false;
+        if(unable)
+        {
+            window.game.src="modules/error/index.html";
+        } else {
+            window.game.src="modules/main/index.html";
+            window.modal.src="modules/windows/login/";
+        }
+    }
+
     update () 
     {
-        //console.log(this.#userData);
-        
-        RequestSys.get("user", {params:{"userData":this.#userData}}, UserSucess, UserError);
+        RequestSys.get("user", {params:{"userData":this.#userData}}, userSucess, this.userError);
         const thisuser = this;
-        function UserSucess (data)
+        function userSucess (data)
         {
             thisuser.#hasUser = true;
             thisuser.data = data;
+            //window.modal.src="";
             if(false && !data.tutorial)
             {
                 window.game.src="modules/tutorial/index.html";
             }
             else 
             {
-                window.modal.src="";
                 window.game.src="modules/main/index.html";
             }
         }
+    }
 
-        function UserError (data, unable)
+    requestBook ()
+    {
+        RequestSys.get("book", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        const thisuser = this;
+        function userSucess (data)
         {
-            thisuser.#hasUser = false;
-            if(unable)
+            thisuser.#hasUser = true;
+            thisuser.data = data;
+            //window.modal.src="";
+            window.modal.src="modules/windows/index.html";
+        }
+    }
+
+    requestStock ()
+    {
+        RequestSys.get("stock", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        const thisuser = this;
+        function userSucess (data)
+        {
+            thisuser.#hasUser = true;
+            thisuser.data = data;
+            //window.modal.src="";
+            if(false && !data.tutorial)
             {
-                window.game.src="modules/error/index.html";
-            } else {
+                window.game.src="modules/tutorial/index.html";
+            }
+            else 
+            {
                 window.game.src="modules/main/index.html";
-                window.modal.src="modules/windows/login/";
             }
         }
     }
