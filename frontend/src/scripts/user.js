@@ -43,8 +43,9 @@ class User
         {
             const status = data;
             //console.log(data)
-            if(status == 1 || status == 2 ){
-                alert("Login ou Senha invalidos!");
+            if(status == 1 || status == 2){
+                //alert("Login ou Senha invalidos!");
+                this.newuser(user);
             } 
             else/*  if(status == 0) */
             {
@@ -62,7 +63,7 @@ class User
     {
         if(this.#hasUser) return;
 
-        fetch(`${RequestSys.URL()}login`, 
+        fetch(`${RequestSys.URL()}newuser`, 
         {
             method: 'post',
             mode: 'cors',
@@ -73,20 +74,7 @@ class User
         .then(data => 
         {
             const status = data;
-            //console.log(data)
-            if(status == 1 || status == 2 ){
-                alert("Login ou Senha invalidos!");
-            } 
-            else/*  if(status == 0) */
-            {
-                const status = data;
-                console.log(data);
-                if(status == 1 ){//already exists 
-                    this.login(username);
-                } else if(status == 0){ //New user created
-                    this.login(username);  
-                }
-            }
+            this.login(user);
         })
         .catch(resp => { console.log(resp); });
     }
@@ -125,10 +113,16 @@ class User
                 }
             }
 
+            console.log(thisuser.data.stages);
             thisuser.requestRanking();
             thisuser.requestStages();
             thisuser.requestBook();
             thisuser.requestStock();
+
+            /* console.log(thisuser.stages, thisuser.ranking); */
+            /* 
+            thisuser.requestBook();
+             */
         }
     }
 
@@ -152,6 +146,7 @@ class User
         function userSucess (data)
         {
             thisuser.book = data;
+            console.log(data);
             if(callback){
                 callback(data);
             }
@@ -165,6 +160,7 @@ class User
         function userSucess (data)
         {
             thisuser.stock = data;
+            console.log(data);
             if(callback){
                 callback(data);
             }

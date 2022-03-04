@@ -50,8 +50,14 @@ app.get("/:userData/potion", user.verifySession, game.sortPotion);
 //Ranking usuarios
 app.get("/ranking/:top", game.ranking);
 
+//Pegar o estoque em ordem aleatória
+app.get("/:userData/stock", user.verifySession, game.craft.stock);
+
 //livro
-//app.get("/:userData/book", user.VerifySession, game.userBook);
+app.get("/:userData/book", user.verifySession, game.craft.book);
+
+//Pegar o estoque em ordem aleatória
+app.get("/:userData/stages", user.verifySession, game.craft.userstages);
 
 //app.listen(port, )
 

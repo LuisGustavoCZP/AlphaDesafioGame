@@ -37,17 +37,20 @@ function newUser (_name, _pass)
     const user = 
     {
         "name":_name,
-        "pass":criptoPass(_pass),
-        stage:1,
+        stages:[],
+        stage:0,
         lives:3,
+        tutorial:false,
         points:0,
         highscore:0
     };
-
+    const i = users.length;
     users.push(user);
+
     saveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
+
 /* 
 function criptoPass (pass)
 {
@@ -124,7 +127,7 @@ function requestUser (req, res)
 
 function createUser (req, res) 
 {
-    const user = {name:req.body["user"], pass:req.body["pass"]};
+    const user = {name:req.body["user"]};
     if(search.name(user.name) != -1)
     {
         console.log(`${req.ip} : ${user.name} já existe!`);
@@ -132,7 +135,7 @@ function createUser (req, res)
         return;
     }
 
-    newUser(user.name, user.pass);
+    newUser(user.name);
     res.json(0);
 }
 

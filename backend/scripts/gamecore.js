@@ -1,5 +1,6 @@
 const User = require(`${__dirname}/user`);
 const Database = require(`${__dirname}/database`);
+const craft = require(`${__dirname}/craft`);
 const jwt = require('jsonwebtoken');
 
 const recipesecret = "R4kunN4-m4Tat4";
@@ -121,7 +122,6 @@ function userBook(req, res){
 
 }
 
-
 module.exports =
 {
     clearRecipe,
@@ -130,5 +130,6 @@ module.exports =
     sortItem,
     ranking,
     sortPotion,
-    userBook
+    userBook,
+    craft
 };
