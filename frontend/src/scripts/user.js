@@ -178,6 +178,7 @@ class User
         function userSucess (data)
         {
             thisuser.ranking = data;
+            console.log(data);
             if(callback){
                 callback(data);
             }
