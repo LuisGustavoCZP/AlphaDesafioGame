@@ -10,13 +10,13 @@ $(document).ready(() => {
 
        switch (idBtn) {
            case 'ranking':
-               modal.src="modules/windows/index.html";
+               modal.src="modules/windows/ranking/index.html";
                break;
            case 'play':
                modal.src="modules/windows/stages/";
                break;
            case 'howToPlay':
-               modal.src="modules/windows/index.html";
+               modal.src="modules/windows/howToPlay/index.html";
                break;
            /*case 'setting':
                resultContent = contentSetting();
