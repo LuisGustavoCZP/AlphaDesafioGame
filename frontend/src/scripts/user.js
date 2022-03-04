@@ -103,7 +103,7 @@ class User
         }
     }
 
-    update () 
+    update (callback) 
     {
         RequestSys.get("user", {params:{"userData":this.#userData}}, userSucess, this.userError);
         const thisuser = this;
@@ -112,46 +112,60 @@ class User
             thisuser.#hasUser = true;
             thisuser.data = data;
             //window.modal.src="";
-            if(false && !data.tutorial)
-            {
-                window.game.src="modules/tutorial/index.html";
+            if(callback){
+                callback(data);
+            } else {
+                if(false && !data.tutorial)
+                {
+                    window.game.src="modules/tutorial/index.html";
+                }
+                else 
+                {
+                    window.game.src="modules/main/index.html";
+                }
             }
-            else 
-            {
-                window.game.src="modules/main/index.html";
+
+            thisuser.requestStages();
+            thisuser.requestBook();
+            thisuser.requestStock();
+        }
+    }
+
+    requestStages (callback)
+    {
+        RequestSys.get("stages", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        const thisuser = this;
+        function userSucess (data)
+        {
+            thisuser.stages = data;
+            if(callback){
+                callback(data);
             }
         }
     }
 
-    requestBook ()
+    requestBook (callback)
     {
         RequestSys.get("book", {params:{"userData":this.#userData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
-            thisuser.#hasUser = true;
-            thisuser.data = data;
-            //window.modal.src="";
-            window.modal.src="modules/windows/index.html";
+            thisuser.book = data;
+            if(callback){
+                callback(data);
+            }
         }
     }
 
-    requestStock ()
+    requestStock (callback)
     {
         RequestSys.get("stock", {params:{"userData":this.#userData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
-            thisuser.#hasUser = true;
-            thisuser.data = data;
-            //window.modal.src="";
-            if(false && !data.tutorial)
-            {
-                window.game.src="modules/tutorial/index.html";
-            }
-            else 
-            {
-                window.game.src="modules/main/index.html";
+            thisuser.stock = data;
+            if(callback){
+                callback(data);
             }
         }
     }

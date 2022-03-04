@@ -13,7 +13,7 @@ $(document).ready(() => {
                modal.src="modules/windows/index.html";
                break;
            case 'play':
-               game.src="modules/game/";
+               modal.src="modules/windows/stages/";
                break;
            case 'howToPlay':
                modal.src="modules/windows/index.html";

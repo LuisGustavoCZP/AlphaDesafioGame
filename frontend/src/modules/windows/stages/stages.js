@@ -9,8 +9,7 @@ $(document).ready(() =>
             //$(`#Modal`).css("display","none");
             /* callFetchLogin(username); */
             /* console.log(parent.coiso); */
-            console.log(parent.gameuser.book);
-            
+            parent.gameuser.login(username);
             //parent.user.login(username);
         } else {
             alert("O nome precisa ser mais de 2 caracteres!");

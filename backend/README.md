@@ -65,8 +65,18 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 
 ## OBS:
 
+->> URGENTE
+# app.get("/book", user.VerifySession, game.userBook);
+-> Requisição do tipo GET para obter o nome das poções, a rota do icone e nome da poção, e um array com o ícone e nome dos ingredientes de cada poção
 
+->> URGENTE
+# app.get("/stages", user.VerifySession, ?);
+-> Requisição do tipo GET para obter o numero do estagio, a rota do icone do estagio, e um array com os ícones das poções de cada estágio
 
+->> URGENTE
+# app.get("/stock", user.VerifySession, ?);
+-> Requisição do tipo GET para obter um array com o ícone e nome dos ingredientes de cada poção
 
-
-
+->> URGENTE
+# app.post("/tutorial", user.VerifySession, ?);
+-> Requisição do tipo POST para adicionar um campo "tutorial" com valor "true" no objeto do usuario
