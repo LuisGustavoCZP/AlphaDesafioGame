@@ -51,7 +51,7 @@ app.get("/:userData/potion", user.verifySession, game.sortPotion);
 app.get("/ranking/:top", game.ranking);
 
 //livro
-app.get("/book", user.VerifySession, game.userBook);
+//app.get("/:userData/book", user.VerifySession, game.userBook);
 
 //app.listen(port, )
 

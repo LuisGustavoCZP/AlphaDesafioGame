@@ -125,6 +125,7 @@ class User
                 }
             }
 
+            thisuser.requestRanking();
             thisuser.requestStages();
             thisuser.requestBook();
             thisuser.requestStock();
@@ -164,6 +165,19 @@ class User
         function userSucess (data)
         {
             thisuser.stock = data;
+            if(callback){
+                callback(data);
+            }
+        }
+    }
+
+    requestRanking (callback)
+    {
+        RequestSys.get("ranking/5", {}, userSucess, this.userError); //params:{"userData":this.#userData}
+        const thisuser = this;
+        function userSucess (data)
+        {
+            thisuser.ranking = data;
             if(callback){
                 callback(data);
             }

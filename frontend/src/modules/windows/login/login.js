@@ -9,6 +9,7 @@ $(document).ready(() =>
             //$(`#Modal`).css("display","none");
             /* callFetchLogin(username); */
             /* console.log(parent.coiso); */
+            
             parent.gameuser.login(username);
             //parent.user.login(username);
         } else {
