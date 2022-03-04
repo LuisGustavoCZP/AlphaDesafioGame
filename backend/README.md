@@ -71,7 +71,7 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 
 ->> URGENTE
 # app.get("/stages", user.VerifySession, ?);
--> Requisição do tipo GET para obter o numero do estagio, a rota do icone do estagio, e um array com os ícones das poções de cada estágio
+-> Requisição do tipo GET para obter um array com o numero do estagio, o numero de pontos maximo, e um array com os ícones das poções de cada estágio, do estagio inicial até o estágio que o jogador está
 
 ->> URGENTE
 # app.get("/stock", user.VerifySession, ?);
