@@ -1,8 +1,8 @@
 :root {
     --azul: cadetblue;
     --azuldark: rgb(51, 62, 87);
-    --montain: brown;
-    --ground: green;
+    --montain: rgb(105, 90, 48);
+    --ground: rgb(38, 128, 38);
     /* color: antiquewhite; */
     --paper: antiquewhite;
 }
