@@ -65,30 +65,35 @@ class WeatherSys extends HTMLElement
     #current;
     #playing;
     #ready;
-    #layers;
+    layers;
     #possibles;
 
     constructor()
     {
         super();
-        const p = this.parentElement.getBoundingClientRect();
+        
         //console.log(p);
         this.style.position = "absolute";
         /* this.width = p.width;
         this.height = p.height; */
         this.style.display = "flex";
         this.style.flexGrow = "1";
-        this.style.width = `${p.width}px`;
-        this.style.height = `${p.height}px`;
+        const p = this.parentElement.getBoundingClientRect();
+        
+        /* this.style.width = `${p.width}px`;
+        this.style.height = `${p.height}px`; */
         this.style.overflow = "hidden";
         //this.#current = null;
         this.#playing = false;
         this.#ready = false;
-        this.#layers = [];
+        this.layers = [];
         this.sprites = [];
         this.max = 0;
         this.layerDist = 0;
         this.layerZ = 0;
+
+        this.width = p.width;
+        this.height = p.height;
         
         if(this.hasAttribute('play')) {
             this.#playing = this.getAttribute('play') == "false"? false : true;
@@ -173,6 +178,31 @@ class WeatherSys extends HTMLElement
         }
     }
 
+    /**
+     * @param {Number} num
+     */
+     set width (num) {
+        this.style.width = `${num}px`;
+        super.width = num;
+        this.layers.forEach(layer => 
+        {
+            layer.width = num;
+        });
+    }
+
+    /**
+     * @param {Number} num
+     */
+    set height (num) {
+
+        this.style.height = `${num}px`;
+        super.height = num;
+        this.layers.forEach(layer => 
+        {
+            layer.height = num;
+        });
+    }
+
     static define ()
     {
         console.log("Iniciou Weather");
@@ -191,7 +221,7 @@ class WeatherSys extends HTMLElement
         newcanvas.style = "position: absolute;" + " z-index:" + z + ";";
         newcanvas.width = r.width;
         newcanvas.height = r.height;
-        this.#layers.push({ "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]});
+        this.layers.push({ "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]});
         this.prepend(newcanvas);
         return newcanvas;
     }
@@ -293,7 +323,7 @@ class WeatherSys extends HTMLElement
 
         if(target.#ready || true)
         {
-            this.#layers.forEach((layer) => 
+            this.layers.forEach((layer) => 
             {
                 this.layerloop(target, layer);
             });
