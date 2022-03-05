@@ -169,7 +169,7 @@ class WeatherSys extends HTMLElement
         }
 
         if(this.#playing){
-            this.Play();
+            this.play();
         }
     }
 
@@ -196,13 +196,13 @@ class WeatherSys extends HTMLElement
         return newcanvas;
     }
 
-    Play ()
+    play ()
     {
         this.#playing = true;
         this.loop(this);
     }
 
-    Stop ()
+    stop ()
     {
         this.#playing = false;
     }
@@ -226,7 +226,7 @@ class WeatherSys extends HTMLElement
         
         if(layer.objects.length < target.density*10*(1/s)) //*mds
         { //* (1/mds)
-            if(layer.objects.timer == undefined || layer.objects.timer > (40/target.density))
+            if(layer.objects.timer == undefined || layer.objects.timer > 0)//(40/target.density)
             {
                 layer.objects.timer = 0;
 
@@ -240,12 +240,13 @@ class WeatherSys extends HTMLElement
                     return target.sprites[parseInt(Math.random()*target.sprites.length)];
                 }
                 function randomHeight () {
-                    const alt = target.altitude*h;
-                    return -h+(Math.random()*50+alt)*(1/s);
+                    const alt = (1 - target.altitude)*h;
+                    const dif = (h*.5);
+                    return -alt+(Math.random()*50+dif)*(1/s)-dif;
                 }
 
                 const newobj = {
-                    "x": (Math.random()*h*4)-h*2,
+                    "x": (Math.random()*w*4)-(w*2),
                     "y": randomHeight (),
                     "size": randomSize (),
                     "speed": randomSpeed (),

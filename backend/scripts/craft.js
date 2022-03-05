@@ -83,7 +83,12 @@ function getStages (user)
 
 function getStock (user)
 {
-    return ingredients.i;
+    const t = [];
+    for(let key in ingredients.i)
+    {
+        t.push(ingredients.i[key]);
+    }
+    return t;
 }
 
 function getBook (user)

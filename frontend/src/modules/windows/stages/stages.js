@@ -13,7 +13,8 @@ $(document).ready(() =>
     }); */
 
     console.log(parent.gameuser.stages);
-
+    parent.game.src = "modules/game/";
+    parent.modal.src = "";
     $(".close").on("click", function() 
     {
         console.log("Close");

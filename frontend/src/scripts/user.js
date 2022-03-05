@@ -103,14 +103,11 @@ class User
             if(callback){
                 callback(data);
             } else {
-                if(false && !data.tutorial)
+                if(!data.tutorial)
                 {
-                    window.game.src="modules/tutorial/index.html";
+                    window.modal.src="modules/windows/howToPlay";
                 }
-                else 
-                {
-                    window.game.src="modules/main/index.html";
-                }
+                window.game.src="modules/main/index.html";
             }
 
             console.log(thisuser.data.stages);

@@ -3,6 +3,8 @@
     position: relative; 
     width: 100%; height: 100%; 
     overflow: hidden;
+    
+    background-color: var(--azuldark); 
 }
 
 #castle {
@@ -11,7 +13,7 @@
     align-self: flex-end;
     justify-content: center;
     align-items: flex-end;
-    width: 20%;
+    width: 30%;
     height: fit-content;
     left: 40%;
     bottom: 10%;
@@ -37,14 +39,20 @@
 }
 
 .backimage.a {
-    bottom: 20%;
-    background-image: url("../../images/background/mountains.png");
-    background-repeat: repeat;
-    height: 50%;
+    bottom: 0%;
+    background-color: var(--montain);
+    --img: url(../../images/background/mountains.png);
+    -webkit-mask: var(--img) repeat center;
+    mask: var(--img) repeat center;
+    /* background-image: url();
+    background-repeat: repeat; */
+    height: 76.5%;
 }
 
 .backimage.b {
-    background-image: url("../../images/background/greenground.png");
-    background-repeat: repeat;
+    background-color: var(--ground);
+    --img: url(../../images/background/greenground.png);
+    -webkit-mask: var(--img) repeat center;
+    mask: var(--img) repeat center;
     height: 30%;
 }

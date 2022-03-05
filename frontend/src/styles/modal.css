@@ -152,7 +152,8 @@ button:hover, #btn-play:hover, #btn-login:hover {
     font-family: 'Skranji', cursive;
     color:whitesmoke;
     text-align:center;
-    padding-top: 55px;
+    vertical-align: middle;
+    padding-top: 2em;
     font-size: 25px;
     letter-spacing: .2rem;
 }
@@ -184,18 +185,27 @@ button:hover, #btn-play:hover, #btn-login:hover {
   }
   
 
-
+#menu-header {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 0% 25%;
+}
 /* - - - -- - - - */
 /* The Close Button */
 .close {
   color: #aaaaaa;
   /*float: right;*/
-  position: fixed;
-
+  position: absolute;
+  display: flex;
+  text-align: center;
+  vertical-align: middle;
   font-size: 50px;
   font-weight: bold;
-  padding-top: 40px;
-  padding-left: 380px;
+  right: 25%;
+  margin-top: 5%;
+  /* padding-top: 40px; */
+  /* padding-left: 380px; */
   
 }
 .close:hover,

@@ -20,25 +20,17 @@ class Inventory extends HTMLElement
         } 
         /* if(columns) */
         this.style.listStyle = "none";
-        window.gameuser.requestStock (this.createItens);
+        window.gameuser.requestStock ((data) => this.createItens(data));
     }
 
     createItens (data)
     {
-        console.log(data, this);
-        data.stock.forEach(item => 
-        {
-            const el = document.createElement("li");
-            el.innerHTML = `<img src="/images/${item.icon}"></img>`;
-            this.container.appendChild(el);
-        });
-        data.stock.forEach(item => 
-        {
-            const el = document.createElement("li");
-            el.innerHTML = `<img src="/images/${item.icon}"></img>`;
-            this.container.appendChild(el);
-        });
-        data.stock.forEach(item => 
+        const d = [data];
+        console.log(data);
+        for(let i in data){
+            console.log(i);
+        }
+        data.forEach(item => 
         {
             const el = document.createElement("li");
             el.innerHTML = `<img src="/images/${item.icon}"></img>`;
