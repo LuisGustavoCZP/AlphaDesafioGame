@@ -48,7 +48,7 @@ footer{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #51341F;
+    background-color: var(--menu-dark);
     z-index: 1000;
 }
 
@@ -71,7 +71,7 @@ footer{
     width: 110px;
     height: 110px;
     margin-top: 15px;
-    background-color: #4EA466;
+    background-color: var(--menu-glow);
 }
 
 button {
@@ -79,7 +79,7 @@ button {
     height: 70px;
     font-weight: 500;
     color: #000;
-    background-color: #A07048;
+    background-color: var(--menu-mid);
     border: none;
     border-radius: 45px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -93,7 +93,7 @@ button {
 }
   
 button:hover, #btn-play:hover, #btn-login:hover {
-    background-color: #26b179;
+    background-color: var(--menu-glow-low);
     transform: translateY(-7px);
 }
 #btn-setting{
@@ -109,4 +109,32 @@ button:hover, #btn-play:hover, #btn-login:hover {
 }
 #btn-howToPlay {
     background-image: url("../../images/main/question.svg");
+}
+
+.menu-title {
+    display: flex;
+    background-color: var(--menu-dark);
+    color: var(--menu-mid);
+    --img: url(../../images/main/menu.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    -webkit-mask-clip: border-box;
+    -webkit-mask-size: cover;
+    mask-clip: border-box;
+    mask-size: cover;
+    position: absolute;
+    border-radius: 50px;
+    width: 300px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-title > * {
+   /*  font-family: 'magic1'; */
+   /* font-family: 'Rock Salt', cursive; */
+   font-family: 'Press Start 2P', cursive;
+   font-size: 400%;
+   text-align: center;
+   vertical-align: middle;
 }

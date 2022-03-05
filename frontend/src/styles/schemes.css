@@ -116,12 +116,6 @@ body {
   cursor: pointer;
 }
 
-.menu-title {
-    position: absolute;
-    width: 350px;
-    height: 170px;
-}
-
 .hidden {
   display: none;
 }

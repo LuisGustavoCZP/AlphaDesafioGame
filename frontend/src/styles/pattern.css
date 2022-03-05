@@ -1,9 +1,26 @@
+@font-face {
+    font-family: 'magic1';
+    src: url('../fonts/MagicSchoolTwo.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
     --azul: cadetblue;
     --azuldark: rgb(51, 62, 87);
     --montain: rgb(105, 90, 48);
     --ground: rgb(38, 128, 38);
-    --modal-background: #51341F;
+    --menu-dark: #51341F;
+    --menu-mid: #A07048;
+    --menu-glow: #4EA466;
+    --menu-glow-low: #26b179;
+    /* --menu-dark: #1f4551;
+    --menu-mid: #4875a0;
+    --menu-glow: #4EA466;
+    --menu-glow-low: #26b179; */
+    --modal-background: var(--menu-dark);
     /* color: antiquewhite; */
     --paper: antiquewhite;
+    --menu-title-font: 'Press Start 2P', cursive;
 }
