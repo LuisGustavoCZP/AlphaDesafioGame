@@ -116,10 +116,19 @@ button:hover #btn-play:hover, #btn-login:hover {
 }
 
 /* Modal Content */
-.menu-background{
-    background-image: url("../images/main/menu.svg");
+.menu-background {
+    
+    background-color: var(--modal-background);
+    --img: url(../images/main/menu.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    -webkit-mask-clip: border-box;
+    -webkit-mask-size: contain;
+    mask-clip: border-box;
+    mask-size: contain;
+    /* background-image: url("../images/main/menu.svg");
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     margin: auto;
     border: 1px solid rgba(136, 136, 136, 0);
     width: 480px;
@@ -132,7 +141,8 @@ button:hover #btn-play:hover, #btn-login:hover {
     margin-left: 60px;
     margin-top: 5px;
     background-color: #a4704e00;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: auto;
     padding: 10px;
     border-radius: 10px;
    
@@ -142,7 +152,6 @@ button:hover #btn-play:hover, #btn-login:hover {
     text-align: center;
     flex-wrap: wrap;
     justify-content: center;
-  
 }
 #title{
     height: 34px;

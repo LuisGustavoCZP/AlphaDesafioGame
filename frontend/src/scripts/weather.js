@@ -234,7 +234,7 @@ class WeatherSys extends HTMLElement
                     return ((Math.random() * .5) + .5) * s * target.size;
                 }
                 function randomSpeed () {
-                    return ((.1 *  Math.random()) + .3) * s * target.speed;
+                    return ((.2 *  Math.random()) + .3) * s * target.speed;
                 }
                 function randomSprite () {
                     return target.sprites[parseInt(Math.random()*target.sprites.length)];
