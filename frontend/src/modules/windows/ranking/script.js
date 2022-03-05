@@ -1,9 +1,8 @@
-import { Request } from "../scripts/request.js";
 $(document).ready(() => 
 {
     $(".menu-background > *").remove();
     
-    const cookie = document.cookie;
+    //const cookie = document.cookie;
     const ranking = parent.gameuser.ranking;
 
     let result = `<span class="close">&times;</span>
@@ -11,13 +10,14 @@ $(document).ready(() =>
     <div id="content">`;
     ranking.forEach((element,index) => {
         result += `<div id="place-${index + 1}" class="places">
-                        <p> #${index + 1} - ${element.name}</p>
+                        <p> #${element.classification} - ${element.name}</p>
                         <p> ${element.highscore} PONTOS</p>
                     </div>`;
     });
     result += `</div>`;
+    console.log(result);
     
-    $(".menu-background > *").html(result);
+    $(".menu-background").append(result);
 
     $(".close").on("click", function() 
     {

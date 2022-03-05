@@ -82,10 +82,9 @@ button {
     background-position: center;
     background-repeat: no-repeat;
 }
-  
-button:hover, #btn-play:hover, #btn-login:hover {
+button:hover #btn-play:hover, #btn-login:hover {
     background-color: #26b179;
-    transform: translateY(-7px);
+    transform: translateY(-5px);
 }
 #btn-setting{
     transform: translateY(0px);
@@ -190,6 +189,7 @@ button:hover, #btn-play:hover, #btn-login:hover {
     flex-direction: row;
     position: relative;
     padding: 0% 25%;
+    justify-content: space-around;
 }
 /* - - - -- - - - */
 /* The Close Button */
@@ -246,4 +246,33 @@ input {
     font-family: 'Skranji', cursive;
     border-radius: 30px;
     text-align: center;
+}
+
+img {
+    width: 32px;
+    height: 32px;
+}
+
+.potions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+}
+.stages {
+    width: 80%;
+    height: fit-content;
+    background-color: rgba(136, 99, 85, 0.774);
+    border-radius: 30px;
+    margin: 5px;
+    color: #DAA520;
+}
+
+.stageButton{
+    margin-top: 10px;
+    font-family: 'Skranji', cursive;
+
+}
+.stageButton:hover{
+    background-color: #26b179;
 }
