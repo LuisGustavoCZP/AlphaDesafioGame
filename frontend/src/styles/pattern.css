@@ -24,3 +24,11 @@
     --paper: antiquewhite;
     --menu-title-font: 'Press Start 2P', cursive;
 }
+
+.hidden {
+    display: none;
+}
+
+img.gray {
+    filter: grayscale(100%);
+}

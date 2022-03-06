@@ -87,9 +87,24 @@ class User
         {
             window.game.src="modules/error/index.html";
         } else {
-            window.game.src="modules/main/index.html";
-            window.modal.src="modules/windows/login/";
+            this.goTo("modules/main/", "modules/windows/login/");
+            
         }
+    }
+
+    goTo (gamePath, modalPath)
+    {
+        window.transition.play();
+        window.transition.oncomplete = (target) => 
+        { 
+            console.log(target);
+            window.transition.stop();
+            window.game.src=gamePath;
+            if(modalPath) window.modal.src=modalPath;
+            window.transition.play();
+            console.log(window.transition.playing);
+            
+        };
     }
 
     update (callback) 
@@ -104,11 +119,7 @@ class User
             if(callback){
                 callback(data);
             } else {
-                if(!data.tutorial)
-                {
-                    window.modal.src="modules/windows/howToPlay";
-                }
-                window.game.src="modules/main/index.html";
+                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : undefined);
             }
 
             console.log(thisuser.data.stages);
@@ -122,6 +133,16 @@ class User
             thisuser.requestBook();
              */
         }
+    }
+
+    start (stage)
+    {
+        console.log(stage);
+        if(this.stages.length <= stage-1) return;
+        this.stage = stage;
+        this.goTo("modules/game/");
+        /* window.game.src="modules/game/";
+        window.modal.src=""; */
     }
 
     requestStages (callback)

@@ -28,12 +28,16 @@ main {
 header {
     position: absolute;
     z-index: 1000;
-    width: 90%;
+    padding: 0;
+    width: 400px;
     height: 10%;
-    padding: 5%;
+    top: 2%;
+    right: 2%;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: row;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .menu-stats {
@@ -45,9 +49,9 @@ header {
     box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
     /* left: 10%; */
     height: 50%;
-    width: 13%;
+    width: 30%;
     /* height: 40px; */
-    padding: 1% 2%;
+    padding: 2% 5%;
     margin: 10px 10px;
     justify-content: space-evenly;
     align-items: stretch;
@@ -89,10 +93,7 @@ header {
     border-radius: 15px;
     border: solid #000 5px;
     z-index: 1003;
-}
-
-img.gray {
-    filter: grayscale(100%);
+    user-select: none;
 }
 
 #gamecenter {
@@ -124,6 +125,7 @@ img.gray {
     height: 75.6%;
     width: 40%;
     z-index: 10;
+    user-select: auto;
 }
 
 #cauldron{
@@ -133,6 +135,14 @@ img.gray {
     /* height: 19.439%;  */
     height: 45%;
     z-index: 30;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-drag: none;
+    -moz-user-drag: none;
+    -webkit-user-drag: none;
+    -ms-user-drag: none;
 }
 
 #cauldron{

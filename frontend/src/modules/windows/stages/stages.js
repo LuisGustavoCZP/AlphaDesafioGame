@@ -13,7 +13,7 @@ $(document).ready(() =>
                 <div id="content">`;
     stages.forEach((element,index) => {
         result += `<div id="stage-${index + 1}" class="stages">
-                        <button id="btn-stage${index+1}" class="stageButton">FASE ${element.stage + 1}</button>
+                        <button id="btn-stage${index+1}" class="stageButton" stage="${element.stage + 1}">FASE ${element.stage + 1}</button>
                         <p> ${element.highscore} PONTOS</p>
                         <div class="potions">
                     `;
@@ -33,7 +33,8 @@ $(document).ready(() =>
 
     //Clica na fase e faz algo
     $("button").on("click", (e) =>{
-        console.log(e.target);
+        /* console.log(e.target); */
+        parent.gameuser.start(e.target.getAttribute("stage"));
     });
     //console.log(parent.gameuser.stages);
     /*parent.game.src = "modules/game/";

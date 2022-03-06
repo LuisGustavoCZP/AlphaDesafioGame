@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>    
         <script type="module" src="scripts/gameelement.js"></script>
+        <script type="module" src="scripts/gametransition.js"></script>
         <script type="module" src="scripts/modalsys.js"></script>
         <link rel="stylesheet" href="./styles/pattern.css">
         <link rel="stylesheet" href="./styles/schemes.css">
     </head>
     <body>
         <!-- <script type="module" src="./scripts/user.js"></script> -->
+        <game-transition id="transition" layer="12000" play="false" speed="1.5" size="3"></game-transition>
         <iframe id="modal" is="modal-window" frameborder="0"></iframe>
         <game-element id="game" style="width: 100vw; height: 100vh;"></game-element>
         <script type="module" src="scripts/main.js"></script>

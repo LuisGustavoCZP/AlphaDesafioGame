@@ -1,9 +1,7 @@
 [
     { "id":"r0", "item":"p0", "ingredients": ["i0", "i2", "i3"] },
-    { "id":"r1", "item":"p1", "ingredients": ["i0", "i2", "i5"] },
+    { "id":"r1", "item":"p1", "ingredients": ["i0", "i2", "i4"] },
     { "id":"r2", "item":"p2", "ingredients": ["i1", "i3", "i4"] },
-    { "id":"r3", "item":"p3", "ingredients": ["i5", "i1", "i7"] },
-    { "id":"r4", "item":"p4", "ingredients": ["i2", "i1", "i6"] },
-    { "id":"r5", "item":"p5", "ingredients": ["i4", "i7", "i1", "i3"] },
-    { "id":"r6", "item":"p6", "ingredients": ["i5", "i8", "i2", "i3"] }
+    { "id":"r5", "item":"p5", "ingredients": ["i3", "i2", "i1", "i3"] },
+    { "id":"r6", "item":"p6", "ingredients": ["i1", "i3", "i2", "i3"] }
 ]

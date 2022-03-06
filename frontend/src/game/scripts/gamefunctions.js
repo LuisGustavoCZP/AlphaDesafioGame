@@ -1,4 +1,4 @@
-import { Request } from "../../scripts/request.js";
+import { RequestSys } from "../../scripts/request.js";
 import { SoundSys } from "./soundsys.js";
 import { Animations } from "./animations.js";
 
@@ -86,7 +86,7 @@ class GameFunctions{
     
     /* Preenche as prateleiras de itens */
     fillShelves(){
-        Request.get("stock", 
+        RequestSys.get("stock", 
         {params:document.cookie.replace("userData=", "")},
         data => 
         {
@@ -116,7 +116,7 @@ class GameFunctions{
 
     /* Sorteia os ingredientes que deverão se jogados no caudeirão */
     lotery (){
-        Request.get(this.gameMode, 
+        RequestSys.get(this.gameMode, 
         {params:document.cookie.replace("userData=", "")},
         data => 
         {
@@ -211,7 +211,7 @@ class GameFunctions{
             this.animations.removeAnimations();
             setTimeout(() =>{this.audio.tremor()}, 50);
             setTimeout(() =>{this.animations.finishedPotion()}, 50);
-            Request.post("recipe", 
+            RequestSys.post("recipe", 
             fullCauldron,
             data => 
             {
@@ -248,7 +248,7 @@ class GameFunctions{
 
     /* Devolve as vidas ao jogador e volta ele para a primeira fase */
     resetGame(){
-        Request.post("reset", 
+        RequestSys.post("reset", 
         {},
         data => 
         {
@@ -281,7 +281,7 @@ class GameFunctions{
 
     /* Pega as informações iniciais do jogador */
     getStartInfo(){
-        Request.get("user", 
+        RequestSys.get("user", 
             {params:document.cookie.replace("userData=", "")},
             data => 
             {

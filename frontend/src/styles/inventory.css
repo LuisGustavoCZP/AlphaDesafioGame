@@ -20,10 +20,11 @@
 .inventory > ul {
     display: flex;
     /* width: 100%; */
-    width: fit-content;
+    width: calc(100% - 40px);
     height: 100%;
     list-style: none;
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 10px 10px;
+    /* margin: auto; */
     padding: 10px 10px 10px 10px;
     background-color: rgb(182, 152, 111);
     justify-content: flex-start;
@@ -47,9 +48,35 @@
     border: solid rgb(139, 112, 75);
 }
 
-.inventory > ul > li > img {
-    object-fit: contain;
+.inventory [draggable="true"] {
+    /*
+   To prevent user selecting inside the drag source
+  */
+    /* user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none; */
 }
+
+.inventory *.item {
+    object-fit: contain;
+    cursor: pointer;
+    width: 100%;
+}
+
+.inventory *.item.dragging {
+    opacity: .25;
+    
+}
+
+.hover {
+    background-color: rgba(0,191,165,.04);
+}
+
+/* .item::drag-image {
+    cursor: move;
+    background-color: aqua;
+} */
 
 .inventory > ul > li * {
     z-index: 16;
