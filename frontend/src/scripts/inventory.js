@@ -1,3 +1,16 @@
+const pseudoStock = 
+[
+    {"name": "Maracujá", "icon": "assets/ingredients/1.png", "id": "i0"},
+    {"name": "Abóbora", "icon": "assets/ingredients/2.png", "id": "i1"},
+    {"name": "Alface", "icon": "assets/ingredients/3.png", "id": "i2"},
+    {"name": "Tomate", "icon": "assets/ingredients/4.png", "id": "i3"},
+    {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png", "id": "i4"},
+    {"name": "Teia de Aranha", "icon": "assets/ingredients/6.png", "id": "i5"},
+    {"name": "Teia de Aranha", "icon": "assets/ingredients/7.png", "id": "i6"},
+    {"name": "Teia de Aranha", "icon": "assets/ingredients/8.png", "id": "i7"},
+    {"name": "Teia de Aranha", "icon": "assets/ingredients/9.png", "id": "i8"}
+];
+
 class Inventory extends HTMLElement
 {
     container;
@@ -11,27 +24,68 @@ class Inventory extends HTMLElement
         linkcss.href = "/styles/inventory.css";
         this.before(linkcss);
         this.classList.add("inventory");
-        this.container = document.createElement("ul");
+        this.container = document.createElement("table");
         this.append(this.container);
         if(this.hasAttribute('columns')) {
             this.columns = this.getAttribute('columns');
+        } else {
+            this.columns = 5;
         }
+        if(this.hasAttribute('rows')) {
+            this.rows = this.getAttribute('rows');
+        } else {
+            this.rows = 6;
+        }
+        
         this.style.listStyle = "none";
+        this.createRows ();
+        this.createItens(pseudoStock);
     }
 
-    start (){
+    start ()
+    {
         window.gameuser.requestStock ((data) => this.createItens(data));
+    }
+
+    createColumn ()
+    {
+        const tableColunm = document.createElement("td");
+        return tableColunm;
+    }
+
+    createRow ()
+    {
+        const tableRow = document.createElement("tr");
+        for (let i = 0; i < this.columns; i++) 
+        {
+            //tableRow.appendChild(this.createColumn ());
+        }
+        return tableRow;
+    }
+
+    createRows ()
+    {
+        this.tableRows = [];
+        for (let i = 0; i < this.rows; i++) 
+        {
+            const table = this.createRow ();
+            this.tableRows.push(table);
+            this.container.append(table);
+        }
     }
 
     createItens (data)
     {
-        const d = [data];
+        //const d = [data];
         console.log(data);
+        const maxColumns = this.columns; //this.tableRows.length;
+        let row = -1;
         //this.container.ondragover = this.dragOver;
-        data.forEach(item => 
+        data.forEach((item, i) => 
         {
-            const el = document.createElement("li");
-            el.innerHTML = `<img class="item" id="${item.id}" src="/images/${item.icon}"></img>`;
+            const el = document.createElement("td");
+
+            el.innerHTML = (`<img class="item" id="${item.id}" src="/images/${item.icon}"></img>`);
             $(function ()
             {
                 const d = $(`#${item.id}`);
@@ -55,7 +109,9 @@ class Inventory extends HTMLElement
             /* .ondragstart = this.dragStart;
             el.children[0].ondragend = this.dragEnd;
             el.children[0].ondrag = this.drag; */
-            this.container.appendChild(el);
+            if(i % maxColumns == 0) row++;
+            //console.log(i % maxColumns, maxColumns, i, row, this.container.children);
+            this.container.children[row].append(el);
         });
     }
 

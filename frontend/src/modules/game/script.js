@@ -3,18 +3,20 @@ $(document).ready(function()
 {
     const bookcase = $("#bookcase")[0];
     const cauldron = $("#cauldron");
-    window.modal.src="modules/windows/stage";
+    if(window.modal) window.modal.src="modules/windows/stage";
     setTimeout(() => 
     {
         console.log(bookcase);
-        bookcase.start();
-        window.modal.src="";
+        if(window.modal){
+            bookcase.start();
+            window.modal.src="";
+        }
         cauldron.droppable({
             accept: ".item",
             activate: function( event, ui ) { cauldron[0].classList.add("highlight"); },
             deactivate: function( event, ui ) { cauldron[0].classList.remove("highlight"); },
-            over: function( event, ui ) { cauldron[0].classList.add("placing"); },
-            out: function( event, ui ) { cauldron[0].classList.remove("placing"); },
+            over: function( event, ui ) { cauldron[0].classList.add("placing"); ui.helper[0].classList.add("ui-draggable-dropping"); }, //
+            out: function( event, ui ) { cauldron[0].classList.remove("placing"); ui.helper[0].classList.remove("ui-draggable-dropping"); }, //
             drop: function( event, ui ) 
             { 
                 const container = cauldron[0];

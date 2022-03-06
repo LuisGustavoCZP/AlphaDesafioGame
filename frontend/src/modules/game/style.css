@@ -123,9 +123,9 @@ header {
     left: -20%;
     bottom: 5%;
     height: 75.6%;
-    width: 40%;
+    width: fit-content;
     z-index: 10;
-    user-select: auto;
+    user-select: none;
 }
 
 #cauldron{
@@ -154,13 +154,15 @@ header {
 #cauldron.highlight{
     /* animation-name: shine;
     animation-duration: 1s; */
-    filter: brightness(1) drop-shadow(1px 1px 5px rgb(243, 115, 255)); transform: scale(1.1);
+    filter: brightness(1) drop-shadow(15px 15px 20px rgb(255, 246, 115)); /*   */
+    /* transform: scale(1.1); */
 }
 
 #cauldron.placing{
     /* animation-name: shine;
     animation-duration: 1s; */
-    filter: brightness(1) drop-shadow(1px 1px 5px rgb(115, 148, 255)); transform: scale(1.1);
+    filter: brightness(1) drop-shadow(5px 5px 5px rgb(115, 148, 255)); 
+    transform: scale(1.1);
 }
 
 /* #cauldron{

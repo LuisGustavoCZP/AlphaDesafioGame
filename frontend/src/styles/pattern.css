@@ -7,18 +7,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-    --azul: cadetblue;
+/*     --azul: cadetblue;
     --azuldark: rgb(51, 62, 87);
     --montain: rgb(105, 90, 48);
     --ground: rgb(38, 128, 38);
-    --menu-dark: #51341F;
-    --menu-mid: #A07048;
-    --menu-glow: #4EA466;
-    --menu-glow-low: #26b179;
-    /* --menu-dark: #1f4551;
-    --menu-mid: #4875a0;
-    --menu-glow: #4EA466;
-    --menu-glow-low: #26b179; */
+    --menu-dark: rgb(81, 52, 31);
+    --menu-mid: rgb(160, 112, 72);
+    --menu-glow: rgb(78, 164, 102);
+    --menu-glow-low: rgb(38, 177, 121);
+    --wood-light: rgb(182, 152, 111);
+    --wood-dark: rgb(139, 112, 75);; */
+    --azul: rgb(95, 158, 160);
+    --azuldark: rgb(51, 62, 87);
+    --montain: rgb(105, 90, 48);
+    --ground: rgb(38, 128, 38);
+    --menu-dark: rgb(31, 51, 81);
+    --menu-mid: rgb(160, 136, 72);
+    --menu-glow: rgb(78, 164, 102);
+    --menu-glow-low: rgb(38, 177, 121);
+    --wood-light: rgb(182, 152, 111);
+    --wook-mid: rgb(168, 151, 128);
+    --wood-dark: rgb(117, 88, 47);
+    --wook-details: var(--menu-mid);
     --modal-background: var(--menu-dark);
     /* color: antiquewhite; */
     --paper: antiquewhite;

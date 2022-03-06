@@ -83,6 +83,7 @@ class User
     userError = (data, unable) =>
     {
         this.#hasUser = false;
+        console.log(unable);
         if(unable)
         {
             window.game.src="modules/error/index.html";

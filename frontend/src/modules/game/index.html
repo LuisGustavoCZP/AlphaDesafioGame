@@ -4,17 +4,20 @@
     <!-- <title>Torre Flamel</title> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../styles/pattern.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>    
   </head>
   <body> <!-- Backgound -->
     <link rel="stylesheet" href="../../modules/game/style.css">
     <script type="module" src="../../scripts/inventory.js"></script>
+    <script type="module" src="../../scripts/crafter.js"></script>
     <main>
       <div id="gamecenter">
         <!-- <img id="bookcase" src="./icons/estante.png"></img> -->
-        <game-inventory id="bookcase">
+        <game-inventory id="bookcase" column="4">
           <h3>INGREDIENTES</h3>
         </game-inventory>
-        <img id="cauldron" src="/images/game/Caldeirao.svg"></img>
+        <game-crafter id="cauldron" img="/images/game/cauldron.png"></game-crafter>
         <img id="wizard"   src="/images/game/mago.png"></img>
       </div>
     </main>

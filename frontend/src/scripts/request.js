@@ -68,7 +68,7 @@ function requestSys (url="https://vacsina.servegame.com:8000/") //""
         Caso nenhuma informação seja passada, o objeto pode ser vazio. Ex : {}
         Caso só params seja usado a query não precisa estar presente no objeto e vice versa. Ex : { params:{...} }
     */
-    function get (path, info, onsucess = ()=>{}, onfail = ()=>{})
+    function get (path, info, onsucess = (d)=>{}, onfail = (r, u)=>{})
     {
         const params = info.params ? info.params.userData != "" ? createParams(info.params)+"/" : "no/" : ""; 
         //console.log(params);
