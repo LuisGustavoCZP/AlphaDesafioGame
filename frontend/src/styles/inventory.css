@@ -20,12 +20,13 @@
 .inventory > ul {
     display: flex;
     /* width: 100%; */
-    width: calc(100% - 40px);
+    width: calc(100% - 30px);
     height: 100%;
+    min-width: fit-content;
     list-style: none;
-    margin: 0 15px 10px 10px;
+    margin: 0 15px 15px 15px;
+    padding: 0;
     /* margin: auto; */
-    padding: 10px 10px 10px 10px;
     background-color: rgb(182, 152, 111);
     justify-content: flex-start;
     /* justify-items: center; */
@@ -39,11 +40,11 @@
     justify-content: center;
     align-items: center;
     z-index: 15;
-    width: 100%;
-    min-width: 10%;
-    max-width: 10%;
+    width: 64px;
+    height: 64px;
+    /* min-width: 10%;
+    max-width: 10%; */
     padding: 2%;
-    height: fit-content;
     background-color: rgb(168, 151, 128);
     border: solid rgb(139, 112, 75);
 }
@@ -67,6 +68,14 @@
 .inventory *.item.dragging {
     opacity: .25;
     
+}
+
+.ui-draggable-handle {
+    width: 64px;
+}
+
+.ui-draggable-dragging {
+
 }
 
 .hover {

@@ -94,17 +94,24 @@ class User
 
     goTo (gamePath, modalPath)
     {
-        window.transition.play();
+        /* if(!window.transition.readyGo) {
+            if(this.stackGo) this.stackGo++;
+            else this.stackGo = 1;
+            window.transition.speed *= (1+this.stackGo);
+            window.transition.onfinish = () => {delete this.stackGo;};
+            return;
+        } */
         window.transition.oncomplete = (target) => 
         { 
             console.log(target);
             window.transition.stop();
+            //console.log(target);
             window.game.src=gamePath;
             if(modalPath) window.modal.src=modalPath;
             window.transition.play();
-            console.log(window.transition.playing);
-            
+            //console.log(window.transition.playing);
         };
+        window.transition.play();
     }
 
     update (callback) 

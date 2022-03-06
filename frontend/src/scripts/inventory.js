@@ -40,12 +40,12 @@ class Inventory extends HTMLElement
                     "ui-draggable": "dragging"
                 }
                 const dragstart = function( event, ui ) {
-                    console.log(this);
+                    //console.log(this);
                     this.classList.add("dragging");
                     //alert("hi..");
                 }
                 const dragstop = function( event, ui ) {
-                    console.log(this);
+                    //console.log(this);
                     this.classList.remove("dragging");
                     //alert("hi..");
                 }

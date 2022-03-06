@@ -9,18 +9,11 @@ class GameTransition extends HTMLElement
     {
         super();
         
-        //console.log(p);
         this.style.position = "absolute";
-        /* this.width = p.width;
-        this.height = p.height; */
-
         this.style.display = "flex";
         this.style.flexGrow = "1";
         
-        /* this.style.width = `${p.width}px`;
-        this.style.height = `${p.height}px`; */
         this.style.overflow = "hidden";
-        //this.#current = null;
         this.#playing = false;
         this.sprites = [];
         this.max = 0;
@@ -80,6 +73,7 @@ class GameTransition extends HTMLElement
        const p = this.getBoundingClientRect();
        this.width = p.width;
        this.height = p.height;
+       this.readyGo = true;
     }
 
     /**
@@ -136,7 +130,9 @@ class GameTransition extends HTMLElement
 
     play ()
     {
+        if(this.playing) return;
         this.#playing = true;
+        this.readyGo = false;
         this.loop(this);
     }
 
@@ -172,7 +168,7 @@ class GameTransition extends HTMLElement
                         return ((Math.random() * .5) + .5) * target.size;
                     }
                     function randomSpeed (reverse) {
-                        return (reverse?-1:1)*((.5 *  Math.random()) + .5) * target.speed * 5;
+                        return (reverse?-1:1)*((.5 *  Math.random()) + .5) * 5;
                     }
                     function randomSprite () {
                         return target.sprites[parseInt(Math.random()*target.sprites.length)];
@@ -230,6 +226,8 @@ class GameTransition extends HTMLElement
                 if(layer.objects.length == 0) {
                     this.#stopping = false;
                     this.#playing = false;
+                    this.readyGo = true;
+                    if(target.onfinish) target.onfinish(target);
                 }
                 
             } else
@@ -239,7 +237,7 @@ class GameTransition extends HTMLElement
             } else
             if(obj.sprite && obj.sprite.complete) 
             {
-                obj.x += obj.speed;
+                obj.x += obj.speed * target.speed;
                 ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
             }
         });
