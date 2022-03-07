@@ -242,10 +242,10 @@ button:hover #btn-play:hover, #btn-login:hover {
 .places {
     width: 80%;
     height: 80px;
-    background-color: rgba(136, 99, 85, 0.774);
+    background-color: var(--menu-darkness);
     border-radius: 30px;
     margin: 5px;
-    color: #DAA520;
+    color: var(--golden);
 }
 
 /* INPUT*/ 
@@ -271,14 +271,15 @@ img {
 .stages {
     width: 80%;
     height: fit-content;
-    background-color: rgba(136, 99, 85, 0.774);
+    background-color: var(--menu-darkness);
     border-radius: 30px;
     margin: 5px;
-    color: #DAA520;
+    color: var(--golden);
 }
 
 .stageButton{
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    width: 100%;
     font-family: 'Skranji', cursive;
 
 }

@@ -21,6 +21,7 @@
     --azuldark: rgb(51, 62, 87);
     --montain: rgb(105, 90, 48);
     --ground: rgb(38, 128, 38);
+    --menu-darkness: rgb(26, 35, 48);
     --menu-dark: rgb(31, 51, 81);
     --menu-mid: rgb(160, 136, 72);
     --menu-glow: rgb(78, 164, 102);
@@ -29,8 +30,10 @@
     --wood-mid: rgb(168, 151, 128);
     --wood-dark: rgb(117, 88, 47);
     --wood-darker: rgb(70, 52, 27);
+    --golden: #DAA520;
     --wood-details: var(--menu-mid);
     --modal-background: var(--menu-dark);
+    
     /* color: antiquewhite; */
     --paper: antiquewhite;
     --menu-title-font: 'Press Start 2P', cursive;

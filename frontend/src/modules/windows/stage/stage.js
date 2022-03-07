@@ -5,7 +5,7 @@ $(document).ready(() =>
     const lives = parent.gameuser.data.lives;
     const points = parent.gameuser.stages[stage].highscore;
     
-    $("#title").html(`Fase ${stage+1}`);
+    $("#title").html(`Aula ${stage+1}`);
     const hearts = $("#hearts > img");
     const pointsText = $("#points > h2")[0];
     console.log(hearts);

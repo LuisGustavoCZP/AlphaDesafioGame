@@ -13,7 +13,7 @@ $(document).ready(() =>
                 <div id="content">`;
     stages.forEach((element,index) => {
         result += `<div id="stage-${index + 1}" class="stages">
-                        <button id="btn-stage${index+1}" class="stageButton" stage="${element.stage + 1}">FASE ${element.stage + 1}</button>
+                        <button id="btn-stage${index+1}" class="stageButton" stage="${element.stage + 1}">AULA ${element.stage + 1}</button>
                         <p> ${element.highscore} PONTOS</p>
                         <div class="potions">
                     `;
