@@ -15,7 +15,7 @@ class Inventory extends HTMLElement
 {
     container;
     columns;
-
+    title;
     constructor()
     {
         super();
@@ -24,8 +24,10 @@ class Inventory extends HTMLElement
         linkcss.href = "/styles/inventory.css";
         this.before(linkcss);
         this.classList.add("inventory");
+        this.content = document.createElement("div");
         this.container = document.createElement("table");
-        this.append(this.container);
+        this.content.append(this.container);
+        this.append(this.content);
         if(this.hasAttribute('columns')) {
             this.columns = this.getAttribute('columns');
         } else {
@@ -36,15 +38,25 @@ class Inventory extends HTMLElement
         } else {
             this.rows = 6;
         }
+
+        if(this.hasAttribute('title')) {
+            const ttxt = this.getAttribute('title');
+            
+            this.title = document.createElement("span");
+            console.log(ttxt, this.title.innerText);
+            this.title.innerText = ttxt;
+            this.content.prepend(this.title);
+        }
         
         this.style.listStyle = "none";
         this.createRows ();
-        this.createItens(pseudoStock);
     }
 
     start ()
     {
-        window.gameuser.requestStock ((data) => this.createItens(data));
+        if(window.gameuser && window.gameuser.stock) this.createItens(window.gameuser.stock);
+        else this.createItens(pseudoStock);
+        //window.gameuser.requestStock ((data) => this.createItens(data));
     }
 
     createColumn ()
@@ -85,10 +97,14 @@ class Inventory extends HTMLElement
         {
             const el = document.createElement("td");
 
-            el.innerHTML = (`<img class="item" id="${item.id}" src="/images/${item.icon}"></img>`);
+            el.innerHTML = (`<img class="item" title="${item.name}" id="${item.id}" src="/images/${item.icon}"></img>`);
             $(function ()
             {
                 const d = $(`#${item.id}`);
+                d.on("pointerenter", (e) => 
+                {
+                    if(window.audiosys) window.audiosys.play("tick");
+                });
                 const h = function(event) {console.log(event.target);};
                 const c = {
                     "ui-draggable": "dragging"
@@ -96,11 +112,13 @@ class Inventory extends HTMLElement
                 const dragstart = function( event, ui ) {
                     //console.log(this);
                     this.classList.add("dragging");
+                    if(window.audiosys) window.audiosys.play("select");
                     //alert("hi..");
                 }
                 const dragstop = function( event, ui ) {
                     //console.log(this);
                     this.classList.remove("dragging");
+                    if(window.audiosys) window.audiosys.play("drop");
                     //alert("hi..");
                 }
                 d.draggable ({opacity: 0.7, zIndex: 1001,appendTo: "body", helper: "clone", cursor: "move", start: dragstart, stop:dragstop});
@@ -115,7 +133,7 @@ class Inventory extends HTMLElement
         });
     }
 
-    dragStart (ev) 
+/*     dragStart (ev) 
     {
         ev.dataTransfer.setData("text/plain", null);
         ev.dataTransfer.effectAllowed = "all";
@@ -129,12 +147,6 @@ class Inventory extends HTMLElement
         targetClone.height = ev.target.height*5;
         console.log(targetClone, ev.target);
         ev.dataTransfer.setDragImage(targetClone, 0, 0);
-
-        //
-        /* 
-        ev.dataTransfer.dropEffect = "copy"; */
-        /* ev.preventDefault(); */
-        //ev.target.style.opacity = 0;
     }
 
     drag (ev)
@@ -144,22 +156,18 @@ class Inventory extends HTMLElement
         ev.preventDefault();
         
         ev.dataTransfer.dropEffect = 'move';
-        //ev.dataTransfer.effectAllowed = "copy";
     }
 
     dragEnd (ev) {
         console.log(ev.target.id);
         this.classList.remove("dragging");
-        //ev.dataTransfer.setData("text/plain", ev.target.id);
-        //ev.target.style.opacity = 1;
     }
 
     dragOver (ev)
     {
         ev.stopPropagation();
         ev.preventDefault();
-        /* ev.dataTransfer.dropEffect = 'move'; */
-    }
+    } */
 
     static define ()
     {

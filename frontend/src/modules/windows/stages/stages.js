@@ -34,6 +34,7 @@ $(document).ready(() =>
     //Clica na fase e faz algo
     $("button").on("click", (e) =>{
         /* console.log(e.target); */
+        parent.audiosys.play("start");
         parent.gameuser.start(e.target.getAttribute("stage"));
     });
     //console.log(parent.gameuser.stages);
@@ -41,8 +42,9 @@ $(document).ready(() =>
     parent.modal.src = "";*/
     $(".close").on("click", function() 
     {
-        console.log("Close");
+        //console.log("Close");
         parent.modal.src = "";
+        parent.audiosys.play("close");
         //$(`#Modal`).css("display","none");
     });
 

@@ -21,8 +21,9 @@ $(document).ready(() =>
 
     $(".close").on("click", function() 
     {
-        console.log("Close");
+        //console.log("Close");
         parent.modal.src = "";
+        parent.audiosys.play("close");
         //$(`#Modal`).css("display","none");
     });
 

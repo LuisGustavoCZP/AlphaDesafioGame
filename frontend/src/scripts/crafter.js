@@ -1,5 +1,3 @@
-import { RequestSys } from "./request.js";
-
 class Crafter extends HTMLElement
 {
     constructor()
@@ -19,6 +17,38 @@ class Crafter extends HTMLElement
     createRecipes (data)
     {
         console.log(data, this);
+        
+    }
+
+    start ()
+    {
+        $(this).droppable({
+            accept: ".item",
+            activate: function( event, ui ) { this.classList.add("highlight"); },
+            deactivate: function( event, ui ) { this.classList.remove("highlight"); },
+            over: function( event, ui ) 
+            { 
+                this.classList.add("placing"); 
+                ui.helper[0].classList.add("ui-draggable-dropping");
+                if(window.audiosys) window.audiosys.play("select");
+            },
+            out: function( event, ui ) 
+            { 
+                this.classList.remove("placing"); 
+                ui.helper[0].classList.remove("ui-draggable-dropping"); 
+            },
+            drop: function( event, ui ) 
+            { 
+                const container = this;
+                container.classList.remove("highlight");
+                container.classList.remove("placing");
+                if(!container.ingredients) container.ingredients = [];
+                const itemid = ui.draggable[0].id;
+                container.ingredients.push(itemid);
+                console.log("Dropou objeto", container.ingredients); 
+                if(window.audiosys) window.audiosys.play("sucess");
+            }
+        });
     }
 
     static define ()

@@ -26,9 +26,10 @@
     --menu-glow: rgb(78, 164, 102);
     --menu-glow-low: rgb(38, 177, 121);
     --wood-light: rgb(182, 152, 111);
-    --wook-mid: rgb(168, 151, 128);
+    --wood-mid: rgb(168, 151, 128);
     --wood-dark: rgb(117, 88, 47);
-    --wook-details: var(--menu-mid);
+    --wood-darker: rgb(70, 52, 27);
+    --wood-details: var(--menu-mid);
     --modal-background: var(--menu-dark);
     /* color: antiquewhite; */
     --paper: antiquewhite;

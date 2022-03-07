@@ -14,11 +14,21 @@
     <main>
       <div id="gamecenter">
         <!-- <img id="bookcase" src="./icons/estante.png"></img> -->
-        <game-inventory id="bookcase" column="4">
-          <h3>INGREDIENTES</h3>
+        <img id="wizard" src="/images/game/mago.png"></img>
+        <game-inventory id="bookcase" title="INGREDIENTES" column="4">
+          <aside>
+            <div class="deep-top right"></div>
+            <div class="deep-top mid"></div>
+            <div class="deep-top left"></div>
+          </aside>
+          <aside style="flex-direction: column; position: absolute; left: 100%; width: var(--inv-depth); height: 100%;">
+            <div class="deep-right top"></div>
+            <div class="deep-right mid"></div>
+            <div class="deep-right bottom"></div>
+          </aside>
         </game-inventory>
         <game-crafter id="cauldron" img="/images/game/cauldron.png"></game-crafter>
-        <img id="wizard"   src="/images/game/mago.png"></img>
+        
       </div>
     </main>
    

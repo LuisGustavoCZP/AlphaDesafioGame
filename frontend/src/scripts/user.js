@@ -47,14 +47,17 @@ class User
             if(status == 1 || status == 2){
                 //alert("Login ou Senha invalidos!");
                 this.newuser(user);
+                window.audiosys.play("error");
             } 
             else/*  if(status == 0) */
             {
                 this.#hasUser = true;
                 document.cookie = this.#createCookie(data.userData);
                 this.#userData = this.#recoverCookie ();
-                this.update();
+                window.audiosys.play("sucess");
+                
                 parent.modal.src = "";
+                this.update();
             }
         })
         .catch(resp => { console.log(resp); });
