@@ -114,7 +114,7 @@ class AudioSys extends HTMLElement
 
     static define ()
     {
-        console.log("Iniciou Crafter");
+        console.log("Iniciou AudioSys");
         /* customElements.define('modal', Modal); */
         customElements.define('game-audio', AudioSys);
     }
