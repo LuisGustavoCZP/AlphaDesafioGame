@@ -16,11 +16,24 @@ class DialogSys extends HTMLElement
 
     createText (...dialogs)
     {
-        if(dialogs ? dialogs.length == 0 : false) return;
+
+        if(!dialogs || dialogs.length == 0) return;
+
         const dialog = dialogs.shift();
+        if(!dialog || !(dialog.length || dialog.text)) 
+        {
+            this.createText(...dialogs);
+            return;
+        }
+
+        let text;
+        if(dialog.length > 0) {
+            text = dialog;
+        } else {
+            text = dialog.text;
+        }
+
         console.log(dialog, dialogs);
-        const text = dialog.texts[0];
-        
         const thisdialog = this;
         const globalSpeed = this.speed;
         const parag = document.createElement("p");
@@ -39,7 +52,7 @@ class DialogSys extends HTMLElement
                 if(code[0] == "i")
                 {
                     const i = parseInt(code.slice(1));
-                    parag.innerHTML += `<img src="${dialog.icons[i]}.png" />`;
+                    parag.innerHTML += `<img src="images/${dialog.icons[i]}" />`;
                 } else if(code[0] == "f"){
                     const f = parseInt(code.slice(1));
                     dialog.functions[f](parag, dialog);

@@ -10,24 +10,25 @@ $(document).ready(function()
     setTimeout(() => 
     {
         console.log(bookcase);
+        let recipe;
         bookcase.start();
         if(window.modal){
             window.modal.src="";
-            parent.audiosys.play("open");
+            window.audiosys.play("open");
+            recipe = window.gameuser.book[0];
+            //window.gameuser.book[0]
+            //console.log(window.gameuser.book);
         }
         cauldron.start();
-        
-        dialogMage.createText("VAMOS A NOSSA PRIMEIRA LIÇÂO!", recipeDialog (), { texts:["Pronto! Agora você sabe fazer"] });
+        dialogMage.createText("VAMOS A NOSSA PRIMEIRA LIÇÃO!", recipeDialog (recipe), "AGORA ARRASTE OS ITENS ATÉ O CALDEIRÃO");
+        //dialogMage.createText({ texts:["VAMOS A NOSSA PRIMEIRA LIÇÂO!"] }, recipeDialog (recipe), { texts:["Pronto! Agora você sabe fazer"] });
     }, 5000);
 
-    recipeDialog (recipe) 
+    function recipeDialog (recipe) 
     {
         const newdialog = 
         {
-            texts:
-            [
-                /* `{i0} + {i1} = {i2}{f0}` */
-            ],
+            text:/* `{i0} + {i1} = {i2}{f0}` */"",
             /* time:1000, */
             /* speed:1, */
             icons: //{i0}
@@ -45,7 +46,21 @@ $(document).ready(function()
             ] */
         };
 
-        return newdialog
+        recipe.ingredients.forEach(item => 
+        {
+            newdialog.text += `{i${newdialog.icons.length}} `; //${item.name}
+            newdialog.icons.push(item.icon);
+            if(recipe.ingredients.length > newdialog.icons.length) newdialog.text += "+";
+        });
+
+        newdialog.text += "= ";
+        newdialog.text += `{i${newdialog.icons.length}} `; //${recipe.item.name}
+        newdialog.icons.push(recipe.item.icon);
+
+        console.log(newdialog);
+        //recipe.
+
+        return newdialog;
     }
     //window.transition.stop();
 });

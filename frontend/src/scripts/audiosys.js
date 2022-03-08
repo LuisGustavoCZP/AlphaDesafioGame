@@ -2,13 +2,23 @@ class AudioSys extends HTMLElement
 {
     sounds;
     channels = {};
+    volume;
     constructor()
     {
         super();
         
+        if(this.hasAttribute("volume"))
+        {
+            this.volume = this.getAttribute("volume");
+        }
+        else 
+        {
+            this.volume = 1;
+        }
+
         if(this.hasAttribute("channels"))
         {
-            const channels = get.hasAttribute("channels").replace(" ", "").split(",");
+            const channels = this.getAttribute("channels").replace(" ", "").split(",");
             channels.forEach(channel => 
             {
                 const keypair = channel.split(":");
@@ -21,11 +31,10 @@ class AudioSys extends HTMLElement
                 const keypair = channel.split(":");
                 const volume = keypair[1]?parseFloat(keypair[1]):1;
                 const newaudio = new Audio();
-                newaudio.volume = volume;
+                newaudio.volume = volume * this.volume;
                 this.channels[keypair[0]] = {"volume":volume, "audio":newaudio};
             });
         }
-
     }
 
     error () 
@@ -104,7 +113,7 @@ class AudioSys extends HTMLElement
         if(!channel) return;
         //console.log("Audio ", src, " ", channel.audio.ended);
         if(channel.audio.src && !channel.audio.ended) return;
-        channel.audio.volume = channel.volume;
+        channel.audio.volume = channel.volume * this.volume;
         channel.audio.src = src;
         if(_channel == "music") channel.audio.loop = true;
         else channel.audio.loop = false;
