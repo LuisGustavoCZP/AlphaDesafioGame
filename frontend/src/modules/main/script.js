@@ -5,7 +5,7 @@ $(document).ready(() => {
         window.audiosys.play("music1"); 
         window.removeEventListener("mousemove", iniciateSound);
     };
-    window.addEventListener("mousemove", iniciateSound);
+    window.addEventListener("click", iniciateSound);
 
     $("button").on("click", (e) => {
     

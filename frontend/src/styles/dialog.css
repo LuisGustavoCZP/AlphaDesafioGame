@@ -18,6 +18,17 @@ game-dialog img {
     margin: 0 5px ;
 }
 
+game-dialog img.item {
+    width:1.5em;
+    height:1.5em;
+}
+
+game-dialog img.emoji {
+    width:2em;
+    height:2em;
+    margin: 0 5px ;
+}
+
 game-dialog > p 
 {
     --bcurve: 50px;
