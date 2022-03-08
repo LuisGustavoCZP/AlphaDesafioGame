@@ -11,6 +11,7 @@ class Crafter extends HTMLElement
         } else {
             this.img = null;
         }
+        this.style["border-radius"] = "15%";
         //this.classList.add("book");
     }
 
@@ -24,6 +25,7 @@ class Crafter extends HTMLElement
     {
         $(this).droppable({
             accept: ".item",
+            /* tolerance: "fit", */
             activate: function( event, ui ) { this.classList.add("highlight"); },
             deactivate: function( event, ui ) { this.classList.remove("highlight"); },
             over: function( event, ui ) 

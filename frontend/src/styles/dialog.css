@@ -1,0 +1,41 @@
+game-dialog {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    position: absolute;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    /* offset-position: 25% 75%;
+    margin: 0; */
+
+    /* margin-bottom: 60%; */
+}
+
+game-dialog img {
+    width:1em;
+    height:1em;
+    margin: 0 5px ;
+}
+
+game-dialog > p 
+{
+    --bcurve: 50px;
+    --bpad: 15px;
+    position: relative;
+    font-size: 2em;
+    background-color: white;
+    border-radius: var(--bcurve) var(--bcurve) var(--bcurve) 1px;
+    padding: var(--bpad);
+    margin: 0 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    max-width: 190px;
+    vertical-align: bottom;
+    /* bottom: auto;
+    transform-origin: bottom left; */
+}

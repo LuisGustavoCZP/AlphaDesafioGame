@@ -1,4 +1,0 @@
-class SoundSys extends HTMLElement 
-{
-    
-}

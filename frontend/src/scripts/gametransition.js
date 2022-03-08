@@ -12,7 +12,8 @@ class GameTransition extends HTMLElement
         this.style.position = "absolute";
         this.style.display = "flex";
         this.style.flexGrow = "1";
-        
+        this.style.width = "100%";
+        this.style.height = "100%";
         this.style.overflow = "hidden";
         this.#playing = false;
         this.sprites = [];
@@ -70,29 +71,7 @@ class GameTransition extends HTMLElement
             this.play();
         }
         
-       const p = this.getBoundingClientRect();
-       this.width = p.width;
-       this.height = p.height;
        this.readyGo = true;
-    }
-
-    /**
-     * @param {Number} num
-     */
-     set width (num) {
-        this.style.width = `${num}px`;
-        super.width = num;
-        this.layer.width = num;
-    }
-
-    /**
-     * @param {Number} num
-     */
-    set height (num) {
-
-        this.style.height = `${num}px`;
-        super.height = num;
-        this.layer.height = num;
     }
 
     static define ()
@@ -113,24 +92,23 @@ class GameTransition extends HTMLElement
 
     #createLayer(z) 
     {
-        const r = this.getBoundingClientRect();
         const newcanvas = document.createElement("canvas");
         newcanvas.style = "position: absolute;" + " z-index:" + z + ";";
-        newcanvas.width = r.width;
-        newcanvas.height = r.height;
+        newcanvas.width = 1366;
+        newcanvas.height = 522;
+        newcanvas.style.width = "100%";
+        newcanvas.style.height = "100%";
         const layer = { "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]};
         this.layer = layer;
         
         this.prepend(newcanvas);
-        const target = this;
-        const w = layer.canvas.width/2, h = layer.canvas.height/2;
-        
         return newcanvas;
     }
 
     play ()
     {
         if(this.playing) return;
+        this.style["pointer-events"] = "unset"; 
         this.#playing = true;
         this.readyGo = false;
         this.loop(this);
@@ -139,12 +117,10 @@ class GameTransition extends HTMLElement
     stop ()
     {
         this.#stopping = true;
-        //layer.objects=[];
     }
 
     layerloop (target, layer)
     {
-        //const mds = (target.density / target.speed);
         const w = layer.canvas.width/2, h = layer.canvas.height/2;
         const ctx = layer.context;
         ctx.clearRect(0,0,w*2,h*2);
@@ -165,10 +141,10 @@ class GameTransition extends HTMLElement
                         return Math.random() >= .5;
                     }
                     function randomSize () {
-                        return ((Math.random() * .5) + .5) * target.size;
+                        return ((Math.random() * .2) + .8) * target.size;
                     }
                     function randomSpeed (reverse) {
-                        return (reverse?-1:1)*((.5 *  Math.random()) + .5) * 5;
+                        return (reverse?-1:1)*((.2 *  Math.random()) + .8) * 10;
                     }
                     function randomSprite () {
                         return target.sprites[parseInt(Math.random()*target.sprites.length)];
@@ -202,7 +178,6 @@ class GameTransition extends HTMLElement
                     layer.objects.push(newobj);
                     if(layer.objects.length == maxObjs) 
                     {
-                        //console.log(layer.objects.length, maxObjs, target.oncomplete);
                         target.#playing = false;
                         console.log(target.playing);
                         if(target.oncomplete) target.oncomplete(target);
@@ -212,7 +187,6 @@ class GameTransition extends HTMLElement
                 }
             }
         }
-        //const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
         const s = 1;
 
         ctx.translate(w, h);
@@ -220,20 +194,27 @@ class GameTransition extends HTMLElement
         layer.objects.forEach((obj, i) => 
         {
             const objSize = obj.spriteSize ();
-            if(!obj.reverse && obj.x > w + (objSize*2)) 
+            if(!obj.reverse && obj.x > w + (objSize)) 
             {
                 layer.objects.splice(i, 1);
                 if(layer.objects.length == 0) {
                     this.#stopping = false;
                     this.#playing = false;
                     this.readyGo = true;
+                    this.style["pointer-events"] = "none";
                     if(target.onfinish) target.onfinish(target);
                 }
-                
             } else
             if(obj.reverse && obj.x < -w-(objSize*2)) 
             {
                 layer.objects.splice(i, 1);
+                if(layer.objects.length == 0) {
+                    this.#stopping = false;
+                    this.#playing = false;
+                    this.readyGo = true;
+                    this.style["pointer-events"] = "none";
+                    if(target.onfinish) target.onfinish(target);
+                }
             } else
             if(obj.sprite && obj.sprite.complete) 
             {
@@ -241,7 +222,6 @@ class GameTransition extends HTMLElement
                 ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
             }
         });
-        //console.log(layer.objects.length);
         ctx.translate(-w, -h);
     }
 
