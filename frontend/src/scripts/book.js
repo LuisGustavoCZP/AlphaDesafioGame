@@ -1,6 +1,4 @@
-import { RequestSys } from "./request.js";
-
-class Book extends HTMLOListElement
+class Book extends HTMLElement
 {
     constructor()
     {
@@ -18,7 +16,7 @@ class Book extends HTMLOListElement
     {
         console.log("Iniciou Book");
         /* customElements.define('modal', Modal); */
-        customElements.define('ol-book', Book, { extends: "ol" });
+        customElements.define('game-book', Book);
     }
 }
 

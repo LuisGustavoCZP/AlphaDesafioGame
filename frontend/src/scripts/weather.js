@@ -71,19 +71,14 @@ class WeatherSys extends HTMLElement
     constructor()
     {
         super();
-        
-        //console.log(p);
         this.style.position = "absolute";
-        /* this.width = p.width;
-        this.height = p.height; */
         this.style.display = "flex";
         this.style.flexGrow = "1";
-        const p = this.parentElement.getBoundingClientRect();
         
-        /* this.style.width = `${p.width}px`;
-        this.style.height = `${p.height}px`; */
+        this.style.width = "100%";
+        this.style.height = "100%";
+        
         this.style.overflow = "hidden";
-        //this.#current = null;
         this.#playing = false;
         this.#ready = false;
         this.layers = [];
@@ -92,9 +87,6 @@ class WeatherSys extends HTMLElement
         this.layerDist = 0;
         this.layerZ = 0;
 
-        this.width = p.width;
-        this.height = p.height;
-        
         if(this.hasAttribute('play')) {
             this.#playing = this.getAttribute('play') == "false"? false : true;
         }
@@ -138,7 +130,6 @@ class WeatherSys extends HTMLElement
         if(this.hasAttribute('layers')) 
         {
             const lys = this.getAttribute('layers').replaceAll(" ", "").split(",");
-            //console.log(lys);
             if(lys.length == 0)
             {
                 this.#createLayer(0);
@@ -178,31 +169,6 @@ class WeatherSys extends HTMLElement
         }
     }
 
-    /**
-     * @param {Number} num
-     */
-     set width (num) {
-        this.style.width = `${num}px`;
-        super.width = num;
-        this.layers.forEach(layer => 
-        {
-            layer.width = num;
-        });
-    }
-
-    /**
-     * @param {Number} num
-     */
-    set height (num) {
-
-        this.style.height = `${num}px`;
-        super.height = num;
-        this.layers.forEach(layer => 
-        {
-            layer.height = num;
-        });
-    }
-
     static define ()
     {
         console.log("Iniciou Weather");
@@ -216,11 +182,12 @@ class WeatherSys extends HTMLElement
 
     #createLayer(z) 
     {
-        const r = this.getBoundingClientRect();
         const newcanvas = document.createElement("canvas");
         newcanvas.style = "position: absolute;" + " z-index:" + z + ";";
-        newcanvas.width = r.width;
-        newcanvas.height = r.height;
+        newcanvas.width = 1366;
+        newcanvas.height = 522;
+        newcanvas.style.width = "100%";
+        newcanvas.style.height = "100%";
         this.layers.push({ "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]});
         this.prepend(newcanvas);
         return newcanvas;
@@ -239,7 +206,6 @@ class WeatherSys extends HTMLElement
 
     layerloop (target, layer)
     {
-        //const mds = (target.density / target.speed);
         const w = layer.canvas.width/2, h = layer.canvas.height/2;
         const ctx = layer.context;
         ctx.clearRect(0,0,w*2,h*2);
@@ -250,21 +216,20 @@ class WeatherSys extends HTMLElement
         }
         
         const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
-        //console.log(s);
 
         ctx.translate(w, h);
         
-        if(layer.objects.length < target.density*10*(1/s)) //*mds
-        { //* (1/mds)
-            if(layer.objects.timer == undefined || layer.objects.timer > 0)//(40/target.density)
+        if(layer.objects.length < target.density*10*(1/s))
+        {
+            if(layer.objects.timer == undefined || layer.objects.timer > 0)
             {
                 layer.objects.timer = 0;
 
                 function randomSize () {
-                    return ((Math.random() * .5) + .5) * s * target.size;
+                    return ((Math.random() * .2) + .8) * (s) * target.size;
                 }
                 function randomSpeed () {
-                    return ((.2 *  Math.random()) + .3) * (s*s*s) * target.speed;
+                    return ((.2 *  Math.random()) + .8) * (s*s) * target.speed;
                 }
                 function randomSprite () {
                     return target.sprites[parseInt(Math.random()*target.sprites.length)];
@@ -290,7 +255,6 @@ class WeatherSys extends HTMLElement
                         this.sprite = randomSprite ();
                     }
                 };
-                //newobj.randomize();
                 layer.objects.push(newobj);
             } else {
                 layer.objects.timer++;
@@ -304,13 +268,7 @@ class WeatherSys extends HTMLElement
             {
                 obj.randomize();
             }
-
-            //console.log(this.current.width);
-
-            //console.log(sprite);
             if(obj.sprite && obj.sprite.complete) ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
-            //ctx.fillStyle = "lightgrey";
-            //ctx.fillRect(obj.x, obj.y, obj.width, obj.height)
         });
 
         ctx.translate(-w, -h);
