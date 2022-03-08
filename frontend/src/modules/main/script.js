@@ -26,10 +26,10 @@ $(document).ready(() => {
            case 'howToPlay':
                modal.src="modules/windows/howToPlay/index.html";
                break;
-           /*case 'setting':
-               resultContent = contentSetting();
+           case 'setting':
+                modal.src="modules/windows/sound/index.html";
                break;
-           case 'pause':
+           /*case 'pause':
                resultContent = contentPause();
                break;
            case 'gameOver':
