@@ -51,7 +51,7 @@ class GameTransition extends HTMLElement
                 this.sprites.push(newSprite);
             });
         } else {
-            const srcs = ["/images/background/clouds/cloud1.png", "/images/background/clouds/cloud2.png", "/images/background/clouds/cloud3.png", "/images/background/clouds/cloud4.png", "/images/background/clouds/cloud5.png", "/images/background/clouds/cloud6.png", "/images/background/clouds/cloud7.png", "/images/background/clouds/cloud8.png"];
+            const srcs = ["/images/background/bigclouldleft.png", "/images/background/bigclouldright.png"];
             srcs.forEach(src => {
                 const newSprite = new Image();
                 newSprite.src = src;
@@ -110,7 +110,18 @@ class GameTransition extends HTMLElement
         if(this.playing) return;
         this.style["pointer-events"] = "unset"; 
         this.#playing = true;
+        this.reverse = false;
         this.readyGo = false;
+        this.loop(this);
+    }
+
+    revert ()
+    {
+        /* console.log(reverse); */
+        if(this.reverse) return;
+        //this.style["pointer-events"] = "unset"; 
+        this.#playing = true;
+        this.reverse = true;
         this.loop(this);
     }
 
@@ -131,59 +142,40 @@ class GameTransition extends HTMLElement
         }
         if(!target.stopping) 
         {
-            const maxObjs = 200;
-            for(let i = 0; i < 10 && layer.objects.length < maxObjs; i++)
+            const maxObjs = 2;
+            for(let i = 0; layer.objects.length < maxObjs; i++)
             {
-                if(layer.objects.timer == undefined || layer.objects.timer > 10/target.speed)
-                {
-                    layer.objects.timer = 0;
-                    function randomDirection (){
-                        return Math.random() >= .5;
-                    }
-                    function randomSize () {
-                        return ((Math.random() * .2) + .8) * target.size;
-                    }
-                    function randomSpeed (reverse) {
-                        return (reverse?-1:1)*((.2 *  Math.random()) + .8) * 10;
-                    }
-                    function randomSprite () {
-                        return target.sprites[parseInt(Math.random()*target.sprites.length)];
-                    }
-                    function randomHeight () {
-                        const alt = h;
-                        const dif = (h*.5);
-                        return -(h)+(Math.random()*h*2);
-                    }
-                    const newobj = {
-                        spriteSize ()
-                        {
-                            return (this.size*this.sprite.width);
-                        },
-                        randomX (){
-                            return this.reverse ? w : -w-this.spriteSize ();
-                        },
-                        randomize ()
-                        {
-                            this.reverse = randomDirection();
-                            this.sprite = randomSprite ();
-                            this.size = randomSize ();
-                            this.y = randomHeight () - this.spriteSize()/2;
-                            
-                            this.speed = randomSpeed (this.reverse);
-                            
-                            this.x = this.randomX();
-                        }
-                    };
-                    newobj.randomize();
-                    layer.objects.push(newobj);
-                    if(layer.objects.length == maxObjs) 
+                function randomHeight () {
+                    const alt = h;
+                    const dif = (h*.5);
+                    return -(h/2);
+                }
+                const newobj = {
+                    spriteSize ()
                     {
-                        target.#playing = false;
-                        console.log(target.playing);
-                        if(target.oncomplete) target.oncomplete(target);
+                        return (this.size*this.sprite.width);
+                    },
+                    randomize ()
+                    {
+                        const reverse = (i == 0);
+                        this.reverse = reverse;
+                        console.log(`${i} == ${0} => ${i == 0}`);
+
+                        this.sprite = target.sprites[(reverse?1:0)];
+                        this.size = target.size;
+                        this.y = randomHeight () - this.spriteSize()/2;
+                        this.speed =  (reverse?-1:1) * 10 * target.speed;
+                        
+                        this.x = reverse ? w : -w-this.spriteSize ();
                     }
-                } else {
-                    layer.objects.timer++;
+                };
+                newobj.randomize();
+                layer.objects.push(newobj);
+                if(layer.objects.length == maxObjs) 
+                {
+                    this.#stopping = false;
+                    //console.log(target.playing);
+                    
                 }
             }
         }
@@ -193,32 +185,32 @@ class GameTransition extends HTMLElement
 
         layer.objects.forEach((obj, i) => 
         {
-            const objSize = obj.spriteSize ();
-            if(!obj.reverse && obj.x > w + (objSize)) 
-            {
-                layer.objects.splice(i, 1);
-                if(layer.objects.length == 0) {
-                    this.#stopping = false;
-                    this.#playing = false;
-                    this.readyGo = true;
-                    this.style["pointer-events"] = "none";
-                    if(target.onfinish) target.onfinish(target);
-                }
-            } else
-            if(obj.reverse && obj.x < -w-(objSize*2)) 
-            {
-                layer.objects.splice(i, 1);
-                if(layer.objects.length == 0) {
-                    this.#stopping = false;
-                    this.#playing = false;
-                    this.readyGo = true;
-                    this.style["pointer-events"] = "none";
-                    if(target.onfinish) target.onfinish(target);
-                }
-            } else
             if(obj.sprite && obj.sprite.complete) 
             {
-                obj.x += obj.speed * target.speed;
+                const objSize = obj.spriteSize ();
+                
+                if(target.reverse && obj.reverse && obj.x > (w)) 
+                {
+                    console.log("Voltando!!!");
+                    this.#stopping = false;
+                    this.#playing = false;
+                    this.readyGo = true;
+                    this.style["pointer-events"] = "none";
+                    if(target.onfinish) target.onfinish(target);
+                    return;
+                }
+                if(!target.reverse && !obj.reverse && obj.x > (w/2)-(objSize)) 
+                {
+                    this.#playing = false;
+                    this.#stopping = false;
+                    console.log("Reverso!!!");
+                    if(target.oncomplete) target.oncomplete(this);
+                }
+                else
+                {
+                    obj.x += obj.speed * target.speed * (target.reverse?-1:1);
+                }
+                
                 ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
             }
         });

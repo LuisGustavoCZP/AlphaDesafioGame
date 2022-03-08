@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Torre Flamel</title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>    
@@ -16,8 +18,9 @@
     </head>
     <body style="overflow: hidden; width: 100vw; height: 100vh;">
         <!-- <script type="module" src="./scripts/user.js"></script> -->
+        <game-transition id="transition" layer="12000" play="false" speed="1" size="1"></game-transition>
         <game-audio id="audiosys"></game-audio>
-        <game-transition id="transition" layer="12000" play="false" speed="1.5" size="3"></game-transition>
+        
         <iframe id="modal" is="modal-window" frameborder="0"></iframe>
         <game-element id="game" style="width: 100vw; height: 100vh;"></game-element>
         <script type="module" src="scripts/main.js"></script>

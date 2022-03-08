@@ -91,8 +91,7 @@ class User
         {
             window.game.src="modules/error/index.html";
         } else {
-            this.goTo("modules/main/", "modules/windows/login/");
-            
+            this.goTo("modules/background/", "modules/windows/login/");
         }
     }
 
@@ -105,14 +104,25 @@ class User
             window.transition.onfinish = () => {delete this.stackGo;};
             return;
         } */
+        if(window.game.src == gamePath)
+        {
+            if(modalPath) window.modal.src=modalPath;
+            return;
+        }
+
         window.transition.oncomplete = (target) => 
         { 
             console.log(target);
-            window.transition.stop();
+            //window.transition.stop();
             //console.log(target);
+            window.game.onload = (d)=> 
+            {
+                console.log("Carregou janela");
+                window.transition.revert();
+            };
             window.game.src=gamePath;
             if(modalPath) window.modal.src=modalPath;
-            window.transition.play();
+            //window.transition.play();
             //console.log(window.transition.playing);
         };
         window.transition.play();

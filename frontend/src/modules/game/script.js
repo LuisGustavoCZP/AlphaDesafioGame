@@ -20,8 +20,10 @@ $(document).ready(function()
             //console.log(window.gameuser.book);
         }
         cauldron.start();
-        dialogMage.createText("VAMOS A NOSSA PRIMEIRA LIÇÃO! {e20}", recipeDialog (recipe), "AGORA ARRASTE OS ITENS ATÉ O CALDEIRÃO {e4}!");
-        //dialogMage.createText({ texts:["VAMOS A NOSSA PRIMEIRA LIÇÂO!"] }, recipeDialog (recipe), { texts:["Pronto! Agora você sabe fazer"] });
+        
+        dialogMage.createText("VAMOS A NOSSA PRIMEIRA LIÇÃO! {e20}", 
+        recipeDialog (recipe), "AGORA ARRASTE OS ITENS ATÉ O CALDEIRÃO {e4}!");
+
     }, 5000);
 
     function recipeDialog (recipe) 
@@ -29,7 +31,7 @@ $(document).ready(function()
         const newdialog = 
         {
             text:/* `{i0} + {i1} = {i2}{f0}` */"",
-            /* time:1000, */
+            time:2000,
             /* speed:1, */
             icons: //{i0}
             [
