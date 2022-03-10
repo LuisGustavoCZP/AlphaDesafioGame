@@ -1,3 +1,4 @@
+AudioSys
 class AudioSys extends HTMLElement
 {
     sounds;
@@ -35,6 +36,8 @@ class AudioSys extends HTMLElement
                 this.channels[keypair[0]] = {"volume":volume, "audio":newaudio};
             });
         }
+
+        this.#volumes = this.#createvolumes ();
     }
 
     set volume (value)
@@ -50,6 +53,25 @@ class AudioSys extends HTMLElement
     get volume ()
     {
         return this.#volume;
+    }
+
+    get volumes ()
+    {
+        return this.#volumes;
+    }
+
+    #createvolumes ()
+    {
+        const vols = {};
+        for (const key in this.channels) {
+            const channel = this.channels[key];
+            vols[key] = (value) => 
+            { 
+                channel.volume = value;
+                channel.audio.volume = value * this.volume; 
+            };
+        }
+        return vols;
     }
 
     error () 

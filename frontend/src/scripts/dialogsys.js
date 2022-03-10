@@ -52,7 +52,7 @@ class DialogSys extends HTMLElement
         //
     }
 
-    createText (...dialogs)
+    async createText (...dialogs)
     {
 
         if(!dialogs || dialogs.length == 0) return;
@@ -78,7 +78,7 @@ class DialogSys extends HTMLElement
         this.append(parag);
         let letter = 0;
         console.log(parag, text.length);
-        async function createLetter ()
+        function createLetter ()
         {
             const l = text.charAt(letter);
             
