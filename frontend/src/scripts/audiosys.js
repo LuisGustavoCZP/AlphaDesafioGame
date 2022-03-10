@@ -2,18 +2,18 @@ class AudioSys extends HTMLElement
 {
     sounds;
     channels = {};
-    volume;
+    #volume;
     constructor()
     {
         super();
         
         if(this.hasAttribute("volume"))
         {
-            this.volume = this.getAttribute("volume");
+            this.#volume = this.getAttribute("volume");
         }
         else 
         {
-            this.volume = 1;
+            this.#volume = 1;
         }
 
         if(this.hasAttribute("channels"))
@@ -31,10 +31,25 @@ class AudioSys extends HTMLElement
                 const keypair = channel.split(":");
                 const volume = keypair[1]?parseFloat(keypair[1]):1;
                 const newaudio = new Audio();
-                newaudio.volume = volume * this.volume;
+                newaudio.volume = volume * this.#volume;
                 this.channels[keypair[0]] = {"volume":volume, "audio":newaudio};
             });
         }
+    }
+
+    set volume (value)
+    {
+        this.#volume = value;
+        for(let chkey in this.channels)
+        {
+            const ch = this.channels[chkey];
+            ch.audio.volume = ch.volume*value;
+        }
+    }
+
+    get volume ()
+    {
+        return this.#volume;
     }
 
     error () 
