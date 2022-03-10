@@ -159,7 +159,7 @@ class GameTransition extends HTMLElement
                     {
                         const reverse = (i == 0);
                         this.reverse = reverse;
-                        console.log(`${i} == ${0} => ${i == 0}`);
+                        //console.log(`${i} == ${0} => ${i == 0}`);
 
                         this.sprite = target.sprites[(reverse?1:0)];
                         this.size = target.size;
@@ -191,7 +191,7 @@ class GameTransition extends HTMLElement
                 
                 if(target.reverse && obj.reverse && obj.x > (w)) 
                 {
-                    console.log("Voltando!!!");
+                    //console.log("Voltando!!!");
                     this.#stopping = false;
                     this.#playing = false;
                     this.readyGo = true;
@@ -203,7 +203,7 @@ class GameTransition extends HTMLElement
                 {
                     this.#playing = false;
                     this.#stopping = false;
-                    console.log("Reverso!!!");
+                    //console.log("Reverso!!!");
                     if(target.oncomplete) target.oncomplete(this);
                 }
                 else

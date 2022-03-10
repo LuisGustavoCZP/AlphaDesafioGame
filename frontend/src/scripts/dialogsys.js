@@ -71,13 +71,13 @@ class DialogSys extends HTMLElement
             text = dialog.text;
         }
 
-        console.log(dialog, dialogs);
+        //console.log(dialog, dialogs);
         const thisdialog = this;
         const globalSpeed = this.speed;
         const parag = document.createElement("p");
         this.append(parag);
         let letter = 0;
-        console.log(parag, text.length);
+        //console.log(parag, text.length);
         function createLetter ()
         {
             const l = text.charAt(letter);
@@ -86,7 +86,7 @@ class DialogSys extends HTMLElement
             {
                 const findex = text.indexOf("}", letter);
                 const code = text.slice(letter+1, findex);
-                console.log(code, letter, findex);
+                //console.log(code, letter, findex);
                 if(code[0] == "i")
                 {
                     const i = parseInt(code.slice(1));

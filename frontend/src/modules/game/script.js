@@ -1,4 +1,3 @@
-//import { Request } from "../scripts/request.js";
 $(document).ready(function() 
 {
     const bookcase = $("#bookcase")[0];
@@ -6,18 +5,14 @@ $(document).ready(function()
     const dialogMage = $("#dialog-mage")[0];
 
     if(window.modal) window.modal.src="modules/windows/stage";
-    /* parent.audiosys.play("stop"); */
     setTimeout(() => 
     {
-        console.log(bookcase);
         let recipe;
         bookcase.start();
         if(window.modal){
             window.modal.src="";
             window.audiosys.play("open");
-            recipe = window.gameuser.book[0];
-            //window.gameuser.book[0]
-            //console.log(window.gameuser.book);
+            recipe = window.gameuser.currentStage.potion;
         }
         cauldron.start();
         
@@ -52,18 +47,17 @@ $(document).ready(function()
         {
             newdialog.text += `{i${newdialog.icons.length}} `; //${item.name}
             newdialog.icons.push(item.icon);
-            if(recipe.ingredients.length > newdialog.icons.length) newdialog.text += "+";
+            if(recipe.ingredients.length > newdialog.icons.length) newdialog.text += "+ ";
         });
 
         newdialog.text += "= ";
         newdialog.text += `{i${newdialog.icons.length}} `; //${recipe.item.name}
         newdialog.icons.push(recipe.item.icon);
 
-        console.log(newdialog);
+        //console.log(newdialog);
         //recipe.
 
         return newdialog;
     }
-    //window.transition.stop();
 });
 

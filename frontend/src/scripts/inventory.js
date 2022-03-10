@@ -44,7 +44,7 @@ class Inventory extends HTMLElement
             const ttxt = this.getAttribute('title');
             
             this.title = document.createElement("span");
-            console.log(ttxt, this.title.innerText);
+            //console.log(ttxt, this.title.innerText);
             this.title.innerText = ttxt;
             this.content.prepend(this.title);
         }
@@ -90,7 +90,7 @@ class Inventory extends HTMLElement
     createItens (data)
     {
         //const d = [data];
-        console.log(data);
+        //console.log(data);
         const maxColumns = this.columns; //this.tableRows.length;
         let row = -1;
         //this.container.ondragover = this.dragOver;

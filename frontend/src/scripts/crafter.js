@@ -49,6 +49,7 @@ class Crafter extends HTMLElement
                 container.ingredients.push(itemid);
                 console.log("Dropou objeto", container.ingredients); 
                 if(window.audiosys) window.audiosys.play("sucess");
+                window.gameuser.sendItems(container.ingredients);
             }
         });
     }
