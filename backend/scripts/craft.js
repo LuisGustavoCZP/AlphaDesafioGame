@@ -114,11 +114,16 @@ function getBook (user)
     return total;
 }
 
-function randomPotion (user)
+function getRecipe (recipeID)
 {
-    const recipeID = Utility.randomSort(stages[user.stage].recipes);
-    const recipe = {potion:getItem(recipeID), ...recipes[recipeID]};
-    return recipe;
+    const ps = getItem(recipeID);
+    const is = [];
+    ps.ingredients.forEach(i => {
+        const r = getItem(i);
+        is.push({item:r.name, icon:r.icon});
+    });
+    const itm = getItem(ps.item);
+    return {item:{"name":itm.name, "icon":itm.icon}, "ingredients":is};
 }
 
 function result (itens)
@@ -140,8 +145,8 @@ function stock (req, res)
 
 function userstages (req, res)
 {
-    const p = User.get(req.userid);
-    res.json(getStages(p));
+    const user = User.get(req.userid);
+    res.json(getStages(user));
 }
 
 function craft (req, res)
@@ -150,13 +155,46 @@ function craft (req, res)
     res.json(getStages(p)); */
 }
 
+async function stageStart (req, res)
+{
+    const user = User.get(req.userid);
+    const stageid = req.query["stage"];
+    const oStage = stages[stageid];
+    const tempStage = 
+    {
+        stage:stageid,
+        potion:oStage.potions[Utility.randomSort(oStage.potions)],
+        initialTime: new Date().toJSON()
+    };
+    user.currentStage = tempStage;
+
+    const newStage = {...tempStage};
+    newStage.potion = getRecipe(tempStage.potion);
+
+    console.log(tempStage, newStage);
+    res.json(newStage);
+}
+
+async function stageUpdate (req, res)
+{
+    const p = User.get(req.userid);
+    const r = result(req.body["items"]);
+    console.log(r);
+    if(!r) res.json({status:0});
+    else {
+        const ritem = getItem(r)
+        res.json({result:{name:ritem.name, icon:ritem.icon}, status:0});
+    }
+}
+
 //
 module.exports = {
     getItem,
-    randomPotion,
     result,
     book,
     stock,
     userstages,
-    craft
+    craft,
+    stageStart,
+    stageUpdate
 }
