@@ -1,9 +1,9 @@
-AudioSys
 class AudioSys extends HTMLElement
 {
     sounds;
     channels = {};
     #volume;
+    #volumes;
     constructor()
     {
         super();
