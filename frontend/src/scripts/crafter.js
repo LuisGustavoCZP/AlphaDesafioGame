@@ -12,6 +12,12 @@ class Crafter extends HTMLElement
             this.img = null;
         }
         this.style["border-radius"] = "15%";
+
+        const div = document.createElement("div");
+        div.classList.add("timer");
+        this.timer = document.createElement("h2");
+        div.append(this.timer);
+        this.append(div);
         //this.classList.add("book");
     }
 
@@ -52,6 +58,28 @@ class Crafter extends HTMLElement
                 window.gameuser.sendItems(container.ingredients);
             }
         });
+
+        const thisClass = this;
+        function timerLoop (){
+            const timePass = window.gameuser.currentStage.limitTime - (new Date().getTime());
+            //console.log(timePass);
+            let ms = timePass;
+            let aux = ms % 1000;
+            let s = (ms - aux) / 1000;
+            ms = aux;
+            aux = s % 60;
+            let mn = (s - aux) / 60;
+            s = aux;
+            aux = mn % 60;
+            let hr = (mn - aux) / 60;
+            mn = aux;
+            aux = hr % 60;
+            
+            thisClass.timer.innerText = (hr > 0?`${hr}:`:"")+(mn > 0?`${mn}:`:"")+(s > 0?`${s}`:"")+(ms > 0?`.${ms}`.slice(0, 2):"");
+            if(timePass > 0) setTimeout(timerLoop, 100);
+            else window.gameuser.stageTimeout();
+        }
+        timerLoop();
     }
 
     static define ()

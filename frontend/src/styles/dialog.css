@@ -36,7 +36,7 @@ game-dialog > p
     position: relative;
     font-size: 2em;
     background-color: white;
-    border-radius: var(--bcurve) var(--bcurve) var(--bcurve) 1px;
+    border-radius: var(--bcurve) var(--bcurve) 1px var(--bcurve);
     padding: var(--bpad);
     margin: 0 5px;
     display: flex;

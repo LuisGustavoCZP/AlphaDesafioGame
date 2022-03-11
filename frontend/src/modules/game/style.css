@@ -135,7 +135,7 @@ header {
 
 #cauldron{
     position: absolute;
-    right: 10%;
+    left: 45%;
     bottom: 3%;
     /* height: 19.439%;  */
     height: 40%;
@@ -149,6 +149,11 @@ header {
     -webkit-user-drag: none;
     -ms-user-drag: none;
 }
+
+#cauldron.shine {
+    
+}
+
 
 #cauldron > img {
     pointer-events: none;
@@ -174,6 +179,26 @@ header {
     transform: scale(1.1);
 }
 
+#cauldron > .timer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    text-align: center;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#cauldron > .timer > h2 {
+    background-color: var(--menu-dark);
+    border-radius: 40%;
+    bottom: 10%;
+    min-width: 5rem;
+    min-height: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
 /* #cauldron{
     position: absolute;
     right: 10%;
@@ -184,7 +209,7 @@ header {
 
 #wizard {
     position: absolute;
-    left: 45%;
+    right: 5%;
     bottom: 10%;
     /* height: 26.915%;  */
     height: 61.2%;

@@ -18,7 +18,7 @@ class User
     #createCookie (userData) 
     {
         const date = new Date();
-        date.setTime(date.getTime() + 1000*60*5); //31536000000
+        date.setTime(date.getTime() + 1000*60*60); //31536000000
         return `userData=${userData}; expires=${date.toGMTString()}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
     }
 
@@ -132,7 +132,7 @@ class User
                 thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : undefined);
             }
 
-            console.log(thisuser.data.stages);
+            console.log(thisuser.data);
             thisuser.requestRanking();
             thisuser.requestStages();
             thisuser.requestBook();
@@ -155,6 +155,20 @@ class User
         window.modal.src=""; */
     }
 
+    stageWin ()
+    {
+        this.requestRanking();
+        this.requestStages();
+        this.requestBook();
+        this.requestStock();
+        this.goTo("modules/main/", "modules/windows/stages");
+    }
+
+    stageTimeout ()
+    {
+        this.goTo("modules/main/", "modules/windows/stages");
+    }
+    
     sendItems (itens)
     {
         RequestSys.post("stage", {"items":itens}, userSucess, this.userError, {"userData":this.#userData});
@@ -162,6 +176,11 @@ class User
         function userSucess (data)
         {
             console.log(data);
+            if(data.status == 0) return;
+            else if (data.status == 1) thisuser.stageTimeout();
+            else {
+                thisuser.stageWin();
+            }
         }
     }
 
@@ -171,7 +190,7 @@ class User
         const thisuser = this; 
         function userSucess (data)
         {
-            //console.log(data);
+            console.log(data);
             thisuser.stage = stageid;
             thisuser.currentStage = data;
             if(callback){
