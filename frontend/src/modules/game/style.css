@@ -7,12 +7,13 @@ body {
     height: 100vh;
 }
 
-* {
+/* * {
     display: flex; 
-}
+} */
 
 /* Background */
 main { 
+    display: flex; 
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -22,6 +23,10 @@ main {
     background-image: url("/images/game/game-background.svg");
     background-size: contain;
     background-repeat: repeat;
+}
+
+main * {
+    display: flex; 
 }
 
 /* Page header*/ 
@@ -121,7 +126,7 @@ header {
     background-clip: border-box;
     background-size: contain; */
     left: -20%;
-    bottom: 5%;
+    bottom: 9%;
     height: 75.6%;
     width: fit-content;
     z-index: 10;
@@ -130,10 +135,10 @@ header {
 
 #cauldron{
     position: absolute;
-    right: 10%;
+    left: 45%;
     bottom: 3%;
     /* height: 19.439%;  */
-    height: 45%;
+    height: 40%;
     z-index: 30;
     user-select: none;
     -moz-user-select: none;
@@ -143,6 +148,15 @@ header {
     -moz-user-drag: none;
     -webkit-user-drag: none;
     -ms-user-drag: none;
+}
+
+#cauldron.shine {
+    
+}
+
+
+#cauldron > img {
+    pointer-events: none;
 }
 
 @keyframes shine{
@@ -165,6 +179,26 @@ header {
     transform: scale(1.1);
 }
 
+#cauldron > .timer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    text-align: center;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#cauldron > .timer > h2 {
+    background-color: var(--menu-dark);
+    border-radius: 40%;
+    bottom: 10%;
+    min-width: 5rem;
+    min-height: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
 /* #cauldron{
     position: absolute;
     right: 10%;
@@ -175,7 +209,7 @@ header {
 
 #wizard {
     position: absolute;
-    left: 45%;
+    right: 5%;
     bottom: 10%;
     /* height: 26.915%;  */
     height: 61.2%;

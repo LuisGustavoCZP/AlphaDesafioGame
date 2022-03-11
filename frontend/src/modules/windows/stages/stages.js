@@ -35,7 +35,7 @@ $(document).ready(() =>
     $("button").on("click", (e) =>{
         /* console.log(e.target); */
         parent.audiosys.play("start");
-        parent.gameuser.start(e.target.getAttribute("stage"));
+        parent.gameuser.start(e.target.getAttribute("stage")-1);
     });
     //console.log(parent.gameuser.stages);
     /*parent.game.src = "modules/game/";

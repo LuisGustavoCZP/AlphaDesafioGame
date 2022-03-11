@@ -2,13 +2,24 @@ class AudioSys extends HTMLElement
 {
     sounds;
     channels = {};
+    #volume;
+    #volumes;
     constructor()
     {
         super();
         
+        if(this.hasAttribute("volume"))
+        {
+            this.#volume = this.getAttribute("volume");
+        }
+        else 
+        {
+            this.#volume = 1;
+        }
+
         if(this.hasAttribute("channels"))
         {
-            const channels = get.hasAttribute("channels").replace(" ", "").split(",");
+            const channels = this.getAttribute("channels").replace(" ", "").split(",");
             channels.forEach(channel => 
             {
                 const keypair = channel.split(":");
@@ -21,11 +32,46 @@ class AudioSys extends HTMLElement
                 const keypair = channel.split(":");
                 const volume = keypair[1]?parseFloat(keypair[1]):1;
                 const newaudio = new Audio();
-                newaudio.volume = volume;
+                newaudio.volume = volume * this.#volume;
                 this.channels[keypair[0]] = {"volume":volume, "audio":newaudio};
             });
         }
 
+        this.#volumes = this.#createvolumes ();
+    }
+
+    set volume (value)
+    {
+        this.#volume = value;
+        for(let chkey in this.channels)
+        {
+            const ch = this.channels[chkey];
+            ch.audio.volume = ch.volume*value;
+        }
+    }
+
+    get volume ()
+    {
+        return this.#volume;
+    }
+
+    get volumes ()
+    {
+        return this.#volumes;
+    }
+
+    #createvolumes ()
+    {
+        const vols = {};
+        for (const key in this.channels) {
+            const channel = this.channels[key];
+            vols[key] = (value) => 
+            { 
+                channel.volume = value;
+                channel.audio.volume = value * this.volume; 
+            };
+        }
+        return vols;
     }
 
     error () 
@@ -104,7 +150,7 @@ class AudioSys extends HTMLElement
         if(!channel) return;
         //console.log("Audio ", src, " ", channel.audio.ended);
         if(channel.audio.src && !channel.audio.ended) return;
-        channel.audio.volume = channel.volume;
+        channel.audio.volume = channel.volume * this.volume;
         channel.audio.src = src;
         if(_channel == "music") channel.audio.loop = true;
         else channel.audio.loop = false;

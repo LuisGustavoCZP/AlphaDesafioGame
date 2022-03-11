@@ -5,19 +5,20 @@ class User
     #hasUser;
     #userData;
     data;
+    stage;
 
     constructor ()
     {
         this.#hasUser = false;
         this.#userData = this.#recoverCookie ();
         this.data = null;
-        
+        this.stage = null;
     }
 
     #createCookie (userData) 
     {
         const date = new Date();
-        date.setTime(date.getTime() + 1000*60*5); //31536000000
+        date.setTime(date.getTime() + 1000*60*60); //31536000000
         return `userData=${userData}; expires=${date.toGMTString()}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
     }
 
@@ -91,29 +92,27 @@ class User
         {
             window.game.src="modules/error/index.html";
         } else {
-            this.goTo("modules/main/", "modules/windows/login/");
-            
+            this.goTo("modules/background/", "modules/windows/login/");
         }
     }
 
     goTo (gamePath, modalPath)
     {
-        /* if(!window.transition.readyGo) {
-            if(this.stackGo) this.stackGo++;
-            else this.stackGo = 1;
-            window.transition.speed *= (1+this.stackGo);
-            window.transition.onfinish = () => {delete this.stackGo;};
+        if(window.game.src == gamePath)
+        {
+            if(modalPath) window.modal.src=modalPath;
             return;
-        } */
+        }
+
         window.transition.oncomplete = (target) => 
         { 
-            console.log(target);
-            window.transition.stop();
-            //console.log(target);
+            window.game.onload = (d)=> 
+            {
+                //console.log("Carregou janela "+d);
+                window.transition.revert();
+            };
             window.game.src=gamePath;
             if(modalPath) window.modal.src=modalPath;
-            window.transition.play();
-            //console.log(window.transition.playing);
         };
         window.transition.play();
     }
@@ -133,7 +132,7 @@ class User
                 thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : undefined);
             }
 
-            console.log(thisuser.data.stages);
+            console.log(thisuser.data);
             thisuser.requestRanking();
             thisuser.requestStages();
             thisuser.requestBook();
@@ -146,14 +145,58 @@ class User
         }
     }
 
-    start (stage)
+    start (stageid)
     {
-        console.log(stage);
-        if(this.stages.length <= stage-1) return;
-        this.stage = stage;
+        //console.log(stageid);
+        if(this.stages.length <= stageid-1) return;
+        this.requestStage(stageid);
         this.goTo("modules/game/");
         /* window.game.src="modules/game/";
         window.modal.src=""; */
+    }
+
+    stageWin ()
+    {
+        this.requestRanking();
+        this.requestStages();
+        this.requestBook();
+        this.requestStock();
+        this.goTo("modules/main/", "modules/windows/stages");
+    }
+
+    stageTimeout ()
+    {
+        this.goTo("modules/main/", "modules/windows/stages");
+    }
+    
+    sendItems (itens)
+    {
+        RequestSys.post("stage", {"items":itens}, userSucess, this.userError, {"userData":this.#userData});
+        const thisuser = this; 
+        function userSucess (data)
+        {
+            console.log(data);
+            if(data.status == 0) return;
+            else if (data.status == 1) thisuser.stageTimeout();
+            else {
+                thisuser.stageWin();
+            }
+        }
+    }
+
+    requestStage (stageid, callback)
+    {
+        RequestSys.get("stage", {params:{"userData":this.#userData}, query:{"stage":stageid}}, userSucess, this.userError);
+        const thisuser = this; 
+        function userSucess (data)
+        {
+            console.log(data);
+            thisuser.stage = stageid;
+            thisuser.currentStage = data;
+            if(callback){
+                callback(data);
+            }
+        }
     }
 
     requestStages (callback)

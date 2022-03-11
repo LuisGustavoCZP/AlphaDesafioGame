@@ -59,6 +59,12 @@ app.get("/:userData/book", user.verifySession, game.craft.book);
 //Pegar o estoque em ordem aleatória
 app.get("/:userData/stages", user.verifySession, game.craft.userstages);
 
+//Iniciar estagio, retornando uma receita temporizada
+app.get("/:userData/stage/", user.verifySession, game.craft.stageStart);
+
+//Finaliza estagio, recebendo os itens e retornando a poção com um valor
+app.post("/:userData/stage/", user.verifySession, game.craft.stageUpdate);
+
 //app.listen(port, )
 
 https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});

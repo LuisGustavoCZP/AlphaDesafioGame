@@ -63,7 +63,7 @@ function getStages (user)
 {
     const last = user.stages.length - 1;
     const lastStage = user.stages[last];
-    const currentStage = lastStage && !lastStage.complete ? lastStage : addStage(user);
+    const currentStage = lastStage && !lastStage.finished ? lastStage : addStage(user);
     //const userStage = stages[lastStage.stage];
     //console.log(lastStage, currentStage);
     const s = [];
@@ -71,7 +71,8 @@ function getStages (user)
     {
         const stage = stages[userStage.stage];
         const stageD = {stage:stage.stage, potions:[], highscore:user.stages[stage.stage].highscore};
-        stage.potions.forEach(recipeID => {
+        stage.potions.forEach(recipeID => 
+        {
             const recipe = getItem(recipeID);
             const potion = getItem(recipe.item);
             stageD.potions.push({"name":potion.name, "icon":potion.icon})
@@ -114,11 +115,16 @@ function getBook (user)
     return total;
 }
 
-function randomPotion (user)
+function getRecipe (recipeID)
 {
-    const recipeID = Utility.randomSort(stages[user.stage].recipes);
-    const recipe = {potion:getItem(recipeID), ...recipes[recipeID]};
-    return recipe;
+    const ps = getItem(recipeID);
+    const is = [];
+    ps.ingredients.forEach(i => {
+        const r = getItem(i);
+        is.push({item:r.name, icon:r.icon});
+    });
+    const itm = getItem(ps.item);
+    return {item:{"name":itm.name, "icon":itm.icon}, "ingredients":is};
 }
 
 function result (itens)
@@ -140,8 +146,8 @@ function stock (req, res)
 
 function userstages (req, res)
 {
-    const p = User.get(req.userid);
-    res.json(getStages(p));
+    const user = User.get(req.userid);
+    res.json(getStages(user));
 }
 
 function craft (req, res)
@@ -150,13 +156,67 @@ function craft (req, res)
     res.json(getStages(p)); */
 }
 
+async function stageStart (req, res)
+{
+    const user = User.get(req.userid);
+    const stageid = req.query["stage"];
+    const oStage = stages[stageid];
+    const time = new Date().getTime();
+    const tempStage = 
+    {
+        stage:stageid,
+        potion:oStage.potions[Utility.randomSort(oStage.potions)],
+        limitTime: (time + (oStage.time*1000)),
+    };
+    user.currentStage = tempStage;
+
+    const newStage = {...tempStage};
+    newStage.potion = getRecipe(tempStage.potion);
+
+    console.log(tempStage, newStage);
+    res.json(newStage);
+}
+
+async function stageUpdate (req, res)
+{
+    const user = User.get(req.userid);
+    const stage = user.currentStage;
+    const time = new Date().getTime();
+    const expectedResult = getItem(stage.potion).item;
+
+    const timePass = stage.limitTime - time;
+    //console.log(timePass, `${time} - ${stage.limitTime}`);
+
+    if(timePass <= 0) {
+        res.json({status:1});
+        return;
+    }
+    const r = result(req.body["items"]);
+    //console.log(timePass, `${expectedResult} == ${r}`);
+    if(!r) res.json({status:0});
+    else 
+    {
+        let st = 0;
+        if(expectedResult == r) {
+            st = 2;
+            const ustage = user.stages[user.currentStage.stage];
+            ustage.finished = true;
+            console.log(ustage);
+            User.saveUsers();
+        }
+        const ritem = getItem(r);
+        res.json({result:{name:ritem.name, icon:ritem.icon}, status:st});
+    }
+}
+
 //
 module.exports = {
     getItem,
-    randomPotion,
     result,
     book,
     stock,
     userstages,
-    craft
+    craft,
+    stageStart,
+    stageUpdate
 }

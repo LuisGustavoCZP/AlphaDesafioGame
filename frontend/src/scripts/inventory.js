@@ -22,6 +22,7 @@ class Inventory extends HTMLElement
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
         linkcss.href = "/styles/inventory.css";
+        
         this.before(linkcss);
         this.classList.add("inventory");
         this.content = document.createElement("div");
@@ -43,7 +44,7 @@ class Inventory extends HTMLElement
             const ttxt = this.getAttribute('title');
             
             this.title = document.createElement("span");
-            console.log(ttxt, this.title.innerText);
+            //console.log(ttxt, this.title.innerText);
             this.title.innerText = ttxt;
             this.content.prepend(this.title);
         }
@@ -89,7 +90,7 @@ class Inventory extends HTMLElement
     createItens (data)
     {
         //const d = [data];
-        console.log(data);
+        //console.log(data);
         const maxColumns = this.columns; //this.tableRows.length;
         let row = -1;
         //this.container.ondragover = this.dragOver;
@@ -105,69 +106,31 @@ class Inventory extends HTMLElement
                 {
                     if(window.audiosys) window.audiosys.play("tick");
                 });
-                const h = function(event) {console.log(event.target);};
-                const c = {
-                    "ui-draggable": "dragging"
-                }
                 const dragstart = function( event, ui ) {
-                    //console.log(this);
                     this.classList.add("dragging");
                     if(window.audiosys) window.audiosys.play("select");
-                    //alert("hi..");
                 }
                 const dragstop = function( event, ui ) {
-                    //console.log(this);
                     this.classList.remove("dragging");
                     if(window.audiosys) window.audiosys.play("drop");
-                    //alert("hi..");
                 }
-                d.draggable ({opacity: 0.7, zIndex: 1001,appendTo: "body", helper: "clone", cursor: "move", start: dragstart, stop:dragstop});
+                d.draggable (
+                {
+                    opacity: 0.7, 
+                    zIndex: 1001,
+                    containment: "parent",
+                    appendTo: "body", 
+                    helper: "clone", 
+                    cursor: "move", 
+                    start: dragstart, 
+                    stop:dragstop
+                });
                 
             });
-            /* .ondragstart = this.dragStart;
-            el.children[0].ondragend = this.dragEnd;
-            el.children[0].ondrag = this.drag; */
             if(i % maxColumns == 0) row++;
-            //console.log(i % maxColumns, maxColumns, i, row, this.container.children);
             this.container.children[row].append(el);
         });
     }
-
-/*     dragStart (ev) 
-    {
-        ev.dataTransfer.setData("text/plain", null);
-        ev.dataTransfer.effectAllowed = "all";
-        console.log(ev.target.id);
-        ev.target.classList.add("dragging");
-        ev.dataTransfer.mozCursor = "default";
-        const targetClone = ev.target.cloneNode();
-        targetClone.remove();
-
-        targetClone.width = ev.target.width*5;
-        targetClone.height = ev.target.height*5;
-        console.log(targetClone, ev.target);
-        ev.dataTransfer.setDragImage(targetClone, 0, 0);
-    }
-
-    drag (ev)
-    {
-        console.log(ev.target.id);
-        ev.stopPropagation();
-        ev.preventDefault();
-        
-        ev.dataTransfer.dropEffect = 'move';
-    }
-
-    dragEnd (ev) {
-        console.log(ev.target.id);
-        this.classList.remove("dragging");
-    }
-
-    dragOver (ev)
-    {
-        ev.stopPropagation();
-        ev.preventDefault();
-    } */
 
     static define ()
     {

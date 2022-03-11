@@ -80,6 +80,8 @@ class GameElement extends HTMLElement
             }
             
             repairSrcs(doc.body, this);
+
+            if(this.onload) this.onload(this);
         });
     }
 

@@ -6,14 +6,14 @@
     box-sizing: content-box;
     justify-content: center;
     align-items: stretch;
-    --inv-depth: 48px;
+    --inv-depth: 24px;
 }
 
 .inventory > div {
     display: flex;
     flex-direction: column;
     box-sizing: content-box;
-    background-color: var(--wood-mid);
+    background-color: var(--wood-light);
     width: 100%;
     height: 100%;
 }
@@ -75,7 +75,7 @@
 }
 
 .inventory .deep-top {
-    background-color: var(--wood-light);
+    background-color: var(--wood-mid);
     -webkit-mask: var(--img) repeat center;
     mask: var(--img) repeat center;
 }
@@ -106,9 +106,10 @@
     align-items: flex-end;
     flex-wrap: wrap;
 }
+
 .inventory tr {
-    background-color: var(--wood-light);
-    
+    /* background-color: var(--wood-light); */
+    padding: 5px 0;
 }
 
 .inventory td {
@@ -117,10 +118,10 @@
     align-items: center;
     z-index: 15;
     margin: 5px;
-    
+    padding: 5px;
     width: 64px;
     height: 64px;
-    border: 1px solid var(--wood-mid);
+    /* border: 1px solid var(--wood-mid); */
 }
 
 .inventory td {
