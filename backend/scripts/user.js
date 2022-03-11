@@ -147,7 +147,7 @@ function get (id)
 function userData (req, res)
 {
     const p = users[req.userid];
-    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
+    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
 }
 
 function userReset (req, res)

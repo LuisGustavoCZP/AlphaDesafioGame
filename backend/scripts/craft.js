@@ -63,7 +63,7 @@ function getStages (user)
 {
     const last = user.stages.length - 1;
     const lastStage = user.stages[last];
-    const currentStage = lastStage && !lastStage.complete ? lastStage : addStage(user);
+    const currentStage = lastStage && !lastStage.finished ? lastStage : addStage(user);
     //const userStage = stages[lastStage.stage];
     //console.log(lastStage, currentStage);
     const s = [];
@@ -71,7 +71,8 @@ function getStages (user)
     {
         const stage = stages[userStage.stage];
         const stageD = {stage:stage.stage, potions:[], highscore:user.stages[stage.stage].highscore};
-        stage.potions.forEach(recipeID => {
+        stage.potions.forEach(recipeID => 
+        {
             const recipe = getItem(recipeID);
             const potion = getItem(recipe.item);
             stageD.potions.push({"name":potion.name, "icon":potion.icon})
@@ -160,11 +161,12 @@ async function stageStart (req, res)
     const user = User.get(req.userid);
     const stageid = req.query["stage"];
     const oStage = stages[stageid];
+    const time = new Date().getTime();
     const tempStage = 
     {
         stage:stageid,
         potion:oStage.potions[Utility.randomSort(oStage.potions)],
-        initialTime: new Date().toJSON()
+        limitTime: (time + (oStage.time*1000)),
     };
     user.currentStage = tempStage;
 
@@ -177,13 +179,33 @@ async function stageStart (req, res)
 
 async function stageUpdate (req, res)
 {
-    const p = User.get(req.userid);
+    const user = User.get(req.userid);
+    const stage = user.currentStage;
+    const time = new Date().getTime();
+    const expectedResult = getItem(stage.potion).item;
+
+    const timePass = stage.limitTime - time;
+    //console.log(timePass, `${time} - ${stage.limitTime}`);
+
+    if(timePass <= 0) {
+        res.json({status:1});
+        return;
+    }
     const r = result(req.body["items"]);
-    console.log(r);
+    //console.log(timePass, `${expectedResult} == ${r}`);
     if(!r) res.json({status:0});
-    else {
-        const ritem = getItem(r)
-        res.json({result:{name:ritem.name, icon:ritem.icon}, status:0});
+    else 
+    {
+        let st = 0;
+        if(expectedResult == r) {
+            st = 2;
+            const ustage = user.stages[user.currentStage.stage];
+            ustage.finished = true;
+            console.log(ustage);
+            User.saveUsers();
+        }
+        const ritem = getItem(r);
+        res.json({result:{name:ritem.name, icon:ritem.icon}, status:st});
     }
 }
 
