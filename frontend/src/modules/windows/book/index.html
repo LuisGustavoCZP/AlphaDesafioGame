@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../../../styles/pattern.css">
         <link rel="stylesheet" href="../../../styles/schemes.css">
@@ -9,12 +10,33 @@
 
         <!-- Modal content -->
         <div class="modal-background">
-            <span class="close">&times;</span>
-            <div id="title"><strong></strong></div>
-            <div id="content">
-                <div class="title"><strong>NOME</strong></div>
-                <input id="username" type="content-title" placeholder="DIGITE SEU NOME AQUI">
-                <button id="btn-login"></button>
+            <div id="content1" class="content-book">
+                <div id="potion1-page1" class="potions">
+                    <h2 class="pot-name"></h2>
+                    <img id="pot-1" class="this-potion" src="">
+                    <div id="ing-1" class="ing-needed">
+                    </div>
+                </div>
+                <div id="potion2-page1" class="potions">
+                    <h2 class="pot-name"></h2>
+                    <img id="pot-2" class="this-potion" src="">
+                    <div id="ing-2" class="ing-needed">
+                    </div>
+                </div>
+            </div>
+            <div id="content2" class="content-book">
+                <div id="potion1-page2" class="potions">
+                    <h2 class="pot-name"></h2>
+                    <img id="pot-3" class="this-potion" src="">
+                    <div id="ing-3" class="ing-needed">
+                    </div>
+                </div>
+                <div id="potion2-page2" class="potions">
+                    <h2 class="pot-name"></h2>
+                    <img id="pot-4" class="this-potion" src="">
+                    <div id="ing-4" class="ing-needed">
+                    </div>
+                </div>
             </div> 
             
         </div>
@@ -32,6 +54,33 @@
                 align-content: flex-start;
             }
 
+            .modal-background{
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                background-image: url("../../../images/game/book.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: 0;
+                width: 1000px;
+                height: 600px; 
+                background-color: white;
+            }
+
+            .content-book{
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 90%;
+                width: 40%;
+            }
+            .content-book p{
+                text-transform: uppercase;
+                text-align: center;
+            }
+
+
             #btn-play {
                 border-radius: 60px;
                 background-image: url("icons/play.svg");
@@ -39,6 +88,28 @@
                 height: 110px;
                 margin-top: 15px;
                 background-color: #4EA466;
+            }
+
+            .this-potion{
+                width: 15vh;
+            }
+            .pot-name{
+                text-transform: uppercase;
+            }
+            .potions{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .ingredients{
+                width: 10vh;
+            }
+
+            .ing-needed{
+                display: flex;
+                justify-content: space-around;
+                width: 300px;
             }
 
             button {
@@ -77,6 +148,6 @@
 
         </style>
 
-        <script src="./login.js"></script>
+        <script src="./book.js"></script>
     </body>
 </html>
