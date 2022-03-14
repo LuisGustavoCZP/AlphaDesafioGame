@@ -111,6 +111,7 @@ function sortPotion(req, res) {
    const total_pots = [...potions];
    const potionID = randomSort(total_pots);
    const sorted_pots = total_pots[potionID];
+   console.log(sorted_pots);
    return sorted_pots;
 }
 
