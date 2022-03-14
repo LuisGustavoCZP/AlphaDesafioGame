@@ -82,7 +82,7 @@ function verifySession (req, res, next)
             {
                 res.json(null);
             } else {
-                console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
+                //console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
                 req.userid = decoded.userid;
                 //CreateSession(req.userid, res);
                 next();

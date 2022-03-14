@@ -17,7 +17,7 @@ header{
     width: calc(100% - 20px);
     left: 0;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     flex-direction: row;
     z-index: 1000;
@@ -41,76 +41,6 @@ main{
     background-repeat: no-repeat; */
 } 
 
-
-/* Footer with buttons*/
-footer{
-   /*  position: relative; */
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--menu-dark);
-    z-index: 1000;
-}
-
-#buttons{
-    display: flex;
-    width: 80%;
-    margin: auto;
-    align-items: flex-end;
-    padding-bottom: 10px;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: flex-start;
-    z-index: 1000;
-}
-
-#btn-play {
-    border-radius: 60px;
-    background-image: url("../../images/main/play.svg");
-    width: 110px;
-    height: 110px;
-    margin-top: 15px;
-    background-color: var(--menu-glow);
-}
-
-button {
-    width: 70px;
-    height: 70px;
-    font-weight: 500;
-    color: #000;
-    background-color: var(--menu-mid);
-    border: none;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1000;
-}
-  
-button:hover, #btn-play:hover, #btn-login:hover {
-    background-color: var(--menu-glow-low);
-    transform: translateY(-7px);
-}
-#btn-setting{
-    position: relative;
-    transform: translateY(0px);
-    left: calc(100% - 70px);
-}
-#btn-setting {
-    background-image: url("../../images/main/sound.svg");
-}
-#btn-ranking {
-    background-image: url("../../images/main/ranking.svg");
-}
-#btn-howToPlay {
-    background-image: url("../../images/main/question.svg");
-}
-
 .menu-title {
     display: flex;
     background-color: var(--menu-dark);
@@ -124,8 +54,9 @@ button:hover, #btn-play:hover, #btn-login:hover {
     mask-size: cover;
     position: absolute;
     border-radius: 50px;
-    width: 300px;
-    height: 200px;
+    width: fit-content;
+    top: -25px;
+    height: fit-content;
     justify-content: center;
     align-items: center;
 }
@@ -137,4 +68,11 @@ button:hover, #btn-play:hover, #btn-login:hover {
    font-size: 400%;
    text-align: center;
    vertical-align: middle;
+   display: flex;
+   flex-direction: row;
+   margin: 0;
+}
+
+.menu-title h1 > span {
+   padding: .4em;
 }

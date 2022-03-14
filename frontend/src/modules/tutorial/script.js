@@ -5,7 +5,7 @@ $(document).ready(function()
     const dialogMage = $("#dialog-mage")[0];
     const btnbook = $("#btn-book")[0];
     btnbook.onclick = () => {parent.modal.src="modules/windows/book";};
-    bookcase.start();
+
     if(parent.modal) parent.modal.src="modules/windows/stage";
     setTimeout(() => 
     {
@@ -16,7 +16,7 @@ $(document).ready(function()
             recipe = parent.gameuser.currentStage.potion;
         }
 
-        /* const firstdialog = 
+        const firstdialog = 
         {
             text:`OLÁ ${parent.gameuser.data.name.toUpperCase()}, VAMOS A NOSSA PRIMEIRA LIÇÃO!{e20}{f1}{f0}`,
             time:1000,
@@ -30,15 +30,15 @@ $(document).ready(function()
                 },
                 (parag, dialog) => 
                 {
-                    
+                    bookcase.start();
                 },
             ]
-        }; */
+        };
 
         const txts = [];
         txts.push(recipeDialog (recipe));
 
-        dialogMage.createText(...txts);
+        dialogMage.createText(firstdialog, `ARRASTE OS ITENS ATÉ O CALDEIRÃO!{e4}`, ...txts);
 
     }, 5000);
 
@@ -48,7 +48,7 @@ $(document).ready(function()
         {
             text:/* `{i0} + {i1} = {i2}{f0}` */"",
             time:5000,
-            speed:.6,
+            speed:.1,
             
             icons: //{i0}
             [
@@ -60,7 +60,7 @@ $(document).ready(function()
             [
                 (parag, dialog) => 
                 {
-                    //cauldron.classList.remove("highlight");
+                    cauldron.classList.remove("highlight");
                     cauldron.start();
                 }
             ]

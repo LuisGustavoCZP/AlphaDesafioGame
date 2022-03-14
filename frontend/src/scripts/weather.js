@@ -127,6 +127,15 @@ class WeatherSys extends HTMLElement
             this.altitude = 1;
         }
 
+        if(this.hasAttribute('amplitude')) {
+            const s = parseFloat(this.getAttribute('amplitude'));
+            this.amplitude = s;
+        } 
+        else
+        {
+            this.amplitude = 1;
+        }
+
         if(this.hasAttribute('layers')) 
         {
             const lys = this.getAttribute('layers').replaceAll(" ", "").split(",");
@@ -204,29 +213,23 @@ class WeatherSys extends HTMLElement
         this.#playing = false;
     }
 
-    layerloop (target, layer)
+    createInstances (target, layer, w, h)
     {
-        const w = layer.canvas.width/2, h = layer.canvas.height/2;
-        const ctx = layer.context;
-        ctx.clearRect(0,0,w*2,h*2);
+        const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
 
         if(!layer.objects) 
         {
             layer.objects=[];
         }
-        
-        const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
 
-        ctx.translate(w, h);
-        
-        if(layer.objects.length < target.density*10*(1/s))
+        while(layer.objects.length < target.density*5*(1/(s*s)))
         {
             if(layer.objects.timer == undefined || layer.objects.timer > 0)
             {
                 layer.objects.timer = 0;
 
                 function randomSize () {
-                    return ((Math.random() * .2) + .8) * (s) * target.size;
+                    return ((Math.random() * .2) + .8) * (s*s) * target.size;
                 }
                 function randomSpeed () {
                     return ((.2 *  Math.random()) + .8) * (s*s) * target.speed;
@@ -237,7 +240,7 @@ class WeatherSys extends HTMLElement
                 function randomHeight () {
                     const alt = (1 - target.altitude)*h;
                     const dif = (h*.5);
-                    return -alt+(Math.random()*50+dif)*(1/s)-dif;
+                    return -alt+(Math.random()*(50*target.amplitude)+dif)*(1/(s*s))-dif;
                 }
 
                 const newobj = {
@@ -260,6 +263,17 @@ class WeatherSys extends HTMLElement
                 layer.objects.timer++;
             }
         }
+    }
+
+    layerloop (target, layer)
+    {
+        const w = layer.canvas.width/2, h = layer.canvas.height/2;
+        const ctx = layer.context;
+        ctx.clearRect(0,0,w*2,h*2);
+
+        ctx.translate(w, h);
+        
+        this.createInstances(target, layer, w, h)
 
         layer.objects.forEach(obj => 
         {

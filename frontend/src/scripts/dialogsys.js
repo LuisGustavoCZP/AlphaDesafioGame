@@ -90,7 +90,7 @@ class DialogSys extends HTMLElement
                 if(code[0] == "i")
                 {
                     const i = parseInt(code.slice(1));
-                    parag.innerHTML += `<img class="item" src="images/${dialog.icons[i]}" />`;
+                    parag.innerHTML += `<img class="item" src="../../images/${dialog.icons[i]}" />`;
                 } 
                 else if(code[0] == "f")
                 {
@@ -100,8 +100,7 @@ class DialogSys extends HTMLElement
                 else if(code[0] == "e")
                 {
                     const e = parseInt(code.slice(1));
-                    parag.innerHTML += `<img class="emoji" src="images/${DialogSys.emojis[e]}" />`;
-                    
+                    parag.innerHTML += `<img class="emoji" src="../../images/${DialogSys.emojis[e]}" />`;
                 }
                 
                 letter = findex;
@@ -112,15 +111,27 @@ class DialogSys extends HTMLElement
             if(text.length > letter) 
             {
                 letter++;
-                setTimeout(createLetter, 100*globalSpeed*(dialog.speed?dialog.speed:1));
+                setTimeout(createLetter, 100*(1/globalSpeed)*(dialog.speed?(1/dialog.speed):1));
                 //console.log(thisdialog.innerText, text, letter);
-            } else {
-                setTimeout(()=>
+            } 
+            else 
+            {
+                async function nextDialog ()
                 {
                     parag.remove();
                     thisdialog.createText(...dialogs);
+                    window.removeEventListener("click", nextDialog);
                     //if(dialog.next) thisdialog.createText(dialog.next);
-                }, (dialog.time?dialog.time:1000)*globalSpeed);
+                }
+                console.log(dialog);
+                if(dialog.click)
+                {
+                    window.addEventListener("click", nextDialog);
+                } 
+                else 
+                {
+                    setTimeout(nextDialog, (dialog.time?dialog.time:1000)*(1/globalSpeed));
+                }
             }
         }
         createLetter ();

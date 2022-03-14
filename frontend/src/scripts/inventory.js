@@ -55,9 +55,10 @@ class Inventory extends HTMLElement
 
     start ()
     {
-        if(window.gameuser && window.gameuser.stock) this.createItens(window.gameuser.stock);
+        console.log(parent.gameuser && parent.gameuser.stock)
+        if(parent.gameuser && parent.gameuser.stock) this.createItens(parent.gameuser.stock);
         else this.createItens(pseudoStock);
-        //window.gameuser.requestStock ((data) => this.createItens(data));
+        //parent.gameuser.requestStock ((data) => this.createItens(data));
     }
 
     createColumn ()
@@ -104,15 +105,15 @@ class Inventory extends HTMLElement
                 const d = $(`#${item.id}`);
                 d.on("pointerenter", (e) => 
                 {
-                    if(window.audiosys) window.audiosys.play("tick");
+                    if(parent.audiosys) parent.audiosys.play("tick");
                 });
                 const dragstart = function( event, ui ) {
                     this.classList.add("dragging");
-                    if(window.audiosys) window.audiosys.play("select");
+                    if(parent.audiosys) parent.audiosys.play("select");
                 }
                 const dragstop = function( event, ui ) {
                     this.classList.remove("dragging");
-                    if(window.audiosys) window.audiosys.play("drop");
+                    if(parent.audiosys) parent.audiosys.play("drop");
                 }
                 d.draggable (
                 {

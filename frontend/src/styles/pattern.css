@@ -21,6 +21,7 @@
     --azuldark: rgb(51, 62, 87);
     --montain: rgb(105, 90, 48);
     --ground: rgb(38, 128, 38);
+    --ground-back: rgb(81, 131, 81);
     --menu-darkness: rgb(26, 35, 48);
     --menu-dark: rgb(31, 51, 81);
     --menu-mid: rgb(160, 136, 72);
@@ -46,3 +47,20 @@
 img.gray {
     filter: grayscale(100%);
 }
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-window {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10000; /* Sit on top */
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    /* background-color: rgb(0,0,0); */ /* Fallback color */
+    /* background-color: rgba(0, 0, 0, 0.603); */ /* Black w/ opacity */
+  }

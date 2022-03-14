@@ -130,12 +130,8 @@ class GameTransition extends HTMLElement
         this.#stopping = true;
     }
 
-    layerloop (target, layer)
+    createInstances (target, layer, w, h) 
     {
-        const w = layer.canvas.width/2, h = layer.canvas.height/2;
-        const ctx = layer.context;
-        ctx.clearRect(0,0,w*2,h*2);
-
         if(!layer.objects) 
         {
             layer.objects=[];
@@ -179,6 +175,16 @@ class GameTransition extends HTMLElement
                 }
             }
         }
+    }
+
+    layerloop (target, layer)
+    {
+        const w = layer.canvas.width/2, h = layer.canvas.height/2;
+        const ctx = layer.context;
+        ctx.clearRect(0,0,w*2,h*2);
+
+        this.createInstances(target, layer, w, h);
+
         const s = 1;
 
         ctx.translate(w, h);

@@ -36,6 +36,7 @@ $(document).ready(() =>
         /* console.log(e.target); */
         parent.audiosys.play("start");
         parent.gameuser.start(e.target.getAttribute("stage")-1);
+        parent.modal.src = "";
     });
     //console.log(parent.gameuser.stages);
     /*parent.game.src = "modules/game/";
@@ -43,7 +44,7 @@ $(document).ready(() =>
     $(".close").on("click", function() 
     {
         //console.log("Close");
-        parent.modal.src = "";
+        parent.modal.src = "modules/windows/main";
         parent.audiosys.play("close");
         //$(`#Modal`).css("display","none");
     });

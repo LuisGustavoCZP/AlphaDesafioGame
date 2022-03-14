@@ -3,7 +3,7 @@ class Modal extends HTMLIFrameElement
     constructor()
     {
         super();
-        this.classList.add("modal");
+        this.classList.add("modal-window");
         this.hidden = true;
     }
 

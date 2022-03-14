@@ -38,7 +38,7 @@ class Crafter extends HTMLElement
             { 
                 this.classList.add("placing"); 
                 ui.helper[0].classList.add("ui-draggable-dropping");
-                if(window.audiosys) window.audiosys.play("select");
+                if(parent.audiosys) parent.audiosys.play("select");
             },
             out: function( event, ui ) 
             { 
@@ -54,14 +54,14 @@ class Crafter extends HTMLElement
                 const itemid = ui.draggable[0].id;
                 container.ingredients.push(itemid);
                 console.log("Dropou objeto", container.ingredients); 
-                if(window.audiosys) window.audiosys.play("sucess");
-                window.gameuser.sendItems(container.ingredients);
+                if(parent.audiosys) parent.audiosys.play("sucess");
+                parent.gameuser.sendItems(container.ingredients);
             }
         });
 
         const thisClass = this;
         function timerLoop (){
-            const timePass = window.gameuser.currentStage.limitTime - (new Date().getTime());
+            const timePass = parent.gameuser.currentStage.limitTime - (new Date().getTime());
             //console.log(timePass);
             let ms = timePass;
             let aux = ms % 1000;
@@ -77,7 +77,7 @@ class Crafter extends HTMLElement
             
             thisClass.timer.innerText = (hr > 0?`${hr}:`:"")+(mn > 0?`${mn}:`:"")+(s > 0?`${s}`:"")+(ms > 0?`.${ms}`.slice(0, 2):"");
             if(timePass > 0) setTimeout(timerLoop, 100);
-            else window.gameuser.stageTimeout();
+            else parent.gameuser.stageTimeout();
         }
         timerLoop();
     }
