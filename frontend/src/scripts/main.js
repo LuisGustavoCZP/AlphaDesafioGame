@@ -9,4 +9,11 @@ window.modal.src = "modules/splash"
 window.game = document.getElementById("game");
 window.transition = document.getElementById("transition");
 
+const iniciateSound = e=>
+{
+    window.audiosys.play("music1"); 
+    window.removeEventListener("mousemove", iniciateSound);
+};
+window.addEventListener("click", iniciateSound);
+
 setTimeout(() => { user.update() }, waitTime*1000);

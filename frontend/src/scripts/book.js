@@ -4,7 +4,7 @@ class Book extends HTMLElement
     {
         super();
         this.classList.add("book");
-        window.gameuser.requestBook ((data) => this.createItens(data));
+        parent.gameuser.requestBook ((data) => this.createItens(data));
     }
 
     createRecipes (data)
