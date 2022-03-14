@@ -2,7 +2,7 @@ $(document).ready(() =>
 {
     let recipe = [
         { "item":{"name": "poção da velocidade", "icon": "assets/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Tomate", "icon": "assets/ingredients/4.png"}] },
-        { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
+        { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }, { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
     ];
     const totalOfPages = parseInt(recipe.length/2);
     let thisPage = 1;
@@ -10,21 +10,21 @@ $(document).ready(() =>
     
     function fillPages(){
         if(thisPage === 1){
-            fillIngredients(1, 1);
-            fillIngredients(1, 2);
-            fillIngredients(2, 3);
-            fillIngredients(2, 4);
+            fillIngredients(1, 1, recipe);
+            fillIngredients(1, 2, recipe);
+            fillIngredients(2, 3, recipe);
+            fillIngredients(2, 4, recipe);
         }
     }
 
-    function fillIngredients(page, number){
-        const potionLength = recipe[number-1].ingredients.length;
+    function fillIngredients(page, number, array){
+        const potionLength = array[number-1].ingredients.length;
         console.log(potionLength);
         $(`#ing-${number}`).html("");
-        $(`#potion${number}-page${page} h2`).html(recipe[number-1].item.name);
-        $(`#pot-${number}`).attr("src", `../../../images/${recipe[number-1].item.icon}`);
+        $(`#potion${number}-page${page} h2`).html(array[number-1].item.name);
+        $(`#pot-${number}`).attr("src", `../../../images/${array[number-1].item.icon}`);
         for(let i = 0; i < potionLength; i++){
-            $(`#ing-${number}`).append(`<img class="ingredients" src="../../../images/${recipe[number-1].ingredients[i].icon}">`)
+            $(`#ing-${number}`).append(`<img class="ingredients" src="../../../images/${array[number-1].ingredients[i].icon}">`)
         }
     }
 
