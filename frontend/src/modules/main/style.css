@@ -17,7 +17,7 @@ header{
     width: calc(100% - 20px);
     left: 0;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     flex-direction: row;
     z-index: 1000;
@@ -124,8 +124,9 @@ button:hover, #btn-play:hover, #btn-login:hover {
     mask-size: cover;
     position: absolute;
     border-radius: 50px;
-    width: 300px;
-    height: 200px;
+    width: fit-content;
+    top: -25px;
+    height: fit-content;
     justify-content: center;
     align-items: center;
 }
@@ -137,4 +138,11 @@ button:hover, #btn-play:hover, #btn-login:hover {
    font-size: 400%;
    text-align: center;
    vertical-align: middle;
+   display: flex;
+   flex-direction: row;
+   margin: 0;
+}
+
+.menu-title h1 > span {
+   padding: .4em;
 }

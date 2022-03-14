@@ -3,6 +3,8 @@ $(document).ready(function()
     const bookcase = $("#bookcase")[0];
     const cauldron = $("#cauldron")[0];
     const dialogMage = $("#dialog-mage")[0];
+    const btnbook = $("#btn-book")[0];
+    btnbook.onclick = () => {window.modal.src="modules/windows/book";};
 
     if(window.modal) window.modal.src="modules/windows/stage";
     setTimeout(() => 
@@ -16,11 +18,16 @@ $(document).ready(function()
 
         const firstdialog = 
         {
-            text:`OLÁ ${window.gameuser.data.name.toUpperCase()}, VAMOS A NOSSA PRIMEIRA LIÇÃO!{e20}{f0}`,
+            text:`OLÁ ${window.gameuser.data.name.toUpperCase()}, VAMOS A NOSSA PRIMEIRA LIÇÃO!{e20}{f1}{f0}`,
             time:1000,
             speed: 0.75,
+            click: true,
             functions:
             [
+                (parag, dialog) => 
+                {
+                    cauldron.classList.add("highlight");
+                },
                 (parag, dialog) => 
                 {
                     bookcase.start();
@@ -28,8 +35,10 @@ $(document).ready(function()
             ]
         };
 
-        dialogMage.createText(firstdialog, `ARRASTE OS ITENS ATÉ O CALDEIRÃO!{e4}`, 
-        recipeDialog (recipe));
+        const txts = [];
+        txts.push(recipeDialog (recipe));
+
+        dialogMage.createText(firstdialog, `ARRASTE OS ITENS ATÉ O CALDEIRÃO!{e4}`, ...txts);
 
     }, 5000);
 
@@ -37,9 +46,10 @@ $(document).ready(function()
     {
         const newdialog = 
         {
-            text:/* `{i0} + {i1} = {i2}{f0}` */"{f0}",
-            time:1000,
-            speed:.25,
+            text:/* `{i0} + {i1} = {i2}{f0}` */"",
+            time:5000,
+            speed:.1,
+            
             icons: //{i0}
             [
                 /* "/images/assets/ingredients/1",
@@ -48,10 +58,6 @@ $(document).ready(function()
             ],
             functions:
             [
-                (parag, dialog) => 
-                {
-                    cauldron.classList.add("highlight");
-                },
                 (parag, dialog) => 
                 {
                     cauldron.classList.remove("highlight");
@@ -75,7 +81,7 @@ $(document).ready(function()
         });
 
         newdialog.text += "= ";
-        newdialog.text += `{i${newdialog.icons.length}} {f1}`; //${recipe.item.name}
+        newdialog.text += `{i${newdialog.icons.length}} {f0}`; //${recipe.item.name}
         newdialog.icons.push(recipe.item.icon);
 
         //console.log(newdialog);

@@ -92,7 +92,7 @@ class User
         {
             window.game.src="modules/error/index.html";
         } else {
-            this.goTo("modules/background/", "modules/windows/login/");
+            this.goTo("modules/main/", "modules/windows/login/");
         }
     }
 
@@ -129,7 +129,7 @@ class User
             if(callback){
                 callback(data);
             } else {
-                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : undefined);
+                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : "modules/windows/main");
             }
 
             console.log(thisuser.data);
@@ -176,7 +176,13 @@ class User
         function userSucess (data)
         {
             console.log(data);
-            if(data.status == 0) return;
+            if(data.status == 0) 
+            {
+                if(data.result) {
+                    console.log(`Criou a poção ${data.result}`)
+                }
+                return;
+            }
             else if (data.status == 1) thisuser.stageTimeout();
             else {
                 thisuser.stageWin();

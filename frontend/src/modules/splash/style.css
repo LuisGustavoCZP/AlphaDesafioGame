@@ -1,0 +1,44 @@
+main {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    background: radial-gradient(circle at center, rgb(204, 194, 250), rgba(57, 58, 141, 0.5) 30%);
+}
+
+img {
+    position: absolute;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes -elevate
+{
+    0% {
+        transform: translate(0, 100%);
+    }
+    100% {
+        transform: translate(0, 0%);
+    }
+}
+
+@keyframes -grow
+{
+    0% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.elevator {
+    animation: -elevate normal 10s;
+}
+
+.grower {
+    animation: -grow normal 10s;
+}

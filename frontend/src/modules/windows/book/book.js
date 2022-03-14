@@ -1,9 +1,9 @@
 $(document).ready(() => 
 {
-    let recipe = [
+    let recipe = parent.gameuser.book;/* [
         { "item":{"name": "poção da velocidade", "icon": "assets/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Tomate", "icon": "assets/ingredients/4.png"}] },
         { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
-    ];
+    ]; */
     const totalOfPages = parseInt(recipe.length/2);
     let thisPage = 1;
     console.log(recipe[0].ingredients[0].icon);
