@@ -20,3 +20,4 @@ DNS.3 = localhost
 DNS.4 = 127.0.0.1
 DNS.6 = www.vacsina.servegame.com
 DNS.5 = vacsina.servegame.com
+DNS.6 = 192.168.0.200

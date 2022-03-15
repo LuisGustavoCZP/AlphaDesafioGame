@@ -48,7 +48,7 @@ app.post("/:sessionData/recipe", player.verifySession, game.verifyRecipe);
 app.get("/:sessionData/potion", player.verifySession, game.sortPotion);
 
 //Ranking usuarios
-app.get("/ranking/:top", game.ranking);
+app.get("/ranking/:top", player.ranking);
 
 //Pegar o estoque em ordem aleatória
 app.get("/:sessionData/stock", player.verifySession, game.craft.stock);
