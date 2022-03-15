@@ -4,6 +4,7 @@ const session = require('./sessions');
 const userpath = __dirname.replace("scripts", "data2/users/");
 
 const users = {};
+const highscores = [];
 
 function loadUserFiles ()
 {
@@ -17,7 +18,9 @@ function loadUsers (..._userFiles)
     _userFiles.forEach(file => {
         const user = JSON.parse(fs.readFileSync(userpath+file));    
         users[user.id] = user;
+        highscores.push({classification:highscores.length+1, name:user.name, highscore:user.points});
     });
+    highscores.sort((a, b) => b.highscore - a.highscore);
     //console.log(users);
 }
 
@@ -124,6 +127,29 @@ function login (req, res)
     //res.json();
 }
 
+function addRank (user){
+    let n = undefined
+    let r = undefined;
+    const newRank = {name:user.name, highscore:user.points};
+    for(let i = 0; i < highscores.length; i++)
+    {
+        const rank = highscores[i];
+        if(newRank.name == rank.name) r = i;
+        if(newRank.highscore < rank.highscore) n = i+1;
+        if(n && r) break;
+    } //highscores[i].highscore = user.highscore;
+
+    highscores.splice(r, 1);
+
+    if(!n) highscores.unshift(newRank);
+    else { 
+        const rest = highscores.length-(n);
+        console.log(n, rest);
+        const lastones = highscores.splice(n, rest, newRank);//
+        if(lastones.length > 0) highscores.push(lastones);
+    }
+}
+
 function verifySession (req, res, next)
 {
     session.verify(req, res, next, (id) => 
@@ -148,6 +174,33 @@ function playerReset (req, res)
     res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
 }
 
+async function ranking (req, res)
+{
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+    const theBest = Number(req.params.top);
+    
+    if(isNumber(theBest)){
+        if(Number.isInteger(theBest)){
+            /* const ordened = users.sort((a,b) => b.highscore - a.highscore);
+            const topRanking = ordened.map(function (element , index){
+                if(index < theBest){
+                return {classification: index+1 , name: element.name , highscore: element.highscore}
+                }
+            
+            })
+            topRanking.splice(theBest, topRanking.length - theBest); */
+            res.json(highscores.slice(0, theBest));
+        }else{
+            res.json("The router params is not a intenger");
+        }
+        
+    }else{
+        res.json("The router params is not a number");
+    }
+}
+
 module.exports = 
 {
     users,
@@ -157,5 +210,7 @@ module.exports =
     login,
     verifySession,
     playerData,
-    playerReset
+    playerReset,
+    ranking,
+    addRank
 };

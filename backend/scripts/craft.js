@@ -143,6 +143,7 @@ function nextStage(user, timePass)
         if(nscore > user.highscore)
         {
             user.highscore = nscore;
+            player.addRank(user);
         }
     }
 
