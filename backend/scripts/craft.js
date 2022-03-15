@@ -1,7 +1,8 @@
 const fs = require('fs');
 const Utility = require(`${__dirname}/utility`);
-const User = require(`${__dirname}/user`);
-
+//const User = require(`${__dirname}/user`);
+const player = require(`${__dirname}/player`);
+const users = player.users;
 const path = __dirname.replace("scripts", "");
 
 const stages = JSON.parse(fs.readFileSync(path + "data2/stages.json"));
@@ -146,7 +147,7 @@ function nextStage(user, timePass)
     }
 
     console.log(userStage);
-    User.saveUsers();
+    player.save(user.id);
 }
 
 function result (itens)
@@ -156,25 +157,25 @@ function result (itens)
 
 function book (req, res)
 {
-    const p = User.get(req.userid);
+    const p = users[req.session.userid];
     res.json(getBook(p));
 }
 
 function stock (req, res)
 {
-    const p = User.get(req.userid);
+    const p = users[req.session.userid];
     res.json(getStock(p));
 }
 
 function userstages (req, res)
 {
-    const user = User.get(req.userid);
+    const user = users[req.session.userid];
     res.json(getStages(user));
 }
 
 async function stageStart (req, res)
 {
-    const user = User.get(req.userid);
+    const user = users[req.session.userid];
     const stageid = req.query["stage"];
     const oStage = stages[stageid];
     const time = new Date().getTime();
@@ -195,7 +196,7 @@ async function stageStart (req, res)
 
 async function stageUpdate (req, res)
 {
-    const user = User.get(req.userid);
+    const user = users[req.session.userid];
     const stage = user.currentStage;
     const time = new Date().getTime();
     const expectedResult = getItem(stage.potion).item;

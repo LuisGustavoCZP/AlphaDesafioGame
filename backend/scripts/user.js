@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 /* const crypto = require('crypto') */
 const path = __dirname.replace("scripts", "data/");
 const sessionkey = "m4C4c0-Qu3r-b4n4N4";
-const passCriptoOption = {
+/* const passCriptoOption = {
     algoritm: "aes256",
     secret: "aS3Nh4-3H-F0d4",
     type: "hex"
-}
+} */
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
 const search = searchConstructor ();
