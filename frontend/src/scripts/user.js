@@ -3,30 +3,36 @@ import { RequestSys } from "/scripts/request.js";
 class User
 {
     #hasUser;
-    #userData;
+    #sessionData;
     data;
     stage;
 
     constructor ()
     {
         this.#hasUser = false;
-        this.#userData = this.#recoverCookie ();
+        this.#sessionData = this.#recoverCookie ();
         this.data = null;
         this.stage = null;
     }
 
-    #createCookie (userData) 
+    #createCookie (sessionData) 
     {
         const date = new Date();
         date.setTime(date.getTime() + 1000*60*60); //31536000000
-        return `userData=${userData}; expires=${date.toGMTString()}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+        return `sessionData=${sessionData}; expires=${date.toGMTString()}; SameSite=None; Secure;path=/`; //;domain=localhost:8080
+    }
+
+    #removeCookie () 
+    {
+        document.cookie = `sessionData=; expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=None; Secure;path=/`;
     }
 
     #recoverCookie () {
         const cookie = document.cookie;
+        if(cookie=="") return null;
         const cookieValues = cookie.split(";");
-        //console.log(cookieValues);
-        return cookieValues[0].replace("userData=", "");
+        console.log(cookieValues);
+        return cookieValues[0].replace("sessionData=", "");
     }
 
     login (user)
@@ -53,8 +59,8 @@ class User
             else/*  if(status == 0) */
             {
                 this.#hasUser = true;
-                document.cookie = this.#createCookie(data.userData);
-                this.#userData = this.#recoverCookie ();
+                document.cookie = this.#createCookie(data.sessionData);
+                this.#sessionData = this.#recoverCookie ();
                 window.audiosys.play("sucess");
                 
                 parent.modal.src = "";
@@ -86,13 +92,15 @@ class User
 
     userError = (data, unable) =>
     {
+        
         this.#hasUser = false;
+        this.#removeCookie();
         console.log(unable);
         if(unable)
         {
             window.game.src="modules/error/index.html";
         } else {
-            this.goTo("modules/main/", "modules/windows/login/");
+            this.goTo("modules/splash/");
         }
     }
 
@@ -117,9 +125,19 @@ class User
         window.transition.play();
     }
 
-    update (callback) 
+    update (callback)
     {
-        RequestSys.get("user", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        if(this.#sessionData == null) 
+        {
+            this.userError(this.#sessionData, false);
+            return;
+        }
+        /* let ns = Object.keys(this.#sessionData);
+        let n = ns.reduce((n, p) => n + p, ""); */
+        console.log(`Update para`, this.#sessionData);
+        const params = {"sessionData":this.#sessionData};
+        
+        RequestSys.get("user", {params}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -171,7 +189,7 @@ class User
     
     sendItems (itens)
     {
-        RequestSys.post("stage", {"items":itens}, userSucess, this.userError, {"userData":this.#userData});
+        RequestSys.post("stage", {"items":itens}, userSucess, this.userError, {"sessionData":this.#sessionData});
         const thisuser = this; 
         function userSucess (data)
         {
@@ -192,7 +210,7 @@ class User
 
     requestStage (stageid, callback)
     {
-        RequestSys.get("stage", {params:{"userData":this.#userData}, query:{"stage":stageid}}, userSucess, this.userError);
+        RequestSys.get("stage", {params:{"sessionData":this.#sessionData}, query:{"stage":stageid}}, userSucess, this.userError);
         const thisuser = this; 
         function userSucess (data)
         {
@@ -207,7 +225,7 @@ class User
 
     requestStages (callback)
     {
-        RequestSys.get("stages", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        RequestSys.get("stages", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -220,7 +238,7 @@ class User
 
     requestBook (callback)
     {
-        RequestSys.get("book", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        RequestSys.get("book", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -234,7 +252,7 @@ class User
 
     requestStock (callback)
     {
-        RequestSys.get("stock", {params:{"userData":this.#userData}}, userSucess, this.userError);
+        RequestSys.get("stock", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {

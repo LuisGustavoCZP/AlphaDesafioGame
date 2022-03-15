@@ -3,13 +3,14 @@ const https = require('https');
 
 const app = express();
 const path = __dirname;
+const root = path.slice(0, path.lastIndexOf("\\"));
 const port = 8080;
 const fs = require('fs');
 
 // Carrega o certificado e a key necessários para a configuração.
 const options = {
-    key: fs.readFileSync(`${__dirname}/frontend.key`),
-    cert: fs.readFileSync(`${__dirname}/frontend.crt`)
+    key: fs.readFileSync(`${root}/security/cert.key`),
+    cert: fs.readFileSync(`${root}/security/cert.pem`)
 };
 
 /* app.use('/aplicacao1', express.static(path+'/src/aplicacao1'));

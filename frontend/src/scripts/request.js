@@ -1,5 +1,5 @@
 /* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
-function requestSys (url="https://vacsina.servegame.com:8000/") //""
+function requestSys (url="https://localhost:8000/") //"https://vacsina.servegame.com:8000/"
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */
@@ -70,7 +70,7 @@ function requestSys (url="https://vacsina.servegame.com:8000/") //""
     */
     function get (path, info, onsucess = (d)=>{}, onfail = (r, u)=>{})
     {
-        const params = info.params ? info.params.userData != "" ? createParams(info.params)+"/" : "no/" : ""; 
+        const params = info.params ? info.params.sessionData != "" ? createParams(info.params)+"/" : "no/" : ""; 
         //console.log(params);
         const urlFinal = info ? `${url}${params}${path}/${createQuery(info.query)}` : `${url}${path}/`;
         //console.log(urlFinal);
