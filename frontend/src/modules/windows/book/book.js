@@ -1,34 +1,31 @@
 $(document).ready(() => 
 {
-    let recipe = parent.gameuser.book;/* [
+    let potionActive;
+    $(".this-potion").hide();
+    let recipe = parent.gameuser.book;
+/*     let recipe = [
         { "item":{"name": "poção da velocidade", "icon": "assets/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Tomate", "icon": "assets/ingredients/4.png"}] },
         { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
     ]; */
-    const totalOfPages = parseInt(recipe.length/2);
-    let thisPage = 1;
     console.log(recipe[0].ingredients[0].icon);
-    
-    function fillPages(){
-        if(thisPage === 1){
-            fillIngredients(1, 1);
-            fillIngredients(1, 2);
-            fillIngredients(2, 3);
-            fillIngredients(2, 4);
-        }
-    }
 
-    function fillIngredients(page, number){
-        const potionLength = recipe[number-1].ingredients.length;
-        console.log(potionLength);
-        $(`#ing-${number}`).html("");
+    function fillIngredients(){
+        const recipeLength = recipe.length;
+        console.log(recipeLength);
+        for(let i = 0; i < recipeLength; i++){
+            $(`#pot${i+1}`).show();
+            $(`#pot${i+1}`).attr("src", `../../../images/${recipe[i].item.icon}`);
+            $(`#pot${i+1}`).attr("id", i);
+        }
+        /* $(`#ing-${number}`).html("");
         $(`#potion${number}-page${page} h2`).html(recipe[number-1].item.name);
         $(`#pot-${number}`).attr("src", `../../../images/${recipe[number-1].item.icon}`);
         for(let i = 0; i < potionLength; i++){
             $(`#ing-${number}`).append(`<img class="ingredients" src="../../../images/${recipe[number-1].ingredients[i].icon}">`)
-        }
+        } */
     }
 
-    fillPages(recipe);
+    fillIngredients();
 
     //btn to Play the game
     $("#btn-login").on("click", () => {
@@ -54,5 +51,22 @@ $(document).ready(() =>
         parent.modal.src = "";
         //$(`#Modal`).css("display","none");
     });
+    function showInformation(){
+        let potion = this.id;
+        if(potionActive !== potion){
+            potionActive = potion;
+            $("#ingredients-description").html("");
+            let recipeLength = recipe[potion].ingredients.length;
+            console.log(recipeLength);
+            $("#potion-description h2").html(recipe[potion].item.name);
+            $("#potion-image").attr("src", `../../../images/${recipe[potion].item.icon}`);
+            for(let i = 0; i < recipeLength; i++){
+                $("#ingredients-description").append(`<img id="potion-${i}" class="this-potion" src="../../../images/${recipe[potion].ingredients[i].icon}">
+                `);
+            }
+        }
+    }
+    
+    $(".this-potion").mouseenter(showInformation);
 
 });
