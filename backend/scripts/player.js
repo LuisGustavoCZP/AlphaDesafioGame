@@ -8,6 +8,7 @@ const highscores = [];
 
 function loadUserFiles ()
 {
+    if(!fs.existsSync(userpath)) fs.mkdirSync(userpath);
     const userFiles = fs.readdirSync(userpath);
     console.log(`Carregando usuarios \n${userFiles}`);
     return userFiles;
