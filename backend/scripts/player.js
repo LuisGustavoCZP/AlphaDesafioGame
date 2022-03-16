@@ -135,9 +135,12 @@ function addRank (user){
     for(let i = 0; i < highscores.length; i++)
     {
         const rank = highscores[i];
+        const higher = newRank.highscore < rank.highscore;
         if(newRank.name == rank.name) r = i;
-        if(newRank.highscore < rank.highscore) n = i+1;
-        if(n && r) break;
+        if(higher) {
+            n = i+1;
+        }
+        if(!higher && r) break;
     } //highscores[i].highscore = user.highscore;
 
     highscores.splice(r, 1);
