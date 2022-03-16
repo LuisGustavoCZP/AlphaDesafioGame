@@ -149,7 +149,7 @@ class WeatherSys extends HTMLElement
                 {
                     const z = parseInt(ly);
                     this.#createLayer(z);
-                    this.layerDist = z - this.layerDist;
+                    this.layerDist = Math.max(z, this.layerDist);
                 });
                 this.layerDist = Math.abs(this.layerDist);
             }
@@ -215,14 +215,14 @@ class WeatherSys extends HTMLElement
 
     createInstances (target, layer, w, h)
     {
-        const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
+        const sr = layer.z/target.layerDist, s = .3 + (.7*sr); //(target.layerDist/2)+
 
         if(!layer.objects) 
         {
             layer.objects=[];
         }
 
-        while(layer.objects.length < target.density*5*(1/(s*s)))
+        while(layer.objects.length < target.density*10*(1/(s*s)))
         {
             if(layer.objects.timer == undefined || layer.objects.timer > 0)
             {
@@ -238,9 +238,14 @@ class WeatherSys extends HTMLElement
                     return target.sprites[parseInt(Math.random()*target.sprites.length)];
                 }
                 function randomHeight () {
-                    const alt = (1 - target.altitude)*h;
-                    const dif = (h*.5);
-                    return -alt+(Math.random()*(50*target.amplitude)+dif)*(1/(s*s))-dif;
+                    const total = h*2;
+                    const alt = target.altitude * total;
+                    const amp = (target.amplitude * total) - alt;
+                    
+                    const space = (amp/target.layers.length);
+                    const offset = - h + (amp*(1 - sr));
+
+                    return offset - (alt + (space*Math.random()));
                 }
 
                 const newobj = {

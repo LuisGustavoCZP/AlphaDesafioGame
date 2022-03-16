@@ -5,7 +5,7 @@
     height: 100%; 
     overflow: hidden;
     
-    background-color: var(--azuldark); 
+    background-color: var(--azuldark);
 }
 
 #castle {
@@ -45,6 +45,9 @@
     --img: url(../../images/background/main/mountains.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
+    mask-mode: alpha;
+    mask-type: alpha;
+
     /* background-image: url();
     background-repeat: repeat; */
     height: 100%;
@@ -59,7 +62,7 @@
 }
 
 .backimage.c {
-    background-color: var(--menu-mid);
+    background-color: var(--ground);
     --img: url(../../images/background/main/mountain-top.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
@@ -75,7 +78,7 @@
 }
 
 .backimage.e {
-    background-color: var(--ground);
+    background-color: var(--montain);
     --img: url(../../images/background/main/mountain-bot.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
