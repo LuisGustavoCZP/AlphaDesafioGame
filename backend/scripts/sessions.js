@@ -23,7 +23,7 @@ function create (userid, res)
     
     const session = 
     {
-        "id":sessions.length,
+        "id":crypto.randomUUID(),
         "key":sessionsCount++,
         "userid":userid
     };
