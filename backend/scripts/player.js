@@ -124,7 +124,7 @@ function login (req, res)
         return;
     }
     
-    console.log(`${req.ip} : ${user.name} realizou login.`, session.create(id, res));
+    console.log(`${req.ip} : ${user.name} realizou login na sessão ${session.create(id, res).id}.`);
     //res.json();
 }
 
@@ -148,7 +148,7 @@ function addRank (user){
     if(!n) highscores.unshift(newRank);
     else { 
         const rest = highscores.length-(n);
-        console.log(n, rest);
+        //console.log(n, rest);
         const lastones = highscores.splice(n, rest, newRank);//
         if(lastones.length > 0) highscores.push(lastones);
     }

@@ -23,8 +23,8 @@ function create (userid, res)
     
     const session = 
     {
-        "id":crypto.randomUUID(),
-        "key":sessionsCount++,
+        "id":sessionsCount++,
+        "key":crypto.randomUUID(),
         "userid":userid
     };
     const token = jwt.sign({key:session.key}, sessionkey); //, { expiresIn:300 }

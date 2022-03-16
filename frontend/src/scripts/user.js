@@ -150,7 +150,7 @@ class User
                 thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : "modules/windows/main");
             }
 
-            console.log(thisuser.data);
+            //console.log(thisuser.data);
             thisuser.requestRanking();
             thisuser.requestStages();
             thisuser.requestBook();
@@ -165,26 +165,27 @@ class User
 
     start (stageid)
     {
-        //console.log(stageid);
         if(this.stages.length <= stageid-1) return;
-        this.requestStage(stageid);
-        this.goTo("modules/game/");
-        /* window.game.src="modules/game/";
-        window.modal.src=""; */
+        this.requestStage(stageid, (stage) => 
+        {
+            this.goTo("modules/game/");
+        });
     }
 
     stageWin ()
     {
-        this.requestRanking();
-        this.requestStages();
+        window.modal.src = "modules/windows/gamewin";
+        //this.requestRanking();
+        /* this.requestStages();
         this.requestBook();
         this.requestStock();
-        this.goTo("modules/main/", "modules/windows/stages");
+        this.goTo("modules/game/", "modules/windows/stages"); */
     }
 
     stageTimeout ()
     {
-        this.goTo("modules/main/", "modules/windows/stages");
+        window.modal.src = "modules/windows/gameover";
+        //this.goTo("modules/game/", );
     }
     
     sendItems (itens)
@@ -210,13 +211,27 @@ class User
 
     requestStage (stageid, callback)
     {
-        RequestSys.get("stage", {params:{"sessionData":this.#sessionData}, query:{"stage":stageid}}, userSucess, this.userError);
+        RequestSys.get("stage/prepare", {params:{"sessionData":this.#sessionData}, query:{"stage":stageid}}, userSucess, this.userError);
         const thisuser = this; 
         function userSucess (data)
         {
             console.log(data);
             thisuser.stage = stageid;
             thisuser.currentStage = data;
+            if(callback){
+                callback(data);
+            }
+        }
+    }
+
+    requestStageStart (callback)
+    {
+        RequestSys.get("stage", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        const thisuser = this; 
+        function userSucess (data)
+        {
+            console.log(data);
+            thisuser.currentStage.expiration = data;
             if(callback){
                 callback(data);
             }

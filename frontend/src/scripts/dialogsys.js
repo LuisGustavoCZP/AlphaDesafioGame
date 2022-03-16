@@ -130,7 +130,7 @@ class DialogSys extends HTMLElement
                 } 
                 else 
                 {
-                    setTimeout(nextDialog, (dialog.time?dialog.time:1000)*(1/globalSpeed));
+                    if(!dialog.time || dialog.time > 0) setTimeout(nextDialog, (dialog.time?dialog.time:1000)*(1/globalSpeed));
                 }
             }
         }

@@ -60,6 +60,9 @@ app.get("/:sessionData/book", player.verifySession, game.craft.book);
 app.get("/:sessionData/stages", player.verifySession, game.craft.userstages);
 
 //Iniciar estagio, retornando uma receita temporizada
+app.get("/:sessionData/stage/prepare", player.verifySession, game.craft.stagePrepare);
+
+//Iniciar estagio, retornando uma receita temporizada
 app.get("/:sessionData/stage/", player.verifySession, game.craft.stageStart);
 
 //Finaliza estagio, recebendo os itens e retornando a poção com um valor

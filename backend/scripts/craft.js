@@ -174,25 +174,35 @@ function userstages (req, res)
     res.json(getStages(user));
 }
 
-async function stageStart (req, res)
+async function stagePrepare (req, res)
 {
     const user = users[req.session.userid];
     const stageid = req.query["stage"];
     const oStage = stages[stageid];
-    const time = new Date().getTime();
     const tempStage = 
     {
         stage:stageid,
         potion:oStage.potions[Utility.randomSort(oStage.potions)],
-        limitTime: (time + (oStage.time*1000)),
+        limitTime: oStage.time*1000,
     };
     user.currentStage = tempStage;
 
     const newStage = {...tempStage};
     newStage.potion = getRecipe(tempStage.potion);
 
-    console.log(tempStage, newStage);
+    console.log(tempStage);
     res.json(newStage);
+}
+
+async function stageStart (req, res)
+{
+    const user = users[req.session.userid];
+    const time = new Date().getTime();
+    const cstage = user.currentStage;
+    
+    cstage.expiration = time + cstage.limitTime;
+
+    res.json(cstage.expiration);
 }
 
 async function stageUpdate (req, res)
@@ -202,7 +212,7 @@ async function stageUpdate (req, res)
     const time = new Date().getTime();
     const expectedResult = getItem(stage.potion).item;
 
-    const timePass = stage.limitTime - time;
+    const timePass = stage.expiration - time;
     //console.log(timePass, `${time} - ${stage.limitTime}`);
 
     if(timePass <= 0) {
@@ -231,6 +241,7 @@ module.exports = {
     book,
     stock,
     userstages,
+    stagePrepare,
     stageStart,
     stageUpdate
 }

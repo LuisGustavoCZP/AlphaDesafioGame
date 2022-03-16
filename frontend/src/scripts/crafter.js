@@ -61,7 +61,7 @@ class Crafter extends HTMLElement
 
         const thisClass = this;
         function timerLoop (){
-            const timePass = parent.gameuser.currentStage.limitTime - (new Date().getTime());
+            const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());
             //console.log(timePass);
             let ms = timePass;
             let aux = ms % 1000;

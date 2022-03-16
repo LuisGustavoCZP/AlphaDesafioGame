@@ -15,9 +15,30 @@ $(document).ready(function()
             parent.audiosys.play("open");
             recipe = parent.gameuser.currentStage.potion;
         }
-        dialogMage.createText("Vamos lá!");
-        cauldron.start();
 
+        const dialogs = [
+            {
+                text:"VAMOS LÁ!"
+            },
+            {
+                text:"FAÇA \n\t{i0} {f0}", 
+                icons:
+                [
+                    recipe.item.icon
+                ], 
+                functions:
+                [
+                    () => {
+                        parent.gameuser.requestStageStart(()=>
+                        {
+                            cauldron.start();
+                        });
+                    }
+                ],
+                time:-1
+            },
+        ]
+        dialogMage.createText(...dialogs);
     }, 5000);
 });
 
