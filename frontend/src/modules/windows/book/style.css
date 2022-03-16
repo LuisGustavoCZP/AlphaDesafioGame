@@ -10,6 +10,10 @@
     align-content: flex-start;
 }
 
+body {
+    /* pointer-events: painted; */
+}
+
 .modal-background{
     flex-direction: row;
     justify-content: space-around;
@@ -19,8 +23,11 @@
     background-repeat: no-repeat;
     border-radius: 0;
     width: 120vh;
-    height: 72vh; 
+    height: 72vh;
+    margin: 0;
     background-color: white;
+
+    /* pointer-events: painted; */
 }
 
 .content-book{
@@ -30,6 +37,7 @@
     justify-content: space-between;
     height: 90%;
     width: 40%;
+    
 }
 .content-book p{
     text-transform: uppercase;

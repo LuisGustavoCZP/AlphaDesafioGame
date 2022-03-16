@@ -2,11 +2,10 @@ $(document).ready(() =>
 {
     let potionActive;
     $(".this-potion").hide();
-    let recipe = parent.gameuser.book;
-/*     let recipe = [
+    let recipe = parent.gameuser ? parent.gameuser.book : [
         { "item":{"name": "poção da velocidade", "icon": "assets/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Tomate", "icon": "assets/ingredients/4.png"}] },
         { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
-    ]; */
+    ];
     console.log(recipe[0].ingredients[0].icon);
 
     function fillIngredients(){
@@ -45,12 +44,27 @@ $(document).ready(() =>
     
     });
 
-    $(".close").on("click", function() 
+    /* $(".close").on("click", function() 
+    {
+        console.log("Close");
+        parent.modal.src = "";
+        //$(`#Modal`).css("display","none");
+    }); */
+
+    $("body").on("click", function() 
     {
         console.log("Close");
         parent.modal.src = "";
         //$(`#Modal`).css("display","none");
     });
+
+    $("div.modal-background").on("click", function(e) 
+    {
+        console.log("On");
+        e.stopPropagation();
+        //$(`#Modal`).css("display","none");
+    });
+
     function showInformation(){
         let potion = this.id;
         if(potionActive !== potion){

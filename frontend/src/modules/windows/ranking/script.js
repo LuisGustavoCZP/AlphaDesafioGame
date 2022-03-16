@@ -14,7 +14,7 @@ $(document).ready(() =>
             const id = index + 1;
             result += `<div id="place-${id}" class="places">
                             <p> #${id} - ${element.name}</p>
-                            <p> ${element.highscore} PONTOS</p>
+                            <p> ${parseInt(element.highscore)} PONTOS</p>
                         </div>`;
         });
         result += `</div>`;

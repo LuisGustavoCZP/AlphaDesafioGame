@@ -4,17 +4,17 @@ $(document).ready(() =>
     
     //const cookie = document.cookie;
    
-    const stages = parent.gameuser.stages;
+    const stages = [...parent.gameuser.stages].reverse();
 
     let result = `<div id="menu-header">
                     <div id="title"><strong>FASES</strong></div>
                     <span class="close">&times;</span>
                 </div>
                 <div id="content">`;
-    stages.forEach((element,index) => {
+    stages.forEach((element, index) => {
         result += `<div id="stage-${index + 1}" class="stages">
                         <button id="btn-stage${index+1}" class="stageButton" stage="${element.stage + 1}">AULA ${element.stage + 1}</button>
-                        <p> ${element.highscore} PONTOS</p>
+                        <p> ${parseInt(element.highscore)} PONTOS</p>
                         <div class="potions">
                     `;
         const potions = element.potions;
