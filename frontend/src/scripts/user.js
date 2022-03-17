@@ -106,10 +106,11 @@ class User
 
     goTo (gamePath, modalPath)
     {
-        if(modalPath) window.modal.src=modalPath;
+        window.modal.src="";
 
         if(window.game.src == gamePath)
         {
+            if(modalPath) window.modal.src=modalPath;
             return;
         }
 
@@ -118,6 +119,7 @@ class User
             window.game.onload = (d)=> 
             {
                 //console.log("Carregou janela "+d);
+                if(modalPath) window.modal.src=modalPath;
                 window.transition.revert();
             };
             window.game.src=gamePath;

@@ -72,7 +72,7 @@ class Crafter extends HTMLElement
                 {
                     //this.finished = true;
                     this.abortTimer = true;
-                    parent.gameuser.stageWin();
+                    parent.gameuser.stageWin(data);
                 }
             }
         });
