@@ -7,7 +7,7 @@ $(document).ready(() =>
     $("#content-main").html(`
     <div>
         <div class="content-title">
-            <strong>VOCÊ FEZ ${stageData.points} PONTOS!</strong>
+            <strong>VOCÊ FEZ ${stageData.result.points} PONTOS!</strong>
         </div>
         <div class="content-subtitle">
             <strong>${userData.highscore} PONTOS</strong>
