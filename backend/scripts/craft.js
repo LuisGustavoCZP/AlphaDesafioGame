@@ -149,6 +149,8 @@ function nextStage(user, timePass)
 
     console.log(userStage);
     player.save(user.id);
+    
+    return {score:nscore, time:timePass};
 }
 
 function result (itens)
@@ -224,13 +226,15 @@ async function stageUpdate (req, res)
     if(!r) res.json({status:0});
     else 
     {
-        let st = 0;
+        const ritem = getItem(r);
         if(expectedResult == r) {
             st = 2;
-            nextStage(user, timePass);
+            const points = nextStage(user, timePass);
+            res.json({potion:{name:ritem.name, icon:ritem.icon}, points:points, status:2});
+        } else {
+            res.json({potion:{name:ritem.name, icon:ritem.icon}, status:0});
         }
-        const ritem = getItem(r);
-        res.json({result:{name:ritem.name, icon:ritem.icon}, status:st});
+        
     }
 }
 
