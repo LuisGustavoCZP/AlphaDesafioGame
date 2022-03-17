@@ -3,6 +3,7 @@ class Crafter extends HTMLElement
     constructor()
     {
         super();
+        
         this.classList.add("ui-droppable");
         if(this.hasAttribute('img')) {
             this.img = new Image();
@@ -18,6 +19,7 @@ class Crafter extends HTMLElement
         this.timer = document.createElement("h2");
         div.append(this.timer);
         this.append(div);
+        this.finished = false;
         //this.classList.add("book");
     }
 
@@ -29,6 +31,7 @@ class Crafter extends HTMLElement
 
     start ()
     {
+        this.abortTimer = false;
         $(this).droppable({
             accept: ".item",
             /* tolerance: "fit", */
@@ -45,7 +48,7 @@ class Crafter extends HTMLElement
                 this.classList.remove("placing"); 
                 ui.helper[0].classList.remove("ui-draggable-dropping"); 
             },
-            drop: function( event, ui ) 
+            drop: async function( event, ui ) 
             { 
                 const container = this;
                 container.classList.remove("highlight");
@@ -55,12 +58,29 @@ class Crafter extends HTMLElement
                 container.ingredients.push(itemid);
                 console.log("Dropou objeto", container.ingredients); 
                 if(parent.audiosys) parent.audiosys.play("sucess");
-                parent.gameuser.sendItems(container.ingredients);
+                const response = await parent.gameuser.sendItems(container.ingredients);
+                const data = response;//.then((d) => {console.log(d);});//
+                console.log(data);
+                this.potion = data;
+                if(data.status == 0) 
+                {
+                    if(!data.result) return;
+                    console.log(`Criou a poção ${data.result}`);
+                }
+                else if (data.status == 1) parent.gameuser.stageTimeout();
+                else 
+                {
+                    //this.finished = true;
+                    this.abortTimer = true;
+                    parent.gameuser.stageWin();
+                }
             }
         });
 
         const thisClass = this;
-        function timerLoop (){
+        function timerLoop ()
+        {
+            if(thisClass.abortTimer) return;
             const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());
             //console.log(timePass);
             let ms = timePass;
@@ -80,6 +100,12 @@ class Crafter extends HTMLElement
             else parent.gameuser.stageTimeout();
         }
         timerLoop();
+    }
+
+    stop ()
+    {
+        this.abortTimer = true;
+        this.finished = false;
     }
 
     static define ()

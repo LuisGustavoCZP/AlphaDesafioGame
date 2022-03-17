@@ -43,8 +43,8 @@ function requestSys (url=document.location.origin.replace("8080", "8000/")) //"h
     }
 
     /* Função que faz um post na rota com um body e as funções de sucesso ou falha */
-    function post (path, body, onsucess = ()=>{}, onfail = ()=>{}, params){
-        fetch(`${url}${params?createParams(params)+"/":""}${path}`, 
+    async function post (path, body, onsucess = ()=>{}, onfail = ()=>{}, params){
+        return fetch(`${url}${params?createParams(params)+"/":""}${path}`, 
         {
             method: 'post',
             mode: 'cors',
@@ -69,13 +69,13 @@ function requestSys (url=document.location.origin.replace("8080", "8000/")) //"h
         Caso nenhuma informação seja passada, o objeto pode ser vazio. Ex : {}
         Caso só params seja usado a query não precisa estar presente no objeto e vice versa. Ex : { params:{...} }
     */
-    function get (path, info, onsucess = (d)=>{}, onfail = (r, u)=>{})
+    async function get (path, info, onsucess = (d)=>{}, onfail = (r, u)=>{})
     {
         const params = info.params ? info.params.sessionData != "" ? createParams(info.params)+"/" : "no/" : ""; 
         //console.log(params);
         const urlFinal = info ? `${url}${params}${path}/${createQuery(info.query)}` : `${url}${path}/`;
         //console.log(urlFinal);
-        fetch(urlFinal, 
+        return fetch(urlFinal, 
         {
             method: 'get',
             mode: 'cors',
@@ -87,7 +87,7 @@ function requestSys (url=document.location.origin.replace("8080", "8000/")) //"h
             if(verifySession(resp)) { 
                 //console.log(resp);
                 onsucess(resp); 
-            } else onfail (resp, false);
+            } else throw new Error("Sessão inválida");
         })
         .catch(resp => { console.log(resp); onfail(resp, true); });
     }

@@ -1,3 +1,5 @@
+import { gameTimer } from "./timer.js";
+
 class DialogSys extends HTMLElement
 {
     static emojis = 
@@ -60,8 +62,7 @@ class DialogSys extends HTMLElement
         const dialog = dialogs.shift();
         if(!dialog || !(dialog.length || dialog.text)) 
         {
-            this.createText(...dialogs);
-            return;
+            return await this.nextDialog(parag, dialogs, nextDialog);
         }
 
         let text;
@@ -72,69 +73,67 @@ class DialogSys extends HTMLElement
         }
 
         //console.log(dialog, dialogs);
-        const thisdialog = this;
-        const globalSpeed = this.speed;
         const parag = document.createElement("p");
         this.append(parag);
-        let letter = 0;
         //console.log(parag, text.length);
-        function createLetter ()
+        for(let i = 0; i < text.length; i++)
         {
-            const l = text.charAt(letter);
-            
-            if(l == "{")
-            {
-                const findex = text.indexOf("}", letter);
-                const code = text.slice(letter+1, findex);
-                //console.log(code, letter, findex);
-                if(code[0] == "i")
-                {
-                    const i = parseInt(code.slice(1));
-                    parag.innerHTML += `<img class="item" src="../../images/${dialog.icons[i]}" />`;
-                } 
-                else if(code[0] == "f")
-                {
-                    const f = parseInt(code.slice(1));
-                    dialog.functions[f](parag, dialog);
-                } 
-                else if(code[0] == "e")
-                {
-                    const e = parseInt(code.slice(1));
-                    parag.innerHTML += `<img class="emoji" src="../../images/${DialogSys.emojis[e]}" />`;
-                }
-                
-                letter = findex;
-            } else {
-                parag.innerHTML += l;
-            }
-         
-            if(text.length > letter) 
-            {
-                letter++;
-                setTimeout(createLetter, 100*(1/globalSpeed)*(dialog.speed?(1/dialog.speed):1));
-                //console.log(thisdialog.innerText, text, letter);
-            } 
-            else 
-            {
-                async function nextDialog ()
-                {
-                    parag.remove();
-                    thisdialog.createText(...dialogs);
-                    window.removeEventListener("click", nextDialog);
-                    //if(dialog.next) thisdialog.createText(dialog.next);
-                }
-                console.log(dialog);
-                if(dialog.click)
-                {
-                    window.addEventListener("click", nextDialog);
-                } 
-                else 
-                {
-                    if(!dialog.time || dialog.time > 0) setTimeout(nextDialog, (dialog.time?dialog.time:1000)*(1/globalSpeed));
-                }
-            }
+            i = this.createLetter (parag, dialog, text, i);
+            await gameTimer(100*(1/this.speed)*(dialog.speed?(1/dialog.speed):1));
         }
-        createLetter ();
+
+        if(!dialog.time || dialog.time > 0)
+        {
+            await gameTimer(dialog.time?dialog.time:1000)*(1/this.speed);
+            if(dialogs && dialogs.length > 0) return await this.nextDialog(parag, dialogs);
+        }
+        else 
+        if(dialog.click)
+            window.addEventListener("click", this.nextDialog);
+
+        return;
+    }
+
+    createLetter (parag, dialog, text, letter)
+    {
+        console.log(text);
+        const l = text.charAt(letter);
+        
+        if(l == "{")
+        {
+            const findex = text.indexOf("}", letter);
+            const code = text.slice(letter+1, findex);
+            //console.log(code, letter, findex);
+            if(code[0] == "i")
+            {
+                const i = parseInt(code.slice(1));
+                parag.innerHTML += `<img class="item" src="../../images/${dialog.icons[i]}" />`;
+            } 
+            else if(code[0] == "f")
+            {
+                const f = parseInt(code.slice(1));
+                dialog.functions[f](parag, dialog);
+            } 
+            else if(code[0] == "e")
+            {
+                const e = parseInt(code.slice(1));
+                parag.innerHTML += `<img class="emoji" src="../../images/${DialogSys.emojis[e]}" />`;
+            }
+            
+            letter = findex;
+        } else {
+            parag.innerHTML += l;
+        }
+        
+        return letter;
+    }
+
+    async nextDialog (parag, dialogs)
+    {
+        parag.remove();
+        window.removeEventListener("click", this.nextDialog);
+        return await this.createText(...dialogs);
+        //if(dialog.next) thisdialog.createText(dialog.next);
     }
 
     static define ()

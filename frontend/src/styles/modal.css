@@ -280,7 +280,11 @@ img {
 .stageButton{
     /* margin-top: 10px; */
     width: 100%;
+    /* height: fit-content; */
     font-family: 'Skranji', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .stageButton:hover{

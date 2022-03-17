@@ -27,6 +27,10 @@
     --menu-mid: rgb(160, 136, 72);
     --menu-glow: rgb(78, 164, 102);
     --menu-glow-low: rgb(38, 177, 121);
+    --menu-button: var(--menu-glow);
+    --menu-button-glow: var(--menu-glow-low);
+    --menu-icon: var(--menu-dark);
+    --menu-icon-glow: var(--menu-darkness);
     --wood-light: rgb(182, 152, 111);
     --wood-mid: rgb(168, 151, 128);
     --wood-dark: rgb(117, 88, 47);
@@ -63,4 +67,78 @@ body {
     overflow: hidden; /* Enable scroll if needed */
     /* background-color: rgb(0,0,0); */ /* Fallback color */
     /* background-color: rgba(0, 0, 0, 0.603); */ /* Black w/ opacity */
-  }
+}
+
+.icon {
+    -webkit-mask: var(--img) repeat center;
+    mask: var(--img) repeat center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-clip: border-box;
+    mask-clip: border-box;
+    padding-left: 25px;
+}
+
+button {
+    display: flex;
+    background-color: var(--menu-button);
+}
+
+button:hover {
+    display: flex;
+    background-color: var(--menu-button-glow);
+}
+
+span.icon {
+    background-color: var(--menu-icon);
+    width: 100%;
+    height: 100%;
+}
+
+span.icon:hover {
+    background-color: var(--menu-icon-glow);
+}
+
+span.icon.r {
+    background-color: var(--menu-button-glow);
+}
+
+.replay {
+    --img: url("../images/assets/icons/replay.png");
+}
+
+.next {
+    --img: url("../images/assets/icons/arrow_right.png");
+}
+
+.back {
+    --img: url("../images/assets/icons/arrow_left.png");
+}
+
+.close {
+    --img: url("../images/assets/icons/cross.png");
+}
+
+.help {
+    --img: url("../images/assets/icons/help.png");
+}
+
+.money {
+    --img: url("../images/assets/icons/dollar.png");
+}
+
+.star {
+    --img: url("../images/assets/icons/big_star.png");
+}
+
+.home {
+    --img: url("../images/assets/icons/home.png");
+}
+
+.trophy {
+    --img: url("../images/assets/icons/trophy.png");
+}
+
+.rank {
+    --img: url("../images/assets/icons/podium.png");
+}

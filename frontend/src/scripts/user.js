@@ -106,21 +106,21 @@ class User
 
     goTo (gamePath, modalPath)
     {
+        if(modalPath) window.modal.src=modalPath;
+
         if(window.game.src == gamePath)
         {
-            if(modalPath) window.modal.src=modalPath;
             return;
         }
 
         window.transition.oncomplete = (target) => 
-        { 
+        {
             window.game.onload = (d)=> 
             {
                 //console.log("Carregou janela "+d);
                 window.transition.revert();
             };
             window.game.src=gamePath;
-            if(modalPath) window.modal.src=modalPath;
         };
         window.transition.play();
     }
@@ -172,7 +172,7 @@ class User
         });
     }
 
-    stageWin ()
+    async stageWin ()
     {
         window.modal.src = "modules/windows/gamewin";
         //this.requestRanking();
@@ -182,36 +182,25 @@ class User
         this.goTo("modules/game/", "modules/windows/stages"); */
     }
 
-    stageTimeout ()
+    async stageTimeout ()
     {
         window.modal.src = "modules/windows/gameover";
         //this.goTo("modules/game/", );
     }
     
-    sendItems (itens)
+    async sendItems (itens)
     {
-        RequestSys.post("stage", {"items":itens}, userSucess, this.userError, {"sessionData":this.#sessionData});
-        const thisuser = this; 
-        function userSucess (data)
+        let response = undefined;
+        function userSuccess (data)
         {
-            console.log(data);
-            if(data.status == 0) 
-            {
-                if(data.result) {
-                    console.log(`Criou a poção ${data.result}`)
-                }
-                return;
-            }
-            else if (data.status == 1) thisuser.stageTimeout();
-            else {
-                thisuser.stageWin();
-            }
+            response = data;
         }
+        await RequestSys.post("stage", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
+        return response;
     }
 
-    requestStage (stageid, callback)
+    async requestStage (stageid, callback)
     {
-        RequestSys.get("stage/prepare", {params:{"sessionData":this.#sessionData}, query:{"stage":stageid}}, userSucess, this.userError);
         const thisuser = this; 
         function userSucess (data)
         {
@@ -222,11 +211,11 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("stage/prepare", {params:{"sessionData":this.#sessionData}, query:{"stage":stageid}}, userSucess, this.userError);
     }
 
-    requestStageStart (callback)
+    async requestStageStart (callback)
     {
-        RequestSys.get("stage", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this; 
         function userSucess (data)
         {
@@ -236,11 +225,11 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("stage", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
     }
 
-    requestStages (callback)
+    async requestStages (callback)
     {
-        RequestSys.get("stages", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -249,11 +238,11 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("stages", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
     }
 
-    requestBook (callback)
+    async requestBook (callback)
     {
-        RequestSys.get("book", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -263,11 +252,11 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("book", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
     }
 
-    requestStock (callback)
+    async requestStock (callback)
     {
-        RequestSys.get("stock", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         const thisuser = this;
         function userSucess (data)
         {
@@ -277,11 +266,11 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("stock", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
     }
 
-    requestRanking (callback)
+    async requestRanking (callback)
     {
-        RequestSys.get("ranking/5", {}, userSucess, this.userError); //params:{"userData":this.#userData}
         const thisuser = this;
         function userSucess (data)
         {
@@ -291,6 +280,7 @@ class User
                 callback(data);
             }
         }
+        const response = await RequestSys.get("ranking/5", {}, userSucess, this.userError); //params:{"userData":this.#userData}
     }
 }
 
