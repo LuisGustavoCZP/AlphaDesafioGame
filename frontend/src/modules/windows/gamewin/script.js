@@ -23,7 +23,7 @@ $(document).ready(() =>
     });
     $("#btn-next").on("click", () => 
     {
-        parent.gameuser.goTo("modules/main/", "");
+        parent.gameuser.goTo("modules/main/", "modules/windows/main");
     });
     /*
     console.log(parent.gameuser.currentStage.potion);
