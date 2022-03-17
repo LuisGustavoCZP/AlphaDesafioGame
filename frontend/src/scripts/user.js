@@ -193,8 +193,10 @@ class User
     async sendItems (itens)
     {
         let response = undefined;
+        const thisuser = this; 
         function userSuccess (data)
         {
+            thisuser.currentStage.result = data;
             response = data;
         }
         await RequestSys.post("stage", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
