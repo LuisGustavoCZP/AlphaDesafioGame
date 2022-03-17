@@ -1,3 +1,6 @@
+import { gameTimer } from "./timer.js";
+
+
 class Crafter extends HTMLElement
 {
     constructor()
@@ -29,7 +32,7 @@ class Crafter extends HTMLElement
         
     }
 
-    start ()
+    async play ()
     {
         this.abortTimer = false;
         $(this).droppable({
@@ -78,9 +81,9 @@ class Crafter extends HTMLElement
         });
 
         const thisClass = this;
-        function timerLoop ()
+        return gameTimer(() =>
         {
-            if(thisClass.abortTimer) return;
+            if(thisClass.abortTimer) return true;
             const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());
             //console.log(timePass);
             let ms = timePass;
@@ -96,10 +99,9 @@ class Crafter extends HTMLElement
             aux = hr % 60;
             
             thisClass.timer.innerText = (hr > 0?`${hr}:`:"")+(mn > 0?`${mn}:`:"")+(s > 0?`${s}`:"")+(ms > 0?`.${ms}`.slice(0, 2):"");
-            if(timePass > 0) setTimeout(timerLoop, 100);
-            else parent.gameuser.stageTimeout();
-        }
-        timerLoop();
+            if(timePass > 0) return false;
+            else return true;
+        });
     }
 
     stop ()

@@ -34,16 +34,16 @@ $(document).ready(async function()
     ]
     await dialogMage.createText(...dialogs);
     await parent.gameuser.requestStageStart();
-    cauldron.start();
-    await WaitFor(() => 
+    await cauldron.play();
+    /*await WaitFor(() => 
     {
         if((cauldron.finished == true))
         {
-            
+
             return true;
         } 
         else return false;
-    });
+    });*/
     /*if(data.status == 0) 
     {
         if(data.result) {
