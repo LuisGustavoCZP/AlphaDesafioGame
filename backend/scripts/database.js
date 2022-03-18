@@ -21,7 +21,7 @@ function getItem(...ids) {
    return ids.map((id) => { return items[id] });
 }
 
-//getbook ainda esta em desenvolvimento
+//getbook retorna as poções do livro
 function getBook(userStage) {
    const potionsOfBook = []
    stages.forEach((element) => {

@@ -61,7 +61,7 @@ Ex: {"name":"nome","pass":"1234","stage":0,"slot":0,"points":0}
 -> requisição do tipo GET para obter um objeto com as características e rota da poção sorteada;
 
 # app.get("/book", user.VerifySession, game.userBook);
--> Requisição do tipo GET para obter o nome das poções, a rota do icone da poção, e um array com os ícones das ingredientes de cada poção
+-> Requisição do tipo GET para obter o nome das poções, a rota do icone da poção, e um array com os ícones dos ingredientes de cada poção
 
 ## OBS:
 

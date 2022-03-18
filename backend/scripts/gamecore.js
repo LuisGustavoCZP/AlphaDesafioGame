@@ -113,7 +113,7 @@ function sortPotion(req, res) {
    return sorted_pots;
 }
 
-// retorna as poções e 
+// retorna as poções, as rotas da imagem da poção e as rotas das imagens dos ingredientes
 function userBook(req, res){
    const p = User.get(req.userid);
    const result = Database.getBook(p.stage);
