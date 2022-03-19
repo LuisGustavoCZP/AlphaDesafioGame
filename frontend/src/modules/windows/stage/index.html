@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../../styles/pattern.css">
+        <link rel="stylesheet" href="../../../styles/modal.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
+       
+        <div id="Modal" class="modal">
+            <div class="menu-background">
+              <!--<span class="close">&times;</span>-->
+              <div id="title"><strong></strong></div>
+              <div id="content" style="flex-direction: column;">
+                  <div id="potion">
+                    <img src="../../../images/assets/potions/1.png" alt="${item.name}" title="${item.name}">
+                  </div>
+              </div> 
+            </div>
+        </div>
+
+        <script src="./stage.js"></script>
+    </body>
+</html>

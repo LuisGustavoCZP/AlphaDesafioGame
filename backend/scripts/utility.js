@@ -10,13 +10,13 @@ function randomKey(obj)
     return keys[parseInt(Math.random() * keys.length)];
 }
 
-// perguntar como funciona essa função
-function randomizeArray (array, max=array.length)
+// Funcao que cria um array randomico com base no array passado e length (tamanho maximo)
+function randomizeArray (array, length=array.length)
 {
     const narray = [...array].sort((a, b) => {return Math.random() >= .5? 1 : -1;});
     const newArray = [];
     //console.log(narray);
-    for(let i = 0; i < Math.min(max, narray.length); i++)
+    for(let i = 0; i < Math.min(length, narray.length); i++)
     {
         //newArray.push(narray[i]);
         newArray.push(i);

@@ -1,4 +1,4 @@
-import { Request } from "../scripts/request.js";
+import { RequestSys } from "../scripts/request.js";
 
 let idBtn ;
 let login = false;
@@ -81,7 +81,7 @@ $("#btn-login").on("click", () => {
 // Ranking Table
 async function insertRanking(){
     let ranking = [];
-    const response = await fetch(`${Request.URL()}ranking/5`, {
+    const response = await fetch(`${RequestSys.URL()}ranking/5`, {
         method: 'GET'})
         .then((resp) => resp.json())
         .then(function (data) {
@@ -90,7 +90,7 @@ async function insertRanking(){
             
         })
         .catch(function (error) {
-            //console.log('Request failed', error);
+            //console.log('RequestSys failed', error);
             console.log(error);
         });
    
@@ -115,7 +115,7 @@ async function insertRanking(){
 
 });
 async function callFetchNewUser(user, pass,){
-    const response = await fetch(`${Request.URL()}newuser`, {
+    const response = await fetch(`${RequestSys.URL()}newuser`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -142,7 +142,7 @@ async function callFetchNewUser(user, pass,){
     
         })
         .catch(function (error) {
-            //console.log('Request failed', error);
+            //console.log('RequestSys failed', error);
             console.log(error);
         });
 }
@@ -150,7 +150,7 @@ async function callFetchNewUser(user, pass,){
 
 
 async function callFetchLogin(user, pass){
-    const response = await fetch(`${Request.URL()}login`, {
+    const response = await fetch(`${RequestSys.URL()}login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -178,7 +178,7 @@ async function callFetchLogin(user, pass){
     
         })
         .catch(function (error) {
-            //console.log('Request failed', error);
+            //console.log('RequestSys failed', error);
             console.log(error);
         });
 }

@@ -2,25 +2,40 @@
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../../syles/pattern.css">
-        <link rel="stylesheet" href="../../syles/schemes.css">
+       <!-- <link rel="stylesheet" href="../../styles/pattern.css">
+        <link rel="stylesheet" href="../../styles/schemes.css">-->
+        <link rel="stylesheet" href="../../styles/pattern.css">
+        <link rel="stylesheet" href="../../styles/modal.css">
     </head>
     <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
-        <!-- Modal content -->
-        <div class="modal-background">
-            <span><h2>Ranking</h2><span class="close">&times;</span></span>
-            
-        </div>
+       
+        <div id="Modal" class="modal">
+            <!-- Modal content -->
+            <div class="menu-background">
+              <span class="close">&times;</span>
+              <div id="title"><strong>Fim de Jogo!</strong></div>
+              <div id="content">
+                <div class="content-title"><strong>VOCÊ FEZ 1500 PONTOS!</strong></div>
+                <div class="content-subtitle"><strong>MELHOR: 1800 PONTOS</strong></div>
+                
+                <div>
+                  <button id="btn-ranking"></button>
+                  <button id="btn-ranking"></button>
+                </div>
+           
+              </div>
+            </div>
+          </div>
+
         <script>
             
             $(document).ready(function() 
             {
-
-                
                 $(".close").on("click", function() 
                 {
                     console.log("Close");
                     parent.modal.src = "";
+                    window.modal.src = "book/index.html";
                     //$(`#Modal`).css("display","none");
                 });
 

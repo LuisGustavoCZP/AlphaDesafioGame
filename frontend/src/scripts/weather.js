@@ -65,31 +65,28 @@ class WeatherSys extends HTMLElement
     #current;
     #playing;
     #ready;
-    #layers;
+    layers;
     #possibles;
 
     constructor()
     {
         super();
-        const p = this.parentElement.getBoundingClientRect();
-        //console.log(p);
         this.style.position = "absolute";
-        /* this.width = p.width;
-        this.height = p.height; */
         this.style.display = "flex";
         this.style.flexGrow = "1";
-        this.style.width = `${p.width}px`;
-        this.style.height = `${p.height}px`;
+        
+        this.style.width = "100%";
+        this.style.height = "100%";
+        
         this.style.overflow = "hidden";
-        //this.#current = null;
         this.#playing = false;
         this.#ready = false;
-        this.#layers = [];
+        this.layers = [];
         this.sprites = [];
         this.max = 0;
         this.layerDist = 0;
         this.layerZ = 0;
-        
+
         if(this.hasAttribute('play')) {
             this.#playing = this.getAttribute('play') == "false"? false : true;
         }
@@ -130,10 +127,18 @@ class WeatherSys extends HTMLElement
             this.altitude = 1;
         }
 
+        if(this.hasAttribute('amplitude')) {
+            const s = parseFloat(this.getAttribute('amplitude'));
+            this.amplitude = s;
+        } 
+        else
+        {
+            this.amplitude = 1;
+        }
+
         if(this.hasAttribute('layers')) 
         {
             const lys = this.getAttribute('layers').replaceAll(" ", "").split(",");
-            //console.log(lys);
             if(lys.length == 0)
             {
                 this.#createLayer(0);
@@ -144,7 +149,7 @@ class WeatherSys extends HTMLElement
                 {
                     const z = parseInt(ly);
                     this.#createLayer(z);
-                    this.layerDist = z - this.layerDist;
+                    this.layerDist = Math.max(z, this.layerDist);
                 });
                 this.layerDist = Math.abs(this.layerDist);
             }
@@ -169,7 +174,7 @@ class WeatherSys extends HTMLElement
         }
 
         if(this.#playing){
-            this.Play();
+            this.play();
         }
     }
 
@@ -186,66 +191,65 @@ class WeatherSys extends HTMLElement
 
     #createLayer(z) 
     {
-        const r = this.getBoundingClientRect();
         const newcanvas = document.createElement("canvas");
         newcanvas.style = "position: absolute;" + " z-index:" + z + ";";
-        newcanvas.width = r.width;
-        newcanvas.height = r.height;
-        this.#layers.push({ "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]});
+        newcanvas.width = 1366;
+        newcanvas.height = 522;
+        newcanvas.style.width = "100%";
+        newcanvas.style.height = "100%";
+        this.layers.push({ "canvas":newcanvas, "context":newcanvas.getContext("2d"), "z":z, "objects":[]});
         this.prepend(newcanvas);
         return newcanvas;
     }
 
-    Play ()
+    play ()
     {
         this.#playing = true;
         this.loop(this);
     }
 
-    Stop ()
+    stop ()
     {
         this.#playing = false;
     }
 
-    layerloop (target, layer)
+    createInstances (target, layer, w, h)
     {
-        //const mds = (target.density / target.speed);
-        const w = layer.canvas.width/2, h = layer.canvas.height/2;
-        const ctx = layer.context;
-        ctx.clearRect(0,0,w*2,h*2);
+        const sr = layer.z/target.layerDist, s = .3 + (.7*sr); //(target.layerDist/2)+
 
         if(!layer.objects) 
         {
             layer.objects=[];
         }
-        
-        const sr = ((target.layerDist/2)+layer.z)/target.layerDist, s = .2+.8*(sr);
-        //console.log(s);
 
-        ctx.translate(w, h);
-        
-        if(layer.objects.length < target.density*10*(1/s)) //*mds
-        { //* (1/mds)
-            if(layer.objects.timer == undefined || layer.objects.timer > (40/target.density))
+        while(layer.objects.length < target.density*10*(1/(s*s)))
+        {
+            if(layer.objects.timer == undefined || layer.objects.timer > 0)
             {
                 layer.objects.timer = 0;
 
                 function randomSize () {
-                    return ((Math.random() * .5) + .5) * s * target.size;
+                    return ((Math.random() * .2) + .8) * (s*s) * target.size;
                 }
                 function randomSpeed () {
-                    return ((.1 *  Math.random()) + .3) * s * target.speed;
+                    return ((.2 *  Math.random()) + .8) * (s*s) * target.speed;
                 }
                 function randomSprite () {
                     return target.sprites[parseInt(Math.random()*target.sprites.length)];
                 }
                 function randomHeight () {
-                    const alt = target.altitude*h;
-                    return -h+(Math.random()*50+alt)*(1/s);
+                    const total = h*2;
+                    const alt = target.altitude * total;
+                    const amp = (target.amplitude * total) - alt;
+                    
+                    const space = (amp/target.layers.length);
+                    const offset = - h + (amp*(1 - sr));
+
+                    return offset - (alt + (space*Math.random()));
                 }
 
                 const newobj = {
-                    "x": (Math.random()*h*4)-h*2,
+                    "x": (Math.random()*w*4)-(w*2),
                     "y": randomHeight (),
                     "size": randomSize (),
                     "speed": randomSpeed (),
@@ -259,12 +263,22 @@ class WeatherSys extends HTMLElement
                         this.sprite = randomSprite ();
                     }
                 };
-                //newobj.randomize();
                 layer.objects.push(newobj);
             } else {
                 layer.objects.timer++;
             }
         }
+    }
+
+    layerloop (target, layer)
+    {
+        const w = layer.canvas.width/2, h = layer.canvas.height/2;
+        const ctx = layer.context;
+        ctx.clearRect(0,0,w*2,h*2);
+
+        ctx.translate(w, h);
+        
+        this.createInstances(target, layer, w, h)
 
         layer.objects.forEach(obj => 
         {
@@ -273,13 +287,7 @@ class WeatherSys extends HTMLElement
             {
                 obj.randomize();
             }
-
-            //console.log(this.current.width);
-
-            //console.log(sprite);
             if(obj.sprite && obj.sprite.complete) ctx.drawImage(obj.sprite, obj.x, obj.y, obj.sprite.width*obj.size, obj.sprite.height*obj.size);
-            //ctx.fillStyle = "lightgrey";
-            //ctx.fillRect(obj.x, obj.y, obj.width, obj.height)
         });
 
         ctx.translate(-w, -h);
@@ -292,7 +300,7 @@ class WeatherSys extends HTMLElement
 
         if(target.#ready || true)
         {
-            this.#layers.forEach((layer) => 
+            this.layers.forEach((layer) => 
             {
                 this.layerloop(target, layer);
             });

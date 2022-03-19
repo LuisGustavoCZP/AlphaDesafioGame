@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+       <!-- 
+        <link rel="stylesheet" href="../../styles/schemes.css">-->
+        <link rel="stylesheet" href="../../../styles/pattern.css">
+        <link rel="stylesheet" href="../../../styles/modal.css">
+    </head>
+    <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
+       
+        <div id="Modal" class="modal">
+            <!-- Modal content -->
+            <div class="menu-background">
+                <div id="menu-header">
+                    <div id="title"><strong>COMO JOGAR</strong></div>
+                    <span class="close">&times;</span>
+                </div>
+                <div id="content">
+                    <p>Em "Torre Flamel" o jogador é um mago que deve usar os ingredientes para preparar suas poções.</p>
+                    <p>No começo do jogo os ingredientes brilham na ordem em que devem ser usados e o jogador deve</p>
+                    <p>arrastá-los até o caldeirão para preparar a poção!</p>
+                    <div id="tuto-img">
+                        <div>
+                            <h3>Ingrediente</h3>
+                            <img src="" width="100px">
+                        </div>
+                        <div>
+                            <h3>caldeirão</h3>
+                            <img src="" width="100px">
+                        </div>
+                    </div>
+                    <p>Mas tome cuidado, você só pode errar três vezes antes que algo catastrófico ocorra!</p>
+                </div>
+            </div>
+          </div>
+
+        <script>
+            
+            $(document).ready(function() 
+            {
+                $(".close").on("click", function() 
+                {
+                    //console.log("Close");
+                    parent.modal.src = "modules/windows/main";
+                    parent.audiosys.play("close");
+                    //$(`#Modal`).css("display","none");
+                });
+
+            });
+        </script>
+    </body>
+</html>

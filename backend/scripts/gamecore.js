@@ -1,5 +1,6 @@
-const User = require(`${__dirname}/user`);
+const user = require(`${__dirname}/user`);
 const Database = require(`${__dirname}/database`);
+const craft = require(`${__dirname}/craft`);
 const jwt = require('jsonwebtoken');
 
 const recipesecret = "R4kunN4-m4Tat4";
@@ -7,7 +8,7 @@ const recipesecret = "R4kunN4-m4Tat4";
 
 // função armazena a receita no usuário, e retorna pra o front {name: , icon: } da poção sorteada
 function createRecipe (req, res){
-    const user = User.get(req.userid);
+    const user = user.get(req.userid);
     const potion = Database.sortPotion(user.stage);
     user.recipe = potion.recipe;
     res.json({name: potion.name, icon: potion.icon});
@@ -15,7 +16,7 @@ function createRecipe (req, res){
 
 
 function sortItem (req, res){
-    const user = User.get(req.userid);
+    const user = user.get(req.userid);
     const lastRecipe = user.recipe? user.recipe : [];
     console.log(lastRecipe);
     const exclude = lastRecipe ? [lastRecipe[lastRecipe.length-1]] : [];
@@ -35,7 +36,7 @@ function checkRecipe (recipe, itens){
 }
 
 function verifyRecipe (req, res){
-    const user = User.get(req.userid);
+    const user = user.get(req.userid);
     const response = req.body;
     console.log(response, user.recipe);
     if(checkRecipe(user.recipe, response)){
@@ -44,13 +45,13 @@ function verifyRecipe (req, res){
         if(user.points > user.highscore){
             user.highscore = user.points;
         }
-        User.saveUsers();
+        user.saveUsers();
         res.json({name:user.name, stage:user.stage, lives:user.lives, points:user.points, highscore:user.highscore});
     } 
     else if(user.lives >= 0){
         user.lives--;
         
-        User.saveUsers();
+        user.saveUsers();
         res.json(1);
     } 
     else if(user.lives == 0){
@@ -75,7 +76,7 @@ function ranking(req, res){
    if(isNumber(theBest)){
 
       if(Number.isInteger(theBest)){
-         const ordened = User.users.sort((a,b) => b.highscore - a.highscore);
+         const ordened = user.users.sort((a,b) => b.highscore - a.highscore);
          const topRanking = ordened.map(function (element , index){
             if(index < theBest){
                return {classification: index+1 , name: element.name , highscore: element.highscore}
@@ -110,17 +111,17 @@ function sortPotion(req, res) {
    const total_pots = [...potions];
    const potionID = randomSort(total_pots);
    const sorted_pots = total_pots[potionID];
+   console.log(sorted_pots);
    return sorted_pots;
 }
 
 // retorna as poções, as rotas da imagem da poção e as rotas das imagens dos ingredientes
 function userBook(req, res){
-   const p = User.get(req.userid);
+   const p = user.get(req.userid);
    const result = Database.getBook(p.stage);
    res.json(result);
 
 }
-
 
 module.exports =
 {
@@ -130,5 +131,7 @@ module.exports =
     sortItem,
     ranking,
     sortPotion,
-    userBook
+    userBook,
+    craft,
+    user
 };

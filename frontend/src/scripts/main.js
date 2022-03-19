@@ -1,7 +1,18 @@
 import { User } from "/scripts/user.js";
-window.gameuser = new User ();
 
+const user = new User ();
+window.gameuser = user;
+
+window.audiosys = document.getElementById("audiosys");
 window.modal = document.getElementById("modal");
 window.game = document.getElementById("game");
+window.transition = document.getElementById("transition");
 
-window.gameuser.update();
+const iniciateSound = e=>
+{
+    window.audiosys.play("music1"); 
+    window.removeEventListener("mousemove", iniciateSound);
+};
+window.addEventListener("click", iniciateSound);
+
+user.update();

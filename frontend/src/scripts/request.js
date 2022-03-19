@@ -1,5 +1,6 @@
 /* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
-function requestSys (url="https://vacsina.servegame.com:8000/") 
+/* console.log(document.location); */
+function requestSys (url=document.location.origin.replace("8080", "8000/")) //"https://vacsina.servegame.com:8000/"
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */
@@ -42,8 +43,8 @@ function requestSys (url="https://vacsina.servegame.com:8000/")
     }
 
     /* Função que faz um post na rota com um body e as funções de sucesso ou falha */
-    function post (path, body, onsucess = ()=>{}, onfail = ()=>{}, params){
-        fetch(`${url}${params?createParams(params)+"/":""}${path}`, 
+    async function post (path, body, onsucess = ()=>{}, onfail = ()=>{}, params){
+        return fetch(`${url}${params?createParams(params)+"/":""}${path}`, 
         {
             method: 'post',
             mode: 'cors',
@@ -68,11 +69,13 @@ function requestSys (url="https://vacsina.servegame.com:8000/")
         Caso nenhuma informação seja passada, o objeto pode ser vazio. Ex : {}
         Caso só params seja usado a query não precisa estar presente no objeto e vice versa. Ex : { params:{...} }
     */
-    function get (path, info, onsucess = ()=>{}, onfail = ()=>{})
+    async function get (path, info, onsucess = (d)=>{}, onfail = (r, u)=>{})
     {
-        const urlFinal = info ? `${url}${createParams(info.params)}/${path}/${createQuery(info.query)}` : `${url}${path}/`;
-        console.log(urlFinal);
-        fetch(urlFinal, 
+        const params = info.params ? info.params.sessionData != "" ? createParams(info.params)+"/" : "no/" : ""; 
+        //console.log(params);
+        const urlFinal = info ? `${url}${params}${path}/${createQuery(info.query)}` : `${url}${path}/`;
+        //console.log(urlFinal);
+        return fetch(urlFinal, 
         {
             method: 'get',
             mode: 'cors',
@@ -84,9 +87,9 @@ function requestSys (url="https://vacsina.servegame.com:8000/")
             if(verifySession(resp)) { 
                 //console.log(resp);
                 onsucess(resp); 
-            } else onfail (resp);
+            } else throw new Error("Sessão inválida");
         })
-        .catch(resp => { console.log(resp); onfail(resp); });
+        .catch(resp => { console.log(resp); onfail(resp, true); });
     }
 
     function URL () {

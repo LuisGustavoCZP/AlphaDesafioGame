@@ -1,0 +1,8 @@
+[
+    {"stage": 0, "time":20, "points":1000, "potions": ["r0"]}, 
+    {"stage": 1, "time":15, "points":1000, "potions": ["r1"]}, 
+    {"stage": 2, "time":10, "points":2000, "potions": ["r2"]},
+    {"stage": 3, "time": 5, "points":4000, "potions": ["r0", "r1", "r2"]},
+    {"stage": 4, "time":10, "points":2000, "potions": ["r3"]},
+    {"stage": 5, "time":30, "points":8000, "potions": ["r6"]}
+]

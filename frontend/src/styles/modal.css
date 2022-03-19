@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+body {
+    margin: 0;
+    font-family: 'Skranji', cursive;
+ 
+}
+
+/* Page header*/ 
+header{
+    display: flex;
+    position: fixed;
+    left: 0;
+    width: 98%;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+img {
+    width: 350px;
+    height: 170px;
+}
+
+/* Background */
+/*main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0962627a;
+    background-position: center;
+    background-image: url("inicio.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+} */
+
+
+/* Footer with buttons*/
+/*footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #51341F
+}*/
+#buttons{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+}
+
+#btn-play, #btn-login{
+    border-radius: 60px;
+    background-image: url("../images/main/play.svg");
+    width: 110px;
+    height: 110px;
+    margin-top: 15px;
+    background-color: #4EA466;
+}
+
+button {
+    width: 70px;
+    height: 70px;
+    font-weight: 500;
+    color: #000;
+    background-color: #A07048;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+button:hover #btn-play:hover, #btn-login:hover {
+    background-color: #26b179;
+    transform: translateY(-5px);
+}
+#btn-setting{
+    transform: translateY(0px);
+}
+#btn-setting {
+    background-image: url("../images/main/sound.svg");
+}
+#btn-ranking {
+    background-image: url("../images/main/ranking.svg");
+}
+#btn-howToPlay {
+    background-image: url("../images/main/question.svg");
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.603); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.menu-background {
+    
+    background-color: var(--modal-background);
+    --img: url(../images/main/menu.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    -webkit-mask-clip: border-box;
+    -webkit-mask-size: contain;
+    mask-clip: border-box;
+    mask-size: contain;
+    /* background-image: url("../images/main/menu.svg");
+    background-size: contain;
+    background-repeat: no-repeat; */
+    margin: auto;
+    border: 1px solid rgba(136, 136, 136, 0);
+    width: 480px;
+    height: 500px;
+}
+
+#content {
+    width: 69%;
+    height: 320px;
+    margin-left: 60px;
+    margin-top: 5px;
+    background-color: #a4704e00;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#title{
+    height: 34px;
+}
+#title, .title, .content-title, .content-subtitle {
+    font-family: 'Skranji', cursive;
+    color:whitesmoke;
+    text-align:center;
+    vertical-align: middle;
+    padding-top: 2em;
+    font-size: 25px;
+    letter-spacing: .2rem;
+}
+.content-subtitle{
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #8d724f; 
+  }
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
+
+#menu-header {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 0% 25%;
+    justify-content: space-around;
+}
+/* - - - -- - - - */
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  /*float: right;*/
+  position: absolute;
+  display: flex;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 50px;
+  font-weight: bold;
+  right: 20%;
+  margin-top: 7%;
+  /* padding-top: 40px; */
+  /* padding-left: 380px; */
+  
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*#place-1 {
+    color: #DAA520;
+}
+
+#place-2 {
+    color: #A3A2A0;
+}
+
+#place-3 {
+    color: #CD7F32;
+}*/
+
+
+
+/* places */ 
+.places {
+    width: 80%;
+    height: 80px;
+    background-color: var(--menu-darkness);
+    border-radius: 30px;
+    margin: 5px;
+    color: var(--golden);
+}
+
+/* INPUT*/ 
+input {
+    width: 80%;
+    height: 30px;
+    font-family: 'Skranji', cursive;
+    border-radius: 30px;
+    text-align: center;
+}
+
+img {
+    width: 32px;
+    height: 32px;
+}
+
+.potions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+}
+.stages {
+    width: 80%;
+    height: fit-content;
+    background-color: var(--menu-darkness);
+    border-radius: 30px;
+    margin: 5px;
+    color: var(--golden);
+}
+
+.stageButton{
+    /* margin-top: 10px; */
+    width: 100%;
+    /* height: fit-content; */
+    font-family: 'Skranji', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.stageButton:hover{
+    background-color: #26b179;
+}
+
+
+/*Slider*/
+.slidecontainer {
+    width: 50%;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    overflow: hidden;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 35px;
+    background: #068556;
+    box-shadow: -100vw 0 0 100vw #04AA6D;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #04AA6D;
+    cursor: pointer;
+  }

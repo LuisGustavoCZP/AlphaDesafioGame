@@ -4,12 +4,21 @@
     flex-direction: column;
     z-index: 10;
     box-sizing: content-box;
-    background-color: rgb(139, 112, 75);
     justify-content: center;
     align-items: stretch;
+    --inv-depth: 24px;
 }
 
-.inventory h3 {
+.inventory > div {
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    background-color: var(--wood-light);
+    width: 100%;
+    height: 100%;
+}
+
+.inventory > div > span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,15 +26,80 @@
     font-size: 40px;
 }
 
-.inventory > ul {
+.inventory > aside {
+    width: calc(100% + var(--inv-depth));
+}
+
+.inventory .deep-top.right {
+    --img: url("../images/estante/estanteedges-left.png");
+    width: var(--inv-depth);
+    height: var(--inv-depth);
+    min-width: var(--inv-depth);
+    min-height: var(--inv-depth);
+}
+
+.inventory .deep-top.mid {
+    --img: url("../images/estante/estanteedges-mid.png");
+    width: 100%;
+    height: 100%;
+}
+
+.inventory .deep-top.left {
+    --img: url("../images/estante/estanteedges-right.png");
+    width: var(--inv-depth);
+    height: var(--inv-depth);
+    min-width: var(--inv-depth);
+    min-height: var(--inv-depth);
+}
+
+.inventory .deep-right.top {
+    --img: url("../images/estante/estanteedges-left.png");
+    width: var(--inv-depth);
+    height: var(--inv-depth);
+    min-width: var(--inv-depth);
+    min-height: var(--inv-depth);
+}
+
+.inventory .deep-right.mid {
+    --img: url("../images/estante/estanteedges-mid.png");
+    width: 100%;
+    height: 100%;
+}
+
+.inventory .deep-right.bottom {
+    --img: url("../images/estante/estanteedges-right.png");
+    width: var(--inv-depth);
+    height: var(--inv-depth);
+    min-width: var(--inv-depth);
+    min-height: var(--inv-depth);
+}
+
+.inventory .deep-top {
+    background-color: var(--wood-mid);
+    -webkit-mask: var(--img) repeat center;
+    mask: var(--img) repeat center;
+}
+
+.inventory .deep-right {
+    background-color: var(--wood-dark);
+    -webkit-mask: var(--img) repeat center;
+    mask: var(--img) repeat center;
+}
+
+.inventory > div > table {
+    margin: 0;
+    padding: 0;
     display: flex;
+    box-sizing: border-box;
     /* width: 100%; */
     width: fit-content;
     height: 100%;
+    max-width: fit-content;
     list-style: none;
     margin: 0 15px 15px 15px;
-    padding: 10px 10px 10px 10px;
-    background-color: rgb(182, 152, 111);
+    
+    /* margin: auto; */
+    /* background-color: var(--wood-light); */
     justify-content: flex-start;
     /* justify-items: center; */
     align-content: flex-start;
@@ -33,24 +107,74 @@
     flex-wrap: wrap;
 }
 
-.inventory > ul > li {
+.inventory tr {
+    /* background-color: var(--wood-light); */
+    padding: 5px 0;
+}
+
+.inventory td {
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 15;
-    width: 100%;
-    min-width: 10%;
-    max-width: 10%;
-    padding: 2%;
-    height: fit-content;
-    background-color: rgb(168, 151, 128);
-    border: solid rgb(139, 112, 75);
+    margin: 5px;
+    padding: 5px;
+    width: 64px;
+    height: 64px;
+    /* border: 1px solid var(--wood-mid); */
 }
 
-.inventory > ul > li > img {
+.inventory td {
+    background-image: url("../images/estante/Estante1.png");
+    background-clip: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.inventory td:hover {
+    filter: brightness(1) drop-shadow(5px 5px 10px rgb(255, 246, 115));
+}
+
+.inventory td > img {
     object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 
-.inventory > ul > li * {
+.inventory *.item {
+    object-fit: contain;
+    cursor: pointer;
+    width: 100%;
+}
+
+.inventory *.item.dragging {
+    opacity: .25;
+    
+}
+
+.ui-draggable-handle {
+    width: 64px;
+}
+
+.ui-draggable-dragging {
+    filter: brightness(1) drop-shadow(5px 5px 10px rgb(255, 246, 115));
+    opacity: 1;
+}
+
+.ui-draggable-dropping {
+    filter: brightness(5) drop-shadow(5px 5px 5px rgb(115, 148, 255)); 
+    opacity: 1;
+}
+
+.hover {
+    background-color: rgba(0,191,165,.04);
+}
+
+/* .item::drag-image {
+    cursor: move;
+    background-color: aqua;
+} */
+
+.inventory > table td * {
     z-index: 16;
 }

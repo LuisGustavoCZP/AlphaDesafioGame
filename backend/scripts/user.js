@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 /* const crypto = require('crypto') */
 const path = __dirname.replace("scripts", "data/");
 const sessionkey = "m4C4c0-Qu3r-b4n4N4";
-const passCriptoOption = {
+/* const passCriptoOption = {
     algoritm: "aes256",
     secret: "aS3Nh4-3H-F0d4",
     type: "hex"
-}
+} */
 
 const users = JSON.parse(fs.readFileSync(path+"users.json"));
 const search = searchConstructor ();
@@ -37,17 +37,20 @@ function newUser (_name, _pass)
     const user = 
     {
         "name":_name,
-        "pass":criptoPass(_pass),
-        stage:1,
+        stages:[],
+        stage:0,
         lives:3,
+        tutorial:false,
         points:0,
         highscore:0
     };
-
+    const i = users.length;
     users.push(user);
+
     saveUsers((e) => {console.log(`O usuario ${user.name} foi criado`)});
     return user;
 }
+
 /* 
 function criptoPass (pass)
 {
@@ -79,7 +82,7 @@ function verifySession (req, res, next)
             {
                 res.json(null);
             } else {
-                console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
+                //console.log(`${req.ip} : ${users[decoded.userid].name} foi autenticado!`);
                 req.userid = decoded.userid;
                 //CreateSession(req.userid, res);
                 next();
@@ -124,7 +127,7 @@ function requestUser (req, res)
 
 function createUser (req, res) 
 {
-    const user = {name:req.body["user"], pass:req.body["pass"]};
+    const user = {name:req.body["user"]};
     if(search.name(user.name) != -1)
     {
         console.log(`${req.ip} : ${user.name} já existe!`);
@@ -132,7 +135,7 @@ function createUser (req, res)
         return;
     }
 
-    newUser(user.name, user.pass);
+    newUser(user.name);
     res.json(0);
 }
 
@@ -144,7 +147,7 @@ function get (id)
 function userData (req, res)
 {
     const p = users[req.userid];
-    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
+    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
 }
 
 function userReset (req, res)

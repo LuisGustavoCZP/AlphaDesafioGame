@@ -9,19 +9,14 @@ $(document).ready(() =>
             //$(`#Modal`).css("display","none");
             /* callFetchLogin(username); */
             /* console.log(parent.coiso); */
+            
             parent.gameuser.login(username);
+            parent.audiosys.play("click");
             //parent.user.login(username);
         } else {
-            alert("O nome precisa ser mais de 2 caracteres!");
+            parent.audiosys.play("error");
+            //alert("O nome precisa ser mais de 2 caracteres!");
         }
     
     });
-
-    $(".close").on("click", function() 
-    {
-        console.log("Close");
-        parent.modal.src = "";
-        //$(`#Modal`).css("display","none");
-    });
-
 });

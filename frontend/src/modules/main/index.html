@@ -2,35 +2,35 @@
 <html>
   <head>
     <title>Tela Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../styles/pattern.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script> 
   </head>
   <body id="game-element"> <!-- Backgound -->
     <link rel="stylesheet" href="../../modules/main/style.css" />
     <header>
-      <img class="menu-title" src="/images/main/logo.png"></img> <!-- logo -->
-      <button id="btn-setting"></button>
+      <!-- <img class="menu-title" src="/images/main/logo.png"></img> --> <!-- logo -->
+      <div class="menu-title"><h1><span>Torre</span> <span>Flamel</span></h1></div>
     </header>
     <main class="box">
       <link rel="stylesheet" href="../../modules/main/castle.css" />
       <script type="module" src="../../scripts/weather.js"></script>
       <div id="background">
-        <game-weather layers="1, 20, 100" play="true" density="3" speed="1" size=".4" altitude=".3"></game-weather>
+        <game-weather layers="1, 30, 40, 100" play="true" density="1" speed=".5" size=".8" altitude="0" amplitude=".4"></game-weather>
         <div id="castle">
             <img class="castle-part hover" style="z-index: 90;" src="/images/castle/castleright.png" />
-            <img class="castle-part hover" style="z-index: 40;" src="/images/castle/castleentrance.png" />
+            <img class="castle-part hover" style="z-index: 45;" src="/images/castle/castleentrance.png" />
             <img class="castle-part hover" style="z-index: 10;" src="/images/castle/castleleft.png" />
-            <img class="castle-part" style="z-index: 20;" src="/images/castle/castlemiddle.png" />
+            <img class="castle-part" style="z-index: 35;" src="/images/castle/castlemiddle.png" />
         </div>
-        <div class="backimage a" style="z-index: 4;" src="/images/background/mountains.png"></div>
-        <div class="backimage b" style="z-index: 5;" src="/images/background/greenground.png"></div>
+        <div class="backimage a" style="z-index: 4;" src="/images/background/main/mountains.png"></div>
+        <div class="backimage b" style="z-index: 5;" src="/images/background/main/background.png"></div>
+        <div class="backimage c" style="z-index: 6;" src="/images/background/main/mountain-top"></div>
+        <div class="backimage d" style="z-index: 6;" src="/images/background/main/mountain-mid.png"></div>
+        <div class="backimage e" style="z-index: 6;" src="/images/background/main/mountain-bot.png"></div>
       </div>
     </main>
-    <footer> <!-- botões -->
-        <div id="buttons">
-            <button id="btn-ranking"></button>
-            <button id="btn-play"></button>
-            <button id="btn-howToPlay"></button>
-        </div>
-    </footer>   
     <script src='../../modules/main/script.js'> </script>
   </body>
 <html>

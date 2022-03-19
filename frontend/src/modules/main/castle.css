@@ -1,8 +1,11 @@
 #background {
     display: flex; 
     position: relative; 
-    width: 100%; height: 100%; 
+    width: 100%; 
+    height: 100%; 
     overflow: hidden;
+    
+    background-color: var(--azuldark);
 }
 
 #castle {
@@ -11,10 +14,10 @@
     align-self: flex-end;
     justify-content: center;
     align-items: flex-end;
-    width: 20%;
-    height: fit-content;
-    left: 40%;
-    bottom: 10%;
+    /* width: 25%; */
+    height: 60%;
+    left: 37%;
+    bottom: 25%;
 }
 
 .hover {
@@ -22,7 +25,7 @@
 }
 
 .castle-part {
-    width: 100%;
+    height: 100%;
 }
 
 .backimage {
@@ -37,14 +40,47 @@
 }
 
 .backimage.a {
-    bottom: 20%;
-    background-image: url("../../images/background/mountains.png");
-    background-repeat: repeat;
-    height: 50%;
+    bottom: -10%;
+    background-color: var(--montain);
+    --img: url(../../images/background/main/mountains.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    mask-mode: alpha;
+    mask-type: alpha;
+
+    /* background-image: url();
+    background-repeat: repeat; */
+    height: 100%;
 }
 
 .backimage.b {
-    background-image: url("../../images/background/greenground.png");
-    background-repeat: repeat;
-    height: 30%;
+    background-color: var(--ground-back);
+    --img: url(../../images/background/main/background.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    height: 100%;
+}
+
+.backimage.c {
+    background-color: var(--ground);
+    --img: url(../../images/background/main/mountain-top.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    height: 100%;
+}
+
+.backimage.d {
+    background-color: var(--ground);
+    --img: url(../../images/background/main/mountain-mid.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    height: 100%;
+}
+
+.backimage.e {
+    background-color: var(--montain);
+    --img: url(../../images/background/main/mountain-bot.png);
+    -webkit-mask: var(--img) no-repeat center;
+    mask: var(--img) no-repeat center;
+    height: 100%;
 }
