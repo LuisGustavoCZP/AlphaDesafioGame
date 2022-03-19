@@ -1,6 +1,6 @@
 const port = 8000;
 const path = __dirname;
-const root = path.slice(0, path.lastIndexOf("\\"));
+const root = path.slice(0, path.lastIndexOf("/"));
 //console.log(path, root);
 const express = require('express');
 const cors = require('cors');
