@@ -3,7 +3,7 @@ const https = require('https');
 
 const app = express();
 const path = __dirname;
-const root = path.slice(0, path.lastIndexOf("\\"));
+const root = path.slice(0, path.lastIndexOf("/"));
 const port = 8080;
 const fs = require('fs');
 
