@@ -55,7 +55,7 @@ $(document).ready(async function()
     else {
         thisuser.stageWin();
     } */
-    cauldron.stop();
+    //cauldron.stop();
     console.log("Coisa coisada!");
 });
 

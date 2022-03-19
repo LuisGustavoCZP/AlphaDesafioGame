@@ -10,4 +10,8 @@ async function WaitFor(condition, interval = 100) {
     return;
 }
 
+async function Loop(){
+    
+}
+
 export {gameTimer, WaitFor};

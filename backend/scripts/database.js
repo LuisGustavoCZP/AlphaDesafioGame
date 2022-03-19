@@ -1,131 +1,100 @@
 const fs = require('fs');
-const path = __dirname.replace("scripts", "data/");
-const Utility = require(`${__dirname}/utility`);
+const path = __dirname.replace("scripts", "");
 
-//const recipes = JSON.parse(fs.readFileSync(path + "recipes.json"));
-const items = JSON.parse(fs.readFileSync(path + "ingredients.json"));
-const potions = JSON.parse(fs.readFileSync(path + "potions.json"));
-const users = JSON.parse(fs.readFileSync(path + "users.json"));
-const stages = JSON.parse(fs.readFileSync(path + "stages.json"));
+const ingredients = {};
+/* const recipes = {}; */
+const results = {};
 
-//potions retorna um array onde cada posição dele contém as poções referentes à um nível 
-//Ex: potions[0] = dados das poções do nível 1
-// potions[1] = dados das poções do nível 2
-// por enquanto só são necessários 3 banco de dados (potions, ingredients, users)
-
-function getStage(id) {
-   return stages[id];
+function resolveID (id)
+{
+    const cat = id.slice(0, 1);
+    const index = id.slice(1);
+    return {cat, index};
 }
 
-function getItem(...ids) {
-   return ids.map((id) => { return items[id] });
+function itemInfo (item)
+{
+    if(item.id[0] == "r")
+    {
+        const info = {"item": getItem(item.item, true), "ingredients": getItem(item.ingredients, true)};
+        return info;
+    } 
+    else 
+    {
+        const info = Object.assign({}, item);
+        delete info.id;
+        return info;
+    }
 }
 
-//getbook ainda esta em desenvolvimento
-function getBook(userStage) {
-   const potionsOfBook = []
-   stages.forEach((element) => {
-      if (element.stage <= userStage) {
-         potionsOfBook.push(...element.potions);
-      }
-   });
-   let recipes = [];
-   const potionsAndRecipes = [];
-   potions.forEach((element) => {
-      potionsOfBook.forEach((item) => {
-         if (item === element.name) {
-            recipes.push(element.recipe)
-            potionsAndRecipes.push({ name: element.name, icon: element.icon, recipe: element.recipe })
-         }
-      });
-   });
-
-   let recipeIconsRow = [];
-   let recipeIcons = [];
-   for (let i = 0; i < recipes.length; i++) {
-      const quant = recipes[i].length;
-      for (let j = 0; j < quant; j++) {
-         items.forEach((element) => {
-            if (element.id === recipes[i][j]) {
-               recipeIconsRow.push(element.icon);
-            }
-         });
-      }
-      recipeIcons.push(recipeIconsRow);
-      recipeIconsRow = [];
-   }
-
-   potionsAndRecipes.forEach((element, index) => {
-      element.recipe = recipeIcons[index];
-   })
-
-   console.log(potionsAndRecipes);
-   return potionsAndRecipes;
-
+function getItem (id, info=false)
+{
+    const r = resolveID(id);
+    const item = ingredients[r.cat][r.index];
+    return info? itemInfo(item) : item;
 }
 
-// sortia a poção e retorna um objeto {name: , icon: , recipe: }
-function sortPotion(fase) {
+function getItems (type, info=false)
+{
+    const itens = [];
+    const t = ingredients[type];
+    if(!t) return itens;
 
-   let sortPotion = "";
-
-   stage.forEach((element) => {
-      if (element.stage === fase) {
-         const potionsStage = element.potions;
-         const potionsStageLength = potionsStage.length;
-         const sortPotionId = parseInt(Math.random() * potionsStageLength);
-         sortPotion = potionsStage[sortPotionId];
-         console.log(sortPotionId);
-      }
-   });
-
-   const potionRecipe = potions.filter((element) => {
-      if (element.name === sortPotion) {
-         return true;
-      }
-   })
-
-   return {name: potionRecipe[0].name, icon:potionRecipe[0].icon, recipe: potionRecipe[0].recipe};
+    for(let key in t)
+    {
+        const item = t[key];
+        itens.push(info? itemInfo(item) : item);
+    }
+    return itens;
 }
 
-function randomSort(_items) {
-   const numero = _items.length;
-   return parseInt(Math.random() * numero);
+function getAllItems (info=false)
+{
+    const itens = [];
+    for(let key in ingredients)
+    {
+        itens.push(getItems(key, info));
+    }
 }
 
-
-
-//função que recebe o nome do usuário e altera o banco de dados se ele passar de fase e verifica a pontuação máxima dele
-//retorna os dados:  (name), (points), (stage) e (highscore) do usuário
-function upStage(_userid) {
-   const userId = _userid;
-   const database = [...users];
-   let userUp = {};
-   database.forEach((element, index) => {
-      if (element.id === userId) {
-         element.points += 50 * element.stage + element.points;
-         element.stage += 1;
-
-         if (element.points > element.highscore) {
-            element.highscore = element.points;
-         }
-
-         userUp = { name: element.name, points: element.points, stage: element.stage, highscore: element.highscore }
-      }
-   });
-   fs.writeFileSync("database.json", JSON.stringify([...database]));
-
-   return userUp
+function addItem (item)
+{
+    const id = resolveID(item.id);
+    if(!ingredients[id.cat]) ingredients[id.cat] = {};
+    ingredients[id.cat][id.index] = item;
+    return id;
 }
+
+function initiate ()
+{
+    const itemArray = JSON.parse(fs.readFileSync(path + "data2/ingredients.json"));
+    itemArray.forEach((item) => 
+    {
+        addItem(item);
+    });
+    //console.log(ingredients);
+
+    const recipeArray = JSON.parse(fs.readFileSync(path + "data2/recipes.json"));
+    recipeArray.forEach((recipe, i) => 
+    {
+        addItem(recipe);
+        results[recipe.ingredients] = recipe.item;
+    });
+    //console.log(ingredients);
+}
+
+function result (itens)
+{
+    return results[itens];
+}
+
+initiate ();
 
 module.exports = {
-   /* sortComponentsAleatory, */
-   randomSort,
-   upStage,
-   getStage,
-   getItem,
-   /* randomPotion,
-   randomStock, */
-   sortPotion,
-   getBook
-};
+    resolveID,
+    getItem,
+    getItems,
+    getAllItems,
+    itemInfo,
+    result,
+}

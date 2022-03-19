@@ -1,6 +1,5 @@
 import { gameTimer } from "./timer.js";
 
-
 class Crafter extends HTMLElement
 {
     constructor()
@@ -85,7 +84,7 @@ class Crafter extends HTMLElement
         {
             if(thisClass.abortTimer) return true;
             const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());
-            //console.log(timePass);
+            console.log(timePass);
             let ms = timePass;
             let aux = ms % 1000;
             let s = (ms - aux) / 1000;

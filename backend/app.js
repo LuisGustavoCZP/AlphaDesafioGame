@@ -38,14 +38,14 @@ app.get("/:sessionData/user", player.verifySession, player.playerData);
 //Resetar dados usuario
 app.post("/:sessionData/reset", player.verifySession, player.playerReset);
 
-//Pegar receita de itens
+/* //Pegar receita de itens
 app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);
 
 //Checar receita de itens
 app.post("/:sessionData/recipe", player.verifySession, game.verifyRecipe);
 
 //Pegar uma poção aleatória
-app.get("/:sessionData/potion", player.verifySession, game.sortPotion);
+app.get("/:sessionData/potion", player.verifySession, game.sortPotion); */
 
 //Ranking usuarios
 app.get("/ranking/:top", player.ranking);
