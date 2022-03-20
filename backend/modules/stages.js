@@ -8,8 +8,6 @@ function addStage(user)
     user.stages.push(stage);
     return stage;
 }
-
-
 function getStages (user)
 {
     const last = user.stages.length - 1;

@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
-body {
+.modal {
     margin: 0;
     font-family: 'Skranji', cursive;
  
 }
 
 /* Page header*/ 
-header{
+.modal header{
     display: flex;
     position: fixed;
     left: 0;
@@ -17,7 +17,7 @@ header{
     flex-direction: row;
 }
 
-img {
+.modal img {
     width: 350px;
     height: 170px;
 }
@@ -45,7 +45,7 @@ img {
     width: 100%;
     background-color: #51341F
 }*/
-#buttons{
+.modal #buttons{
     display: flex;
     width: 80%;
     margin: auto;
@@ -59,14 +59,14 @@ img {
 
 #btn-play, #btn-login{
     border-radius: 60px;
-    background-image: url("../images/main/play.svg");
+    background-image: url("/images/main/play.svg");
     width: 110px;
     height: 110px;
     margin-top: 15px;
     background-color: #4EA466;
 }
 
-button {
+.modal button {
     width: 70px;
     height: 70px;
     font-weight: 500;
@@ -82,21 +82,21 @@ button {
     background-position: center;
     background-repeat: no-repeat;
 }
-button:hover #btn-play:hover, #btn-login:hover {
+.modal button:hover #btn-play:hover, #btn-login:hover {
     background-color: #26b179;
     transform: translateY(-5px);
 }
-#btn-setting{
+.modal #btn-setting{
     transform: translateY(0px);
 }
-#btn-setting {
-    background-image: url("../images/main/sound.svg");
+.modal #btn-setting {
+    background-image: url("/images/main/sound.svg");
 }
-#btn-ranking {
-    background-image: url("../images/main/ranking.svg");
+.modal #btn-ranking {
+    background-image: url("/images/main/ranking.svg");
 }
-#btn-howToPlay {
-    background-image: url("../images/main/question.svg");
+.modal #btn-howToPlay {
+    background-image: url("/images/main/question.svg");
 }
 
 
@@ -119,7 +119,7 @@ button:hover #btn-play:hover, #btn-login:hover {
 .menu-background {
     
     background-color: var(--modal-background);
-    --img: url(../images/main/menu.png);
+    --img: url(/images/main/menu.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     -webkit-mask-clip: border-box;
@@ -135,7 +135,7 @@ button:hover #btn-play:hover, #btn-login:hover {
     height: 500px;
 }
 
-#content {
+.modal #content {
     width: 69%;
     height: 320px;
     margin-left: 60px;
@@ -153,10 +153,10 @@ button:hover #btn-play:hover, #btn-login:hover {
     flex-wrap: wrap;
     justify-content: center;
 }
-#title{
+.modal #title{
     height: 34px;
 }
-#title, .title, .content-title, .content-subtitle {
+.modal #title, .title, .content-title, .content-subtitle {
     font-family: 'Skranji', cursive;
     color:whitesmoke;
     text-align:center;
@@ -165,35 +165,35 @@ button:hover #btn-play:hover, #btn-login:hover {
     font-size: 25px;
     letter-spacing: .2rem;
 }
-.content-subtitle{
+.modal .content-subtitle{
     padding-top: 5px;
     font-size: 20px;
 }
 
 
 /* width */
-::-webkit-scrollbar {
+.modal ::-webkit-scrollbar {
     width: 10px;
     border-radius: 5px;
-  }
-  
-  /* Track */
-::-webkit-scrollbar-track {
+}
+
+/* Track */
+.modal ::-webkit-scrollbar-track {
     background: #8d724f; 
-  }
+}
    
   /* Handle */
-::-webkit-scrollbar-thumb {
+.modal ::-webkit-scrollbar-thumb {
     background: #888; 
-  }
+}
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+.modal ::-webkit-scrollbar-thumb:hover {
     background: #555; 
-  }
+}
   
 
-#menu-header {
+.modal #menu-header {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -239,7 +239,7 @@ button:hover #btn-play:hover, #btn-login:hover {
 
 
 /* places */ 
-.places {
+.modal .places {
     width: 80%;
     height: 80px;
     background-color: var(--menu-darkness);
@@ -249,7 +249,7 @@ button:hover #btn-play:hover, #btn-login:hover {
 }
 
 /* INPUT*/ 
-input {
+.modal input {
     width: 80%;
     height: 30px;
     font-family: 'Skranji', cursive;
@@ -257,18 +257,18 @@ input {
     text-align: center;
 }
 
-img {
+.modal img {
     width: 32px;
     height: 32px;
 }
 
-.potions{
+.modal .potions{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding-bottom: 15px;
 }
-.stages {
+.modal .stages {
     width: 80%;
     height: fit-content;
     background-color: var(--menu-darkness);
@@ -277,7 +277,7 @@ img {
     color: var(--golden);
 }
 
-.stageButton{
+.modal .stageButton{
     /* margin-top: 10px; */
     width: 100%;
     /* height: fit-content; */
@@ -287,17 +287,17 @@ img {
     align-items: center;
 
 }
-.stageButton:hover{
+.modal .stageButton:hover{
     background-color: #26b179;
 }
 
 
 /*Slider*/
-.slidecontainer {
+.modal .slidecontainer {
     width: 50%;
-  }
+}
   
-  .slider {
+.modal .slider {
     -webkit-appearance: none;
     overflow: hidden;
     width: 100%;
@@ -307,13 +307,13 @@ img {
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-  }
+}
   
-  .slider:hover {
+.modal .slider:hover {
     opacity: 1;
-  }
+}
   
-  .slider::-webkit-slider-thumb {
+.modal .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;
@@ -321,11 +321,11 @@ img {
     background: #068556;
     box-shadow: -100vw 0 0 100vw #04AA6D;
     cursor: pointer;
-  }
+}
   
-  .slider::-moz-range-thumb {
+.modal .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: #04AA6D;
     cursor: pointer;
-  }
+}

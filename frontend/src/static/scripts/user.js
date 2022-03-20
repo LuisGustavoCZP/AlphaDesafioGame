@@ -1,4 +1,4 @@
-import { RequestSys } from "/scripts/request.js";
+import { RequestSys } from "./request.js";
 
 class User
 {
@@ -108,6 +108,7 @@ class User
     {
         window.modal.src="";
 
+        console.log(gamePath, modalPath);
         if(window.game.src == gamePath)
         {
             if(modalPath) window.modal.src=modalPath;
@@ -149,14 +150,14 @@ class User
             if(callback){
                 callback(data);
             } else {
-                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/howToPlay" : "modules/windows/main");
+                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/help" : "modules/windows/main");
             }
 
             //console.log(thisuser.data);
-            thisuser.requestRanking();
-            thisuser.requestStages();
-            thisuser.requestBook();
-            thisuser.requestStock();
+            //thisuser.requestRanking();
+            //thisuser.requestStages();
+            //thisuser.requestBook();
+            //thisuser.requestStock();
 
             /* console.log(thisuser.stages, thisuser.ranking); */
             /* 

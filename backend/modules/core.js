@@ -1,36 +1,19 @@
-const player = require(`${__dirname}/player`);
-const database = require(`${__dirname}/database`);
+const player = require(`${__dirname}/users/player.js`);
+const database = require(`${__dirname}/database/database.js`);
 const utility = require(`${__dirname}/utility`);
 const users = player.users;
-const path = __dirname.replace("scripts", "");
+const path = __dirname.replace("modules", "");
 
 function getStock (user)
 {
-    const t = [];
+    const t = database.fromID(...user.unlockedItens);
     
     return t;
 }
 
 function getBook (user)
 {
-    const total = [];
-    user.stages.forEach(userStage => 
-    {
-        const stage = stages[userStage.stage];
-        stage.potions.forEach(recipeID => 
-        {
-            const recipe = getItem(recipeID);
-            const npotion = getItem(recipe.item);
-            const nrecipe = {"item":{"name":npotion.name, "icon":npotion.icon}, "ingredients":[]};
-            recipe.ingredients.forEach(ingredientID => {
-                const item = getItem(ingredientID);
-                const nitem = {"name":item.name, "icon":item.icon};
-                nrecipe.ingredients.push(nitem);
-            });
-            
-            total.push(nrecipe);
-        });
-    });
+    const total = database.fromID(...user.unlockedRecipes);
     return total;
 }
 
@@ -122,6 +105,8 @@ async function stageUpdate (req, res)
 
 //
 module.exports = {
+    player,
+    database,
     book,
     stock,
     stagePrepare,

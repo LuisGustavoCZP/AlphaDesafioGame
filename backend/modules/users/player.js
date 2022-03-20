@@ -1,11 +1,26 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const session = require('./sessions');
-const userpath = __dirname.replace("scripts", "data2/users/");
+const userpath = __dirname + "/data/";
 
 const users = {};
 const highscores = [];
+const matchs = {
+    "4fabe25e-7ef4-4daf-9133-5baf466672b6":
+    {
+        "userid":"4fabe25e-7ef4-4daf-9133-5baf466672b6",
+        "jobs":
+        [
+            {"potion":"p0", "expire-time":100309},
+            {"potion":"p1", "expire-time":100309},
+        ],
+        "backpack":[],
+        "startedTime":0,
+        "timeAmount":0
+    }
+};
 
+/* delete matchs["4fabe25e-7ef4-4daf-9133-5baf466672b6"]; */
 function loadUserFiles ()
 {
     if(!fs.existsSync(userpath)) fs.mkdirSync(userpath);
@@ -62,8 +77,8 @@ function create (_name)
     const user = 
     {
         name:_name,
-        stages:[],
-        stage:0,
+        unlockedItens:[],
+        unlockedRecipes:[],
         lives:3,
         tutorial:false,
         points:0,
@@ -165,7 +180,7 @@ function verifySession (req, res, next)
 function playerData (req, res)
 {
     const p = users[req.session.userid];
-    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
+    res.json({name:p.name, lives:p.lives, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
 }
 
 function playerReset (req, res)

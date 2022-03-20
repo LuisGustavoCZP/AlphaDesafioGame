@@ -1,4 +1,4 @@
-import { User } from "/scripts/user.js";
+import { User } from "./user.js";
 
 const user = new User ();
 window.gameuser = user;
@@ -13,6 +13,7 @@ const iniciateSound = e=>
     window.audiosys.play("music1"); 
     window.removeEventListener("mousemove", iniciateSound);
 };
-window.addEventListener("click", iniciateSound);
+
+//window.addEventListener("click", iniciateSound);
 
 user.update();

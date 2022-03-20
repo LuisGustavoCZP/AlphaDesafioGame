@@ -1,6 +1,6 @@
 /* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
 /* console.log(document.location); */
-function requestSys (url=document.location.origin.replace("8080", "8000/")) //"https://vacsina.servegame.com:8000/"
+function requestSys (url=document.location.origin.replace("80", "8000/")) //"https://vacsina.servegame.com:8000/"
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */

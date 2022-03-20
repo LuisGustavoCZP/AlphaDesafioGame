@@ -2,22 +2,22 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../styles/pattern.css">
+    <link rel="stylesheet" href="../../static/styles/pattern.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>    
   </head>
   <body> <!-- Backgound -->
     <link rel="stylesheet" href="../../modules/game/style.css">
-    <script type="module" src="../../scripts/inventory.js"></script>
-    <script type="module" src="../../scripts/dialogsys.js"></script>
-    <script type="module" src="../../scripts/crafter.js"></script>
+    <script type="module" src="../..static/scripts/inventory.js"></script>
+    <script type="module" src="../..static/scripts/dialogsys.js"></script>
+    <script type="module" src="../..static/scripts/crafter.js"></script>
     <main>
       <div id="gamecenter">
         <!-- <img id="bookcase" src="./icons/estante.png"></img> -->
         <!-- <div style="position:absolute; background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; z-index: 500; pointer-events: none;"></div> -->
         <div id="wizard">
           <game-dialog id="dialog-mage" style="right: calc(40% + 100px); bottom: 70%;"></game-dialog>
-          <img src="/images/game/mago.png"></img>
+          <img src="../../images/game/mago.png"></img>
         </div>
 
         <game-inventory id="bookcase" title="INGREDIENTES" column="4">
@@ -32,7 +32,7 @@
             <div class="deep-right bottom"></div>
           </aside>
         </game-inventory>
-        <game-crafter id="cauldron" img="/images/game/cauldron.png"></game-crafter>
+        <game-crafter id="cauldron" img="../../images/game/cauldron.png"></game-crafter>
         
       </div>
     </main>
@@ -43,6 +43,6 @@
       <button id="btn-menu">M</button>
     </div>
 
-   <script type="module" src='/modules/game/script.js'> </script>
+   <script type="module" src='../../modules/game/script.js'> </script>
   </body>
 <html>
