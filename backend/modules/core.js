@@ -109,7 +109,7 @@ module.exports = {
     database,
     book,
     stock,
-    stagePrepare,
+  /*   stagePrepare,
     stageStart,
-    stageUpdate
+    stageUpdate */
 }
