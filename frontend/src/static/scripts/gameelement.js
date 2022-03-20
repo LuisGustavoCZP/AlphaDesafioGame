@@ -6,7 +6,6 @@ class GameElement extends HTMLElement
 
     static define ()
     {
-        //console.log("Iniciou static");
         customElements.define('game-element', GameElement);
     }
 

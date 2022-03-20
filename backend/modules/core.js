@@ -41,7 +41,7 @@ function stock (req, res)
     res.json(getStock(p));
 }
 
-async function stagePrepare (req, res)
+/* async function stagePrepare (req, res)
 {
     const user = users[req.session.userid];
     const stageid = req.query["stage"];
@@ -101,7 +101,7 @@ async function stageUpdate (req, res)
         }
         
     }
-}
+} */
 
 //
 module.exports = {

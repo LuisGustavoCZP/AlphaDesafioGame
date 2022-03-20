@@ -61,13 +61,13 @@ app.get("/:sessionData/book", player.verifySession, game.book);
 app.get("/:sessionData/stages", player.verifySession, game.userstages); */
 
 //Iniciar estagio, retornando uma receita temporizada
-app.get("/:sessionData/stage/prepare", player.verifySession, game.stagePrepare);
+/* app.get("/:sessionData/stage/prepare", player.verifySession, game.stagePrepare);
 
 //Iniciar estagio, retornando uma receita temporizada
 app.get("/:sessionData/stage/", player.verifySession, game.stageStart);
 
 //Finaliza estagio, recebendo os itens e retornando a poção com um valor
-app.post("/:sessionData/stage/", player.verifySession, game.stageUpdate);
+app.post("/:sessionData/stage/", player.verifySession, game.stageUpdate); */
 
 //app.listen(port, )
 
