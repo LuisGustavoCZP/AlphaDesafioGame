@@ -50,12 +50,13 @@
     width: 80%;
     margin: auto;
     align-items: flex-end;
-    padding-bottom: 10px;
+   /* padding-bottom: 10px;*/
     justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: flex-start;
 }
+
 
 #btn-play, #btn-login{
     border-radius: 60px;
@@ -224,20 +225,6 @@
   cursor: pointer;
 }
 
-/*#place-1 {
-    color: #DAA520;
-}
-
-#place-2 {
-    color: #A3A2A0;
-}
-
-#place-3 {
-    color: #CD7F32;
-}*/
-
-
-
 /* places */ 
 .modal .places {
     width: 80%;
@@ -328,4 +315,14 @@
     height: 25px;
     background: #04AA6D;
     cursor: pointer;
+}
+
+
+/* game modes*/ 
+#btn-mode-one, #btn-mode-two{
+    width: 80%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
