@@ -16,7 +16,7 @@ const matchs = {
         ],
         "backpack":[],
         "startedTime":0,
-        "timeAmount":0
+        "timeAmount":1
     }
 };
 
@@ -79,7 +79,7 @@ function create (_name)
         name:_name,
         unlockedItens:[],
         unlockedRecipes:[],
-        lives:3,
+        backpack:[],
         tutorial:false,
         points:0,
         highscore:0

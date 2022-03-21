@@ -4,7 +4,7 @@ const rPath = require('path');
 const app = express();
 const path = __dirname;
 const root = rPath.dirname(path);
-const port = 80;
+const port = 8080;
 const fs = require('fs');
 
 // Carrega o certificado e a key necessários para a configuração.
