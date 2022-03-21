@@ -1,4 +1,4 @@
-import { gameTimer, WaitFor } from "../../scripts/timer.js";
+import { gameTimer, WaitFor } from "../../static/scripts/timer.js";
 
 $(document).ready(async function() 
 {

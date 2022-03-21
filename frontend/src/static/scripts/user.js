@@ -150,7 +150,7 @@ class User
             if(callback){
                 callback(data);
             } else {
-                thisuser.goTo("modules/main/", !data.tutorial ? "modules/windows/help" : "modules/windows/main");
+                thisuser.goTo("modules/main/", !data.tutorial ? "windows/help" : "windows/main");
             }
 
             //console.log(thisuser.data);
@@ -177,7 +177,7 @@ class User
 
     async stageWin ()
     {
-        window.modal.src = "modules/windows/gamewin";
+        window.modal.src = "windows/gamewin";
         //this.requestRanking();
         /* this.requestStages();
         this.requestBook();
@@ -187,7 +187,7 @@ class User
 
     async stageTimeout ()
     {
-        window.modal.src = "modules/windows/gameover";
+        window.modal.src = "windows/gameover";
         //this.goTo("modules/game/", );
     }
     

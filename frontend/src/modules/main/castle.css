@@ -42,7 +42,7 @@
 .backimage.a {
     bottom: -10%;
     background-color: var(--montain);
-    --img: url(../../images/background/main/mountains.png);
+    --img: url(../../images/grounds/mountains.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     mask-mode: alpha;
@@ -55,7 +55,7 @@
 
 .backimage.b {
     background-color: var(--ground-back);
-    --img: url(../../images/background/main/background.png);
+    --img: url(../../images/grounds/background.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     height: 100%;
@@ -63,7 +63,7 @@
 
 .backimage.c {
     background-color: var(--ground);
-    --img: url(../../images/background/main/mountain-top.png);
+    --img: url(../../images/grounds/mountain-top.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     height: 100%;
@@ -71,7 +71,7 @@
 
 .backimage.d {
     background-color: var(--ground);
-    --img: url(../../images/background/main/mountain-mid.png);
+    --img: url(../../images/grounds/mountain-mid.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     height: 100%;
@@ -79,7 +79,7 @@
 
 .backimage.e {
     background-color: var(--montain);
-    --img: url(../../images/background/main/mountain-bot.png);
+    --img: url(../../images/grounds/mountain-bot.png);
     -webkit-mask: var(--img) no-repeat center;
     mask: var(--img) no-repeat center;
     height: 100%;

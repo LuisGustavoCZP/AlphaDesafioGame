@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="../../../styles/modal.css">
     </head>
     <body style="display:flex; position: relative; height: 100vh; width: 100vw; justify-content: center; align-items: center;">
-       
         <div id="Modal" class="modal">
             <!-- Modal content -->
             <div class="menu-background">
@@ -33,21 +32,7 @@
                     <p>Mas tome cuidado, você só pode errar três vezes antes que algo catastrófico ocorra!</p>
                 </div>
             </div>
-          </div>
-
-        <script>
-            
-            $(document).ready(function() 
-            {
-                $(".close").on("click", function() 
-                {
-                    //console.log("Close");
-                    parent.modal.src = "modules/windows/main";
-                    parent.audiosys.play("close");
-                    //$(`#Modal`).css("display","none");
-                });
-
-            });
-        </script>
+        </div>
+        <script src="../../windows/help/help.js"></script>
     </body>
 </html>

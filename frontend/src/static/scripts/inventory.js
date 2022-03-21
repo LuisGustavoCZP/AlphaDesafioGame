@@ -21,7 +21,7 @@ class Inventory extends HTMLElement
         super();
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
-        linkcss.href = "/styles/inventory.css";
+        linkcss.href = "static/styles/inventory.css";
         
         this.before(linkcss);
         this.classList.add("inventory");

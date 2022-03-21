@@ -16,29 +16,62 @@ const options = {
 const p = path+"/src/";
 app.use('/static', express.static(p+"static/"));
 
-
-app.get("/modules/*", (req, res)=>
+app.get("/modules/:category", (req, res)=>
 { 
-    let relativePath = req.params[0];
-    if(relativePath.endsWith("/")) relativePath += "index.html";
+    //let relativePath = req.params[0];
+    let relativePath = rPath.join(...Object.values(req.params));
+    if(!relativePath.endsWith("/")) relativePath += "/";
+    relativePath += "index.html";
     console.log(relativePath);
 
     let origin = rPath.resolve(p, "modules", `${relativePath}`);   
     res.sendFile(origin);
 });
 
-app.get("/images/*", (req, res)=>
-{
-    let relativePath = req.params[0];
+app.get("/modules/:category/:file", (req, res)=>
+{ 
+    //let relativePath = req.params[0];
+    let relativePath = rPath.join(...Object.values(req.params));
     console.log(relativePath);
+
+    let origin = rPath.resolve(p, "modules", `${relativePath}`);   
+    res.sendFile(origin);
+});
+
+app.get("/windows/:category/", (req, res)=>
+{ 
+    //let relativePath = req.params[0];
+    let relativePath = rPath.join(...Object.values(req.params));
+    if(!relativePath.endsWith("/")) relativePath += "/";
+    relativePath += "index.html";
+    console.log(relativePath);
+
+    let origin = rPath.resolve(p, "windows", `${relativePath}`);   
+    res.sendFile(origin);
+});
+
+app.get("/windows/:category/:file", (req, res)=>
+{ 
+    //let relativePath = req.params[0];
+    let relativePath = rPath.join(...Object.values(req.params));
+    console.log(relativePath);
+
+    let origin = rPath.resolve(p, "windows", `${relativePath}`);   
+    res.sendFile(origin);
+});
+
+app.get("/images/:category/:file", (req, res)=>
+{
+    let relativePath = rPath.join(...Object.values(req.params));
+    //console.log(relativePath);
     const origin = rPath.resolve(p, "images", `${relativePath}`);
     res.sendFile(origin);
 });
-// /audios/../../user.js
-app.get("/audios/*", (req, res)=>
+
+app.get("/audios/:category/:file", (req, res)=>
 {
-    let relativePath = req.params[0];
-    console.log(relativePath);
+    let relativePath = rPath.join(...Object.values(req.params));
+    //console.log(relativePath);
     const origin = rPath.resolve(p, "audios", `${relativePath}`);
     res.sendFile(origin);
 });

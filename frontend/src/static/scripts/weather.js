@@ -165,7 +165,7 @@ class WeatherSys extends HTMLElement
                 this.sprites.push(newSprite);
             });
         } else {
-            const srcs = ["/images/background/clouds/cloud1.png", "/images/background/clouds/cloud2.png", "/images/background/clouds/cloud3.png", "/images/background/clouds/cloud4.png", "/images/background/clouds/cloud5.png", "/images/background/clouds/cloud6.png", "/images/background/clouds/cloud7.png", "/images/background/clouds/cloud8.png"];
+            const srcs = ["/images/clouds/cloud1.png", "/images/clouds/cloud2.png", "/images/clouds/cloud3.png", "/images/clouds/cloud4.png", "/images/clouds/cloud5.png", "/images/clouds/cloud6.png", "/images/clouds/cloud7.png", "/images/clouds/cloud8.png"];
             srcs.forEach(src => {
                 const newSprite = new Image();
                 newSprite.src = src;

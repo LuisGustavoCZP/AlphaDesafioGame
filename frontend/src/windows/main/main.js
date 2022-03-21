@@ -11,16 +11,16 @@ $(document).ready(() =>
 
        switch (idBtn) {
            case 'ranking':
-               parent.modal.src="modules/windows/ranking/index.html";
+               parent.modal.src="windows/ranking/";
                break;
            case 'play':
-                parent.modal.src="modules/windows/stages/";
+                parent.modal.src="windows/stages/";
                break;
            case 'howToPlay':
-                parent.modal.src="modules/windows/howToPlay/index.html";
+                parent.modal.src="windows/help/";
                break;
            case 'setting':
-                parent.modal.src="modules/windows/sound/index.html";
+                parent.modal.src="windows/settings/";
                break;
            /*case 'pause':
                resultContent = contentPause();

@@ -4,7 +4,7 @@ $(document).ready(function() {
     $("#sound").html(`VOLUME: ${parent.audiosys.volume * 100}`);
     $(".close").on("click", function() {
         //$(`#Modal`).css("display","none");
-        parent.modal.src = "modules/windows/main";
+        parent.modal.src = "windows/main";
         parent.audiosys.play("close");
     });
 
