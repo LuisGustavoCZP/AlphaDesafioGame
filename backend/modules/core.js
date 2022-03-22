@@ -29,6 +29,18 @@ function getRecipe (recipeID)
     return {item:{"name":itm.name, "icon":itm.icon}, "ingredients":is};
 }
 
+//requisição vai receber o array com os itens jogados no caldeirão através do corpo da requisição
+function verifyRecipe(req, res){
+   const receivedItems = req.body.receivedItems;
+   const p = users[req.session.userid]
+   const receivedItemsLength = receivedItems.length;
+   if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
+      
+   }else{
+      res.json("This array is not in the proper format");
+   }
+}
+
 function book (req, res)
 {
     const p = users[req.session.userid];
