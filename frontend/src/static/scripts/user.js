@@ -200,7 +200,7 @@ class User
             thisuser.currentStage.result = data;
             response = data;
         }
-        await RequestSys.post("stage", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
+        await RequestSys.post("free", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
         thisuser.requestBook();
         return response;
     }

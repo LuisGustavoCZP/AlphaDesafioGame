@@ -96,7 +96,7 @@ class DialogSys extends HTMLElement
 
     createLetter (parag, dialog, text, letter)
     {
-        console.log(text);
+        //console.log(text);
         const l = text.charAt(letter);
         
         if(l == "{")
@@ -132,7 +132,10 @@ class DialogSys extends HTMLElement
     {
         parag.remove();
         window.removeEventListener("click", this.nextDialog);
-        return await this.createText(...dialogs);
+        if(dialogs.length > 0){
+            return await this.createText(...dialogs);
+        } else 
+            return;
         //if(dialog.next) thisdialog.createText(dialog.next);
     }
 

@@ -10,9 +10,27 @@ $(document).ready(async function()
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
-    await cauldron.play((ingredients)=>
+    cauldron.play((ingredients)=>
     {
-        console.log("Dropou objeto", ingredients); 
+        //console.log("Dropou objeto", ingredients); 
+    });
+
+    await WaitFor(async () => 
+    {
+        /* console.log(cauldron.ingredients); */
+        if(cauldron.ingredients && cauldron.ingredients.length == 2)
+        {
+            const itens = cauldron.ingredients;
+            cauldron.ingredients = [];
+            console.log(itens);
+            /* const response = await window.gameuser.sendItems(itens);
+            console.log(response);
+            if(response.status == 0){
+
+            } */
+            return true;
+        }
+        return false;
     });
     //await gameTimer(5000);
 
@@ -24,10 +42,11 @@ $(document).ready(async function()
     }
 
     const dialogs = [
-        /* {
-            text:"VAMOS LÁ!"
-        },
         {
+            text:"VAMOS LÁ!",
+            click: true
+        },
+        /*{
             text:"FAÇA \n\t{i0}", 
             icons:
             [
@@ -39,15 +58,7 @@ $(document).ready(async function()
     await dialogMage.createText(...dialogs);
     //await parent.gameuser.requestStageStart();
     
-    /*await WaitFor(() => 
-    {
-        if((cauldron.finished == true))
-        {
-
-            return true;
-        } 
-        else return false;
-    });*/
+    /**/
     /*if(data.status == 0) 
     {
         if(data.result) {

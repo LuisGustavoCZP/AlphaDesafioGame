@@ -64,6 +64,8 @@ class Crafter extends HTMLElement
                 if(callback) {
                     callback(container.ingredients);
                 }
+
+                /* this.finished = true; */
                 /* const response = await parent.gameuser.sendItems(container.ingredients);
                 const data = response;//.then((d) => {console.log(d);});//
                 console.log(data);
@@ -76,7 +78,7 @@ class Crafter extends HTMLElement
                 else if (data.status == 1) parent.gameuser.stageTimeout();
                 else 
                 {
-                    //this.finished = true;
+                    //
                     this.abortTimer = true;
                     parent.gameuser.stageWin(data);
                 } */

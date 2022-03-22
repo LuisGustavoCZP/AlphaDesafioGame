@@ -4,7 +4,7 @@ function gameTimer (ms)
 }
 
 async function WaitFor(condition, interval = 100) {
-    while(!condition()){
+    while(!await condition()){
         await gameTimer(interval);
     }
     return;
