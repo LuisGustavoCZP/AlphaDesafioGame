@@ -10,19 +10,22 @@ $(document).ready(async function()
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
-    cauldron.play(async (ingredients) =>
+    cauldron.play((ingredients) =>
     {
         if(ingredients && ingredients.length == 2)
         {
             const itens = ingredients;
             cauldron.reset();
             console.log(itens, window.gameuser);
-            const response = await window.gameuser.sendItems(itens);
-            
-            console.log(response);
-            if(response.status == 0){
+            window.gameuser.sendItems(itens, (response) => 
+            {
+                console.log(response);
+                if(response.status == 0){
 
-            }
+                }
+            }); //const response = await 
+            
+            
             
             //return true;
         }

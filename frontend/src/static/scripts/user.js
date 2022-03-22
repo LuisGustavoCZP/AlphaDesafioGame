@@ -11,7 +11,7 @@ class User
         this.#hasUser = false;
         this.#sessionData = this.#recoverCookie ();
         this.data = null;
-        this.match = null;
+        this.match = {};
     }
 
     #createCookie (sessionData) 
