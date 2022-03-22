@@ -10,8 +10,11 @@ const ingredients = {};
     }
 }; */
 
-/* const recipes = {}; */
-const results = {};
+/* const recipes = {}; */ ["i0", "i1"]
+const results = {
+    '"i0", "i1"': "p0",
+    '"i1", "i0"': "p0",
+};
 
 function resolveID (id)
 {
@@ -42,6 +45,7 @@ function initiate ()
     {
         addItem(recipe);
         results[recipe.ingredients] = recipe.item;
+        results[recipe.ingredients.reverse()] = recipe.item;
     });
     //console.log(ingredients);
 }
@@ -120,7 +124,11 @@ function allItems (type = "ip", info=false)
         itens.push(itemsOf(key, info));
     }
 }
-
+/**
+ * 
+ * @param {Item[]} itens 
+ * @returns {Item}
+ */
 function result (itens)
 {
     return results[itens];
