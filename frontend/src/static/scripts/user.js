@@ -5,14 +5,13 @@ class User
     #hasUser;
     #sessionData;
     data;
-    stage;
-
+    match;
     constructor ()
     {
         this.#hasUser = false;
         this.#sessionData = this.#recoverCookie ();
         this.data = null;
-        this.stage = null;
+        this.match = null;
     }
 
     #createCookie (sessionData) 
@@ -191,16 +190,18 @@ class User
         //this.goTo("modules/game/", );
     }
     
-    async sendItems (itens)
+    async sendItems (itens, callback)
     {
+        console.log("Sending itens", itens);
         let response = undefined;
         const thisuser = this; 
         function userSuccess (data)
         {
-            thisuser.currentStage.result = data;
+            if(callback) callback(data);
+            thisuser.match.result = data;
             response = data;
         }
-        await RequestSys.post("free", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
+        await RequestSys.post("combine", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
         thisuser.requestBook();
         return response;
     }

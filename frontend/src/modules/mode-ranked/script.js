@@ -1,5 +1,27 @@
 import { gameTimer, WaitFor } from "../../static/scripts/timer.js";
 
+gameTimer(() =>
+{
+    //if(thisClass.abortTimer) return true;
+    const timePass = window.gameuser.match.expiration - (new Date().getTime());
+    console.log(timePass);
+    let ms = timePass;
+    let aux = ms % 1000;
+    let s = (ms - aux) / 1000;
+    ms = aux;
+    aux = s % 60;
+    let mn = (s - aux) / 60;
+    s = aux;
+    aux = mn % 60;
+    let hr = (mn - aux) / 60;
+    mn = aux;
+    aux = hr % 60;
+    
+    thisClass.timer.innerText = (hr > 0?`${hr}:`:"")+(mn > 0?`${mn}:`:"")+(s > 0?`${s}`:"")+(ms > 0?`.${ms}`.slice(0, 2):"");
+    if(timePass > 0) return false;
+    else return true;
+});
+
 $(document).ready(async function() 
 {
     const bookcase = $("#bookcase")[0];
@@ -12,16 +34,10 @@ $(document).ready(async function()
     parent.audiosys.play("open");
     cauldron.play((ingredients)=>
     {
-        //console.log("Dropou objeto", ingredients); 
-    });
-
-    await WaitFor(async () => 
-    {
-        /* console.log(cauldron.ingredients); */
-        if(cauldron.ingredients && cauldron.ingredients.length == 2)
+        if(ingredients && ingredients.length == 2)
         {
-            const itens = cauldron.ingredients;
-            cauldron.ingredients = [];
+            const itens = ingredients;
+            cauldron.reset();
             console.log(itens);
             /* const response = await window.gameuser.sendItems(itens);
             console.log(response);
@@ -30,6 +46,13 @@ $(document).ready(async function()
             } */
             //return true;
         }
+        //console.log("Dropou objeto", ingredients); 
+    });
+
+    await WaitFor(async () => 
+    {
+        /* console.log(cauldron.ingredients); */
+        
         return false;
     });
     //await gameTimer(5000);

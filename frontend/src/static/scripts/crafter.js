@@ -1,5 +1,3 @@
-import { gameTimer } from "./timer.js";
-
 class Crafter extends HTMLElement
 {
     constructor()
@@ -87,27 +85,11 @@ class Crafter extends HTMLElement
 
         const thisClass = this;
         return false; 
-        gameTimer(() =>
-        {
-            if(thisClass.abortTimer) return true;
-            const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());
-            console.log(timePass);
-            let ms = timePass;
-            let aux = ms % 1000;
-            let s = (ms - aux) / 1000;
-            ms = aux;
-            aux = s % 60;
-            let mn = (s - aux) / 60;
-            s = aux;
-            aux = mn % 60;
-            let hr = (mn - aux) / 60;
-            mn = aux;
-            aux = hr % 60;
-            
-            thisClass.timer.innerText = (hr > 0?`${hr}:`:"")+(mn > 0?`${mn}:`:"")+(s > 0?`${s}`:"")+(ms > 0?`.${ms}`.slice(0, 2):"");
-            if(timePass > 0) return false;
-            else return true;
-        });
+    }
+
+    reset ()
+    {
+        this.ingredients = [];
     }
 
     stop ()
