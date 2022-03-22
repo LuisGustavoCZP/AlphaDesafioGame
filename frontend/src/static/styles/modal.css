@@ -159,12 +159,15 @@
 }
 .modal #title, .title, .content-title, .content-subtitle {
     font-family: 'Skranji', cursive;
-    color:whitesmoke;
+    color:rgb(228, 211, 85);
     text-align:center;
     vertical-align: middle;
     padding-top: 2em;
     font-size: 25px;
     letter-spacing: .2rem;
+}
+.modal .content-title, .content-subtitle{
+    color:whitesmoke;
 }
 .modal .content-subtitle{
     padding-top: 5px;
@@ -180,17 +183,17 @@
 
 /* Track */
 .modal ::-webkit-scrollbar-track {
-    background: #8d724f; 
+    background: #495a92; 
 }
    
   /* Handle */
 .modal ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: rgb(17, 19, 116); 
 }
   
   /* Handle on hover */
 .modal ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: rgb(13, 14, 97); 
 }
   
 
@@ -232,7 +235,7 @@
     background-color: var(--menu-darkness);
     border-radius: 30px;
     margin: 5px;
-    color: var(--golden);
+    color: var(--places);
 }
 
 /* INPUT*/ 
