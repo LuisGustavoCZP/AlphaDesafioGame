@@ -14,7 +14,6 @@ function getStock (user)
 function getBook (user)
 {
     const total = database.fromID(...user.unlockedRecipes);
-    //console.log(total);
     return total;
 }
 
@@ -30,18 +29,6 @@ function getRecipe (recipeID)
     return {item:{"name":itm.name, "icon":itm.icon}, "ingredients":is};
 }
 
-//requisição vai receber o array com os itens jogados no caldeirão através do corpo da requisição
-function verifyRecipe(req, res){
-   const receivedItems = req.body.receivedItems;
-   const p = users[req.session.userid]
-   const receivedItemsLength = receivedItems.length;
-   if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
-      
-   }else{
-      res.json("This array is not in the proper format");
-   }
-}
-
 function book (req, res)
 {
     const p = users[req.session.userid];
@@ -52,22 +39,6 @@ function stock (req, res)
 {
     const p = users[req.session.userid];
     res.json(getStock(p));
-}
-
-function combine (req, res)
-{
-    const p = users[req.session.userid];
-    //req.session.metch?req.session.metch.check
-    const itens = req.body["items"];
-    const crafted = database.result(itens);
-    
-    const result = 
-    {
-        result:crafted,
-        status:0
-    };
-    console.log(result);
-    res.json(result);
 }
 
 /* async function stagePrepare (req, res)
@@ -138,5 +109,7 @@ module.exports = {
     database,
     book,
     stock,
-    combine,
+  /*   stagePrepare,
+    stageStart,
+    stageUpdate */
 }
