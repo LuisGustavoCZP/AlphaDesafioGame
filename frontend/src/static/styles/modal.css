@@ -72,7 +72,7 @@
     height: 70px;
     font-weight: 500;
     color: #000;
-    background-color: #A07048;
+    background-color: var(--modal-button);
     border: none;
     border-radius: 45px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -83,8 +83,8 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.modal button:hover #btn-play:hover, #btn-login:hover {
-    background-color: #26b179;
+.modal button:hover, #btn-play:hover, #btn-login:hover {
+    background-color: var(--modal-button-glow);
     transform: translateY(-5px);
 }
 .modal #btn-setting{
@@ -325,4 +325,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: var(--subtitleFont);
 }

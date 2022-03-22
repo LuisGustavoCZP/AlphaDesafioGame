@@ -64,7 +64,8 @@ main{
 .menu-title > * {
    /*  font-family: 'magic1'; */
    /* font-family: 'Rock Salt', cursive; */
-   font-family: 'Press Start 2P', cursive;
+   /* font-family: 'Press Start 2P', cursive; */
+   font-family: var(--titleFont);
    font-size: 400%;
    text-align: center;
    vertical-align: middle;

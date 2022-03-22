@@ -1,11 +1,6 @@
-@font-face {
-    font-family: 'magic1';
-    src: url('../fonts/MagicSchoolTwo.ttf')  format('truetype'), /* Safari, Android, iOS */
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+@import url('magicschool.css');
 :root {
 /*     --azul: cadetblue;
     --azuldark: rgb(51, 62, 87);
@@ -29,6 +24,8 @@
     --menu-glow-low: rgb(38, 177, 121);
     --menu-button: var(--menu-glow);
     --menu-button-glow: var(--menu-glow-low);
+    --modal-button: #A07048;
+    --modal-button-glow: var(--menu-glow-low);
     --menu-icon: var(--menu-dark);
     --menu-icon-glow: var(--menu-darkness);
     --wood-light: rgb(182, 152, 111);
@@ -38,7 +35,8 @@
     --golden: #DAA520;
     --wood-details: var(--menu-mid);
     --modal-background: var(--menu-dark);
-    
+    --titleFont: 'Magic School Two'; font-weight: normal; font-style: normal;
+    --subtitleFont: 'Magic School One'; font-weight: normal; font-style: normal;
     /* color: antiquewhite; */
     --paper: antiquewhite;
     --menu-title-font: 'Press Start 2P', cursive;
