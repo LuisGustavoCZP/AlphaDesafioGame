@@ -7,7 +7,7 @@ const path = __dirname.replace("modules", "");
 function getStock (user)
 {
     const t = database.fromID(...user.unlockedItens);
-    
+    //console.log(t);
     return t;
 }
 

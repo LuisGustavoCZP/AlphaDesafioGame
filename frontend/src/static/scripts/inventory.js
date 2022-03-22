@@ -85,9 +85,13 @@ class Inventory extends HTMLElement
 
     start ()
     {
-        console.log(parent.gameuser && parent.gameuser.stock)
-        if(parent.gameuser && parent.gameuser.stock) this.createItens(parent.gameuser.stock);
-        else this.createItens(pseudoStock);
+        
+        if(window.gameuser) {
+            const req = window.gameuser.requestStock((data) => {this.createItens(data);});
+            //console.log(req);
+            
+        } 
+        else return this.createItens(pseudoStock);
         //parent.gameuser.requestStock ((data) => this.createItens(data));
     }
 
@@ -121,7 +125,7 @@ class Inventory extends HTMLElement
     createItens (data)
     {
         //const d = [data];
-        //console.log(data);
+        console.log(data);
         const maxColumns = this.columns; //this.tableRows.length;
         let row = -1;
         //this.container.ondragover = this.dragOver;

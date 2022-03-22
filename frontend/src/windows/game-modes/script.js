@@ -3,7 +3,7 @@ $(document).ready(() =>
 
     $("#btn-mode-one").on("click", function(){
         console.log("tela 1");
-        // parent.modal.src = "windows/main"; //window Game 1
+        window.gameuser.goTo("modules/game", ""); //window Game 1
         //parent.audiosys.play("close");
     });
 

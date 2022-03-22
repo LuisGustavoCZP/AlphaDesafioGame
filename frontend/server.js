@@ -32,7 +32,7 @@ app.get("/modules/:category/:file", (req, res)=>
 { 
     //let relativePath = req.params[0];
     let relativePath = rPath.join(...Object.values(req.params));
-    console.log(relativePath);
+    //console.log(relativePath);
 
     let origin = rPath.resolve(p, "modules", `${relativePath}`);   
     res.sendFile(origin);
@@ -44,7 +44,7 @@ app.get("/windows/:category/", (req, res)=>
     let relativePath = rPath.join(...Object.values(req.params));
     if(!relativePath.endsWith("/")) relativePath += "/";
     relativePath += "index.html";
-    console.log(relativePath);
+    //console.log(relativePath);
 
     let origin = rPath.resolve(p, "windows", `${relativePath}`);   
     res.sendFile(origin);
@@ -54,7 +54,7 @@ app.get("/windows/:category/:file", (req, res)=>
 { 
     //let relativePath = req.params[0];
     let relativePath = rPath.join(...Object.values(req.params));
-    console.log(relativePath);
+    //console.log(relativePath);
 
     let origin = rPath.resolve(p, "windows", `${relativePath}`);   
     res.sendFile(origin);
@@ -63,7 +63,7 @@ app.get("/windows/:category/:file", (req, res)=>
 app.get("/images/:category/:file", (req, res)=>
 {
     let relativePath = rPath.join(...Object.values(req.params));
-    //console.log(relativePath);
+    console.log(relativePath);
     const origin = rPath.resolve(p, "images", `${relativePath}`);
     res.sendFile(origin);
 });

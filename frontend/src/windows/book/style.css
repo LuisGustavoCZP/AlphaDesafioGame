@@ -15,10 +15,11 @@ body {
 }
 
 .modal-background{
+    position: relative;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-image: url("../../../images/game/book.png");
+    background-image: url("/images/game/book.png");
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 0;
@@ -26,7 +27,7 @@ body {
     height: 72vh;
     margin: 0;
     background-color: white;
-
+    z-index: 110;
     /* pointer-events: painted; */
 }
 

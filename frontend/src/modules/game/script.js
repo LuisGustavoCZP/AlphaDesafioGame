@@ -7,20 +7,20 @@ $(document).ready(async function()
     const dialogMage = $("#dialog-mage")[0];
     const btnbook = $("#btn-book")[0];
     btnbook.onclick = () => {window.modal.src="/windows/book";};
-    bookcase.start();
-    if(window.modal) window.modal.src="/windows/stage";
-
+    await bookcase.start();
+    //if(window.modal) window.modal.src="/windows/stage";
+    parent.audiosys.play("open");
     await gameTimer(5000);
 
     let recipe;
     if(parent.modal){
-        parent.modal.src="";
-        parent.audiosys.play("open");
-        recipe = parent.gameuser.currentStage.potion;
+        //parent.modal.src="";
+        
+        //recipe = parent.gameuser.currentStage.potion;
     }
 
     const dialogs = [
-        {
+        /* {
             text:"VAMOS LÁ!"
         },
         {
@@ -30,10 +30,10 @@ $(document).ready(async function()
                 recipe.item.icon
             ],
             time:-1
-        },
+        }, */
     ]
     await dialogMage.createText(...dialogs);
-    await parent.gameuser.requestStageStart();
+    //await parent.gameuser.requestStageStart();
     await cauldron.play();
     /*await WaitFor(() => 
     {

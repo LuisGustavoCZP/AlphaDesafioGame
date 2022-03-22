@@ -1,10 +1,14 @@
 {
 	"name": "karol",
-	"unlockedItens": [],
+	"unlockedItens": [
+		"i0",
+		"i1",
+		"i3"
+	],
 	"unlockedRecipes": [],
-	"backpack":["p0"],
+	"backpack": [],
 	"tutorial": false,
 	"points": 0,
 	"highscore": 0,
-	"id": "4fabe25e-7ef4-4daf-9133-5baf466672b6"
+	"id": "9bc395e3-fe49-4b24-9608-bfc9228d2401"
 }

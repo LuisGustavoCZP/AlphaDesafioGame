@@ -55,7 +55,8 @@ function itemInfo (...items)
             infos.push(info);
         }
     });
-    return infos;
+    if(items.length > 1) return infos;
+    else return infos[0];
 }
 
 function getItem (id, info=false)
@@ -73,7 +74,7 @@ function fromID (...ids)
     {
         const r = resolveID(id);
         const item = ingredients[r.cat][r.index];
-        infos.push(itemInfo(item));
+        infos.push(item);
     });
     return infos;
 }

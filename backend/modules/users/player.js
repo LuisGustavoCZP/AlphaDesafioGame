@@ -2,7 +2,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const session = require('./sessions');
 const userpath = __dirname + "/data/";
-
+const prefab = JSON.parse(fs.readFileSync(__dirname+"/starting.json"));
 const users = {};
 const highscores = [];
 const matchs = {
@@ -74,16 +74,7 @@ function add (_user)
 
 function create (_name)
 {
-    const user = 
-    {
-        name:_name,
-        unlockedItens:[],
-        unlockedRecipes:[],
-        backpack:[],
-        tutorial:false,
-        points:0,
-        highscore:0
-    };
+    const user = Object.assign({name:_name}, prefab)
     
     add(user);
     return user;

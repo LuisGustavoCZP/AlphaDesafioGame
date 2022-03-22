@@ -156,7 +156,7 @@ class User
             //console.log(thisuser.data);
             //thisuser.requestRanking();
             //thisuser.requestStages();
-            //thisuser.requestBook();
+            thisuser.requestBook();
             //thisuser.requestStock();
 
             /* console.log(thisuser.stages, thisuser.ranking); */
@@ -201,6 +201,7 @@ class User
             response = data;
         }
         await RequestSys.post("stage", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
+        thisuser.requestBook();
         return response;
     }
 
@@ -262,16 +263,19 @@ class User
 
     async requestStock (callback)
     {
+        let response = undefined;
         const thisuser = this;
         function userSucess (data)
         {
             thisuser.stock = data;
+            response = data;
             console.log(data);
             if(callback){
                 callback(data);
             }
         }
-        const response = await RequestSys.get("stock", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        await RequestSys.get("stock", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        return response;
     }
 
     async requestRanking (callback)

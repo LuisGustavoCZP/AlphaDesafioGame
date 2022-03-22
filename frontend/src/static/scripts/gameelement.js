@@ -31,8 +31,10 @@ class GameElement extends HTMLElement
     {
         this.innerHTML = "";
         this.#src = _path;
+        const isBlank = !_path || _path == "";
+        if(isBlank) { this.hidden = true; } else { this.hidden = false; }
         //const pathreparer = reparerURL(window.location.href, _path);
-        LoadSys.toHTML(_path, doc => 
+        if(!isBlank) LoadSys.toHTML(_path, doc => 
         {
             const repairSrcs = (el, parent) =>
             {
