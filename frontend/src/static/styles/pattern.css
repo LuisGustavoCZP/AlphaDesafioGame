@@ -13,12 +13,12 @@
     --wood-light: rgb(182, 152, 111);
     --wood-dark: rgb(139, 112, 75);; */
     --azul: rgb(95, 158, 160);
-    --azuldark: rgb(187 222 232);
+    --azuldark: rgb(128 190 219 / 68%);
     --montain: rgb(191, 122, 0);
     --ground: rgb(38, 128, 38);
     --ground-back: rgb(81, 131, 81);
     --menu-darkness: rgb(33 92 177);
-    --menu-dark: rgb(14, 17, 118);
+    --menu-dark: rgb(85 118 203);
     --menu-mid: rgb(238, 229, 0);
     --menu-glow: rgb(29 181 72);
     --menu-glow-low: rgb(227 150 15);
@@ -34,7 +34,7 @@
     --wood-darker: rgb(70, 52, 27);
     --golden: #DAA520;
     --wood-details: var(--menu-mid);
-    --modal-background: rgb(22, 25, 144);
+    --modal-background: rgb(85 118 203);
     --titleFont: 'Magic School Two'; font-weight: normal; font-style: normal;
     --subtitleFont: 'Magic School One'; font-weight: normal; font-style: normal;
     color: rgb(252, 245, 236); 
