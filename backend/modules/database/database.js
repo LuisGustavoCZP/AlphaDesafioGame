@@ -97,8 +97,8 @@ function fromID (...ids)
         const item = ingredients[r.cat][r.index];
         infos.push(item);
     });
-    if(ids.length > 0) return infos;
-    return infos[0];
+    if(ids && ids.length == 1) return infos[0];
+    return infos;
 }
 
 function itemsOf (info=false)

@@ -60,6 +60,10 @@ app.get("/:sessionData/stock", player.verifySession, game.stock);
 //livro
 app.get("/:sessionData/book", player.verifySession, game.book);
 
+
+//Recebe os itens e retornando a poção com um valor
+app.post("/:sessionData/combine", player.verifySession, game.combine);
+
 /* //Pegar o estoque em ordem aleatória
 app.get("/:sessionData/stages", player.verifySession, game.userstages); */
 

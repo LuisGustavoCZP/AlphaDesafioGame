@@ -10,26 +10,29 @@ $(document).ready(async function()
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
-    cauldron.play((ingredients)=>
+    cauldron.play(async (ingredients) =>
     {
+        if(ingredients && ingredients.length == 2)
+        {
+            const itens = ingredients;
+            cauldron.reset();
+            console.log(itens, window.gameuser);
+            const response = await window.gameuser.sendItems(itens);
+            
+            console.log(response);
+            if(response.status == 0){
+
+            }
+            
+            //return true;
+        }
         //console.log("Dropou objeto", ingredients); 
     });
 
     await WaitFor(async () => 
     {
         /* console.log(cauldron.ingredients); */
-        if(cauldron.ingredients && cauldron.ingredients.length == 2)
-        {
-            const itens = cauldron.ingredients;
-            cauldron.ingredients = [];
-            console.log(itens);
-            /* const response = await window.gameuser.sendItems(itens);
-            console.log(response);
-            if(response.status == 0){
-
-            } */
-            //return true;
-        }
+        
         return false;
     });
     //await gameTimer(5000);
