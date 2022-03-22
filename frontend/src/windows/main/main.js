@@ -14,7 +14,7 @@ $(document).ready(() =>
                parent.modal.src="windows/ranking/";
                break;
            case 'play':
-                parent.modal.src="windows/stages/";
+                parent.modal.src="windows/game-modes/";
                break;
            case 'howToPlay':
                 parent.modal.src="windows/help/";

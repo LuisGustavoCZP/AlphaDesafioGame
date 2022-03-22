@@ -25,7 +25,7 @@ $(document).ready(() =>
         $(".close").on("click", function() 
         {
             //console.log("Close");
-            parent.modal.src = "modules/windows/main";
+            parent.modal.src = "windows/main";
             parent.audiosys.play("close");
             //$(`#Modal`).css("display","none");
         });
