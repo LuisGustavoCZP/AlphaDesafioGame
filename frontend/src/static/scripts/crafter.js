@@ -31,9 +31,10 @@ class Crafter extends HTMLElement
         
     }
 
-    async play ()
+    async play (callback)
     {
         this.abortTimer = false;
+        
         $(this).droppable({
             accept: ".item",
             /* tolerance: "fit", */
@@ -58,9 +59,12 @@ class Crafter extends HTMLElement
                 if(!container.ingredients) container.ingredients = [];
                 const itemid = ui.draggable[0].id;
                 container.ingredients.push(itemid);
-                console.log("Dropou objeto", container.ingredients); 
+                
                 if(parent.audiosys) parent.audiosys.play("sucess");
-                const response = await parent.gameuser.sendItems(container.ingredients);
+                if(callback) {
+                    callback(container.ingredients);
+                }
+                /* const response = await parent.gameuser.sendItems(container.ingredients);
                 const data = response;//.then((d) => {console.log(d);});//
                 console.log(data);
                 this.potion = data;
@@ -75,12 +79,13 @@ class Crafter extends HTMLElement
                     //this.finished = true;
                     this.abortTimer = true;
                     parent.gameuser.stageWin(data);
-                }
+                } */
             }
         });
 
         const thisClass = this;
-        return gameTimer(() =>
+        return false; 
+        gameTimer(() =>
         {
             if(thisClass.abortTimer) return true;
             const timePass = parent.gameuser.currentStage.expiration - (new Date().getTime());

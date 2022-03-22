@@ -10,7 +10,11 @@ $(document).ready(async function()
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
-    await gameTimer(5000);
+    await cauldron.play((ingredients)=>
+    {
+        console.log("Dropou objeto", ingredients); 
+    });
+    //await gameTimer(5000);
 
     let recipe;
     if(parent.modal){
@@ -34,7 +38,7 @@ $(document).ready(async function()
     ]
     await dialogMage.createText(...dialogs);
     //await parent.gameuser.requestStageStart();
-    await cauldron.play();
+    
     /*await WaitFor(() => 
     {
         if((cauldron.finished == true))
