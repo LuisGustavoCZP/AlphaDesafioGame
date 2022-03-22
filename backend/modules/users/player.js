@@ -171,7 +171,7 @@ function verifySession (req, res, next)
 function playerData (req, res)
 {
     const p = users[req.session.userid];
-    res.json({name:p.name, lives:p.lives, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
+    res.json({name:p.name, points:p.points, highscore:p.highscore, tutorial:p.tutorial});
 }
 
 function playerReset (req, res)
@@ -181,7 +181,7 @@ function playerReset (req, res)
     p.lives = 3;
     p.points = 0;
     saveUsers();
-    res.json({name:p.name, stage:p.stage, lives:p.lives, points:p.points, highscore:p.highscore});
+    res.json({name:p.name, stage:p.stage, points:p.points, highscore:p.highscore});
 }
 
 async function ranking (req, res)

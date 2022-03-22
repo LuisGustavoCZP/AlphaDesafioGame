@@ -6,6 +6,7 @@ const cors = require('cors');
 const https = require('https');
 const rPath = require('path');
 const fs = require('fs');
+const { verify } = require('crypto');
 
 //console.log(__dirname);
 const root = rPath.dirname(path);
@@ -38,6 +39,8 @@ app.get("/:sessionData/user", player.verifySession, player.playerData);
 
 //Resetar dados usuario
 app.post("/:sessionData/reset", player.verifySession, player.playerReset);
+
+app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
 
 /* //Pegar receita de itens
 app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);

@@ -14,7 +14,6 @@ function getStock (user)
 function getBook (user)
 {
     const total = database.fromID(...user.unlockedRecipes);
-    //console.log(total);
     return total;
 }
 
@@ -40,22 +39,6 @@ function stock (req, res)
 {
     const p = users[req.session.userid];
     res.json(getStock(p));
-}
-
-function combine (req, res)
-{
-    const p = users[req.session.userid];
-    //req.session.metch?req.session.metch.check
-    const itens = req.body["items"];
-    const crafted = database.result(itens);
-    
-    const result = 
-    {
-        result:crafted,
-        status:0
-    };
-    console.log(result);
-    res.json(result);
 }
 
 /* async function stagePrepare (req, res)
@@ -126,5 +109,7 @@ module.exports = {
     database,
     book,
     stock,
-    combine,
+  /*   stagePrepare,
+    stageStart,
+    stageUpdate */
 }
