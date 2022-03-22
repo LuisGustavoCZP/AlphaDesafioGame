@@ -6,9 +6,9 @@ $(document).ready(async function()
     const cauldron = $("#cauldron")[0];
     const dialogMage = $("#dialog-mage")[0];
     const btnbook = $("#btn-book")[0];
-    btnbook.onclick = () => {parent.modal.src="modules/windows/book";};
+    btnbook.onclick = () => {window.modal.src="/windows/book";};
     bookcase.start();
-    if(parent.modal) parent.modal.src="modules/windows/stage";
+    if(window.modal) window.modal.src="/windows/stage";
 
     await gameTimer(5000);
 

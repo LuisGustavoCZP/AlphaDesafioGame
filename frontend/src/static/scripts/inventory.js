@@ -1,14 +1,41 @@
 const pseudoStock = 
 [
-    {"name": "Maracujá", "icon": "assets/ingredients/1.png", "id": "i0"},
-    {"name": "Abóbora", "icon": "assets/ingredients/2.png", "id": "i1"},
-    {"name": "Alface", "icon": "assets/ingredients/3.png", "id": "i2"},
-    {"name": "Tomate", "icon": "assets/ingredients/4.png", "id": "i3"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png", "id": "i4"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/6.png", "id": "i5"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/7.png", "id": "i6"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/8.png", "id": "i7"},
-    {"name": "Teia de Aranha", "icon": "assets/ingredients/9.png", "id": "i8"}
+    {"name": "Maracujá", "icon": "ingredients/1.png", "id": "i0"},
+    {"name": "Abóbora", "icon": "ingredients/2.png", "id": "i1"},
+    {"name": "Alface", "icon": "ingredients/3.png", "id": "i2"},
+    {"name": "Tomate", "icon": "ingredients/4.png", "id": "i3"},
+    {"name": "Teia de Aranha", "icon": "ingredients/5.png", "id": "i4"},
+    {"name": "Teia de Aranha", "icon": "ingredients/6.png", "id": "i5"},
+    {"name": "Teia de Aranha", "icon": "ingredients/7.png", "id": "i6"},
+    {"name": "Teia de Aranha", "icon": "ingredients/8.png", "id": "i7"},
+    {"name": "Teia de Aranha", "icon": "ingredients/9.png", "id": "i8"},
+    {"name": "Maracujá", "icon": "ingredients/1.png", "id": "i0"},
+    {"name": "Abóbora", "icon": "ingredients/2.png", "id": "i1"},
+    {"name": "Alface", "icon": "ingredients/3.png", "id": "i2"},
+    {"name": "Tomate", "icon": "ingredients/4.png", "id": "i3"},
+    {"name": "Teia de Aranha", "icon": "ingredients/5.png", "id": "i4"},
+    {"name": "Teia de Aranha", "icon": "ingredients/6.png", "id": "i5"},
+    {"name": "Teia de Aranha", "icon": "ingredients/7.png", "id": "i6"},
+    {"name": "Teia de Aranha", "icon": "ingredients/8.png", "id": "i7"},
+    {"name": "Teia de Aranha", "icon": "ingredients/9.png", "id": "i8"},
+    {"name": "Maracujá", "icon": "ingredients/1.png", "id": "i0"},
+    {"name": "Abóbora", "icon": "ingredients/2.png", "id": "i1"},
+    {"name": "Alface", "icon": "ingredients/3.png", "id": "i2"},
+    {"name": "Tomate", "icon": "ingredients/4.png", "id": "i3"},
+    {"name": "Teia de Aranha", "icon": "ingredients/5.png", "id": "i4"},
+    {"name": "Teia de Aranha", "icon": "ingredients/6.png", "id": "i5"},
+    {"name": "Teia de Aranha", "icon": "ingredients/7.png", "id": "i6"},
+    {"name": "Teia de Aranha", "icon": "ingredients/8.png", "id": "i7"},
+    {"name": "Teia de Aranha", "icon": "ingredients/9.png", "id": "i8"},
+    {"name": "Maracujá", "icon": "ingredients/1.png", "id": "i0"},
+    {"name": "Abóbora", "icon": "ingredients/2.png", "id": "i1"},
+    {"name": "Alface", "icon": "ingredients/3.png", "id": "i2"},
+    {"name": "Tomate", "icon": "ingredients/4.png", "id": "i3"},
+    {"name": "Teia de Aranha", "icon": "ingredients/5.png", "id": "i4"},
+    {"name": "Teia de Aranha", "icon": "ingredients/6.png", "id": "i5"},
+    {"name": "Teia de Aranha", "icon": "ingredients/7.png", "id": "i6"},
+    {"name": "Teia de Aranha", "icon": "ingredients/8.png", "id": "i7"},
+    {"name": "Teia de Aranha", "icon": "ingredients/9.png", "id": "i8"},
 ];
 
 class Inventory extends HTMLElement
@@ -21,12 +48,15 @@ class Inventory extends HTMLElement
         super();
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
-        linkcss.href = "static/styles/inventory.css";
+        linkcss.href = "/static/styles/inventory.css";
         
         this.before(linkcss);
         this.classList.add("inventory");
         this.content = document.createElement("div");
+        /* this.viewPort = document.createElement("div");
+        this.viewPort.classList.add("view"); */
         this.container = document.createElement("table");
+        /* this.viewPort.append(this.container); */
         this.content.append(this.container);
         this.append(this.content);
         if(this.hasAttribute('columns')) {
@@ -37,7 +67,7 @@ class Inventory extends HTMLElement
         if(this.hasAttribute('rows')) {
             this.rows = this.getAttribute('rows');
         } else {
-            this.rows = 6;
+            this.rows = 4;
         }
 
         if(this.hasAttribute('title')) {
@@ -129,7 +159,14 @@ class Inventory extends HTMLElement
                 
             });
             if(i % maxColumns == 0) row++;
-            this.container.children[row].append(el);
+            let rowEl = this.container.children[row];
+            if(!rowEl)
+            {
+                rowEl = this.createRow ();
+                this.tableRows.push(rowEl);
+                this.container.append(rowEl);
+            }
+            rowEl.append(el);
         });
     }
 

@@ -46,7 +46,7 @@ class DialogSys extends HTMLElement
         super();
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
-        linkcss.href = "static/styles/dialog.css";
+        linkcss.href = "/static/styles/dialog.css";
         this.before(linkcss);
         this.classList.add("dialog");
         this.speed = 1;
