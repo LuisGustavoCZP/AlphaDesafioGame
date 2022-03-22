@@ -3,6 +3,13 @@ const fs = require('fs');
 const path = __dirname + "/data/";
 
 const ingredients = {};
+/* {
+    i:{
+        0:item1,
+        2:item2
+    }
+}; */
+
 /* const recipes = {}; */
 const results = {};
 
@@ -39,6 +46,11 @@ function initiate ()
     //console.log(ingredients);
 }
 
+/**
+ * 
+ * @param  {...Item} items 
+ * @returns {Item[]}
+ */
 function itemInfo (...items)
 {
     const infos = [];
@@ -66,6 +78,11 @@ function getItem (id, info=false)
     return info? itemInfo(item) : item;
 }
 
+/**
+ * Exemple (p0, i5, c10...)
+ * @param  {...String} ids 
+ * @returns {Item[]}
+ */
 function fromID (...ids)
 {
     const infos = [];
@@ -76,7 +93,8 @@ function fromID (...ids)
         const item = ingredients[r.cat][r.index];
         infos.push(item);
     });
-    return infos;
+    if(ids.length > 0) return infos;
+    return infos[0];
 }
 
 function itemsOf (info=false)
