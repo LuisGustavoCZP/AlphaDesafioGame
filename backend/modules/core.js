@@ -74,6 +74,7 @@ function verifyUnlockedRecipes(item){
    if(checkItem != []){
       p.unlockedRecipes.push(item)
    }
+   player.save(p.id);
 }
 
 function verifyRecipe(req, res){
