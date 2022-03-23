@@ -14,6 +14,6 @@ const iniciateSound = e=>
     window.removeEventListener("mousemove", iniciateSound);
 };
 
-//window.addEventListener("click", iniciateSound);
+window.addEventListener("click", iniciateSound);
 
 user.update();
