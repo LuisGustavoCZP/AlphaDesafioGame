@@ -8,14 +8,16 @@
 		"i11",
 		"p7",
 		"i3",
-		"p9"
+		"p9",
+		"p22"
 	],
 	"unlockedRecipes": [
 		"r2",
 		"r9",
 		"r16",
 		"r1",
-		"r18"
+		"r18",
+		"r31"
 	],
 	"backpack": [],
 	"tutorial": false,

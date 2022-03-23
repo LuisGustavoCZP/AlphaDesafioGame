@@ -33,8 +33,12 @@ function getRecipe (recipeID)
 
 function book (req, res)
 {
-    const p = users[req.session.userid];
-    res.json(getBook(p));
+   const p = users[req.session.userid];
+   const unlockedRecipes = getBook(p);
+
+   const recipeArray = database.recipeArray;
+
+   res.json(getBook(p));
 }
 
 function stock (req, res)
