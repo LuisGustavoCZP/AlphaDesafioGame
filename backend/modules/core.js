@@ -92,11 +92,13 @@ function verifyRecipe(req, res){
    
    //verifica se está recebendo o array no formato correto
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
-      
+      console.log("feito");
       const crafted = database.result(receivedItems);
+      
       // verifica se o craft existe
       if(crafted)
       {
+        console.log(crafted + "feito");
          /* const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
          const infoCrafted = itemsArray.filter((element)=>{
             if(element === crafted){
