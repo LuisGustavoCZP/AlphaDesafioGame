@@ -17,12 +17,14 @@ $(document).ready(async function()
             const itens = ingredients;
             cauldron.reset();
             console.log(itens, window.gameuser);
+            cauldron.classList.remove("ui-droppable");
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
                 if(response.status == 1)
                 {
                     cauldron.draw(response.result.icon);
+                    bookcase.update();
                 } else {
                     
                 }

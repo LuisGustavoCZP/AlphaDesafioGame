@@ -180,7 +180,7 @@ class User
             //console.log(thisuser.data);
             //thisuser.requestRanking();
             //thisuser.requestStages();
-            thisuser.requestBook();
+            //thisuser.requestBook();
             //thisuser.requestStock();
 
             /* console.log(thisuser.stages, thisuser.ranking); */
