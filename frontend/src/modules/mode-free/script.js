@@ -21,11 +21,12 @@ $(document).ready(async function()
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
-                if(response.result)
+                if(response.result && response.status == 1)
                 {
                     //cauldron.draw(response.result.icon);
+                    window.gameuser.lastCreation = response.result;
                     bookcase.update();
-                    window.modal.result = "window/result";
+                    window.modal.result = "window/newrecipe";
                 } else {
                     
                 }
