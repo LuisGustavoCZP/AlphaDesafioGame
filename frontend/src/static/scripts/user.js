@@ -227,7 +227,7 @@ class User
             response = data;
         }
         await RequestSys.post("verifyRecipe", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
-        thisuser.requestBook();
+        //thisuser.requestBook();
         return response;
     }
 
