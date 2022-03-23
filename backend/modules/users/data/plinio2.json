@@ -5,11 +5,13 @@
 		"i1",
 		"i2",
 		"i4",
-		"i5"
+		"i5",
+		"i11"
 	],
 	"unlockedRecipes": [
 		"r2",
-		"r3"
+		"r3",
+		"r9"
 	],
 	"tutorial": false,
 	"points": 0,

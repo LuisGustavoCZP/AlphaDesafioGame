@@ -60,9 +60,10 @@ h3{
 }
 
 .this-potion{
-    width: 8vh;
-    height: 8vh;
-    margin-right: 4px;
+    width: 9vh;
+    height: 9vh;
+    margin-right: 0.4em;
+    margin-left: 0.1em;
     border: double 3px goldenrod;
     background-color: rgba(0, 0, 0, 0.6);
 }
@@ -88,8 +89,10 @@ h3{
 }
 
 .potion-line {
+    margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    width: 90%;
+    justify-content: flex-start;
     margin-bottom: 10px;
 }
 
@@ -123,3 +126,22 @@ h3{
     overflow-y: auto;
 }
 
+.content-book ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+}
+
+/* Track */
+.content-book ::-webkit-scrollbar-track {
+    background: var(--menu-darkness); 
+}
+   
+  /* Handle */
+.content-book ::-webkit-scrollbar-thumb {
+    background: var(--menu-dark); 
+}
+  
+  /* Handle on hover */
+.content-book ::-webkit-scrollbar-thumb:hover {
+    background: var(--menu-dark);
+}
