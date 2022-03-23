@@ -4,10 +4,16 @@
 		"i0",
 		"i1",
 		"i2",
-		"i4"
+		"i4",
+		"i11",
+		"p7",
+		"i3"
 	],
 	"unlockedRecipes": [
-		"r2"
+		"r2",
+		"r9",
+		"r16",
+		"r1"
 	],
 	"backpack": [],
 	"tutorial": false,

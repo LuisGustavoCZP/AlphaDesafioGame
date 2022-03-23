@@ -103,12 +103,13 @@ function verifyRecipe(req, res){
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
       console.log("feito");
       const craft = database.result(receivedItems);
-      const crafted = craft.id;
-      const craftedItem = craft.item;
+      
       
       // verifica se o craft existe
-      if(crafted)
+      if(craft)
       {
+         const crafted = craft.id;
+         const craftedItem = craft.item;
         console.log(crafted + "feito");
          /* const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
          const infoCrafted = itemsArray.filter((element)=>{
@@ -121,9 +122,13 @@ function verifyRecipe(req, res){
             result: infoCrafted,
             status: verifyUnlockedRecipes(p, craft) ? 1 : 0
          };
-         
          console.log(result)
          res.json(result);
+      }else{
+         const result = {
+            status: 0
+         }
+         res.json(result)
       }
       
    }else{
