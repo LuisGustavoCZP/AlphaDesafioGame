@@ -3,14 +3,9 @@
 	"unlockedItens": [
 		"i0",
 		"i1",
-		"i2",
-		"i3",
-		"i4"
+		"i2"
 	],
-	"unlockedRecipes": [
-		"r1",
-		"r2"
-	],
+	"unlockedRecipes": [	],
 	"backpack": [],
 	"tutorial": false,
 	"points": 0,
