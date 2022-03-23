@@ -21,10 +21,11 @@ $(document).ready(async function()
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
-                if(response.status == 1)
+                if(response.result)
                 {
-                    cauldron.draw(response.result.icon);
+                    //cauldron.draw(response.result.icon);
                     bookcase.update();
+                    window.modal.result = "window/result";
                 } else {
                     
                 }

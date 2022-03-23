@@ -178,7 +178,6 @@ function playerReset (req, res)
 {
     const p = users[req.session.userid];
     p.stage = 0;
-    p.lives = 3;
     p.points = 0;
     saveUsers();
     res.json({name:p.name, stage:p.stage, points:p.points, highscore:p.highscore});
@@ -210,7 +209,7 @@ async function ranking (req, res)
         res.json("The router params is not a number");
     }
 }
-
+console.log(users)
 module.exports = 
 {
     users,

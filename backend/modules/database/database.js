@@ -132,7 +132,6 @@ function result (itens)
 }
 
 initiate ();
-console.log(results);
 
 module.exports = {
     resolveID,

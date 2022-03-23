@@ -105,6 +105,13 @@ class Inventory extends HTMLElement
         //parent.gameuser.requestStock ((data) => this.createItens(data));
     }
 
+    async update ()
+    {
+        const resp = await window.gameuser.requestStock(); 
+        console.log(resp);
+        //(data) => {this.createItens(data);}
+    }
+
     createColumn ()
     {
         const tableColunm = document.createElement("td");
