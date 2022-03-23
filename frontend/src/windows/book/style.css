@@ -10,9 +10,9 @@
     align-content: flex-start;
 }
 
-body {
-    /* pointer-events: painted; */
-}
+    /* body {
+        pointer-events: painted; 
+    } */
 
 .modal-background{
     position: relative;
