@@ -59,6 +59,7 @@ function combine (req, res)
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
 function verifyUnlockedRecipes(user, item){
+    let isUnlocked = false;
    const p = user;
    const recipeArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/recipes.json`));
    const recipeId = recipeArray.filter((element)=>{
@@ -73,9 +74,11 @@ function verifyUnlockedRecipes(user, item){
       }
    })
    if(checkItem != []){
-      p.unlockedRecipes.push(item)
+      p.unlockedRecipes.push(item);
+      isUnlocked = true;
    }
    player.save(p.id);
+   return isUnlocked;
 }
 
 function verifyRecipe(req, res){
@@ -88,25 +91,27 @@ function verifyRecipe(req, res){
       
       const crafted = database.result(receivedItems);
       // verifica se o craft existe
-      if(crafted){
-
-         const result = {
-            result: crafted,
-            status: 0
-         };
-         const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
+      if(crafted)
+      {
+         /* const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
          const infoCrafted = itemsArray.filter((element)=>{
             if(element === crafted){
                return true;
             }
-         })
-         verifyUnlockedRecipes(p, crafted)
-         console.log(infoCrafted)
-         res.json(infoCrafted);
+         }) */
+         const infoCrafted = database.getItem(crafted, true);
+         const result = {
+            result: infoCrafted,
+            status: verifyUnlockedRecipes(p, crafted) ? 1 : 0
+         };
+         
+         console.log(result)
+         res.json(result);
       }
       
    }else{
-      res.json("This array is not in the proper format");
+        res.status(404);
+      res.json(undefined);
    }
 }
 
