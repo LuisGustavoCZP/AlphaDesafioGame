@@ -89,7 +89,7 @@ function getItem (id, info=false)
 function fromID (...ids)
 {
     const infos = [];
-    console.log(ids);
+    //console.log(ids);
     ids.forEach(id => 
     {
         const r = resolveID(id);
@@ -109,7 +109,7 @@ function itemsOf (info=false)
     for(let key in t)
     {
         const item = t[key];
-        console.log(item);
+        //console.log(item);
         itens.push(itemInfo(item));
     }
     return itens;

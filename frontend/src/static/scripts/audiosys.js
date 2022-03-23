@@ -136,7 +136,7 @@ class AudioSys extends HTMLElement
 
     music1 () 
     {
-        this.playAudio("music", "audios/music1.wav");
+        this.playAudio("music", "audios/musics/music1.wav");
     }
 
     play (sound)

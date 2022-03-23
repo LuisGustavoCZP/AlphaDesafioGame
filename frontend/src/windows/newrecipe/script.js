@@ -8,7 +8,7 @@ import { WaitFor } from "/static/scripts/timer.js";
         if(window.gameuser.lastCreation) return true;
         else return false;
     }); */
-    const lastCreation = window.gameuser.lastCreation;
+    const lastCreation = parent.gameuser.lastCreation;
     console.log(lastCreation);
     /* const points = parseInt(window.gameuser.stages[stage].highscore);
     const item = window.gameuser.currentStage.potion.item; */

@@ -43,9 +43,6 @@
     --places: rgb(252, 245, 236) ;
 }
 
-.hidden {
-    display: none;
-}
 
 img.gray {
     filter: grayscale(100%);
@@ -140,4 +137,9 @@ span.icon.r {
 
 .rank {
     --img: url("../images/assets/icons/podium.png");
+}
+
+
+.hidden {
+    display: none;
 }
