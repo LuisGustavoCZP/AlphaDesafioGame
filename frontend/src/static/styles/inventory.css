@@ -31,7 +31,7 @@
 }
 
 .inventory .deep-top.right {
-    --img: url("/images/estante/estanteedges-left.png");
+    --img: url("../../images/estante/estanteedges-left.png");
     width: var(--inv-depth);
     height: var(--inv-depth);
     min-width: var(--inv-depth);
@@ -39,13 +39,13 @@
 }
 
 .inventory .deep-top.mid {
-    --img: url("/images/estante/estanteedges-mid.png");
+    --img: url("../../images/estante/estanteedges-mid.png");
     width: 100%;
     height: 100%;
 }
 
 .inventory .deep-top.left {
-    --img: url("/images/estante/estanteedges-right.png");
+    --img: url("../../images/estante/estanteedges-right.png");
     width: var(--inv-depth);
     height: var(--inv-depth);
     min-width: var(--inv-depth);
@@ -53,7 +53,7 @@
 }
 
 .inventory .deep-right.top {
-    --img: url("/images/estante/estanteedges-left.png");
+    --img: url("../../images/estante/estanteedges-left.png");
     width: var(--inv-depth);
     height: var(--inv-depth);
     min-width: var(--inv-depth);
@@ -61,29 +61,36 @@
 }
 
 .inventory .deep-right.mid {
-    --img: url("/images/estante/estanteedges-mid.png");
+    --img: url("../../images/estante/estanteedges-mid.png");
     width: 100%;
     height: 100%;
 }
 
 .inventory .deep-right.bottom {
-    --img: url("/images/estante/estanteedges-right.png");
+    --img: url("../../images/estante/estanteedges-right.png");
     width: var(--inv-depth);
     height: var(--inv-depth);
     min-width: var(--inv-depth);
     min-height: var(--inv-depth);
 }
 
-.inventory .deep-top {
+.inventory div.deep-top {
     background-color: var(--wood-mid);
     -webkit-mask: var(--img) repeat center;
     mask: var(--img) repeat center;
 }
 
-.inventory .deep-right {
+.inventory div.deep-right {
     background-color: var(--wood-dark);
     -webkit-mask: var(--img) repeat center;
     mask: var(--img) repeat center;
+}
+
+.inventory aside.deep-right {
+    flex-direction: column; 
+    position: absolute; left: 100%; 
+    width: var(--inv-depth); 
+    height: calc(100%); /*  + 25px */
 }
 
 .inventory table {
@@ -127,7 +134,7 @@
 }
 
 .inventory td {
-    background-image: url("/images/estante/estante1.png");
+    background-image: url("../../images/estante/estante1.png");
     background-clip: border-box;
     background-size: cover;
     background-repeat: no-repeat;

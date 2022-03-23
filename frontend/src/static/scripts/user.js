@@ -1,5 +1,30 @@
 import { RequestSys } from "./request.js";
 
+const pages = 
+[
+    {
+        key:"main", path:"/modules/main/",
+        modals: 
+        [
+
+        ]
+    },
+    {
+        key:"free", path:"/modules/mode-free/",
+        modals: 
+        [
+            
+        ]
+    },
+    {
+        key:"ranked", path:"/modules/mode-ranked/",
+        modals: 
+        [
+            
+        ]
+    },
+]
+
 class User
 {
     #hasUser;

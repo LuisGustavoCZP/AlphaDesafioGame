@@ -75,9 +75,9 @@ $(document).ready(() =>
             $("#potion-description h2").html(recipe[potion].item.name);
             $("#potion-image").attr("src", `/images/${recipe[potion].item.icon}`);
             for(let i = 0; i < recipeLength; i++){
-                $("#ingredients-description").append(`<img id="potion-${i}" class="this-potion" src="/images/${recipe[potion].ingredients[i].icon}">
-                `);
+                $("#ingredients-description").append(`<img id="potion-${i}" class="this-potion" src="/images/${recipe[potion].ingredients[i].icon}">`);
             }
+            $("#ingredients-description").append(`<p>${recipe[potion].item.desc}</p>`);
         }
     }
     
