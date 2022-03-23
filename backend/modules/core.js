@@ -122,48 +122,6 @@ function verifyRecipe(req, res){
    }
 }
 
-function getBook(userStage) {
-   const potionsOfBook = []
-   stages.forEach((element) => {
-      if (element.stage <= userStage) {
-         potionsOfBook.push(...element.potions);
-      }
-   });
-   let recipes = [];
-   const potionsAndRecipes = [];
-   potions.forEach((element) => {
-      potionsOfBook.forEach((item) => {
-         if (item === element.name) {
-            recipes.push(element.recipe)
-            potionsAndRecipes.push({ name: element.name, icon: element.icon, recipe: element.recipe })
-         }
-      });
-   });
-
-   let recipeIconsRow = [];
-   let recipeIcons = [];
-   for (let i = 0; i < recipes.length; i++) {
-      const quant = recipes[i].length;
-      for (let j = 0; j < quant; j++) {
-         items.forEach((element) => {
-            if (element.id === recipes[i][j]) {
-               recipeIconsRow.push(element.icon);
-            }
-         });
-      }
-      recipeIcons.push(recipeIconsRow);
-      recipeIconsRow = [];
-   }
-
-   potionsAndRecipes.forEach((element, index) => {
-      element.recipe = recipeIcons[index];
-   })
-
-   console.log(potionsAndRecipes);
-   return potionsAndRecipes;
-
-}
-
 //
 module.exports = {
     player,
