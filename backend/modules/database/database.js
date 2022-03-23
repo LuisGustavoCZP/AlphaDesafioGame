@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = __dirname + "/data/";
 
 let recipeArray = {};
-
+let itemArray = {};
 const ingredients = {};
 /* {
     i:{
@@ -32,7 +32,7 @@ function addItem (item)
 
 function initiate ()
 {
-    const itemArray = JSON.parse(fs.readFileSync(path + "ingredients.json"));
+    itemArray = JSON.parse(fs.readFileSync(path + "ingredients.json"));
     itemArray.forEach((item) => 
     {
         addItem(item);
@@ -143,5 +143,6 @@ module.exports = {
     allItems,
     itemInfo,
     result,
-    recipeArray
+    recipeArray,
+    itemArray
 }

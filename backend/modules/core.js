@@ -35,8 +35,14 @@ function book (req, res)
 {
    const p = users[req.session.userid];
    const unlockedRecipes = getBook(p);
-
+   const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
+   
+   unlockedRecipes.forEach((element)=>{
+      recipeArray.forEach(()=>{
+         
+      })
+   })
 
    res.json(getBook(p));
 }
@@ -88,6 +94,8 @@ function verifyRecipe(req, res){
    const p = users[req.session.userid]
    const receivedItemsLength = receivedItems.length;
    
+   console.log("received = " + receivedItems);
+
    //verifica se está recebendo o array no formato correto
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
       console.log("feito");
