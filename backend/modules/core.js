@@ -74,7 +74,7 @@ function verifyUnlockedRecipes(user, recipe){
    if(!recipesOnBook) recipesOnBook = [];
    if(!recipesOnBook.length) recipesOnBook = [recipesOnBook];
    const checkItem = recipesOnBook.filter((element)=>{
-      if(element === recipe.id){
+      if(element.id === recipe.id){
          return true;
       }
    })

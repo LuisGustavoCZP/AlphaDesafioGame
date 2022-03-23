@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const path = __dirname + "/data/";
 
-const recipeArray = {};
+let recipeArray = {};
 
 const ingredients = {};
 /* {
