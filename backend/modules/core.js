@@ -76,14 +76,9 @@ function verifyUnlockedRecipes(user, item){
          return true;
       }
    })
-<<<<<<< HEAD
-   if(checkItem != []){
+   if(checkItem = []){
       p.unlockedRecipes.push(item);
       isUnlocked = true;
-=======
-   if(checkItem = []){
-      p.unlockedRecipes.push(item)
->>>>>>> af73655ad48980754170cf5c64240fcd96cf3545
    }
    player.save(p.id);
    return isUnlocked;
