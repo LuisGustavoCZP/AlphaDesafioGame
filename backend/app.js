@@ -61,7 +61,7 @@ app.get("/ranking/:top", player.ranking);
 app.get("/:sessionData/stock", player.verifySession, game.stock);
 
 //livro
-app.get("/:sessionData/book", player.verifySession, game.getBook);
+app.get("/:sessionData/book", player.verifySession, game.book);
 
 
 //Recebe os itens e retornando a poção com um valor
