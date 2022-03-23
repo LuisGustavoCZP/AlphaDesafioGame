@@ -20,8 +20,10 @@ $(document).ready(async function()
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
-                if(response.status == 0){
-
+                if(response.status == 1){
+                    
+                } else {
+                    
                 }
             }); //const response = await 
             
