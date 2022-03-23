@@ -4,9 +4,14 @@
 		"i0",
 		"i1",
 		"i2",
-		null
+		"i4",
+		"i4"
 	],
 	"unlockedRecipes": [
+		"i4",
+		"i5",
+		"i4",
+		"i4",
 		"i4"
 	],
 	"backpack": [],

@@ -5,7 +5,9 @@
 		"i1",
 		"i2"
 	],
-	"unlockedRecipes": [],
+	"unlockedRecipes": [
+		"i4"
+	],
 	"backpack": [],
 	"tutorial": false,
 	"points": 0,
