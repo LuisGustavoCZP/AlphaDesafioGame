@@ -7,6 +7,8 @@ const https = require('https');
 const rPath = require('path');
 const fs = require('fs');
 const { verify } = require('crypto');
+const { database } = require('./modules/core');
+const admin = require(`${__dirname}/modules/database/admin.js`);
 
 //console.log(__dirname);
 const root = rPath.dirname(path);
@@ -27,7 +29,6 @@ app.use(cors());//{credentials: true, origin: 'http://localhost:8080'}
 //const player = require(`${path}/scripts/player`);
 const game = require(`${path}/modules/core`);
 const player = game.player;
-
 //Criar usuario
 app.post("/newuser", player.register);
 
@@ -41,6 +42,8 @@ app.get("/:sessionData/user", player.verifySession, player.playerData);
 app.post("/:sessionData/reset", player.verifySession, player.playerReset);
 
 app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
+
+app.post("/admin", admin.execute);
 
 /* //Pegar receita de itens
 app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);

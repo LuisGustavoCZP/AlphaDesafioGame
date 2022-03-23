@@ -11,10 +11,7 @@ const ingredients = {};
 }; */
 
 /* const recipes = {}; */ ["i0", "i1"]
-const results = {
-    '"i0", "i1"': "p0",
-    '"i1", "i0"': "p0",
-};
+const results = {};
 
 function resolveID (id)
 {
@@ -135,6 +132,7 @@ function result (itens)
 }
 
 initiate ();
+console.log(results);
 
 module.exports = {
     resolveID,

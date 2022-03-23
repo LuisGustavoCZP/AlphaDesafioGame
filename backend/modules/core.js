@@ -40,6 +40,72 @@ function stock (req, res)
     const p = users[req.session.userid];
     res.json(getStock(p));
 }
+function combine (req, res)
+{
+    const p = users[req.session.userid];
+    //req.session.metch?req.session.metch.check
+    const itens = req.body["items"];
+    const crafted = database.result(itens);
+    
+    const result = 
+    {
+        result:crafted,
+        status:0
+    };
+    console.log(result);
+    res.json(result);
+}
+
+//insere um novo item na receita caso ele ainda não tenha sido descoberto
+function verifyUnlockedRecipes(item){
+   const p = users[req.session.userid];
+   const recipeArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/recipes.json`));
+   const recipeId = recipeArray.filter((element)=>{
+      if(element.item === item){
+         return true;
+      }
+   })
+   const recipesOnBook = getBook(p);
+   const checkItem = recipesOnBook.filter((element)=>{
+      if(element === recipeId.id){
+         return true;
+      }
+   })
+   if(checkItem != []){
+      p.unlockedRecipes.push(item)
+   }
+}
+
+function verifyRecipe(req, res){
+   const receivedItems = req.body["items"];
+   const p = users[req.session.userid]
+   const receivedItemsLength = receivedItems.length;
+   
+   //verifica se está recebendo o array no formato correto
+   if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
+      
+      const crafted = database.result(receivedItems);
+      // verifica se o craft existe
+      if(crafted){
+
+         const result = {
+            result: crafted,
+            status: 0
+         };
+         const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
+         const infoCrafted = itemsArray.filter((element)=>{
+            if(element === crafted){
+               return true;
+            }
+         })
+         verifyUnlockedRecipes(crafted)
+         res.json(infoCrafted);
+      }
+      
+   }else{
+      res.json("This array is not in the proper format");
+   }
+}
 
 /* async function stagePrepare (req, res)
 {
@@ -109,6 +175,7 @@ module.exports = {
     database,
     book,
     stock,
+    verifyRecipe,
   /*   stagePrepare,
     stageStart,
     stageUpdate */
