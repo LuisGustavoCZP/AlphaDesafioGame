@@ -289,17 +289,12 @@ button {
 button:hover, #btn-play:hover, #btn-login:hover {
     background-color: var(--menu-glow-low);
     color: var(--menu-darkness);
-    transform: translateY(-7px);
+    /*transform: translateY(-7px);*/
 }
 
-/*#place-1 {
-    color: #DAA520;
+#btn-book {
+    background-image: url("/images/main/book.svg");
 }
-
-#place-2 {
-    color: #A3A2A0;
+#btn-menu {
+    background-image: url("/images/main/config.svg");
 }
-
-#place-3 {
-    color: #CD7F32;
-}*/
