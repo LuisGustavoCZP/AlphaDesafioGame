@@ -76,7 +76,7 @@ function verifyUnlockedRecipes(user, item){
          return true;
       }
    })
-   if(checkItem = []){
+   if(checkItem == []){
       p.unlockedRecipes.push(item);
       isUnlocked = true;
    }
