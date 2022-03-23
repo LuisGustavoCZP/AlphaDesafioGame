@@ -72,7 +72,7 @@ function verifyUnlockedRecipes(user, item){
    if(!recipesOnBook) recipesOnBook = [];
    if(!recipesOnBook.length) recipesOnBook = [recipesOnBook];
    const checkItem = recipesOnBook.filter((element)=>{
-      if(element === recipeId.id){
+      if(element === recipeId[0].id){
          return true;
       }
    })
@@ -81,7 +81,7 @@ function verifyUnlockedRecipes(user, item){
 
    if(JSON.stringify(checkItem) === "[]"){
       p.unlockedRecipes.push(item);
-      p.unlockedItems.push(recipeId.item);
+      p.unlockedItems.push(recipeId[0].item);
       isUnlocked = true;
 
    }
