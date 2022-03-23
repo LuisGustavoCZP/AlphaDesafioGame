@@ -159,7 +159,7 @@
 }
 .modal #title, .title, .content-title, .content-subtitle {
     font-family: 'Skranji', cursive;
-    color:rgb(228, 211, 85);
+    color: var(--menu-mid);
     text-align:center;
     vertical-align: middle;
     padding-top: 2em;
@@ -183,17 +183,17 @@
 
 /* Track */
 .modal ::-webkit-scrollbar-track {
-    background: #495a92; 
+    background: #774992; 
 }
    
   /* Handle */
 .modal ::-webkit-scrollbar-thumb {
-    background: rgb(17, 19, 116); 
+    background: rgb(85, 17, 116); 
 }
   
   /* Handle on hover */
 .modal ::-webkit-scrollbar-thumb:hover {
-    background: rgb(13, 14, 97); 
+    background: rgb(59, 13, 97); 
 }
   
 
@@ -328,5 +328,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: var(--subtitleFont);
+    /*font-family: var(--subtitleFont);*/
 }
