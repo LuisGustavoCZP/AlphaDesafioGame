@@ -9,6 +9,11 @@
     height: 100%;
 }
 
+.crafter img {
+    width: 100%;
+    height: 100%;
+}
+
 .crafter img:not(:nth-child(2)) 
 {
     position: absolute;
