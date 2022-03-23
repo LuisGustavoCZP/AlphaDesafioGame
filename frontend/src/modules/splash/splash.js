@@ -1,2 +1,1 @@
-let waitTime = 10;
-setTimeout(() => { parent.modal.src = "windows/login/"; }, waitTime*1000);
+setTimeout(() => { parent.modal.src = "windows/login/"; }, 10*1000);

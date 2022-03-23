@@ -224,7 +224,7 @@ class User
         function userSuccess (data)
         {
             if(callback) callback(data);
-            thisuser.match.result = data;
+            //thisuser.match.result = data;
             response = data;
         }
         await RequestSys.post("verifyRecipe", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});

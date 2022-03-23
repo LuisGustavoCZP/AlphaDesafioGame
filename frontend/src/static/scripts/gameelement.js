@@ -53,7 +53,8 @@ class GameElement extends HTMLElement
                                 parent.appendChild(nscript);
                                 nscript.type = child.type;
                                 nscript.src = child.src;
-                                //nscript.onload = ()=>{console.log("carregou", nscript); };
+                                
+                                nscript.onload = ()=>{console.log("carregou", nscript); };
                             } 
                             else 
                             {

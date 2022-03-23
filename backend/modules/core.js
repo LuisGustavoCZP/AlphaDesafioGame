@@ -15,7 +15,7 @@ function getStock (user)
 function getBook (user)
 {
     const total = database.fromID(...user.unlockedRecipes);
-    console.log(total);
+    //console.log(total);
     return total;
 }
 
@@ -130,7 +130,7 @@ function verifyRecipe(req, res){
       
    }else{
         /* res.status(404); */
-      res.json(undefined);
+      res.json({status:0});
    }
 }
 
