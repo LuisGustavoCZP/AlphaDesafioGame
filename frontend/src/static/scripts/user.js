@@ -285,6 +285,7 @@ class User
             }
         }
         const response = await RequestSys.get("book", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        return response;
     }
 
     async requestStock (callback)
