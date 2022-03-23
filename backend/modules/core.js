@@ -42,21 +42,6 @@ function stock (req, res)
     const p = users[req.session.userid];
     res.json(getStock(p));
 }
-function combine (req, res)
-{
-    const p = users[req.session.userid];
-    //req.session.metch?req.session.metch.check
-    const itens = req.body["items"];
-    const crafted = database.result(itens);
-    
-    const result = 
-    {
-        result:crafted,
-        status:0
-    };
-    console.log(result);
-    res.json(result);
-}
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
 function verifyUnlockedRecipes(user, recipe){
@@ -137,67 +122,47 @@ function verifyRecipe(req, res){
    }
 }
 
-/* async function stagePrepare (req, res)
-{
-    const user = users[req.session.userid];
-    const stageid = req.query["stage"];
-    const oStage = stages[stageid];
-    const tempStage = 
-    {
-        stage:stageid,
-        potion:oStage.potions[utility.randomSort(oStage.potions)],
-        limitTime: oStage.time*1000,
-    };
-    user.currentStage = tempStage;
+function getBook(userStage) {
+   const potionsOfBook = []
+   stages.forEach((element) => {
+      if (element.stage <= userStage) {
+         potionsOfBook.push(...element.potions);
+      }
+   });
+   let recipes = [];
+   const potionsAndRecipes = [];
+   potions.forEach((element) => {
+      potionsOfBook.forEach((item) => {
+         if (item === element.name) {
+            recipes.push(element.recipe)
+            potionsAndRecipes.push({ name: element.name, icon: element.icon, recipe: element.recipe })
+         }
+      });
+   });
 
-    const newStage = {...tempStage};
-    newStage.potion = getRecipe(tempStage.potion);
+   let recipeIconsRow = [];
+   let recipeIcons = [];
+   for (let i = 0; i < recipes.length; i++) {
+      const quant = recipes[i].length;
+      for (let j = 0; j < quant; j++) {
+         items.forEach((element) => {
+            if (element.id === recipes[i][j]) {
+               recipeIconsRow.push(element.icon);
+            }
+         });
+      }
+      recipeIcons.push(recipeIconsRow);
+      recipeIconsRow = [];
+   }
 
-    console.log(tempStage);
-    res.json(newStage);
+   potionsAndRecipes.forEach((element, index) => {
+      element.recipe = recipeIcons[index];
+   })
+
+   console.log(potionsAndRecipes);
+   return potionsAndRecipes;
+
 }
-
-async function stageStart (req, res)
-{
-    const user = users[req.session.userid];
-    const time = new Date().getTime();
-    const cstage = user.currentStage;
-    
-    cstage.expiration = time + cstage.limitTime;
-
-    res.json(cstage.expiration);
-}
-
-async function stageUpdate (req, res)
-{
-    const user = users[req.session.userid];
-    const stage = user.currentStage;
-    const time = new Date().getTime();
-    const expectedResult = getItem(stage.potion).item;
-
-    const timePass = stage.expiration - time;
-    //console.log(timePass, `${time} - ${stage.limitTime}`);
-
-    if(timePass <= 0) {
-        res.json({status:1});
-        return;
-    }
-    const r = result(req.body["items"]);
-    //console.log(timePass, `${expectedResult} == ${r}`);
-    if(!r) res.json({status:0});
-    else 
-    {
-        const ritem = getItem(r);
-        if(expectedResult == r) {
-            st = 2;
-            const points = nextStage(user, timePass);
-            res.json({potion:{name:ritem.name, icon:ritem.icon}, points:points, status:2});
-        } else {
-            res.json({potion:{name:ritem.name, icon:ritem.icon}, status:0});
-        }
-        
-    }
-} */
 
 //
 module.exports = {
