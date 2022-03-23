@@ -2,6 +2,7 @@ import { WaitFor } from "/static/scripts/timer.js";
 
 $(document).ready(async () => 
 {
+    console.log("Estou rodando!")
     await WaitFor(() => 
     {
         if(window.gameuser.lastCreation) return true;
