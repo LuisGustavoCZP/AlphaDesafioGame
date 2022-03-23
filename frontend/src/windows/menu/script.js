@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     $("#btn-home").on("click", function(){
         //console.log("tela 1");
-        window.gameuser.goTo("modules/main", ""); //window Game 1
+        window.gameuser.goTo("modules/main", "windows/main"); //window Game 1
         //parent.audiosys.play("close");
     });
 

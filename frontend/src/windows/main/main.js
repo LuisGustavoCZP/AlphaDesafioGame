@@ -20,7 +20,7 @@ $(document).ready(() =>
                 parent.modal.src="windows/help/";
                break;
            case 'setting':
-                parent.modal.src="windows/menu/";
+                parent.modal.src="windows/settings/";
                break;
            /*case 'pause':
                resultContent = contentPause();
