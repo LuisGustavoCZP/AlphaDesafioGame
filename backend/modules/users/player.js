@@ -1,7 +1,7 @@
 const fs = require('fs');
 const crypto = require('crypto');
-const session = require('./sessions');
 const userpath = __dirname + "/data/";
+const session = require(__dirname+'/sessions');
 const prefab = JSON.parse(fs.readFileSync(__dirname+"/starting.json"));
 const users = {};
 const highscores = [];
