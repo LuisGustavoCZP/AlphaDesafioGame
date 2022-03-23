@@ -15,6 +15,7 @@ function getStock (user)
 function getBook (user)
 {
     const total = database.fromID(...user.unlockedRecipes);
+    console.log(total);
     return total;
 }
 
@@ -67,7 +68,9 @@ function verifyUnlockedRecipes(user, item){
          return true;
       }
    })
-   const recipesOnBook = getBook(p);
+   let recipesOnBook = getBook(p);
+   if(!recipesOnBook) recipesOnBook = [];
+   if(!recipesOnBook.length) recipesOnBook = [recipesOnBook];
    const checkItem = recipesOnBook.filter((element)=>{
       if(element === recipeId.id){
          return true;
@@ -110,7 +113,7 @@ function verifyRecipe(req, res){
       }
       
    }else{
-        res.status(404);
+        /* res.status(404); */
       res.json(undefined);
    }
 }
