@@ -100,6 +100,10 @@ class Crafter extends HTMLElement
         return false; 
     }
 
+    async draw (src) {
+
+    }
+
     reset ()
     {
         this.ingredients = [];
