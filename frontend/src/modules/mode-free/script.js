@@ -25,6 +25,7 @@ $(document).ready(async function()
                 console.log(response);
                 if(response.result)
                 {
+                    window.modal.src = "";
                     window.gameuser.lastCreation = response.result;
                     window.modal.src = "/windows/newrecipe";
                 }
