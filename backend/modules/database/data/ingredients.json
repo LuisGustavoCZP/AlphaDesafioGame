@@ -1,7 +1,7 @@
 [
     {"name": "GELEIA OCEÂNICA", "icon": "ingredients/9.png", "id": "i0", "desc": "Uma geleia que possui um gosto azedo bem interessante. É muito usado em poções que relacionadas ao corpo."},
     {"name": "ESCARAVELHO AMARELADO", "icon": "ingredients/14.png", "id": "i1", "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!"},
-    {"name": "FRUTA RAINHA", "icon": "ingredients/2.png", "id": "i2", "desc": "Essa fruta é apimentada, mas também um pouco refrescante! Ótima para criar itens que possuam efeitos diversos!"},
+    {"name": "FRUTA RAINHA", "icon": "ingredients/3.png", "id": "i2", "desc": "Essa fruta é apimentada, mas também um pouco refrescante! Ótima para criar itens que possuam efeitos diversos!"},
     {"name": "ESCARAVELHO GELATINOSO", "icon": "ingredients/15.png", "id": "i3", "desc": "Essa incrível gelatina da uma sensação de nostalgia em que a consome!"},
     {"name": "SOPA DA VELOCIDADE", "icon": "ingredients/8.png", "id": "i4", "desc": "Essa sopa faz com que você se lembre como era brincar de pega-pega quando criança, e com isso aumenta sua velocidade!"},
     {"name": "GALHO QUENTE", "icon": "ingredients/4.png", "id": "i5", "desc": "Esse galho emite calor, e caso ele seja quebrado ele pega fogo! Ótimo para ser usado para acender uma churrasqueira!"},
@@ -9,7 +9,7 @@
     {"name": "CRANIO MARSHMALLOW", "icon": "ingredients/6.png", "id": "i7", "desc": "Esse cranio é tão fofo que traz boas sensações aquele que o come!"},
     {"name": "CARVÃO MISTERIOSO", "icon": "ingredients/7.png", "id": "i8", "desc": "Esse carvão é difícil de ser acendido, entretanto, após pegar fogo ele é difícil de apagar."},
     {"name": "OVO DE GELATINA", "icon": "ingredients/5.png", "id":"i9", "desc": "Esse ovo é tão gostoso que dá até uma animação em quem o come."},
-    {"name": "JOANINHA EMPÁTICA", "icon": "ingredients/16.png", "id":"i10", "desc": "Essa joaninha de chocolate faz com que quem a coma se coloque no lugar dos outros!"},
+    {"name": "JOANINHA DE CHOCOLATE", "icon": "ingredients/2.png", "id":"i10", "desc": "Essa joaninha de chocolate faz com que quem a coma se coloque no lugar dos outros!"},
     {"name": "AÇÚCAR ANIMADO", "icon": "ingredients/20.png", "id":"i11", "desc": "Esse açúcar da a energia necessária para concluir suas tarefas! Mas cuidado! Muito açúcar faz mal!"},
     {"name": "SUCO DA ANIMAÇÃO", "icon": "ingredients/13.png", "id":"p1", "desc": "Esse suco dá mais energia para que o toma! Crianças que o tomam não dormem de tanta energia!"},
     {"name": "POÇÃO DA CURA", "icon": "potions/1.png", "id":"p2", "desc": "Essa poção é ótima para combater gripes e resfriados! Nunca deixe faltar em casa!"},
