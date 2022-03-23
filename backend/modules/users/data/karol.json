@@ -7,20 +7,16 @@
 		"i4",
 		"i3",
 		"i11",
-		"i7",
-		"i9"
+		"p7"
 	],
 	"unlockedRecipes": [
-		"i4",
 		"r2",
 		"r1",
 		"r9",
-		"r5",
-		"r7"
+		"r16"
 	],
-	"backpack": [],
 	"tutorial": false,
 	"points": 0,
 	"highscore": 0,
-	"id": "a6bbeb1a-1898-4448-a2ef-965438c15810"
+	"id": "c39aa54b-cd65-4def-b4ce-ffc089cf47db"
 }
