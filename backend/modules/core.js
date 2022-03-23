@@ -59,20 +59,22 @@ function combine (req, res)
 }
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
-function verifyUnlockedRecipes(user, item){
+function verifyUnlockedRecipes(user, recipe){
    let isUnlocked = false;
    const p = user;
-   const recipeArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/recipes.json`));
-   const recipeId = recipeArray.filter((element)=>{
-      if(element.item === item){
+   const recipeArray = database.recipeArray;
+
+   /* const recipeId = recipeArray.filter((element)=>{
+      if(element.id === recipe.id){
          return true;
       }
-   })
+   }) */
+
    let recipesOnBook = getBook(p);
    if(!recipesOnBook) recipesOnBook = [];
    if(!recipesOnBook.length) recipesOnBook = [recipesOnBook];
    const checkItem = recipesOnBook.filter((element)=>{
-      if(element === recipeId[0].id){
+      if(element === recipe.id){
          return true;
       }
    })
@@ -80,8 +82,8 @@ function verifyUnlockedRecipes(user, item){
    console.log(checkItem);
 
    if(JSON.stringify(checkItem) === "[]"){
-      p.unlockedRecipes.push(item);
-      p.unlockedItems.push(recipeId[0].item);
+      p.unlockedRecipes.push(recipe.id);
+      p.unlockedItems.push(recipe.item);
       isUnlocked = true;
 
    }
@@ -100,7 +102,9 @@ function verifyRecipe(req, res){
    //verifica se está recebendo o array no formato correto
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
       console.log("feito");
-      const crafted = database.result(receivedItems);
+      const craft = database.result(receivedItems);
+      const crafted = craft.id;
+      const craftedItem = craft.item;
       
       // verifica se o craft existe
       if(crafted)
@@ -112,10 +116,10 @@ function verifyRecipe(req, res){
                return true;
             }
          }) */
-         const infoCrafted = database.getItem(crafted);
+         const infoCrafted = database.getItem(craftedItem);
          const result = {
             result: infoCrafted,
-            status: verifyUnlockedRecipes(p, crafted) ? 1 : 0
+            status: verifyUnlockedRecipes(p, craft) ? 1 : 0
          };
          
          console.log(result)
