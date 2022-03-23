@@ -7,13 +7,15 @@
 		"i4",
 		"i11",
 		"p7",
-		"i3"
+		"i3",
+		"p9"
 	],
 	"unlockedRecipes": [
 		"r2",
 		"r9",
 		"r16",
-		"r1"
+		"r1",
+		"r18"
 	],
 	"backpack": [],
 	"tutorial": false,
