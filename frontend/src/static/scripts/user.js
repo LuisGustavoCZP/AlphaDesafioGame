@@ -109,7 +109,8 @@ class User
         .then(data => 
         {
             const status = data;
-            this.login(user);
+            const thisuser = this;
+            setTimeout(() => { thisuser.login(user); }, 500);
         })
         .catch(resp => { console.log(resp); });
     }
