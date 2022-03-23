@@ -42,21 +42,6 @@ function stock (req, res)
     const p = users[req.session.userid];
     res.json(getStock(p));
 }
-function combine (req, res)
-{
-    const p = users[req.session.userid];
-    //req.session.metch?req.session.metch.check
-    const itens = req.body["items"];
-    const crafted = database.result(itens);
-    
-    const result = 
-    {
-        result:crafted,
-        status:0
-    };
-    console.log(result);
-    res.json(result);
-}
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
 function verifyUnlockedRecipes(user, recipe){
@@ -103,12 +88,13 @@ function verifyRecipe(req, res){
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
       console.log("feito");
       const craft = database.result(receivedItems);
-      const crafted = craft.id;
-      const craftedItem = craft.item;
+      
       
       // verifica se o craft existe
-      if(crafted)
+      if(craft)
       {
+         const crafted = craft.id;
+         const craftedItem = craft.item;
         console.log(crafted + "feito");
          /* const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
          const infoCrafted = itemsArray.filter((element)=>{
@@ -121,9 +107,13 @@ function verifyRecipe(req, res){
             result: infoCrafted,
             status: verifyUnlockedRecipes(p, craft) ? 1 : 0
          };
-         
          console.log(result)
          res.json(result);
+      }else{
+         const result = {
+            status: 0
+         }
+         res.json(result)
       }
       
    }else{
@@ -131,68 +121,6 @@ function verifyRecipe(req, res){
       res.json(undefined);
    }
 }
-
-/* async function stagePrepare (req, res)
-{
-    const user = users[req.session.userid];
-    const stageid = req.query["stage"];
-    const oStage = stages[stageid];
-    const tempStage = 
-    {
-        stage:stageid,
-        potion:oStage.potions[utility.randomSort(oStage.potions)],
-        limitTime: oStage.time*1000,
-    };
-    user.currentStage = tempStage;
-
-    const newStage = {...tempStage};
-    newStage.potion = getRecipe(tempStage.potion);
-
-    console.log(tempStage);
-    res.json(newStage);
-}
-
-async function stageStart (req, res)
-{
-    const user = users[req.session.userid];
-    const time = new Date().getTime();
-    const cstage = user.currentStage;
-    
-    cstage.expiration = time + cstage.limitTime;
-
-    res.json(cstage.expiration);
-}
-
-async function stageUpdate (req, res)
-{
-    const user = users[req.session.userid];
-    const stage = user.currentStage;
-    const time = new Date().getTime();
-    const expectedResult = getItem(stage.potion).item;
-
-    const timePass = stage.expiration - time;
-    //console.log(timePass, `${time} - ${stage.limitTime}`);
-
-    if(timePass <= 0) {
-        res.json({status:1});
-        return;
-    }
-    const r = result(req.body["items"]);
-    //console.log(timePass, `${expectedResult} == ${r}`);
-    if(!r) res.json({status:0});
-    else 
-    {
-        const ritem = getItem(r);
-        if(expectedResult == r) {
-            st = 2;
-            const points = nextStage(user, timePass);
-            res.json({potion:{name:ritem.name, icon:ritem.icon}, points:points, status:2});
-        } else {
-            res.json({potion:{name:ritem.name, icon:ritem.icon}, status:0});
-        }
-        
-    }
-} */
 
 //
 module.exports = {

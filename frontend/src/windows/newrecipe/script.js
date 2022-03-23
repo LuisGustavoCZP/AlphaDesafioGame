@@ -2,6 +2,7 @@ import { WaitFor } from "/static/scripts/timer.js";
 
 $(document).ready(async () => 
 {
+    console.log("Estou rodando!")
     await WaitFor(() => 
     {
         if(window.gameuser.lastCreation) return true;
@@ -13,7 +14,7 @@ $(document).ready(async () =>
     const item = window.gameuser.currentStage.potion.item; */
     $("#title").html(`Nova poção`);
     $("#potion").html(`
-        <img src="/images/${item.icon}" alt="${item.name}"/>
-        <h3>${item.name}</h3>
+        <img src="/images/${lastCreation.icon}" alt="${lastCreation.name}"/>
+        <h3>${lastCreation.name}</h3>
     `);
 });
