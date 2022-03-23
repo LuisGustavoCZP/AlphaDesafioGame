@@ -16,7 +16,7 @@
     { "id":"r15", "item":"p6", "ingredients": ["i2", "i6"], "level": "1" },
     { "id":"r16", "item":"p7", "ingredients": ["i4", "i11"], "level": "1" },
     { "id":"r17", "item":"p8", "ingredients": ["i3", "i7"], "level": "1" },
-    { "id":"r18", "item":"p9", "ingredients": ["i11", "i0"], "level": "1" },
+    { "id":"r18", "item":"p9", "ingredients": ["i11", "i2"], "level": "1" },
     { "id":"r19", "item":"p10", "ingredients": ["i3", "i3"], "level": "1" },
     { "id":"r20", "item":"p11", "ingredients": ["p1", "p1"], "level": "1" },
     { "id":"r21", "item":"p12", "ingredients": ["p5", "p8"], "level": "1" },
