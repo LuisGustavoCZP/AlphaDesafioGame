@@ -23,14 +23,15 @@ $(document).ready(async function()
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
-                window.gameuser.lastCreation = response.result;
-                window.modal.src = "/windows/newrecipe";
-                if(response.result && response.status == 1)
+                if(response.result)
+                {
+                    window.gameuser.lastCreation = response.result;
+                    window.modal.src = "/windows/newrecipe";
+                }
+                if(response.status == 1)
                 {
                     //cauldron.draw(response.result.icon);
                     bookcase.update();
-                    
-                } else {
                     
                 }
             }); //const response = await 
