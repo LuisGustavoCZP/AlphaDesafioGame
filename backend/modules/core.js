@@ -7,7 +7,7 @@ const fs = require('fs');
 
 function getStock (user)
 {
-    const t = database.fromID(...user.unlockedItens);
+    const t = database.fromID(...user.unlockedItems);
     //console.log(t);
     return t;
 }
@@ -60,7 +60,7 @@ function combine (req, res)
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
 function verifyUnlockedRecipes(user, item){
-    let isUnlocked = false;
+   let isUnlocked = false;
    const p = user;
    const recipeArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/recipes.json`));
    const recipeId = recipeArray.filter((element)=>{
@@ -76,11 +76,18 @@ function verifyUnlockedRecipes(user, item){
          return true;
       }
    })
-   if(checkItem == []){
+   console.log("ola");
+   console.log(checkItem);
+
+   if(JSON.stringify(checkItem) === "[]"){
       p.unlockedRecipes.push(item);
       p.unlockedItems.push(recipeId.item);
       isUnlocked = true;
+
    }
+
+   //verificar o status está sempre retornado como false
+   //falta reescrever o arquivo do usuário corretamente
    player.save(p.id);
    return isUnlocked;
 }
