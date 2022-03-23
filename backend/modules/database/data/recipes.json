@@ -30,12 +30,13 @@
     { "id":"r29", "item":"p20", "ingredients": ["p8", "p9"], "level": "1" },
     { "id":"r30", "item":"p21", "ingredients": ["p5", "p13"], "level": "1" },
     { "id":"r31", "item":"p22", "ingredients": ["p9", "p9"], "level": "1" },
-    { "id":"r32", "item":"c1", "ingredients": ["i0", "i4"], "level": "1" },
-    { "id":"r33", "item":"p4", "ingredients": ["i4", "i6"], "level": "1" },
-    { "id":"r34", "item":"p5", "ingredients": ["i2", "i6"], "level": "1" },
-    { "id":"r35", "item":"p6", "ingredients": ["i1", "i5"], "level": "1" },
-    { "id":"r36", "item":"p7", "ingredients": ["p0", "p1"], "level": "1" },
-    { "id":"r37", "item":"p8", "ingredients": ["p1", "p2"], "level": "1" },
-    { "id":"r38", "item":"p9", "ingredients": ["p0", "p2"], "level": "1" },
-    { "id":"r39", "item":"p10", "ingredients": ["p3", "p4"], "level": "1" }
+    { "id":"r32", "item":"c1", "ingredients": ["p18", "p20"], "level": "1" },
+    { "id":"r33", "item":"c2", "ingredients": ["p12", "p12"], "level": "1" },
+    { "id":"r34", "item":"c3", "ingredients": ["p13", "p13"], "level": "1" },
+    { "id":"r35", "item":"c4", "ingredients": ["p14", "p14"], "level": "1" },
+    { "id":"r36", "item":"c5", "ingredients": ["p15", "p15"], "level": "1" },
+    { "id":"r37", "item":"c6", "ingredients": ["p10", "p20"], "level": "1" },
+    { "id":"r38", "item":"c7", "ingredients": ["p11", "p11"], "level": "1" },
+    { "id":"r39", "item":"c8", "ingredients": ["p14", "p14"], "level": "1" },
+    { "id":"r40", "item":"c9", "ingredients": ["p23", "p23"], "level": "1" }
 ]
