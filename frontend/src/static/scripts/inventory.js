@@ -49,9 +49,19 @@ class Inventory extends HTMLElement
         const linkcss = document.createElement("link");
         linkcss.rel = "stylesheet";
         linkcss.href = "/static/styles/inventory.css";
-        
         this.before(linkcss);
+        
         this.classList.add("inventory");
+        this.innerHTML = `<aside class="deep-top">
+                            <div class="deep-top right"></div>
+                            <div class="deep-top mid"></div>
+                            <div class="deep-top left"></div>
+                        </aside>
+                        <aside class="deep-right">
+                            <div class="deep-right top"></div>
+                            <div class="deep-right mid"></div>
+                            <div class="deep-right bottom"></div>
+                        </aside>`;
         this.content = document.createElement("div");
         /* this.viewPort = document.createElement("div");
         this.viewPort.classList.add("view"); */

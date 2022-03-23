@@ -4,14 +4,27 @@ class Crafter extends HTMLElement
     {
         super();
         
-        this.classList.add("ui-droppable");
-        if(this.hasAttribute('img')) {
-            this.img = new Image();
-            this.img.src = this.getAttribute('img');
-            this.append(this.img);
-        } else {
-            this.img = null;
-        }
+        this.classList.add("ui-droppable", "crafter");
+
+        const linkcss = document.createElement("link");
+        linkcss.rel = "stylesheet";
+        linkcss.href = "/static/styles/crafter.css";
+        this.before(linkcss);
+
+        this.craftFX = document.createElement("canvas");
+        this.craftFX.classList.add("fx");
+        this.append(this.craftFX);
+
+        let img = new Image();
+        img.src = "../../images/game/cauldronfront.png";
+        this.append(img);
+        img = new Image();
+        img.src = "../../images/game/cauldronback.png";
+        this.append(img);
+        img = new Image();
+        img.src = "../../images/game/cauldronwater.png";
+        this.append(img);
+
         this.style["border-radius"] = "15%";
 
         const div = document.createElement("div");

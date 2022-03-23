@@ -41,7 +41,7 @@ app.get("/:sessionData/user", player.verifySession, player.playerData);
 //Resetar dados usuario
 /* app.post("/:sessionData/reset", player.verifySession, player.playerReset); */
 
-/* app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe); */
+app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
 
 app.post("/admin", admin.execute);
 

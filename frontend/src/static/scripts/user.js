@@ -226,7 +226,7 @@ class User
             thisuser.match.result = data;
             response = data;
         }
-        await RequestSys.post("combine", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
+        await RequestSys.post("verifyRecipe", {"items":itens}, userSuccess, this.userError, {"sessionData":this.#sessionData});
         thisuser.requestBook();
         return response;
     }

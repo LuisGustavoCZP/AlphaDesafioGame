@@ -13,80 +13,79 @@ class GameModal extends HTMLElement
     constructor()
     {
         self = super();
-
-        //console.log("Iniciou instancia");
-        /* this.style.display = "flex";
-        this.style.flexGrow = "0";
-        this.style.width = "fit-content";
-        this.style.height = "fit-content"; */
-
-        /* if(this.hasAttribute('src')) {
-            this.src = this.getAttribute('src');
-        } */
-
-        submenus = [];
+        this.submenus = {};
+        this.#srcs = [];
     }
     
     /**
      * @param {String[]} _paths
      */
-    set srcs (_paths)
+    set srcs (modalDatas)
     {
         this.innerHTML = "";
-        this.#srcs = _paths;
-        const isBlank = !_path || _path == "";
+        this.#srcs = [];
+        this.submenus = {};
+        const isBlank = modalDatas.length > 0;
         if(isBlank) { this.hidden = true; } else { this.hidden = false; }
         //const pathreparer = reparerURL(window.location.href, _path);
-        if(!isBlank) LoadSys.toHTML(_path, doc => 
+        if(!isBlank) 
         {
-            const repairSrcs = (el, parent) =>
+            modalDatas.forEach((value) => 
             {
-                if(el.children.length == 0) return;
-                const element = [...el.children];
-                //this.append(element);
-                if(element.length)
+                LoadSys.toHTML(value.path, doc => 
                 {
-                    element.forEach(child => 
+                    const repairSrcs = (el, parent) =>
                     {
-                        if (child.src && child.src != this.srcs)
+                        if(el.children.length == 0) return;
+                        const element = [...el.children];
+                        //this.append(element);
+                        if(element.length)
                         {
-                            if(child instanceof HTMLScriptElement)
+                            element.forEach(child => 
                             {
-                                const nscript = document.createElement("script");
-                                parent.appendChild(nscript);
-                                nscript.type = child.type;
-                                nscript.src = child.src;
-                                //nscript.onload = ()=>{console.log("carregou", nscript); };
-                            } 
-                            else 
-                            {
-                                child.src = child.src;
-                                parent.appendChild(child);
-                            }
-                        } else {
-                            if(child instanceof HTMLScriptElement)
-                            {
-                                if(!child.innerHTML.includes("// <![CDATA[  <-- For SVG support")) parent.appendChild(child);
-                            } 
-                            else if(child instanceof HTMLLinkElement)
-                            {
-                                /* const file = pathreparer.repair(child.href);
-                                child.href = file; */
-                                parent.appendChild(child);
-                            } else {
-                                parent.appendChild(child);
-                            }
+                                if (child.src && child.src != this.srcs)
+                                {
+                                    if(child instanceof HTMLScriptElement)
+                                    {
+                                        const nscript = document.createElement("script");
+                                        parent.appendChild(nscript);
+                                        nscript.type = child.type;
+                                        nscript.src = child.src;
+                                        //nscript.onload = ()=>{console.log("carregou", nscript); };
+                                    } 
+                                    else 
+                                    {
+                                        child.src = child.src;
+                                        parent.appendChild(child);
+                                    }
+                                } else {
+                                    if(child instanceof HTMLScriptElement)
+                                    {
+                                        if(!child.innerHTML.includes("// <![CDATA[  <-- For SVG support")) parent.appendChild(child);
+                                    } 
+                                    else if(child instanceof HTMLLinkElement)
+                                    {
+                                        /* const file = pathreparer.repair(child.href);
+                                        child.href = file; */
+                                        parent.appendChild(child);
+                                    } else {
+                                        parent.appendChild(child);
+                                    }
+                                }
+                                //console.log(child);
+                                repairSrcs(child, child);
+                            });
                         }
-                        //console.log(child);
-                        repairSrcs(child, child);
-                    });
-                }
-            }
-            
-            repairSrcs(doc.body, this);
-
-            if(this.onload) this.onload(this);
-        });
+                    }
+                    this.#srcs.push(value.path);
+                    const submenu = document.createElement("div");
+                    this.submenus[value.id](submenu);
+                    repairSrcs(doc.body, submenu);
+        
+                    if(this.onload) this.onload(this);
+                });
+            });
+        }
     }
 
     get srcs ()
