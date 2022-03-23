@@ -6,7 +6,9 @@ $(document).ready(async function()
     const cauldron = $("#cauldron")[0];
     const dialogMage = $("#dialog-mage")[0];
     const btnbook = $("#btn-book")[0];
+    const btnmenu = $("#btn-menu")[0];
     btnbook.onclick = () => {window.modal.src="/windows/book";};
+    btnmenu.onclick = () => {window.modal.src="/windows/menu";};
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
