@@ -3,6 +3,7 @@ const database = require(`${__dirname}/database/database.js`);
 const utility = require(`${__dirname}/utility`);
 const users = player.users;
 const path = __dirname.replace("modules", "");
+const fs = require('fs');
 
 function getStock (user)
 {
@@ -57,8 +58,8 @@ function combine (req, res)
 }
 
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
-function verifyUnlockedRecipes(item){
-   const p = users[req.session.userid];
+function verifyUnlockedRecipes(user, item){
+   const p = user;
    const recipeArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/recipes.json`));
    const recipeId = recipeArray.filter((element)=>{
       if(element.item === item){
@@ -99,7 +100,8 @@ function verifyRecipe(req, res){
                return true;
             }
          })
-         verifyUnlockedRecipes(crafted)
+         verifyUnlockedRecipes(p, crafted)
+         console.log(infoCrafted)
          res.json(infoCrafted);
       }
       
