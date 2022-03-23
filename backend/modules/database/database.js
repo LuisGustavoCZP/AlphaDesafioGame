@@ -41,8 +41,8 @@ function initiate ()
     recipeArray.forEach((recipe, i) => 
     {
         addItem(recipe);
-        results[recipe.ingredients] = recipe.item;
-        results[recipe.ingredients.reverse()] = recipe.item;
+        results[recipe.ingredients] = recipe;
+        results[recipe.ingredients.reverse()] = recipe;
     });
     //console.log(ingredients);
 }
