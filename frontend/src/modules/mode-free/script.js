@@ -5,8 +5,8 @@ $(document).ready(async function()
     const bookcase = $("#bookcase")[0];
     const cauldron = $("#cauldron")[0];
     const dialogMage = $("#dialog-mage")[0];
-    const btnbook = $("#btn-book")[0];
-    btnbook.onclick = () => {window.modal.src="/windows/book";};
+/*     const btnbook = $("#btn-book")[0];
+    btnbook.onclick = () => {window.modal.src="/windows/book";}; */
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
