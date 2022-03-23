@@ -38,9 +38,9 @@ app.post("/login", player.login);
 app.get("/:sessionData/user", player.verifySession, player.playerData);
 
 //Resetar dados usuario
-app.post("/:sessionData/reset", player.verifySession, player.playerReset);
+/* app.post("/:sessionData/reset", player.verifySession, player.playerReset); */
 
-app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
+/* app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe); */
 
 /* //Pegar receita de itens
 app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);
@@ -62,7 +62,7 @@ app.get("/:sessionData/book", player.verifySession, game.book);
 
 
 //Recebe os itens e retornando a poção com um valor
-app.post("/:sessionData/combine", player.verifySession, game.combine);
+/* app.post("/:sessionData/combine", player.verifySession, game.combine); */
 
 /* //Pegar o estoque em ordem aleatória
 app.get("/:sessionData/stages", player.verifySession, game.userstages); */
