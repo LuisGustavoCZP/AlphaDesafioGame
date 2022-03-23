@@ -99,7 +99,12 @@
 .modal #btn-howToPlay {
     background-image: url("/images/main/question.svg");
 }
-
+.modal #btn-reset {
+    background-image: url("/images/main/reset.svg");
+}
+.modal #btn-home {
+    background-image: url("/images/main/home.svg");
+}
 
 /* The Modal (background) */
 .modal {

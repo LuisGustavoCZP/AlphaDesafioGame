@@ -3,8 +3,18 @@ $(document).ready(() =>
     let potionActive;
     $(".this-potion").hide();
     let recipe = parent.gameuser ? parent.gameuser.book : [
-        { "item":{"name": "poção da velocidade", "icon": "assets/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Tomate", "icon": "assets/ingredients/4.png"}] },
-        { "item":{"name": "poção da resistencia", "icon": "assets/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "assets/ingredients/1.png"}, {"name": "Alface", "icon": "assets/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "assets/ingredients/5.png"}] }
+        { "item":{"name": "poção da velocidade", "icon": "../../images/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Tomate", "icon": "../../images/ingredients/4.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/3.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/4.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/5.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da velocidade", "icon": "../../images/potions/6.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Tomate", "icon": "../../images/ingredients/4.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/7.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/8.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/9.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
+        { "item":{"name": "poção da resistencia", "icon": "../../images/potions/10.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" }
+
+
     ];
     //console.log(recipe[0].ingredients[0].icon);
 
@@ -26,30 +36,12 @@ $(document).ready(() =>
 
     fillIngredients();
 
-    //btn to Play the game
-    $("#btn-login").on("click", () => {
-        username = $("#username").val();
-        // password = $("#password").val();
-  
-        if(username.length >= 3 ){
-            //$(`#Modal`).css("display","none");
-            /* callFetchLogin(username); */
-            /* console.log(parent.coiso); */
-            console.log(parent.gameuser.book);
-            
-            //parent.user.login(username);
-        } else {
-            alert("O nome precisa ser mais de 2 caracteres!");
-        }
-    
-    });
-
-    /* $(".close").on("click", function() 
+    $(".close").on("click", function() 
     {
-        console.log("Close");
-        parent.modal.src = "";
-        //$(`#Modal`).css("display","none");
-    }); */
+        parent.modal.src = "windows/main";
+        parent.audiosys.play("close");
+
+    });
 
     /* $("body").on("click", function() 
     {
@@ -69,18 +61,19 @@ $(document).ready(() =>
         let potion = this.id;
         if(potionActive !== potion){
             potionActive = potion;
+            console.log(recipe);
             $("#ingredients-description").html("");
             let recipeLength = recipe[potion].ingredients.length;
             console.log(recipeLength);
-            $("#potion-description h2").html(recipe[potion].item.name);
+            $("#potion-description h3").html(recipe[potion].item.name);
             $("#potion-image").attr("src", `/images/${recipe[potion].item.icon}`);
             for(let i = 0; i < recipeLength; i++){
                 $("#ingredients-description").append(`<img id="potion-${i}" class="this-potion" src="/images/${recipe[potion].ingredients[i].icon}">`);
             }
-            $("#ingredients-description").append(`<p>${recipe[potion].item.desc}</p>`);
+            $("#item-descp").html(`${recipe[potion].desc}`);
         }
     }
     
-    $(".this-potion").mouseenter(showInformation);
+    $(".this-potion").on("click ",showInformation);
 
 });

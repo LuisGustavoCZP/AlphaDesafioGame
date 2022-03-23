@@ -24,7 +24,7 @@
     --menu-glow-low: #36cf10;
     --menu-button: var(--menu-glow);
     --menu-button-glow: var(--menu-glow-low);
-    --modal-button: #A07048;
+    --modal-button: var(--menu-mid);
     --modal-button-glow: var(--menu-glow-low);
     --menu-icon: var(--menu-dark);
     --menu-icon-glow: var(--menu-darkness);

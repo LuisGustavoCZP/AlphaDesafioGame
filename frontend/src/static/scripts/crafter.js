@@ -100,6 +100,20 @@ class Crafter extends HTMLElement
         return false; 
     }
 
+    async draw (src) 
+    {
+        let loaded = false;
+        const potionImg = new Image();
+        this.onload = () => {loaded = true;};
+        potionImg.src = src;
+        await WaitFor(() => 
+        {
+            if(loaded) return true;
+            else return false;
+        });
+        this.classList.add("ui-droppable");
+    }
+
     reset ()
     {
         this.ingredients = [];
