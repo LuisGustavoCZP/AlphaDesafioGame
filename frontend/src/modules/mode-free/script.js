@@ -23,11 +23,11 @@ $(document).ready(async function()
             window.gameuser.sendItems(itens, (response) => 
             {
                 console.log(response);
+                window.gameuser.lastCreation = response.result;
                 window.modal.src = "/windows/newrecipe";
                 if(response.result && response.status == 1)
                 {
                     //cauldron.draw(response.result.icon);
-                    window.gameuser.lastCreation = response.result;
                     bookcase.update();
                     
                 } else {
