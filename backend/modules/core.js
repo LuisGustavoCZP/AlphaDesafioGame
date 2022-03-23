@@ -102,7 +102,7 @@ function verifyRecipe(req, res){
                return true;
             }
          }) */
-         const infoCrafted = database.getItem(crafted, true);
+         const infoCrafted = database.getItem(crafted);
          const result = {
             result: infoCrafted,
             status: verifyUnlockedRecipes(p, crafted) ? 1 : 0
