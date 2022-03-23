@@ -1,23 +1,18 @@
 {
-	"name": "jao",
+	"name": "plinio2",
 	"unlockedItems": [
 		"i0",
 		"i1",
 		"i2",
 		"i4",
-		"i11",
-		"p7",
-		"i3"
+		"i5"
 	],
 	"unlockedRecipes": [
 		"r2",
-		"r9",
-		"r16",
-		"r1"
+		"r3"
 	],
-	"backpack": [],
 	"tutorial": false,
 	"points": 0,
 	"highscore": 0,
-	"id": "44b86965-7071-44d0-ae52-61e2341f57d1"
+	"id": "cc9c989b-018a-4184-bc47-997bb20c0f74"
 }
