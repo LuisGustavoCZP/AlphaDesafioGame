@@ -31,6 +31,7 @@ function getRecipe (recipeID)
     return {item:{"name":itm.name, "icon":itm.icon}, "ingredients":is};
 }
 
+// função que retorna o livro para o usuário
 function book (req, res)
 {
    const p = users[req.session.userid];
@@ -38,7 +39,8 @@ function book (req, res)
    const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
    const itemsOfBook = [];
-
+   
+   // relaciona a tabela de recipes e recipes desbloqueadas
   unlockedRecipes.forEach((element)=>{
      recipeArray.forEach((el)=>{
         if(element === el.id){
@@ -46,7 +48,7 @@ function book (req, res)
         }
      })
    })
-
+    // relaciona as tabelas dos itens do livro com os itens totais
   const resultForBook = [];
   itemsOfBook.forEach((element)=>{
      console.log(element);
@@ -62,7 +64,7 @@ function book (req, res)
       
    })
 
-   res.json(resultForBook);
+   res.json({resultBook: resultForBook, totalRecipes: recipeArray.length});
 }
 
 function forItemArray(array){
@@ -77,7 +79,7 @@ function forItemArray(array){
     })
     return dataIngredients;
  }
- 
+
 
 function stock (req, res)
 {
