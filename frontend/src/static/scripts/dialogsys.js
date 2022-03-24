@@ -1,4 +1,4 @@
-import { gameTimer } from "./timer.js";
+import { gameTimer, waitEvent } from "./timer.js";
 
 const emojis = 
 [
@@ -83,16 +83,19 @@ class DialogSys extends HTMLElement
             await gameTimer(100*(1/this.speed)*(dialog.speed?(1/dialog.speed):1));
         }
 
+        if(dialog.click)
+        {
+            console.log("Entrou no click");
+            await waitEvent ("click");
+        } else
         if(!dialog.time || dialog.time > 0)
         {
-            await gameTimer(dialog.time?dialog.time:1000)*(1/this.speed);
-            if(dialogs && dialogs.length > 0) return await this.nextDialog(parag, dialogs);
+            console.log("Entrou no timer");
+            await gameTimer((dialog.time?dialog.time:1000)*(1/this.speed));
+            console.log("Passou no timer");
         }
-        else 
-        if(dialog.click)
-            window.addEventListener("click", this.nextDialog);
-
-        return;
+        
+        return await this.nextDialog(parag, dialogs);
     }
 
     createLetter (parag, dialog, text, letter)
@@ -138,9 +141,9 @@ class DialogSys extends HTMLElement
 
     async nextDialog (parag, dialogs)
     {
+        console.log("Novo dialogo");
         parag.remove();
-        window.removeEventListener("click", this.nextDialog);
-        if(dialogs.length > 0){
+        if(dialogs && dialogs.length > 0){
             return await this.createText(...dialogs);
         } else 
             return;

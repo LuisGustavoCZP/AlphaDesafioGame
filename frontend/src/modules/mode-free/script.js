@@ -1,4 +1,4 @@
-import { gameTimer, WaitFor } from "../../static/scripts/timer.js";
+import { gameTimer, waitFor } from "../../static/scripts/timer.js";
 
 $(document).ready(async function() 
 {
@@ -46,7 +46,7 @@ $(document).ready(async function()
     });
 
     //await 
-    WaitFor(async () => 
+    waitFor(async () => 
     {
         /* console.log(cauldron.ingredients); */
         
@@ -64,7 +64,8 @@ $(document).ready(async function()
     const dialogs = [
         {
             text:"VAMOS LÁ {$u}!",
-            click: false
+            click: false,
+            /* time: 1 */
         },
         /*{
             text:"FAÇA \n\t{i0}", 
