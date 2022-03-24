@@ -38,20 +38,13 @@ function book (req, res)
    const unlockedRecipes = getBook(p);
    const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
-   const itemsOfBook = [];
+   console.log(unlockedRecipes)
    
-   // relaciona a tabela de recipes e recipes desbloqueadas
-  unlockedRecipes.forEach((element)=>{
-     recipeArray.forEach((el)=>{
-        if(element === el.id){
-           itemsOfBook.push(el);
-        }
-     })
-   })
+
     // relaciona as tabelas dos itens do livro com os itens totais
   const resultForBook = [];
-  itemsOfBook.forEach((element)=>{
-     console.log(element);
+  
+  unlockedRecipes.forEach((element)=>{
      itemsArray.forEach((el)=>{
         
         if(element.item === el.id){
@@ -63,12 +56,11 @@ function book (req, res)
       })
       
    })
-
    res.json({resultBook: resultForBook, totalRecipes: recipeArray.length});
 }
 
 function forItemArray(array){
-
+   const itemsArray = database.itemArray
    const dataIngredients = [];
    array.forEach((item)=>{
       itemsArray.forEach((el)=>{
@@ -107,8 +99,6 @@ function verifyUnlockedRecipes(user, recipe){
          return true;
       }
    })
-   console.log("ola");
-   console.log(checkItem);
 
    if(JSON.stringify(checkItem) === "[]"){
       p.unlockedRecipes.push(recipe.id);
@@ -153,7 +143,7 @@ function verifyRecipe(req, res){
             result: infoCrafted,
             status: verifyUnlockedRecipes(p, craft) ? 1 : 0
          };
-         console.log(result)
+
          res.json(result);
       }else{
          const result = {
