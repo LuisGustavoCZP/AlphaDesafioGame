@@ -45,7 +45,8 @@ $(document).ready(async function()
         //console.log("Dropou objeto", ingredients); 
     });
 
-    await WaitFor(async () => 
+    //await 
+    WaitFor(async () => 
     {
         /* console.log(cauldron.ingredients); */
         
@@ -62,8 +63,8 @@ $(document).ready(async function()
 
     const dialogs = [
         {
-            text:"VAMOS LÁ!",
-            click: true
+            text:"VAMOS LÁ {$u}!",
+            click: false
         },
         /*{
             text:"FAÇA \n\t{i0}", 

@@ -1,45 +1,46 @@
 import { gameTimer } from "./timer.js";
 
+const emojis = 
+[
+    "emojis/anjel.png",         //00
+    "emojis/away.png",          //01
+    "emojis/bad.png",           //02
+    "emojis/big-smile.png",     //03
+    "emojis/blink.png",         //04
+    "emojis/bored.png",         //05
+    "emojis/cold.png",          //06
+    "emojis/confused.png",      //07
+    "emojis/contempt.png",      //08
+    "emojis/decepted.png",      //09
+    "emojis/excuse.png",        //10
+    "emojis/hahaha.png",        //11
+    "emojis/happy.png",         //12
+    "emojis/hide.png",          //13
+    "emojis/hot.png",           //14
+    "emojis/hugging.png",       //15
+    "emojis/injured.png",       //16
+    "emojis/inlove.png",        //17
+    "emojis/inverse.png",       //18
+    "emojis/joking.png",        //19
+    "emojis/liked.png",         //20
+    "emojis/lol.png",           //21
+    "emojis/loved.png",         //22
+    "emojis/mid-smile.png",     //23
+    "emojis/muted.png",         //24
+    "emojis/normal.png",        //25
+    "emojis/provoke.png",       //26
+    "emojis/psiu.png",          //27
+    "emojis/sleep.png",         //28
+    "emojis/smile.png",         //29
+    "emojis/sorry.png",         //30
+    "emojis/think.png",         //31
+    "emojis/trapping.png",      //32
+    "emojis/ufff.png",          //33
+    "emojis/wtf.png"            //34
+];
+
 class DialogSys extends HTMLElement
 {
-    static emojis = 
-    [
-        "emojis/anjel.png",         //00
-        "emojis/away.png",          //01
-        "emojis/bad.png",           //02
-        "emojis/big-smile.png",     //03
-        "emojis/blink.png",         //04
-        "emojis/bored.png",         //05
-        "emojis/cold.png",          //06
-        "emojis/confused.png",      //07
-        "emojis/contempt.png",      //08
-        "emojis/decepted.png",      //09
-        "emojis/excuse.png",        //10
-        "emojis/hahaha.png",        //11
-        "emojis/happy.png",         //12
-        "emojis/hide.png",          //13
-        "emojis/hot.png",           //14
-        "emojis/hugging.png",       //15
-        "emojis/injured.png",       //16
-        "emojis/inlove.png",        //17
-        "emojis/inverse.png",       //18
-        "emojis/joking.png",        //19
-        "emojis/liked.png",         //20
-        "emojis/lol.png",           //21
-        "emojis/loved.png",         //22
-        "emojis/mid-smile.png",     //23
-        "emojis/muted.png",         //24
-        "emojis/normal.png",        //25
-        "emojis/provoke.png",       //26
-        "emojis/psiu.png",          //27
-        "emojis/sleep.png",         //28
-        "emojis/smile.png",         //29
-        "emojis/sorry.png",         //30
-        "emojis/think.png",         //31
-        "emojis/trapping.png",      //32
-        "emojis/ufff.png",          //33
-        "emojis/wtf.png"            //34
-    ];
     speed;
     constructor()
     {
@@ -104,7 +105,14 @@ class DialogSys extends HTMLElement
             const findex = text.indexOf("}", letter);
             const code = text.slice(letter+1, findex);
             //console.log(code, letter, findex);
-            if(code[0] == "i")
+            if(code[0] == "$")
+            {
+                if(code[1] == "u"){
+                    const i = parseInt(code.slice(1));
+                    parag.innerHTML += `<span style="color: red; padding: 0 .3em;">${window.gameuser.data.name.toUpperCase()}<span/>`;
+                }
+            } 
+            else if(code[0] == "i")
             {
                 const i = parseInt(code.slice(1));
                 parag.innerHTML += `<img class="item" src="../../images/${dialog.icons[i]}" />`;
@@ -117,7 +125,7 @@ class DialogSys extends HTMLElement
             else if(code[0] == "e")
             {
                 const e = parseInt(code.slice(1));
-                parag.innerHTML += `<img class="emoji" src="../../images/${DialogSys.emojis[e]}" />`;
+                parag.innerHTML += `<img class="emoji" src="../../images/${emojis[e]}" />`;
             }
             
             letter = findex;

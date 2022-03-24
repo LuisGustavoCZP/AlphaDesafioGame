@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());//{credentials: true, origin: 'http://localhost:8080'}
 
-/* app.use('/', express.static(`${__dirname}/testback/`)); */
+/* app.use('/editor', express.static(`${__dirname}/funcao/index4.html`)); */
 
 //const player = require(`${path}/scripts/player`);
 const game = require(`${path}/modules/core`);

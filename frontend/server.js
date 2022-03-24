@@ -16,6 +16,14 @@ const options = {
 const p = path+"/src/";
 app.use('/static', express.static(p+"static/"));
 
+app.get("/editor", (req, res)=>
+{
+    console.log("Query", req.query);
+    //req.ip == localhost?
+    let origin = rPath.resolve(p, "editor/");  
+    res.sendFile(origin);
+});
+
 app.get("/modules/:category", (req, res)=>
 { 
     //let relativePath = req.params[0];
