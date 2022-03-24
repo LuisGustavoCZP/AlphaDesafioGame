@@ -1,20 +1,18 @@
 {
-	"name": "plinio2",
+	"name": "zica",
 	"unlockedItems": [
 		"i0",
 		"i1",
 		"i2",
-		"i4",
-		"i5",
-		"i11"
+		"i3",
+		"i4"
 	],
 	"unlockedRecipes": [
-		"r2",
-		"r3",
-		"r9"
+		"r1",
+		"r2"
 	],
 	"tutorial": false,
 	"points": 0,
 	"highscore": 0,
-	"id": "cc9c989b-018a-4184-bc47-997bb20c0f74"
+	"id": "c53f324c-8847-4482-b7ce-0a67f56b2a62"
 }

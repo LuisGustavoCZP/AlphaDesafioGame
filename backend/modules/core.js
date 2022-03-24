@@ -14,8 +14,11 @@ function getStock (user)
 
 function getBook (user)
 {
-    const total = database.fromID(...user.unlockedRecipes);
-    //console.log(total);
+    let total = database.fromID(...user.unlockedRecipes);
+    console.log(total);
+    if(!total.length){
+       total = [total];
+    }
     return total;
 }
 
@@ -38,7 +41,7 @@ function book (req, res)
    const unlockedRecipes = getBook(p);
    const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
-   console.log(unlockedRecipes)
+   console.log("aqui esta" + unlockedRecipes)
    
 
     // relaciona as tabelas dos itens do livro com os itens totais
