@@ -1,7 +1,15 @@
 $(document).ready(() => 
 {
+    function close () 
+    {
+        parent.modal.src = "windows/main";
+        parent.audiosys.play("close");
+
+    }
+    $(".menu-background").on("click", (e) => {e.preventDefault(); e.stopPropagation();});
+    $("body").on("click", close);
     $(".menu-background > *").remove();
-    
+    $(".close").on("click", close);
     //const cookie = document.cookie;
     parent.gameuser.requestRanking((ranking) => 
     {
@@ -22,13 +30,13 @@ $(document).ready(() =>
         
         $(".menu-background").append(result);
 
-        $(".close").on("click", function() 
+        /* $(".close").on("click", function() 
         {
             //console.log("Close");
             parent.modal.src = "windows/main";
             parent.audiosys.play("close");
             //$(`#Modal`).css("display","none");
-        });
+        }); */
     });
 
 });
