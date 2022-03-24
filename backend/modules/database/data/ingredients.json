@@ -17,7 +17,7 @@
     {"name": "POÇÃO DA AMIZADE", "icon": "potions/3.png", "id":"p4", "desc": "Fazer amigos pode ser complicado, essa poção te da a confiança de tentar fazer novas amizades!"},
     {"name": "POÇÃO DA ANIMAÇÃO", "icon": "potions/6.png", "id":"p5", "desc": "A animação é necessária para chegar cada vez mais longe! Essa poção pode te ajudar a manter a animação!"},
     {"name": "POÇÃO GELADA", "icon": "potions/8.png", "id":"p6", "desc": "Essa poção é capaz de congelar quase qualquer coisa! Use com cuidado!"},
-    {"name": "POÇÃO DA FOME", "icon": "potions/8.png", "id":"p7", "desc": "Essa poção é capaz de congelar quase qualquer coisa! Use com cuidado!"},
+    {"name": "POÇÃO DA FOME", "icon": "potions/12.png", "id":"p7", "desc": "Essa poção mata a fome de qualquer um, mas só a use quando  necessário, afinal, comer é muito bom!!"},
     {"name": "POÇÃO DOS SONHOS", "icon": "potions/20.png", "id":"p8", "desc": "Tome essa poção antes de dormir para sonhar com o que você desejar!"},
     {"name": "POÇÃO PERIGOSA", "icon": "potions/17.png", "id":"p9", "desc": "Essa poção é um medicamento poderoso, só tome sob recomendação médica!"},
     {"name": "POÇÃO RETRÔ", "icon": "potions/21.png", "id":"p10", "desc": "Você se sente nos anos 80."},
