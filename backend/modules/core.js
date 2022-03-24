@@ -53,7 +53,7 @@ function book (req, res)
            
            //resultForBook.push({name: el.name, icon: el.icon, desc: el.desc, recipe:rcpArr});
 
-           resultForBook.push({item:{name: el.name, icon: el.icon, desc: el.desc}, ingredients:{recipe:rcpArr}})
+           resultForBook.push({item:{name: el.name, icon: el.icon, desc: el.desc}, ingredients: rcpArr})
          }
       })
       
