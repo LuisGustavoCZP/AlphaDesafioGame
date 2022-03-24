@@ -38,7 +38,7 @@ function book (req, res)
    const unlockedRecipes = getBook(p);
    const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
-   console.log(unlockedRecipes)
+   console.log("aqui esta" + unlockedRecipes)
    
 
     // relaciona as tabelas dos itens do livro com os itens totais
