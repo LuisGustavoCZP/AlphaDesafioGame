@@ -37,15 +37,47 @@ function book (req, res)
    const unlockedRecipes = getBook(p);
    const itemsArray = database.itemArray
    const recipeArray = database.recipeArray;
-   
-   unlockedRecipes.forEach((element)=>{
-      recipeArray.forEach(()=>{
-         
-      })
+   const itemsOfBook = [];
+
+  unlockedRecipes.forEach((element)=>{
+     recipeArray.forEach((el)=>{
+        if(element === el.id){
+           itemsOfBook.push(el);
+        }
+     })
    })
 
-   res.json(getBook(p));
+  const resultForBook = [];
+  itemsOfBook.forEach((element)=>{
+     console.log(element);
+     itemsArray.forEach((el)=>{
+        
+        if(element.item === el.id){
+           let rcpArr = element.ingredients;
+           rcpArr = forItemArray(rcpArr);
+           
+           resultForBook.push({name: el.name, icon: el.icon, desc: el.desc, recipe:rcpArr});
+         }
+      })
+      
+   })
+
+   res.json(resultForBook);
 }
+
+function forItemArray(array){
+
+   const dataIngredients = [];
+   array.forEach((item)=>{
+      itemsArray.forEach((el)=>{
+         if(el.id === item){
+            dataIngredients.push({name: el.name, icon: el.icon, desc: el.desc})
+         }
+      })
+    })
+    return dataIngredients;
+ }
+ 
 
 function stock (req, res)
 {
