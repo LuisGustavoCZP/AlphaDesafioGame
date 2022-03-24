@@ -100,10 +100,10 @@
     box-sizing: border-box;
     /* width: 100%; */
     width: fit-content;
-    height: 100%;
+    height: 90%;
     max-width: fit-content;
     list-style: none;
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 0 15px;
     
     /* margin: auto; */
     justify-content: flex-start;
@@ -186,4 +186,29 @@
 
 .inventory > table td * {
     z-index: 16;
+}
+
+#bookcase ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+    padding: none;
+    margin: none;
+}
+
+/* Track */
+#bookcase ::-webkit-scrollbar-track {
+    background: var(--wood-darker); 
+}
+   
+  /* Handle */
+#bookcase ::-webkit-scrollbar-thumb {
+    background: var(--golden); 
+}
+  
+  /* Handle on hover */
+#bookcase ::-webkit-scrollbar-thumb:hover {
+    background: var(--golden);
+}
+#bookcase span{
+    font: 1em;
 }
