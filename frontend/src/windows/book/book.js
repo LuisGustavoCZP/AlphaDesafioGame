@@ -75,7 +75,7 @@ $(document).ready(() =>
                 console.log(ingredientInfo);
                 $("#ingredients-description").append(`<img id="potion-${i}" class="this-potion" src="/images/${ingredientInfo.icon}">`);
             }
-            $("#item-descp").html(`${itemInfo.desc}`);
+            $("#item-descp").html(`${itemInfo.item.desc}`);
         }
     }
     
