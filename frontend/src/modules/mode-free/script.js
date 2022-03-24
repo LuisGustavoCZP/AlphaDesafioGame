@@ -1,7 +1,7 @@
 import { gameTimer, WaitFor } from "../../static/scripts/timer.js";
-/* 
+
 $(document).ready(async function() 
-{ */
+{
     const bookcase = $("#bookcase")[0];
     const cauldron = $("#cauldron")[0];
     const dialogMage = $("#dialog-mage")[0];
@@ -90,5 +90,5 @@ $(document).ready(async function()
     } */
     //cauldron.stop();
     console.log("Coisa coisada!");
-/* }); */
+});
 
