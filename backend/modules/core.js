@@ -51,7 +51,9 @@ function book (req, res)
            let rcpArr = element.ingredients;
            rcpArr = forItemArray(rcpArr);
            
-           resultForBook.push({name: el.name, icon: el.icon, desc: el.desc, recipe:rcpArr});
+           //resultForBook.push({name: el.name, icon: el.icon, desc: el.desc, recipe:rcpArr});
+
+           resultForBook.push({item:{name: el.name, icon: el.icon, desc: el.desc}, ingredients:{recipe:rcpArr}})
          }
       })
       
