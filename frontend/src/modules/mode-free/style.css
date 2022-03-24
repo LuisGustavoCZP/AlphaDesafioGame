@@ -292,6 +292,10 @@ button:hover, #btn-play:hover, #btn-login:hover {
     /*transform: translateY(-7px);*/
 }
 
+button.glow {
+    background-color: var(--menu-glow-low);
+}
+
 #btn-book {
     background-image: url("/images/main/book.svg");
 }
