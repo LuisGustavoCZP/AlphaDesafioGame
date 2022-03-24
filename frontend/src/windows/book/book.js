@@ -2,7 +2,7 @@ $(document).ready(() =>
 {
     let potionActive;
     $(".this-potion").hide();
-    let recipe = /* parent.gameuser ? parent.gameuser.book : */ [
+    const recipesData = parent.gameuser ? parent.gameuser.book : {"resultBook":[
         { "item":{"name": "poção da velocidade", "icon": "../../images/potions/1.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Tomate", "icon": "../../images/ingredients/4.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
         { "item":{"name": "poção da resistencia", "icon": "../../images/potions/2.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
         { "item":{"name": "poção da resistencia", "icon": "../../images/potions/3.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
@@ -10,7 +10,8 @@ $(document).ready(() =>
         { "item":{"name": "poção da resistencia", "icon": "../../images/potions/5.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
         { "item":{"name": "poção da velocidade", "icon": "../../images/potions/6.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Tomate", "icon": "../../images/ingredients/4.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" },
         { "item":{"name": "poção da resistencia", "icon": "../../images/potions/7.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" }
-    ];
+    ], "totalRecipes": 50};
+    let recipe = recipesData.resultBook;
     //console.log(recipe[0].ingredients[0].icon);
 
     function fillIngredients(){

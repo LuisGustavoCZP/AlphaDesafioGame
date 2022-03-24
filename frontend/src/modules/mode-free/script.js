@@ -5,6 +5,7 @@ $(document).ready(async function()
     const bookcase = document.getElementById("bookcase");
     const cauldron = document.getElementById("cauldron");
     const dialogMage = document.getElementById("dialog-mage");
+    window.gameuser.requestBook();
     const btnbook = $("#btn-book")[0];
     const btnmenu = $("#btn-menu")[0];
     btnbook.onclick = () => {window.modal.src="/windows/book";};
@@ -33,7 +34,7 @@ $(document).ready(async function()
                 {
                     //cauldron.draw(response.result.icon);
                     bookcase.update();
-                    
+                    window.gameuser.requestBook();
                 }
             }); //const response = await 
             

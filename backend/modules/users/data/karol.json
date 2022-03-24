@@ -7,13 +7,15 @@
 		"i4",
 		"i3",
 		"i11",
-		"p7"
+		"p7",
+		"p9"
 	],
 	"unlockedRecipes": [
 		"r2",
 		"r1",
 		"r9",
-		"r16"
+		"r16",
+		"r18"
 	],
 	"tutorial": false,
 	"points": 0,
