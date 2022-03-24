@@ -11,9 +11,9 @@ window.transition = document.getElementById("transition");
 const iniciateSound = e=>
 {
     window.audiosys.play("music1"); 
-    window.removeEventListener("click", iniciateSound);
+    window.removeEventListener("mousemove", iniciateSound);
 };
 
-window.addEventListener("click", iniciateSound);
+window.addEventListener("mousemove", iniciateSound);
 
 user.update();

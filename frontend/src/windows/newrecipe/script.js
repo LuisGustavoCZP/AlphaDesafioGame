@@ -1,4 +1,4 @@
-import { WaitFor } from "/static/scripts/timer.js";
+import { waitFor } from "/static/scripts/timer.js";
 
 /* $(document).ready(async () => 
 { */

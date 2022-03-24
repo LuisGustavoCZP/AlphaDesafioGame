@@ -8,7 +8,7 @@ $(document).ready(async function()
     window.gameuser.requestBook();
     const btnbook = $("#btn-book")[0];
     const btnmenu = $("#btn-menu")[0];
-    btnbook.onclick = () => {window.modal.src="/windows/book";};
+    btnbook.onclick = () => {btnbook.classList.remove("glow"); window.modal.src="/windows/book";};
     btnmenu.onclick = () => {window.modal.src="/windows/menu";};
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
@@ -33,6 +33,7 @@ $(document).ready(async function()
                 if(response.status == 1)
                 {
                     //cauldron.draw(response.result.icon);
+                    btnbook.classList.add("glow");
                     bookcase.update();
                     window.gameuser.requestBook();
                 }

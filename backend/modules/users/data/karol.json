@@ -1,24 +1,32 @@
 {
-	"name": "plinio",
+	"name": "karol",
 	"unlockedItems": [
 		"i0",
 		"i1",
 		"i2",
-		"i3",
 		"i4",
+		"i3",
 		"i11",
+		"p7",
+		"p9",
 		"i7",
+		"i10",
+		"p4",
 		"p8"
 	],
 	"unlockedRecipes": [
-		"r1",
 		"r2",
+		"r1",
 		"r9",
+		"r16",
+		"r18",
 		"r5",
+		"r8",
+		"r13",
 		"r17"
 	],
 	"tutorial": false,
 	"points": 0,
 	"highscore": 0,
-	"id": "a4b7a230-2d1a-4326-aa4a-eb673a673dbf"
+	"id": "c39aa54b-cd65-4def-b4ce-ffc089cf47db"
 }
