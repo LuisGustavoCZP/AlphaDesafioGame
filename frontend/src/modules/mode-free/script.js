@@ -1,10 +1,10 @@
 import { gameTimer, WaitFor } from "../../static/scripts/timer.js";
-/* 
+
 $(document).ready(async function() 
-{ */
-    const bookcase = $("#bookcase")[0];
-    const cauldron = $("#cauldron")[0];
-    const dialogMage = $("#dialog-mage")[0];
+{
+    const bookcase = document.getElementById("bookcase");
+    const cauldron = document.getElementById("cauldron");
+    const dialogMage = document.getElementById("dialog-mage");
     const btnbook = $("#btn-book")[0];
     const btnmenu = $("#btn-menu")[0];
     btnbook.onclick = () => {window.modal.src="/windows/book";};
@@ -90,5 +90,5 @@ $(document).ready(async function()
     } */
     //cauldron.stop();
     console.log("Coisa coisada!");
-/* }); */
+});
 

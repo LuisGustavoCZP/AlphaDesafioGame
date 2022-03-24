@@ -51,13 +51,13 @@ $(document).ready(() =>
 
     });
 
-    /* $("body").on("click", function() 
+    $("body").on("click", function() 
     {
         console.log("Close");
         parent.modal.src = "";
         //$(`#Modal`).css("display","none");
     });
- */
+
     $("div.modal-background").on("click", function(e) 
     {
         console.log("On");
