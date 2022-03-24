@@ -15,12 +15,22 @@ const options = {
 
 const p = path+"/src/";
 app.use('/static', express.static(p+"static/"));
+/* app.use('/editor', express.static(p+"editor/")); */
 
-app.get("/editor", (req, res)=>
+app.get("/editor/", (req, res)=>
+{
+    let origin = rPath.resolve(p, "editor/index.html");
+    console.log(origin);
+    res.sendFile(origin);
+});
+
+app.get("/editor/:file", (req, res)=>
 {
     console.log("Query", req.query);
+    let file = req.params["file"];
     //req.ip == localhost?
-    let origin = rPath.resolve(p, "editor/");  
+    let origin = rPath.resolve(p, "editor/", file);
+    console.log(origin);
     res.sendFile(origin);
 });
 
