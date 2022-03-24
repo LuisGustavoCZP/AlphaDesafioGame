@@ -14,7 +14,7 @@ import { WaitFor } from "/static/scripts/timer.js";
     const item = window.gameuser.currentStage.potion.item; */
     //$("#title").html
     const title = document.getElementById("title");
-    title.innerHTML = `Nova poção`;
+    title.innerHTML = `DESBLOQUEADO`;
    
     $("#potion").html(`
         <img src="/images/${lastCreation.icon}" alt="${lastCreation.name}"/>
