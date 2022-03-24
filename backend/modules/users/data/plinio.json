@@ -4,10 +4,18 @@
 		"i0",
 		"i1",
 		"i2",
-		"i3"
+		"i3",
+		"i4",
+		"i11",
+		"i7",
+		"p8"
 	],
 	"unlockedRecipes": [
-		"r1"
+		"r1",
+		"r2",
+		"r9",
+		"r5",
+		"r17"
 	],
 	"tutorial": false,
 	"points": 0,
