@@ -2,6 +2,7 @@ import { gameTimer, waitFor } from "../../static/scripts/timer.js";
 
 $(document).ready(async function() 
 {
+    await waitFor(()=>document.getElementById("bookcase"));
     const bookcase = document.getElementById("bookcase");
     const cauldron = document.getElementById("cauldron");
     const dialogMage = document.getElementById("dialog-mage");
