@@ -5,20 +5,29 @@
 		"i1",
 		"i2",
 		"i3",
-		"i7",
-		"p8",
+		"i5",
+		"i8",
+		"i6",
 		"i4",
-		"i10"
+		"i11",
+		"i7",
+		"i10",
+		"i9"
 	],
 	"unlockedRecipes": [
 		"r1",
-		"r5",
-		"r17",
+		"r3",
+		"r6",
+		"r4",
 		"r2",
-		"r8"
+		"r9",
+		"r5",
+		"r8",
+		"r7"
 	],
 	"tutorial": false,
-	"points": 500,
+	"points": 900,
+	"level": "1",
 	"highscore": 0,
-	"id": "fd892aa2-b2d2-48d4-b208-75feb795ae25"
+	"id": "93380fc2-a4ee-4d1d-b29c-0f083e9b7a1c"
 }

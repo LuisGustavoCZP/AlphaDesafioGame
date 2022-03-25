@@ -15,7 +15,7 @@ function getStock (user)
 function getBook (user)
 {
     let total = database.fromID(...user.unlockedRecipes);
-    console.log(...total);
+    //console.log(total);
     if(!total.length){
        total = [total];
     }
@@ -86,21 +86,26 @@ function stock (req, res)
 
 function possibleRecipes (user)
 {
-   return database.recipeArray.filter((curr) => 
+   return database.recipeArray.filter((recipe) => 
    {
-      if(user.unlockedRecipes.includes(curr.id))
+      /* if(user.unlockedRecipes.includes(recipe.id))
       {
          return false;
+      } */
+      console.log(user.level, recipe.level);
+      if(user.level < recipe.level){
+
+         return false;
       }
-      let hasIt = true;
+      /* let hasIt = 0;
       user.unlockedItems.forEach((c) => 
       {
-         if(!curr.ingredients.includes(c)) 
+         if(!recipe.ingredients.includes(c)) 
          {
-            hasIt = false;
+            hasIt ++;
          };
-      });
-      return hasIt;
+      }); */
+      return true;
    });   
 }
 
@@ -129,6 +134,7 @@ function verifyUnlockedRecipes(user, recipe){
       p.unlockedRecipes.push(recipe.id);
       p.unlockedItems.push(recipe.item);
       p.points += Math.pow(recipe.level, 2) * 100;
+      if(p.level < recipe.level) p.level = recipe.level;
       player.addRank(p);
       isUnlocked = true;
    }
@@ -200,8 +206,8 @@ function randomTip (req, res)
       const ingIcons = d.ingredients.map((curr) => database.getItem(curr).icon);
       const tip = {
          "text":"Dica: {i0} + {i1} = ?",
-         "icons":[database.getItem(d.item).icon, ...ingIcons],
-         "click": true
+         "icons":[...ingIcons, database.getItem(d.item).icon],
+         "click": false
       }
       res.json(tip);
    } else {
