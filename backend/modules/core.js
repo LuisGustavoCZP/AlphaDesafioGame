@@ -15,7 +15,7 @@ function getStock (user)
 function getBook (user)
 {
     let total = database.fromID(...user.unlockedRecipes);
-    console.log(...total);
+    //console.log(total);
     if(!total.length){
        total = [total];
     }

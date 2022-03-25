@@ -1,0 +1,20 @@
+{
+	"name": "blackfancer",
+	"unlockedItems": [
+		"i0",
+		"i1",
+		"i2",
+		"i3",
+		"i4",
+		"i6"
+	],
+	"unlockedRecipes": [
+		"r1",
+		"r2",
+		"r4"
+	],
+	"tutorial": false,
+	"points": 300,
+	"highscore": 0,
+	"id": "7b234686-4f0b-4180-a9a8-74e54acc1f4d"
+}
