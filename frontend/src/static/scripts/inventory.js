@@ -80,14 +80,14 @@ class Inventory extends HTMLElement
             this.rows = 4;
         }
 
-        if(this.hasAttribute('title')) {
+/*         if(this.hasAttribute('title')) {
             const ttxt = this.getAttribute('title');
             
             this.title = document.createElement("span");
             //console.log(ttxt, this.title.innerText);
             this.title.innerText = ttxt;
             this.content.prepend(this.title);
-        }
+        } */
         
         this.style.listStyle = "none";
         this.createRows ();

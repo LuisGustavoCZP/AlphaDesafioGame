@@ -25,7 +25,7 @@ $(document).ready(() =>
         { "item":{"name": "poção da resistencia", "icon": "../../images/potions/7.png"}, "ingredients": [{"name": "Maracujá", "icon": "../../images/ingredients/1.png"}, {"name": "Alface", "icon": "../../images/ingredients/3.png"}, {"name": "Teia de Aranha", "icon": "../../images/ingredients/5.png"}], "desc": "Mesmo parecendo um escaravelho, esse estranho doce é feito de um açúcar mágico! É ótimo para gerar itens que mexam com os sentimentos!" }
     ], "totalRecipes": 50};
     const recipe = recipesData.resultBook;
-    //console.log(recipe[0].ingredients[0].icon);
+    console.log(recipe);
 
     function fillIngredients(){
         const recipeLength = recipe.length;
@@ -54,6 +54,7 @@ $(document).ready(() =>
             $(`#pot${i+1}`).attr("src", `/images/${recipe[i].item.icon}`);
             $(`#pot${i+1}`).attr("id", i);
         }
+        $("#recipes-un").html(`RECEITAS (${recipeLength}/${recipesData.totalRecipes})`)
     }
 
     fillIngredients();
