@@ -80,6 +80,6 @@ $(document).ready(() =>
         }
     }
     
-    $(".this-potion").on("click ",showInformation);
+    $(".this-potion").on("mouseover ",showInformation);
 
 });
