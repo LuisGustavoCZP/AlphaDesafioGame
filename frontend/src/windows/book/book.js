@@ -64,15 +64,11 @@ $(document).ready(() =>
         if(potionActive !== potion){
             potionActive = potion;
             const itemInfo = recipe[potion];
-            console.log(recipe);
             $("#ingredients-description").html("");
             let recipeLength = itemInfo.ingredients.length;
-            console.log(recipeLength);
             $("#potion-description h3").html(itemInfo.item.name);
             $("#potion-image").attr("src", `/images/${itemInfo.item.icon}`);
-            console.log(itemInfo.ingredients);
             for(let i = 0; i < recipeLength+1; i++){
-                console.log(i);
                 if(i === 0){
                     console.log("entrou 1");
                     let ingredientInfo = itemInfo.ingredients[i];
