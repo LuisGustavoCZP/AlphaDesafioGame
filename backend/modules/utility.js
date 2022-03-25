@@ -4,6 +4,11 @@ function randomSort(array)
     return parseInt(Math.random() * array.length);
 }
 
+function randomOf(array) 
+{
+    return array[parseInt(Math.random() * array.length)];
+}
+
 function randomKey(obj) 
 {
     const keys = Object.keys(obj);
@@ -83,4 +88,4 @@ class Dictionary {
     }
 }
 
-module.exports = {randomSort, randomKey, randomizeArray, contains, Dictionary};
+module.exports = {randomSort, randomKey, randomizeArray, contains, randomOf, Dictionary};
