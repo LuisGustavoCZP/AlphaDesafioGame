@@ -271,31 +271,35 @@ class User
 
     async requestDialog (callback)
     {
+        let response = undefined;
         const thisuser = this;
         function userSucess (data)
         {
+            response = data;
             /* thisuser.book = data; */
             console.log(data);
             if(callback){
                 callback(data);
             }
         }
-        const response = await RequestSys.get("dialog/random", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        await RequestSys.get("dialog/random", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         return response;
     }
 
     async requestTip (callback)
     {
+        let response = undefined;
         const thisuser = this;
         function userSucess (data)
         {
+            response = data;
             /* thisuser.book = data; */
             console.log(data);
             if(callback){
                 callback(data);
             }
         }
-        const response = await RequestSys.get("dialog/tip", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        await RequestSys.get("dialog/tip", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
         return response;
     }
 
