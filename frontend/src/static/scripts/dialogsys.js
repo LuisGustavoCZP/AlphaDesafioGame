@@ -63,7 +63,7 @@ class DialogSys extends HTMLElement
         const dialog = dialogs.shift();
         if(!dialog || !(dialog.length || dialog.text)) 
         {
-            return await this.nextDialog(parag, dialogs, nextDialog);
+            return await this.nextDialog(null, dialogs);
         }
 
         let text;
@@ -142,7 +142,7 @@ class DialogSys extends HTMLElement
     async nextDialog (parag, dialogs)
     {
         console.log("Novo dialogo");
-        parag.remove();
+        if(parag) parag.remove();
         if(dialogs && dialogs.length > 0){
             return await this.createText(...dialogs);
         } else 

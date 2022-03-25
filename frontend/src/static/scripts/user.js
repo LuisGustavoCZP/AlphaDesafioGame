@@ -31,11 +31,14 @@ class User
     #sessionData;
     data;
     match;
+    errorTax;
+
     constructor ()
     {
         this.#hasUser = false;
         this.#sessionData = this.#recoverCookie ();
         this.data = null;
+        this.errorTax = 0;
         this.match = {};
     }
 
