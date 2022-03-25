@@ -7,9 +7,10 @@ const fs = require('fs');
 
 function getStock (user)
 {
-    const t = database.fromID(...user.unlockedItems);
-    //console.log(t);
-    return t;
+   console.log(user.unlockedItems);
+   const t = database.fromID(...user.unlockedItems);
+   console.log(t);
+   return t;
 }
 
 function getBook (user)
@@ -75,14 +76,14 @@ function forItemArray(array){
       })
     })
     return dataIngredients;
- }
-
+}
 
 function stock (req, res)
 {
     const p = users[req.session.userid];
+    console.log(`STOCK USER: ${req.session.userid} = ${p.id}`);
     const sts = getStock(p);
-    console.log(req.session.userid, p.unlockedRecipes, sts.length);
+    console.log("STOCK FOR:", p.name, p.unlockedRecipes, sts.length);
     res.json(sts);
 }
 
@@ -94,7 +95,7 @@ function possibleRecipes (user)
       {
          return false;
       } */
-      console.log(user.level, recipe.level);
+      //console.log(user.level, recipe.level);
       if(user.level < recipe.level){
 
          return false;
@@ -133,6 +134,7 @@ function verifyUnlockedRecipes(user, recipe){
    })
 
    if(JSON.stringify(checkItem) === "[]"){
+      console.log(`Add ${p.name} to ${recipe.id}`);
       p.unlockedRecipes.push(recipe.id);
       p.unlockedItems.push(recipe.item);
       p.points += Math.pow(recipe.level, 2) * 100;
@@ -152,11 +154,11 @@ function verifyRecipe(req, res){
    const p = users[req.session.userid]
    const receivedItemsLength = receivedItems.length;
    
-   console.log("received = " + receivedItems);
+   //console.log("received = " + receivedItems);
 
    //verifica se está recebendo o array no formato correto
    if(typeof(receivedItems) === "object" && receivedItemsLength === 2){
-      console.log("feito");
+      //console.log("feito");
       const craft = database.result(receivedItems);
       
       
@@ -165,7 +167,7 @@ function verifyRecipe(req, res){
       {
          const crafted = craft.id;
          const craftedItem = craft.item;
-        console.log(crafted + "feito");
+        //console.log(crafted + "feito");
          /* const itemsArray = JSON.parse(fs.readFileSync(`${__dirname}/database/data/ingredients.json`));
          const infoCrafted = itemsArray.filter((element)=>{
             if(element === crafted){
@@ -201,7 +203,7 @@ function randomTip (req, res)
 {
    const user = users[req.session.userid]
    const ps = possibleRecipes(user);
-   console.log("tip: ", ps);
+   //console.log("tip: ", ps);
    if(ps && ps.length)
    {
       const d = utility.randomOf(ps);
