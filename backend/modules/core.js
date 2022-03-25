@@ -81,7 +81,9 @@ function forItemArray(array){
 function stock (req, res)
 {
     const p = users[req.session.userid];
-    res.json(getStock(p));
+    const sts = getStock(p);
+    console.log(req.session.userid, p.unlockedRecipes, sts.length);
+    res.json(sts);
 }
 
 function possibleRecipes (user)
