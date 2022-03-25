@@ -2,16 +2,16 @@ const fs = require('fs');
 
 const path = __dirname + "/data/";
 const itens = JSON.parse(fs.readFileSync(path + "ingredients.json"));
+const recipes = JSON.parse(fs.readFileSync(path + "recipes.json"));
 
-function execute (req, res)
+function getData (req, res)
 {
-    if(req.ip == "127.0.0.1" || req.ip == ".1") {
+    /* if(req.ip != "127.0.0.1" && req.ip != ".1") {
         res.end();
     } 
     else 
-    {
-        res.json(itens);
-    }
+    {} */
+    res.json({"items":itens, "recipes":recipes});
 }
 
-module.exports = {execute};
+module.exports = {getData};

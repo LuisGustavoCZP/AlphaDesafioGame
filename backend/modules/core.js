@@ -163,6 +163,16 @@ function verifyRecipe(req, res){
    }
 }
 
+function randomDialog (req, res) 
+{
+
+}
+
+function randomTip (req, res) 
+{
+
+}
+
 //
 module.exports = {
     player,
@@ -170,6 +180,8 @@ module.exports = {
     book,
     stock,
     verifyRecipe,
+    randomDialog,
+    randomTip
   /*   stagePrepare,
     stageStart,
     stageUpdate */
