@@ -8,13 +8,26 @@ $(document).ready(async function()
     window.gameuser.requestBook();
     const btnbook = $("#btn-book")[0];
     const btnmenu = $("#btn-menu")[0];
+    const btnTips = $("#btn-tips")[0];
     btnbook.onclick = () => {btnbook.classList.remove("glow"); window.modal.src="/windows/book";};
     btnmenu.onclick = () => {window.modal.src="/windows/menu";};
+    btnTips.onclick = () => {
+        $("#btn-tips")[0].disabled = true;
+        window.gameuser.requestTip((data)=>{
+        data = [data];
+        data.push({ text:"{f0}", functions:[ () => {$("#btn-tips")[0].disabled = false; } ] })
+        dialogMage.createText(...data)
+    })};
     await bookcase.start();
     //if(window.modal) window.modal.src="/windows/stage";
     parent.audiosys.play("open");
-    cauldron.play((ingredients) =>
+    cauldron.play(async(ingredients) =>
     {
+        if(Math.random > 0.5) 
+        {
+            const resp = await window.gameuser.requestDialog();
+            await dialogMage.createText(resp);
+        }
         if(ingredients && ingredients.length == 2)
         {
             const itens = ingredients;
@@ -23,11 +36,6 @@ $(document).ready(async function()
             cauldron.classList.remove("ui-droppable");
             window.gameuser.sendItems(itens, async (response) => 
             {
-                if(Math.random > 0.5) 
-                {
-                    const resp = await window.gameuser.randomDialog();
-                    await dialogMage.createText(resp);
-                }
                 console.log(response);
                 if(response.result)
                 {

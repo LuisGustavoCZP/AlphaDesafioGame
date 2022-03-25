@@ -1,9 +1,4 @@
 [
-    {
-        "text":"Olá! Seja bem vindo {$u}",
-        "icons":[],
-        "functions":[]
-    },
     {"text":"“Uma vez juntei um escaravelho amarelado com um tipo de geleia, não achei que daria certo, mas eu estava errado!”"},
     {"text":"“A Fruta rainha é ótima para criar itens que mexam com a temperatura!”"},
     {"text":"“O Escaravelho gelatinoso pode ser usado em uma receita para criar um fruto ótimo para combater febres!”"},
@@ -43,7 +38,7 @@
     {"text":"“O estudo da programação é o que move um de meus alunos…”"},
     {"text":"“Programação e filosofia podem ser usadas para invocar um certo bruxo…”"},
     {"text":"“Um aluno meu leva a empatia e a programação muito a serio…”"},
-    {"text":"“Dizer que o arquimago alcançou um nível superior de programação...”"},
+    {"text":"“Dizem que o arquimago alcançou um nível superior de programação...”"},
     {"text":"“Eu conheço um mago muito legal, pena que ele esta devendo dois churrascos para seus alunos…”"},
     {"text":"“Tem uma poção que quase causou o bug do milênio!”"},
     {"text":"“Muito bom! Consegui sentir sua animação daqui!”"},
