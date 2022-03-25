@@ -134,7 +134,7 @@ function login (req, res)
     //res.json();
 }
 
-function addRank (user){
+function addRank2 (user){
     let n = undefined
     let r = undefined;
     const newRank = {name:user.name, highscore:user.points};
@@ -158,6 +158,24 @@ function addRank (user){
         const lastones = highscores.splice(n, rest, newRank);//
         if(lastones.length > 0) highscores.push(lastones);
     }
+}
+
+function addRank (user){
+    let n = undefined
+    let r = undefined;
+    const newRank = {name:user.name, highscore:user.points};
+    for(let i = 0; i < highscores.length; i++)
+    {
+        const rank = highscores[i];
+        if(newRank.name == rank.name) {
+            r = i;
+            highscores.splice(r, 1);
+            break;
+        }
+    } //highscores[i].highscore = user.highscore;
+
+    highscores.push(newRank);
+    highscores.sort((a,b) => b.highscore - a.highscore);
 }
 
 function verifySession (req, res, next)

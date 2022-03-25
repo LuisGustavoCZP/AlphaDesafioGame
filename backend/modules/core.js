@@ -84,6 +84,26 @@ function stock (req, res)
     res.json(getStock(p));
 }
 
+function possibleRecipes (user)
+{
+   return database.recipeArray.filter((curr) => 
+   {
+      if(user.unlockedRecipes.includes(curr.id))
+      {
+         return false;
+      }
+      let hasIt = true;
+      user.unlockedItems.forEach((c) => 
+      {
+         if(!curr.ingredients.includes(c)) 
+         {
+            hasIt = false;
+         };
+      });
+      return hasIt;
+   });   
+}
+
 //insere um novo item na receita caso ele ainda não tenha sido descoberto
 function verifyUnlockedRecipes(user, recipe){
    let isUnlocked = false;
@@ -108,8 +128,9 @@ function verifyUnlockedRecipes(user, recipe){
    if(JSON.stringify(checkItem) === "[]"){
       p.unlockedRecipes.push(recipe.id);
       p.unlockedItems.push(recipe.item);
+      p.points += Math.pow(recipe.level, 2) * 100;
+      player.addRank(p);
       isUnlocked = true;
-
    }
 
    //verificar o status está sempre retornado como false
@@ -170,7 +191,22 @@ function randomDialog (req, res)
 
 function randomTip (req, res) 
 {
-   res.json(utility.randomOf(database.dialogs));
+   const user = users[req.session.userid]
+   const ps = possibleRecipes(user);
+   console.log("tip: ", ps);
+   if(ps && ps.length)
+   {
+      const d = utility.randomOf(ps);
+      const ingIcons = d.ingredients.map((curr) => database.getItem(curr).icon);
+      const tip = {
+         "text":"Dica: {i0} + {i1} = ?",
+         "icons":[database.getItem(d.item).icon, ...ingIcons],
+         "click": true
+      }
+      res.json(tip);
+   } else {
+      res.json({});
+   }
 }
 
 //

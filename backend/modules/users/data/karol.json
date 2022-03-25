@@ -1,0 +1,22 @@
+{
+	"name": "karol",
+	"unlockedItems": [
+		"i0",
+		"i1",
+		"i2",
+		"i3",
+		"i7",
+		"p8",
+		"i4"
+	],
+	"unlockedRecipes": [
+		"r1",
+		"r5",
+		"r17",
+		"r2"
+	],
+	"tutorial": false,
+	"points": 400,
+	"highscore": 0,
+	"id": "fd892aa2-b2d2-48d4-b208-75feb795ae25"
+}
