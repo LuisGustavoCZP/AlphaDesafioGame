@@ -23,7 +23,7 @@ $(document).ready(async function()
     parent.audiosys.play("open");
     cauldron.play(async(ingredients) =>
     {
-        if(Math.random > 0.5) 
+        if(Math.random() > 0.5) 
         {
             const resp = await window.gameuser.requestDialog();
             await dialogMage.createText(resp);
