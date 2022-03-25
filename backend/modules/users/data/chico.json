@@ -1,22 +1,24 @@
 {
-	"name": "karol",
+	"name": "chico",
 	"unlockedItems": [
 		"i0",
 		"i1",
 		"i2",
 		"i3",
 		"i7",
-		"p8",
-		"i4"
+		"i4",
+		"i5",
+		"i8"
 	],
 	"unlockedRecipes": [
 		"r1",
 		"r5",
-		"r17",
-		"r2"
+		"r2",
+		"r3",
+		"r6"
 	],
 	"tutorial": false,
-	"points": 400,
+	"points": 500,
 	"highscore": 0,
-	"id": "fd892aa2-b2d2-48d4-b208-75feb795ae25"
+	"id": "d21246b6-b15d-461d-94fd-e998d33e7cbd"
 }
