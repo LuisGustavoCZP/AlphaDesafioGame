@@ -23,11 +23,6 @@ $(document).ready(async function()
     parent.audiosys.play("open");
     cauldron.play(async(ingredients) =>
     {
-        if(Math.random() > 0.5) 
-        {
-            const resp = await window.gameuser.requestDialog();
-            await dialogMage.createText(resp);
-        }
         if(ingredients && ingredients.length == 2)
         {
             const itens = ingredients;
@@ -40,8 +35,16 @@ $(document).ready(async function()
                 if(response.result)
                 {
                     window.modal.src = "";
-                    window.gameuser.lastCreation = response.result;
+                    window.gameuser.lastCreation = response;
                     window.modal.src = "/windows/newrecipe";
+                } 
+                else
+                {
+                    if(Math.random() > 0.5) 
+                    {
+                        const resp = await window.gameuser.requestDialog();
+                        await dialogMage.createText(resp);
+                    }
                 }
                 if(response.status == 1)
                 {
