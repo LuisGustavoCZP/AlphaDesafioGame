@@ -163,6 +163,16 @@ function verifyRecipe(req, res){
    }
 }
 
+function randomDialog (req, res) 
+{
+   res.json(utility.randomOf(database.dialogs));
+}
+
+function randomTip (req, res) 
+{
+   res.json(utility.randomOf(database.dialogs));
+}
+
 //
 module.exports = {
     player,
@@ -170,6 +180,8 @@ module.exports = {
     book,
     stock,
     verifyRecipe,
+    randomDialog,
+    randomTip
   /*   stagePrepare,
     stageStart,
     stageUpdate */

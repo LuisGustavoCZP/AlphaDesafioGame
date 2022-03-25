@@ -191,7 +191,7 @@ class User
         }
     }
 
-    start (stageid)
+    /* start (stageid)
     {
         if(this.stages.length <= stageid-1) return;
         this.requestStage(stageid, (stage) => 
@@ -203,18 +203,13 @@ class User
     async stageWin ()
     {
         window.modal.src = "windows/gamewin";
-        //this.requestRanking();
-        /* this.requestStages();
-        this.requestBook();
-        this.requestStock();
-        this.goTo("modules/game/", "modules/windows/stages"); */
     }
 
     async stageTimeout ()
     {
         window.modal.src = "windows/gameover";
         //this.goTo("modules/game/", );
-    }
+    } */
     
     async sendItems (itens, callback)
     {
@@ -232,7 +227,7 @@ class User
         return response;
     }
 
-    async requestStage (stageid, callback)
+    /* async requestStage (stageid, callback)
     {
         const thisuser = this; 
         function userSucess (data)
@@ -272,6 +267,40 @@ class User
             }
         }
         const response = await RequestSys.get("stages", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+    } */
+
+    async requestDialog (callback)
+    {
+        let response = undefined;
+        const thisuser = this;
+        function userSucess (data)
+        {
+            response = data;
+            /* thisuser.book = data; */
+            console.log(data);
+            if(callback){
+                callback(data);
+            }
+        }
+        await RequestSys.get("dialog/random", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        return response;
+    }
+
+    async requestTip (callback)
+    {
+        let response = undefined;
+        const thisuser = this;
+        function userSucess (data)
+        {
+            response = data;
+            /* thisuser.book = data; */
+            console.log(data);
+            if(callback){
+                callback(data);
+            }
+        }
+        await RequestSys.get("dialog/tip", {params:{"sessionData":this.#sessionData}}, userSucess, this.userError);
+        return response;
     }
 
     async requestBook (callback)

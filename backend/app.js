@@ -43,7 +43,7 @@ app.get("/:sessionData/user", player.verifySession, player.playerData);
 
 app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
 
-app.post("/admin", admin.execute);
+app.get("/admin", admin.getData);
 
 /* //Pegar receita de itens
 app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);
@@ -63,7 +63,11 @@ app.get("/:sessionData/stock", player.verifySession, game.stock);
 //livro
 app.get("/:sessionData/book", player.verifySession, game.book);
 
+//dialogo aleatorio
+app.get("/:sessionData/dialog/random", player.verifySession, game.randomDialog);
 
+//dica aleatória
+app.get("/:sessionData/dialog/tip", player.verifySession, game.randomTip);
 //Recebe os itens e retornando a poção com um valor
 /* app.post("/:sessionData/combine", player.verifySession, game.combine); */
 

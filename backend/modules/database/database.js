@@ -4,6 +4,8 @@ const path = __dirname + "/data/";
 
 let recipeArray = {};
 let itemArray = {};
+let dialogs = [];
+
 const ingredients = {};
 /* {
     i:{
@@ -47,6 +49,8 @@ function initiate ()
         results[recipe.ingredients.reverse()] = recipe;
     });
     //console.log(ingredients);
+
+    dialogs = JSON.parse(fs.readFileSync(path + "dialogs.json"));
 }
 
 /**
@@ -143,6 +147,7 @@ module.exports = {
     allItems,
     itemInfo,
     result,
+    dialogs,
     recipeArray,
     itemArray
 }

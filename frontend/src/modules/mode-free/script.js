@@ -21,8 +21,13 @@ $(document).ready(async function()
             cauldron.reset();
             console.log(itens, window.gameuser);
             cauldron.classList.remove("ui-droppable");
-            window.gameuser.sendItems(itens, (response) => 
+            window.gameuser.sendItems(itens, async (response) => 
             {
+                if(Math.random > 0.5) 
+                {
+                    const resp = await window.gameuser.randomDialog();
+                    await dialogMage.createText(resp);
+                }
                 console.log(response);
                 if(response.result)
                 {
