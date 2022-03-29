@@ -75,7 +75,7 @@ function add (_user)
 function create (_name)
 {
     const user = {name:_name};
-    Object.assign({}, JSON.parse(JSON.stringify(prefab)))
+    Object.assign(user, JSON.parse(JSON.stringify(prefab)))
     /* const keys = Object.keys(prefab);
     keys.forEach(key => {
         user[key] = prefab[key];
