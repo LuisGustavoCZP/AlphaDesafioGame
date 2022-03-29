@@ -80,6 +80,8 @@ function create (_name)
     keys.forEach(key => {
         user[key] = prefab[key];
     }); */
+
+    //outros
     add(user);
     return user;
 }
