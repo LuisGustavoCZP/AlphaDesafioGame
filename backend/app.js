@@ -6,8 +6,6 @@ const cors = require('cors');
 const https = require('https');
 const rPath = require('path');
 const fs = require('fs');
-const { verify } = require('crypto');
-const { database } = require('./modules/core');
 const admin = require(`${__dirname}/modules/database/admin.js`);
 
 //console.log(__dirname);

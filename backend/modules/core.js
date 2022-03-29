@@ -91,10 +91,10 @@ function possibleRecipes (user)
 {
    return database.recipeArray.filter((recipe) => 
    {
-      /* if(user.unlockedRecipes.includes(recipe.id))
+      if(user.unlockedRecipes.includes(recipe.id))
       {
          return false;
-      } */
+      }
       //console.log(user.level, recipe.level);
       if(user.level < recipe.level){
 
