@@ -22,11 +22,7 @@ const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors());//{credentials: true, origin: 'http://localhost:8080'}
-
-/* app.use('/editor', express.static(`${__dirname}/funcao/index4.html`)); */
-
-//const player = require(`${path}/scripts/player`);
+app.use(cors());
 const game = require(`${path}/modules/core`);
 const player = game.player;
 //Criar usuario
@@ -38,21 +34,9 @@ app.post("/login", player.login);
 //Dados usuario (vida, estagio, pontos)
 app.get("/:sessionData/user", player.verifySession, player.playerData);
 
-//Resetar dados usuario
-/* app.post("/:sessionData/reset", player.verifySession, player.playerReset); */
-
 app.post("/:sessionData/verifyRecipe", player.verifySession, game.verifyRecipe);
 
 app.get("/admin", admin.getData);
-
-/* //Pegar receita de itens
-app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);
-
-//Checar receita de itens
-app.post("/:sessionData/recipe", player.verifySession, game.verifyRecipe);
-
-//Pegar uma poção aleatória
-app.get("/:sessionData/potion", player.verifySession, game.sortPotion); */
 
 //Ranking usuarios
 app.get("/ranking/:top", player.ranking);
@@ -68,6 +52,9 @@ app.get("/:sessionData/dialog/random", player.verifySession, game.randomDialog);
 
 //dica aleatória
 app.get("/:sessionData/dialog/tip", player.verifySession, game.randomTip);
+
+https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
+
 //Recebe os itens e retornando a poção com um valor
 /* app.post("/:sessionData/combine", player.verifySession, game.combine); */
 
@@ -83,6 +70,17 @@ app.get("/:sessionData/stage/", player.verifySession, game.stageStart);
 //Finaliza estagio, recebendo os itens e retornando a poção com um valor
 app.post("/:sessionData/stage/", player.verifySession, game.stageUpdate); */
 
-//app.listen(port, )
+//app.listen(port, )/* app.use('/editor', express.static(`${__dirname}/funcao/index4.html`)); */
+/* //Pegar receita de itens
+app.get("/:sessionData/recipe", player.verifySession, game.createRecipe);
 
-https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
+//Checar receita de itens
+app.post("/:sessionData/recipe", player.verifySession, game.verifyRecipe);
+
+//Pegar uma poção aleatória
+app.get("/:sessionData/potion", player.verifySession, game.sortPotion); */
+//Resetar dados usuario
+/* app.post("/:sessionData/reset", player.verifySession, player.playerReset); */
+//{credentials: true, origin: 'http://localhost:8080'}
+
+//const player = require(`${path}/scripts/player`);
