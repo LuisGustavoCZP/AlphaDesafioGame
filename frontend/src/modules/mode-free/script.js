@@ -1,6 +1,6 @@
 import { gameTimer, waitFor } from "../../static/scripts/timer.js";
-window.onload(() => 
-{
+
+
     $(document).ready(async function() 
     {
         
@@ -114,4 +114,3 @@ window.onload(() =>
         console.log("Coisa coisada!");
     });
 
-});
