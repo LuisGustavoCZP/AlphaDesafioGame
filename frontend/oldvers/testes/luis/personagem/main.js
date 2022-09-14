@@ -1,6 +1,6 @@
-import { CharacterPart, Character } from "/scripts/animationsystem/character.js";
-import { DragNDrop } from "/scripts/animationsystem/dragging.js";
-import { LoadSys, OrtoPath } from "/scripts/loadsys.js";
+import { CharacterPart, Character } from "../../../../src/static/scripts/animationsystem/character.js";
+import { DragNDrop } from "../../../../src/static/scripts/animationsystem/dragging.js";
+import { LoadSys, OrtoPath } from "../../../../src/static/scripts/loadsys.js";
 
 var scripts = self.src;
 console.log(scripts);
