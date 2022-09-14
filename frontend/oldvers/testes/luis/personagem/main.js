@@ -8,7 +8,7 @@ console.log(scripts);
 
 
 let p1, charMage, ready;
-LoadSys.toJSON("/database/person1.json", (data) => 
+LoadSys.toJSON("../../../../src/database/person1.json", (data) => 
 {
     p1 = data;
     charMage = Character.Load(p1, "characters");
