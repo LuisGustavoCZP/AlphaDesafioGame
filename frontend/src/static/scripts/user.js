@@ -57,9 +57,14 @@ class User
     #recoverCookie () {
         const cookie = document.cookie;
         if(cookie=="") return null;
-        const cookieValues = cookie.split(";");
-        console.log(cookieValues);
-        return cookieValues[0].replace("sessionData=", "");
+        
+        /* const cookieValues = cookie.split(";"); */
+        /* console.log(cookieValues, cookie); */
+        const matchs = cookie.match(/sessionData=(\w|.){1,}/gi);
+        console.log(matchs, cookie);
+        if(!matchs) return;
+
+        return matchs[0].replace("sessionData=", "");
     }
 
     login (user)

@@ -4,7 +4,7 @@ const rPath = require('path');
 const app = express();
 const path = __dirname;
 const root = rPath.dirname(path);
-const port = 443;
+const port = 8080;
 const fs = require('fs');
 
 // Carrega o certificado e a key necessários para a configuração.
@@ -100,5 +100,5 @@ app.get("/*", (req, res)=>
     res.sendFile(origin);
 });
 
-https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
+app.listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));

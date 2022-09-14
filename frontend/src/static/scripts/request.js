@@ -1,10 +1,10 @@
 /* Sistema que controla requisiçoes para um servidor, por padrão não leva argumentos */
 /* console.log(document.location); */
 let ortoPath = document.location.origin;
-if(ortoPath.includes(":8080")) ortoPath = ortoPath.slice(0, ortoPath.lastIndexOf(":8080"));
+if(ortoPath.includes("8080")) ortoPath = ortoPath.replace("8080", "8000");
 else if(ortoPath.endsWith("/")) ortoPath = ortoPath.slice(0, ortoPath.lastIndexOf("/"));
 //document.location.origin.replace("8080", "8000/")
-function requestSys (url=ortoPath+":8000/") //"https://vacsina.servegame.com:8000/"
+function requestSys (url="https://8000-luisgustavo-torreflamel-ltdewpu3u9p.ws-us65.gitpod.io/" /* ortoPath */) //"https://vacsina.servegame.com:8000/"
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */

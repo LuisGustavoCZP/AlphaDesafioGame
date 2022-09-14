@@ -51,7 +51,7 @@ app.get("/:sessionData/dialog/random", player.verifySession, game.randomDialog);
 //dica aleatória
 app.get("/:sessionData/dialog/tip", player.verifySession, game.randomTip);
 
-https.createServer(options, app).listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
+app.listen(port, () => {console.log(`Servidor iniciado em ${port}`)});
 
 //Recebe os itens e retornando a poção com um valor
 /* app.post("/:sessionData/combine", player.verifySession, game.combine); */
