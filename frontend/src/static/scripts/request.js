@@ -4,7 +4,7 @@ let ortoPath = document.location.origin;
 if(ortoPath.includes("8080")) ortoPath = ortoPath.replace("8080", "8000");
 else if(ortoPath.endsWith("/")) ortoPath = ortoPath.slice(0, ortoPath.lastIndexOf("/"));
 //document.location.origin.replace("8080", "8000/")
-function requestSys (url="https://8000-luisgustavo-torreflamel-ltdewpu3u9p.ws-us65.gitpod.io/" /* ortoPath */) //"https://vacsina.servegame.com:8000/"
+function requestSys (url="http://localhost:8000/" /* ortoPath */) //"https://vacsina.servegame.com:8000/"
 {
     /* Nas duas funções de criação abaixo a informação é definida por um objeto e seus atributos */
     /* Função que cria uma query string para ser colocada na rota */

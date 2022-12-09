@@ -1,0 +1,21 @@
+{
+  "name": "torreflamel",
+  "version": "1.0.0",
+  "description": "Plinio was here!!!",
+  "main": "ecosystem.config.js",
+  "scripts": {
+    "start:game": "cd backend && npm start",
+    "start:server": "cd frontend && npm start",
+    "start": "start \"Server\" npm run start:server && start \"Game\" npm run start:game"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisGustavoCZP/torreflamel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuisGustavoCZP/torreflamel/issues"
+  },
+  "homepage": "https://github.com/LuisGustavoCZP/torreflamel#readme"
+}
